@@ -1,0 +1,16 @@
+#!/bin/bash
+# Use this file (on a unix system) to generate the zip archive for CTAN
+# ctanify is part of TeX Live and MiKTeX distributions
+# Please note, that you need at least version 1.8.2 to add the symbolic link correctly.
+#
+echo "Make sure we have the latest version"
+pdflatex lni.dtx
+if [ -f lni.tar.gz ]; then
+   echo "Remove old archive"
+   rm lni.tar.gz
+fi
+ctanify lni.ins lni.pdf README.md "lni-instructions.pdf=doc/latex/lni" "lni-author-template.tex=doc/latex/lni" "lni.bst=bibtex/bst/lni" "lnig.bst=bibtex/bst/lni"
+gunzip lni.tar.gz
+tar --delete --file=lni.tar lni.tds.zip
+gzip lni.tar
+
