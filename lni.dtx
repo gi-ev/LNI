@@ -1,0 +1,2038 @@
+% \iffalse meta-comment
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+# lni
+
+```
+----------------------------------------------------------------------------
+lni      -- A class for submissions to the ``Lecture Notes in Informatics''
+(c) 2016 
+Version:    1.0
+Maintainer: Martin Sievers
+Email:      martin.sievers@schoenerpublizieren.de
+License:    Released under the LaTeX Project Public License v1.3c or later
+See:        http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------------------
+
+This is the current version of the class “lni” for submission to the 
+“Lecture Notes in Informatics” published by the “Gesellschaft für Informatik” 
+(GI).
+
+It is based on previous templates created on behalf of the GI.
+
+Stable version are always uploaded to CTAN. You'll find the most recent developer version on GitHub.
+```
+
+https://github.com/sieversMartin/lni
+
+
+## Changelog
+%</readme>
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+  \expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\declarepreamble\bibtexengpre
+%% 
+%% lnig.bst
+%% Lecture Notes in Informatics Style File (english)
+%% Version 1.0 (2014/12/17)
+%%
+%%
+%% The Style File is based on alpha.bst
+%%
+%% This work may be freely used,
+%% distributed and modified.
+%% Modified files should be clearly indicated as such and renamed.
+%%
+%%***************************************************      
+% Changelog:
+%
+%  1.0       (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
+% Changes:  
+%  - Last Name before the prename
+%  - ; between Autors
+%  - : before title
+%  - Lable: Abbreviation of name of first author instead of + (former: A+09 or WFEL14, now Az09 and Wa14)
+%  - Lable: Use first 2 letters of title if there is no author
+%  - add : after In (functions inproceedings and inbook) 
+%  - no emphasize of titles
+%  - editors in bracelets ()
+%  - correct order of reference infos
+%  - correct signs (.,:()) between reference infos 
+%  - Add second prename
+%  - change order of series (not: "number" in "series", now "series" "number"
+%
+%%***************************************************
+%
+\endpreamble
+
+\declarepreamble\bibtexgerpre
+%% 
+%% lnig.bst
+%% Lecture Notes in Informatics Style File (german)
+%% Version 2.0 (2014/12/17)
+%%
+%% The Style File is based on alpha.bst
+%%
+%% This work may be freely used,
+%% distributed and modified.
+%% Modified files should be clearly indicated as such and renamed.
+%%
+%%***************************************************      
+% Changelog:
+%
+%  1.0      (21.09.90),  Robert Tolksdorf, K\"ortestr. 30, D-1000,  Berlin 61, West Germany
+% Adapted bibliography style `geralpha' that changes several english-language
+% ``constants'' in the style.
+%
+%  2.0       (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
+% Changes:  
+%  - Last Name before the prename
+%  - ; between Autors
+%  - : before title
+%  - Lable: Abbreviation of name of first author instead of + (former: A+09 or WFEL14, now Az09 and Wa14)
+%  - Lable: Use first 2 letters of title if there is no author
+%  - add : after In (functions inproceedings and inbook) 
+%  - no emphasize of titles
+%  - editors in bracelets ()
+%  - correct order of reference infos
+%  - correct signs (.,:()) between reference infos 
+%  - Add second prename
+%  - change order of series (not: "number" in "series", now "series" "number"
+%
+%%***************************************************
+%
+\endpreamble
+
+\declarepreamble\classpre
+-------:| -----------------------------------------------------------------
+    lni:| A class for submissions to the ``Lecture Notes in Informatics''
+ Author:| Martin Sievers
+ E-mail:| martin.sievers@schoenerpublizieren.de
+License:| Released under the LaTeX Project Public License v1.3c or later
+    See:| http://www.latex-project.org/lppl.txt
+
+\endpreamble
+\postamble
+
+Copyright (C) 2016 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+Martin Sievers.
+
+This work consists of the file  lni.dtx
+                                lni.ins
+                                README.md
+          and the derived files lni.pdf
+                                lni.cls
+                                lni.bst
+                                lnig.bst
+\endpostamble
+
+\usedir{tex/latex/lni}
+\AddGenerationDate
+\generate{
+  \usepreamble\classpre
+  \file{\jobname.cls}{\from{\jobname.dtx}{class}}
+}
+\usedir{bst/latex/lni}
+\generate{
+  \usepreamble\bibtexengpre
+  \file{\jobname.bst}{\from{\jobname.dtx}{bibtex,eng}}
+  \usepreamble\bibtexgerpre
+  \file{\jobname g.bst}{\from{\jobname.dtx}{bibtex,ger}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/lni}
+\generate{
+  \usepreamble\classpre
+  \file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/lni}
+\generate{
+  \file{README.md}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+  \expandafter\endbatchfile
+\else
+  \expandafter\endgroup
+\fi
+%</internal>
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{lni.dtx}
+%</driver>
+%<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<class>\ProvidesClass{lni}
+%<*class>
+    [2016/04/05 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+%</class>
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
+\usepackage[numbered]{hypdoc}
+
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{\jobname.dtx}
+% \DoNotIndex{\newcommand,\newenvironment}
+%
+%\title{\textsf{lni} --- A class for submissions to the ``Lecture Notes in Informatics''\thanks{This file
+%   describes version \fileversion, last revised \filedate.}
+%}
+%\author{Martin Sievers\thanks{E-mail: martin.sievers@schoenerpublizieren.de}}
+%\date{Released \filedate}
+%
+%\maketitle
+%
+%\changes{v1.00}{2016/01/18}{First public release}
+%
+% \begin{abstract}
+% ==== Put abstract text here. ====
+% \end{abstract}
+%
+% \section{Usage}
+%
+% ==== Put descriptive text here. ====
+%
+% \DescribeMacro{\dummyMacro}
+% This macro does nothing.\index{doing nothing|usage} It is merely an
+% example.  If this were a real macro, you would put a paragraph here
+% describing what the macro is supposed to do, what its mandatory and
+% optional arguments are, and so forth.
+%
+% \DescribeEnv{dummyEnv}
+% This environment does nothing.  It is merely an example.
+% If this were a real environment, you would put a paragraph here
+% describing what the environment is supposed to do, what its
+% mandatory and optional arguments are, and so forth.
+%
+%\StopEventually{^^A
+%  \PrintChanges
+%  \PrintIndex
+%}
+%
+% \section{Implementation}
+%
+%    \begin{macrocode}
+%<*class>
+% Satzspiegelposition gemäß LNI-Herausgeberrichtlinien (Korrektur von Thomas.Kuehne@mcs.vuw.ac.nz)
+\setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
+\setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
+
+% Vielen Dank an Matthias Rust (mrust@rostock.zgdv.de) fuer folgende
+% Ausrichtung an LNI Satzspiegel
+%\DeclareOption{forInclusion}{%
+%  \setlength{\topmargin}{0mm}%
+%  \setlength{\headheight}{0mm}%
+%  \setlength{\headsep}{0mm}%
+%  \setlength{\hoffset}{-10,9mm}% 
+%  \setlength{\voffset}{-3,9mm}% 
+%  \setlength{\oddsidemargin}{0mm}%
+%  \setlength{\evensidemargin}{0mm}%
+%  \setlength{\paperheight}{235mm}%
+%  \setlength{\paperwidth}{155mm}
+%  \ifpdf%
+%    \setlength{\pdfpageheight}{235mm}%
+%    \setlength{\pdfpagewidth}{155mm}%
+%  \fi}
+
+\def\@clearglobaloption#1{%
+  \def\@tempa{#1}%
+  \def\@tempb{\@gobble}%
+  \@for\next:=\@classoptionslist\do
+    {\ifx\next\@tempa
+       \message{Cleared  option \next\space from global list}%
+     \else
+       \edef\@tempb{\@tempb,\next}%
+     \fi}%
+  \let\@classoptionslist\@tempb
+  \expandafter\ifx\@tempb\@gobble
+    \let\@classoptionslist\@empty
+  \fi}
+
+\DeclareOption{latin1}{\PassOptionsToPackage{latin1}{inputenc}}
+\DeclareOption{utf8}{\PassOptionsToPackage{utf8}{inputenc}}
+\DeclareOption{ansinew}{\PassOptionsToPackage{ansinew}{inputenc}}
+\newif\iflnienglish
+\lnienglishfalse
+\DeclareOption{english}{\lnienglishtrue\@clearglobaloption{english}}
+\ExecuteOptions{utf8}
+\DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
+\ProcessOptions\relax
+
+% 10 pt, A4, Seitenabstände
+\LoadClass[10pt,twoside,a4paper,fleqn]{article}
+\RequirePackage{inputenc}
+\RequirePackage[T1]{fontenc}
+
+\iflnienglish
+   \RequirePackage[ngerman,english]{babel}
+\else
+   \RequirePackage[english,ngerman]{babel}
+\fi
+
+% Define Times als main font
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
+\RequirePackage[zerostyle=b,straightquotes]{newtxtt}
+\RequirePackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+
+% Satzspiegel
+\setlength{\textheight}{19.2cm}
+\setlength{\textwidth}{12.6cm}
+\setlength{\topmargin}{0.17cm}%
+\setlength{\oddsidemargin}{1.85cm}% korrigierte twoside werte
+\setlength{\evensidemargin}{1.85cm}% korrigierte twoside werte
+\setlength{\headsep}{0.31cm}%
+
+% Ragged bottom - verhindert die Ausdehnung der Seite = Veränderung der Abstände
+\def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
+\global\let\@textbottom\relax}}
+
+%Seitenzahlen - Größe der Box
+\renewcommand\@pnumwidth{3em}
+\renewcommand\@tocrmarg{3.5em}
+\def\@dottedtocline#1#2#3#4#5{%
+  \ifnum #1>\c@tocdepth \else
+    \vskip \z@ \@plus.2\p@
+    {\leftskip #2\relax \rightskip \@tocrmarg \advance\rightskip by 0pt plus 2cm
+               \parfillskip -\rightskip \pretolerance=10000
+     \parindent #2\relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima #3\relax
+     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+     {#4}\nobreak
+     \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill
+     \nobreak
+     \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+     \par}%
+  \fi}
+  
+\renewcommand{\title}{\@dblarg\@@title}
+\def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
+
+\renewcommand{\author}{\@dblarg\@@author}
+\def\@@author[#1]#2{\gdef\@shortauthor{{\def\and{\unskip\ und\ }#1}}\gdef\@author{#2}}
+
+\newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
+
+% Title: Kopie aus article.cls mit anderem \thispagestyle
+\renewcommand\maketitle{\par
+% Keine Vertikale Einrückung über dem Titel auf der Titelseite
+%\changepage{0mm}{0mm}{0mm}{0mm}{0mm}{0.56cm}{0mm}{0mm}{0mm}  
+\begingroup
+    \renewcommand\thefootnote{\@arabic\c@footnote}%
+    \def\@makefnmark% keine Einrückung der Fußnoten eingestellt
+		 {\@textsuperscript{\normalfont\@thefnmark}}%
+		 \long\def\@makefntext##1{%
+		 \@setpar{\@@par
+		 \@tempdima = \hsize
+		 \advance\@tempdima -1em
+		 \parshape \@ne 0.15cm \@tempdima}%
+		 \par\parindent 0.3cm \noindent
+		 \hb@xt@\z@{\hss\@textsuperscript{\normalfont\@thefnmark}\,}##1}
+    \if@twocolumn
+      \ifnum \col@number=\@ne
+        \@maketitle
+      \else
+        \twocolumn[\@maketitle]%
+      \fi
+    \else
+      \newpage
+      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \@maketitle
+    \fi
+    \thispagestyle{plain}
+    \@thanks   
+  \endgroup
+  \global\let\thanks\relax
+  \global\let\maketitle\relax
+  \global\let\@maketitle\relax
+  \global\let\@thanks\@empty
+  \global\let\@author\@empty
+  \global\let\@date\@empty
+  \global\let\@title\@empty
+  \global\let\title\relax
+  \global\let\author\relax
+  \global\let\date\relax
+  \global\let\and\relax
+}
+
+\def\@maketitle{%
+  \newpage
+  \null
+  \begin{center}%
+  \vskip -24pt% Abstand vor dem Titel
+  \flushleft %Linksbündig
+  \let\footnote\thanks
+    {\fontsize{14}{17}\fontseries{b}\selectfont \@title \par}%
+    \vskip 19pt% Abstand nach dem Titel
+    {\fontsize{10}{12}\selectfont
+      \lineskip .5em%
+        \@author
+      \par}%
+    \vskip 28pt%Abstand vor dem Abstract
+  \end{center}%
+  \par
+}
+
+% Abstract
+\renewenvironment*{abstract}{%
+ \renewcommand{\abstractname}{Abstract}
+ \fontsize{9}{10}\selectfont
+    \noindent{\bfseries \abstractname:}%
+}{\endquotation}  
+
+% Keywords
+\newenvironment{keywords}{\fontsize{9}{10}\selectfont
+    \noindent{\bfseries Keywords:}}{}
+
+% Überschriften
+\renewcommand{\section}{\@startsection{section}{1}{\z@}%
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\fontseries{b}\selectfont}}
+%  {19pt}{8pt}{\fontsize{12}{14}\fontseries{b}\selectfont}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\fontseries{b}\selectfont}}
+%  {16pt}{4pt}{\fontsize{10}{12}\fontseries{b}\selectfont}}
+% weitere nicht durch Formatvorlage geklärt
+
+% Bildunterschriften
+\setlength{\abovecaptionskip}{4pt}%Abstand vor der Bildunterschrift
+\setlength{\belowcaptionskip}{0pt}%Abstand nach der Bildunterschrift
+\setlength{\intextsep}{6pt}%Abstand nach der Grafik
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  {%\fontsize{5}{6}\selectfont
+   \sbox\@tempboxa{\small#1: #2}%
+  \ifdim \wd\@tempboxa >\hsize
+    #1: #2\par
+  \else
+    \global \@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \fi}
+  \vskip\belowcaptionskip}
+
+% Abbildungen
+\def\fps@figure{htbp}
+\def\fnum@figure{\figurename\thinspace\thefigure}
+\def \@floatboxreset {%
+        \reset@font
+        \small
+        \@setnobreak
+        \@setminipage
+}
+\setcounter{topnumber}{10}%maximale Anzahl gleitender Objekte am Seitenanfang
+\setcounter{bottomnumber}{10}%maximale Anzahl gleitender Objekte am Seitenende
+\renewcommand{\topfraction}{1.0}%Anteil den gleitende Objekte am Seitenanfang einnehmen dürfen
+\renewcommand{\bottomfraction}{1.0}%Anteil den gleitende Objekte am Seitenende einnehmen dürfen
+
+% Tabellen
+\def\fps@table{htbp}
+\def\fnum@table{\tablename~\thetable}
+\renewcommand{\arraystretch}{1.1}%Abstand zu Linien in Tabelle
+\renewenvironment{table}
+               {\setlength\abovecaptionskip{6\p@}%
+                \setlength\belowcaptionskip{0\p@}%
+                \@float{table}}
+               {\end@float}
+\renewenvironment{table*}
+               {\setlength\abovecaptionskip{6\p@}%
+                \setlength\belowcaptionskip{0\p@}%
+                \@dblfloat{table}}
+               {\end@dblfloat}
+
+% Gleichungen mit richtiger Einrückung, 0.5cm
+% fleqn-Option oben
+\setlength{\mathindent}{0.5cm}
+
+% listings mit richtiger einrückung, 0.5 cm
+\RequirePackage{verbatim}
+\def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
+
+% Fussnoten mit 5cm Linie und richtiger Größe
+\renewcommand\footnoterule{%
+  \kern-3\p@
+  \hrule\@width 5cm
+  \kern2.6\p@}
+  \newdimen\fnindent
+  \fnindent0.18cm
+\long\def\@makefntext#1{%
+    \parindent \fnindent%
+    \leftskip \fnindent% Einrückung vor der footnotemark
+    \noindent
+    \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
+
+
+% Absatzeinzüge und Abstände
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+% Aufzählungen
+% mit Punkt
+\renewcommand*\itemize{%
+  \ifnum \@itemdepth >\thr@@\@toodeep\else
+  	\setlength{\labelsep}{0.70cm}%Abstand zum Aufzählungspunkt
+    \advance\@itemdepth\@ne
+    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%   
+    \expandafter
+    \list  
+      \csname\@itemitem\endcsname
+      {\def\makelabel##1{\hss\llap{##1}}%
+       \setlength{\itemsep}{8pt}%
+       \setlength{\parsep}{-2pt}}%
+       %\setlength{\itemindent}{0.5cm}
+  \fi}
+  
+  % Nummierierte Aufzählung
+  \renewcommand{\labelenumii}{\alph{enumii})}
+  \renewcommand*\enumerate{%    
+  \ifnum \@enumdepth >\thr@@
+      \@toodeep
+    \else
+		\setlength{\labelsep}{0.70cm}%Abstand zur Aufzählungsnummer      
+      \advance\@enumdepth \@ne
+      \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
+    \fi
+    \@ifnextchar[{\@enumlabel@{\@enumerate@}[}{\@enumerate@}}
+  \def\@enumerate@{%
+    \expandafter\list\csname label\@enumctr\endcsname{%
+      \usecounter{\@enumctr}%
+      \def\makelabel##1{\hss\llap{##1}}
+		\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens     
+      \setlength{\itemsep}{8pt}%
+      \setlength{\parsep}{-2pt}}
+  }
+
+% bibliography
+\renewenvironment{thebibliography}[1]
+     {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
+      \inputencoding{latin1}
+      \section*{\refname}%
+      \bgroup\fontsize{9}{10}\selectfont
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist\egroup\inputencoding{utf8}}
+
+\RequirePackage{graphicx}
+\RequirePackage{fancyhdr}
+\RequirePackage{listings}
+%\usepackage{changepage} %for changing topmargin on first page
+%\usepackage[figurename=Abb., tablename=Tab., small]{caption}[2008/04/01]
+\addto\captionsngerman{%
+  \renewcommand{\figurename}{Abb.}%
+  \renewcommand{\tablename}{Tab.}%
+  \renewcommand{\lstlistingname}{List.}
+  \renewcommand{\refname}{Literaturverzeichnis}
+}
+
+\addto\captionsenglish{%
+  \renewcommand{\figurename}{Fig.}%
+  \renewcommand{\tablename}{Tab.}%
+  \renewcommand{\lstlistingname}{List.}
+}
+
+\newcommand*{\startpage}[1]{\setcounter{page}{#1}}
+
+
+\newcommand*{\@booktitle}{}
+\newcommand*{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
+
+\newcommand*{\@editor}{}
+\newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
+
+\let\@rigyear\year
+\newcommand*{\@year}{\the\@rigyear}
+\renewcommand*{\year}[1]{\renewcommand{\@year}{#1}}
+%    \end{macrocode}
+% Kopfzeileneinstellungen
+%    \begin{macrocode}
+\fancypagestyle{plain}{%
+   \fancyhead{} % Löscht alle Kopfzeileneinstellungen
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year \hspace{5pt}\thepage\hspace{0.05cm}}
+   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
+   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
+}
+
+\pagestyle{fancy}
+\fancyhead{} % Löscht alle Kopfzeileneinstellungen
+\fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
+\fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
+\fancyfoot{} % Löscht alle Fußzeileneinstellungen
+\renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
+
+\RequirePackage{url}
+
+\def\and{\unskip\,}
+
+\iflnienglish
+   \bibliographystyle{lni}
+\else
+   \bibliographystyle{lnig}
+\fi
+
+\frenchspacing    % Abstand nach Satzende
+\widowpenalty=10000   % Vermeidet "widows & orphans"
+\clubpenalty=10000
+%    \end{macrocode}
+%    \begin{macrocode}
+\endinput
+%</class>
+%    \end{macrocode}
+%\Finale
+%
+%\iffalse
+%
+%    \begin{macrocode}
+%<*bibtex>
+%<*eng|ger>
+%    \end{macrocode}
+%    \begin{macrocode}
+ENTRY
+  { address
+    author
+    booktitle
+    chapter
+    edition
+    editor
+    howpublished
+    institution
+    journal
+    key
+    month
+    note
+    number
+    organization
+    pages
+    publisher
+    school
+    series
+    title
+    type
+    volume
+    year
+  }
+  {}
+  { label extra.label sort.label }
+
+INTEGERS { output.state before.all mid.sentence after.sentence after.block }
+
+FUNCTION {init.state.consts}
+{ #0 'before.all :=
+  #1 'mid.sentence :=
+  #2 'after.sentence :=
+  #3 'after.block :=
+}
+
+STRINGS { s t }
+
+FUNCTION {output.nonnull}
+{ 's :=
+  output.state mid.sentence =
+    { ", " * write$ }
+    { output.state after.block =
+	{ add.period$ write$
+	  newline$
+	  "\newblock " write$
+	}
+	{ output.state before.all =
+	    'write$
+	    { add.period$ " " * write$ }
+	  if$
+	}
+      if$
+      mid.sentence 'output.state :=
+    }
+  if$
+  s
+}
+
+FUNCTION {output}
+{ duplicate$ empty$
+    'pop$
+    'output.nonnull
+  if$
+}
+
+FUNCTION {output.check}
+{ 't :=
+  duplicate$ empty$
+    { pop$ "empty " t * " in " * cite$ * warning$ }
+    'output.nonnull
+  if$
+}
+
+FUNCTION {output.bibitem}
+{ newline$
+  "\bibitem[" write$
+  label write$
+  "]{" write$
+  cite$ write$
+  "}" write$
+  newline$
+  ""
+  before.all 'output.state :=
+}
+
+FUNCTION {fin.entry}
+{ add.period$
+  write$
+  newline$
+}
+
+FUNCTION {new.block}
+{ output.state before.all =
+    'skip$
+    { after.block 'output.state := }
+  if$
+}
+
+FUNCTION {new.sentence}
+{ output.state after.block =
+    'skip$
+    { output.state before.all =
+	'skip$
+	{ after.sentence 'output.state := }
+      if$
+    }
+  if$
+}
+
+FUNCTION {not}
+{   { #0 }
+    { #1 }
+  if$
+}
+
+FUNCTION {and}
+{   'skip$
+    { pop$ #0 }
+  if$
+}
+
+FUNCTION {or}
+{   { pop$ #1 }
+    'skip$
+  if$
+}
+
+FUNCTION {new.block.checka}
+{ empty$
+    'skip$
+    'new.block
+  if$
+}
+
+FUNCTION {new.block.checkb}
+{ empty$
+  swap$ empty$
+  and
+    'skip$
+    'new.block
+  if$
+}
+
+FUNCTION {new.sentence.checka}
+{ empty$
+    'skip$
+    'new.sentence
+  if$
+}
+
+FUNCTION {new.sentence.checkb}
+{ empty$
+  swap$ empty$
+  and
+    'skip$
+    'new.sentence
+  if$
+}
+
+FUNCTION {field.or.null}
+{ duplicate$ empty$
+    { pop$ "" }
+    'skip$
+  if$
+}
+
+FUNCTION {emphasize}
+{ duplicate$ empty$
+    { pop$ "" }
+    { "{\em " swap$ * "}" * }
+  if$
+}
+
+INTEGERS { nameptr namesleft numnames }
+
+FUNCTION {format.names} %formats the names of the authors
+{ 's :=
+  #1 'nameptr :=
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+    { namesleft #0 > }
+    { s nameptr "{vv~}{ll}{, jj}{, ff}" format.name$ 't 
+% last name, prename(s)
+     :=
+      nameptr #1 >
+        { namesleft #1 >
+            { "; " * t * }
+%
+% (RT) Now here we have discovered a bug. The bibliography of the LaTeX-book shows
+% the fault: If there are three or more authors, then the final ``and'' before
+% the last author's name is preceeded by a comma. This looks ugly and is
+% wrong.
+% The original and faulty line in format.names reads
+%            { numnames #2 >
+% Actually the generation of the comma is dependent on the number of names
+% left. Therefore:
+%
+            { namesleft #2 >
+                { ";" * }
+                'skip$
+              if$
+              t "others" =
+                { " et~al." * }
+% ``and'' changed to ``;'' 
+                { "; " * t * }
+              if$
+            }
+          if$
+        }
+        't
+      if$
+      nameptr #1 + 'nameptr :=
+      namesleft #1 - 'namesleft :=
+    }
+  while$
+   
+}
+
+FUNCTION {format.authors}
+{ author empty$
+    { "" }
+    { author format.names }
+  if$
+  ": " * %add a : after the authors
+}
+
+FUNCTION {format.editors}
+{ editor empty$
+    { "" }
+    { editor format.names
+      editor num.names$ #1 >
+% use abbreviations
+%</eng|ger>
+%<*eng>
+	{ ", eds" * }
+	{ ", ed." * }
+%</eng>
+%<*ger>
+	{ ", Hrsg." * }
+	{ ", Hrsg." * }
+%</ger>
+%<*eng|ger>	
+      if$
+    }
+  if$
+}
+
+FUNCTION {format.title}
+{ title empty$
+    { "" }
+% (RT) the title as typed in the database here 
+%    { title "t" change.case$ }
+    'title
+  if$
+}
+
+FUNCTION {n.dashify}
+{ 't :=
+  ""
+    { t empty$ not }
+    { t #1 #1 substring$ "-" =
+	{ t #1 #2 substring$ "--" = not
+	    { "--" *
+	      t #2 global.max$ substring$ 't :=
+	    }
+	    {   { t #1 #1 substring$ "-" = }
+		{ "-" *
+		  t #2 global.max$ substring$ 't :=
+		}
+	      while$
+	    }
+	  if$
+	}
+	{ t #1 #1 substring$ *
+	  t #2 global.max$ substring$ 't :=
+	}
+      if$
+    }
+  while$
+}
+
+FUNCTION {format.date}
+{ year empty$
+    { month empty$
+	{ "" }
+	{ "there's a month but no year in " cite$ * warning$
+	  month
+	}
+      if$
+    }
+    { month empty$
+	'year
+	{ month " " * year * }
+      if$
+    }
+  if$
+}
+
+FUNCTION {format.btitle}
+{ title % no emphasize
+}
+
+FUNCTION {tie.or.space.connect}
+{ duplicate$ text.length$ #3 <
+    { "~" }
+    { " " }
+  if$
+  swap$ * *
+}
+
+FUNCTION {either.or.check}
+{ empty$
+    'pop$
+    { "can't use both " swap$ * " fields in " * cite$ * warning$ }
+  if$
+}
+
+FUNCTION {format.bvolume}
+{ volume empty$
+    { "" }
+%</eng|ger>
+%<*eng>
+    { "volume" volume tie.or.space.connect
+%</eng>
+%<*ger>    
+    { "Jgg." volume tie.or.space.connect
+%</ger>
+%<*eng|ger>    
+      series empty$
+	'skip$
+%</eng|ger>
+%<*eng>	
+	{ " of " * series % no emphasize 
+%</eng>
+%<*ger>
+	{ " in " * series % no emphasize 
+%</ger>
+%<*eng|ger>	 	
+	* }
+      if$
+      "volume and number" number either.or.check
+    }
+  if$
+}
+
+FUNCTION {format.number.series}
+{ volume empty$
+    { number empty$
+	{ series field.or.null }
+	{ output.state mid.sentence =
+	    { "" } %No word before number
+	    { "" }
+	  if$
+	  series empty$
+        { "" }
+        { series * }
+      if$          
+          number tie.or.space.connect % series and then the number, eg LNI 001
+        }
+    if$
+    }
+    { "" }
+  if$
+}
+
+FUNCTION {format.edition}
+{ edition empty$
+    { "" }
+    { output.state mid.sentence =
+%</eng|ger>
+%<*eng>    
+	{ edition "l" change.case$ " edition" * }
+	{ edition "t" change.case$ " edition" * }
+%</eng>
+%<*ger>
+	{ edition "l" change.case$ ".~Auflage" * }
+	{ edition "t" change.case$ ".~Auflage" * }
+%</ger>
+%<*eng|ger>	
+      if$
+    }
+  if$
+}
+
+INTEGERS { multiresult }
+
+FUNCTION {multi.page.check}
+{ 't :=
+  #0 'multiresult :=
+    { multiresult not
+      t empty$ not
+      and
+    }
+    { t #1 #1 substring$
+      duplicate$ "-" =
+      swap$ duplicate$ "," =
+      swap$ "+" =
+      or or
+	{ #1 'multiresult := }
+	{ t #2 global.max$ substring$ 't := }
+      if$
+    }
+  while$
+  multiresult
+}
+
+FUNCTION {format.pages}
+{ pages empty$
+    { "" }
+    { pages multi.page.check
+%</eng|ger>
+%<*eng>
+    %  -> Use abbreviation: pp. for pages, p. for page
+	{ "pp." pages n.dashify tie.or.space.connect }
+	{ "p." pages tie.or.space.connect }
+%</eng>
+%<*ger>
+    %  -> Nutze Abk.: S.
+	{ "S." pages n.dashify tie.or.space.connect }
+	{ "S." pages tie.or.space.connect }
+%</ger>
+%<*eng|ger>	
+      if$
+    }
+  if$
+}
+
+FUNCTION {format.vol.num.pages}
+{ volume field.or.null
+  number empty$
+    'skip$
+    { "(" number * ")" * *
+      volume empty$
+	{ "there's a number but no volume in " cite$ * warning$ }
+	'skip$
+      if$
+    }
+  if$
+  pages empty$
+    'skip$
+    { duplicate$ empty$
+	{ pop$ format.pages }
+	{ ":" * pages n.dashify * }
+      if$
+    }
+  if$
+}
+
+FUNCTION {format.chapter.pages}
+{ chapter empty$
+    'format.pages
+    { type empty$
+%</eng|ger>
+%<*eng>    
+	{ "chapter" }
+%</eng>
+%<*ger>
+	{ "Kapitel" }
+%</ger>
+%<*eng|ger>	
+	{ type "l" change.case$ }
+      if$
+      chapter tie.or.space.connect
+      pages empty$
+	'skip$
+	{ ", " * format.pages * }
+      if$
+    }
+  if$
+}
+
+FUNCTION {format.in.ed.booktitle}
+{ booktitle empty$
+    { "" }
+    { editor empty$
+% no emphasize    
+%       { "In: " booktitle emphasize * }
+%       { "In: " format.editors * ", " * booktitle emphasize * }
+        { "In: " booktitle  * }
+        { "In (" format.editors * "): " * booktitle  * }
+      if$
+    }
+  if$
+}
+
+FUNCTION {empty.misc.check}
+{ author empty$ title empty$ howpublished empty$
+  month empty$ year empty$ note empty$
+  and and and and and
+  key empty$ not and
+    { "all relevant fields are empty in " cite$ * warning$ }
+    'skip$
+  if$
+}
+
+FUNCTION {format.thesis.type}
+{ type empty$
+    'skip$
+    { pop$
+      type "t" change.case$
+    }
+  if$
+}
+
+FUNCTION {format.tr.number}
+{ type empty$
+%</eng|ger>
+%<*eng>
+    { "Technical Report" }
+%</eng>
+%<*ger>
+    { "Bericht" }
+%</ger>
+%<*eng|ger>    
+    'type
+  if$
+  number empty$
+    { "t" change.case$ }
+    { number tie.or.space.connect }
+  if$
+}
+
+FUNCTION {format.article.crossref}
+{ key empty$
+    { journal empty$
+	{ "need key or journal for " cite$ * " to crossref " * crossref *
+	  warning$
+	  ""
+	}
+	{ "In {\em " journal * "\/}" * }
+      if$
+    }
+    { "In " key * }
+  if$
+  " \cite{" * crossref * "}" *
+}
+
+FUNCTION {format.crossref.editor}
+{ editor #1 "{vv~}{ll}" format.name$
+  editor num.names$ duplicate$
+  #2 >
+    { pop$ " et~al." * }
+    { #2 <
+	'skip$
+	% change order of names
+	{ editor #2 "{vv~}{ll}{, jj}{, f.}" format.name$ "others" =
+	    { " et~al." * }
+	    % ; between two editors and change order of names
+        { "; " * editor #2 "{vv~}{ll}{, jj}{, f.}" format.name$ * }
+	  if$
+	}
+      if$
+    }
+  if$
+}
+
+FUNCTION {format.book.crossref}
+{ volume empty$
+    { "empty volume in " cite$ * "'s crossref of " * crossref * warning$
+      "In "
+    }
+%</eng|ger>
+%<*eng>
+    { "Volume" volume tie.or.space.connect
+      " of " *
+    }
+%</eng>
+%<*ger>
+    { "Jgg." volume tie.or.space.connect
+      " in " *
+    }
+%</ger>
+%<*eng|ger>    
+  if$
+  editor empty$
+  editor field.or.null author field.or.null =
+  or
+    { key empty$
+	{ series empty$
+	    { "need editor, key, or series for " cite$ * " to crossref " *
+	      crossref * warning$
+	      "" *
+	    }
+	    { "{\em " * series * "\/}" * }
+	  if$
+	}
+	{ key * }
+      if$
+    }
+    { format.crossref.editor * }
+  if$
+  " \cite{" * crossref * "}" *
+}
+
+FUNCTION {format.incoll.inproc.crossref}
+{ editor empty$
+  editor field.or.null author field.or.null =
+  or
+    { key empty$
+	{ booktitle empty$
+	    { "need editor, key, or booktitle for " cite$ * " to crossref " *
+	      crossref * warning$
+	      ""
+	    }
+	    % Add : after In
+	    { "In: {\em " booktitle * "\/}" * }
+	  if$
+	}
+	% Add : after In
+	{ "In: " key * }
+      if$
+    }
+    % Add : after In and editiors in ()
+    { "In: (" format.crossref.editor * ")" * }
+  if$
+  " \cite{" * crossref * "}" *
+}
+
+FUNCTION {article}
+{ output.bibitem
+  format.authors %"author" output.check %% No dot after authors
+  new.block
+  format.title "title" output.check
+  new.block
+  crossref missing$
+    { journal % no emphasize 
+    "journal" output.check
+      format.vol.num.pages output
+      format.date "year" output.check
+    }
+    { format.article.crossref output.nonnull
+      format.pages output
+    }
+  if$
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {book}
+{ output.bibitem
+  author empty$
+    { format.editors "author and editor" output.check }
+    { format.authors %output.nonnull %%no dot after authors:
+      crossref missing$
+	{ "author and editor" editor either.or.check }
+	'skip$
+      if$
+    }
+  if$
+  new.block
+  format.btitle "title" output.check
+  crossref missing$
+    { format.bvolume output
+      new.block
+      format.number.series output
+      new.sentence
+      publisher "publisher" output.check
+      address output
+    }
+    { new.block
+      format.book.crossref output.nonnull
+    }
+  if$
+  format.edition output
+  format.date "year" output.check
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {booklet}
+{ output.bibitem
+  format.authors output
+  new.block
+  format.title "title" output.check
+  howpublished address new.block.checkb
+  howpublished output
+  address output
+  format.date output
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {inbook}
+{ output.bibitem
+  author empty$
+    { format.editors "author and editor" output.check }
+    { format.authors %*output.nonnull %%no dot after authors:
+      crossref missing$
+	{ "author and editor" editor either.or.check }
+	'skip$
+      if$
+    }
+  if$
+  new.block
+  format.btitle "title" output.check
+  new.block
+  crossref missing$ %changed whole order of next lines
+    { 
+      format.in.ed.booktitle "booktitle" output.check %added: mention title of the related book and editors
+      format.bvolume output
+      new.block
+      format.number.series output
+      % new.sentence %% no dot after the number
+      publisher "publisher" output.check
+      address output
+    }
+    { format.chapter.pages "chapter and pages" output.check
+      new.block
+      format.book.crossref output.nonnull
+    }
+  if$
+  format.chapter.pages "chapter and pages" output.check
+  format.edition output
+  format.date "year" output.check
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {incollection}
+{ output.bibitem
+  format.authors %"author" output.check %%no dot after authors:
+  new.block
+  format.title "title" output.check
+  new.block
+  crossref missing$
+    { format.in.ed.booktitle "booktitle" output.check
+      format.bvolume output
+      format.number.series output
+      format.chapter.pages output
+      new.sentence
+      publisher "publisher" output.check
+      address output
+      format.edition output
+      format.date "year" output.check
+    }
+    { format.incoll.inproc.crossref output.nonnull
+      format.chapter.pages output
+    }
+  if$
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {inproceedings}
+{ output.bibitem
+  format.authors %"author" output.check %%no dot after authors:
+  new.block
+  format.title "title" output.check
+  new.block
+  crossref missing$
+    { format.in.ed.booktitle "booktitle" output.check
+      new.block      
+      format.bvolume output
+      format.number.series output
+      address empty$
+	{ organization publisher new.sentence.checkb
+	  organization output
+	  publisher output
+	}
+	{ organization output
+          publisher output
+          address output.nonnull
+        }
+      if$
+      format.pages output
+      format.date "year" output.check
+    }
+    { format.incoll.inproc.crossref output.nonnull
+      format.pages output
+    }
+  if$
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {conference} { inproceedings }
+
+FUNCTION {manual}
+{ output.bibitem
+  author empty$
+    { organization empty$
+	'skip$
+	{ organization output.nonnull
+	  address output
+	}
+      if$
+    }
+    { format.authors output.nonnull }
+  if$
+  new.block
+  format.btitle "title" output.check
+  author empty$
+    { organization empty$
+	{ address new.block.checka
+	  address output
+	}
+	'skip$
+      if$
+    }
+    { organization address new.block.checkb
+      organization output
+      address output
+    }
+  if$
+  format.edition output
+  format.date output
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {mastersthesis}
+{ output.bibitem
+  format.authors %"author" output.check
+  new.block
+  format.title "title" output.check
+  new.block
+%</eng|ger>
+%<*eng>
+  "Master's thesis" format.thesis.type output.nonnull
+%</eng>
+%<*ger>
+  "Masterarbeit" format.thesis.type output.nonnull
+%</ger>
+%</eng|ger>  
+  school "school" output.check
+  address output
+  format.date "year" output.check
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {misc}
+{ output.bibitem
+  author empty$
+    { ""  }
+    { format.authors output.nonnull }
+  if$
+  %title howpublished new.block.checkb
+  format.title output
+  howpublished new.block.checka
+  howpublished output
+  format.date output
+  new.block
+  note output
+  fin.entry
+  empty.misc.check
+}
+
+FUNCTION {online}
+{ output.bibitem
+  title howpublished new.block.checkb
+  format.title output
+  howpublished new.block.checka
+  howpublished output
+  note output
+  fin.entry
+  empty.misc.check
+}
+
+FUNCTION {phdthesis}
+{ output.bibitem
+  format.authors %"author" output.check
+  new.block
+  format.btitle "title" output.check
+  new.block
+%</eng|ger>
+%<*eng>
+  "PhD thesis" format.thesis.type output.nonnull
+%</eng>
+%<*ger>
+  "Dissertation" format.thesis.type output.nonnull
+%</ger>
+%<*eng|ger>  
+  school "school" output.check
+  address output
+  format.date "year" output.check
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {proceedings}
+{ output.bibitem
+  editor empty$
+    { organization output }
+    { format.editors output.nonnull }
+  if$
+  new.block
+  format.btitle "title" output.check
+  format.bvolume output
+  format.number.series output
+  address empty$
+    { editor empty$
+	{ publisher new.sentence.checka }
+	{ organization publisher new.sentence.checkb
+	  organization output
+	}
+      if$
+      publisher output
+      format.date "year" output.check
+    }
+    { address output.nonnull
+      format.date "year" output.check
+      new.sentence
+      editor empty$
+	'skip$
+	{ organization output }
+      if$
+      publisher output
+    }
+  if$
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {techreport}
+{ output.bibitem
+  format.authors %"author" output.check
+  new.block
+  format.title "title" output.check
+  new.block
+  format.tr.number output.nonnull
+  institution "institution" output.check
+  address output
+  format.date "year" output.check
+  new.block
+  note output
+  fin.entry
+}
+
+FUNCTION {unpublished}
+{ output.bibitem
+  format.authors %"author" output.check
+  new.block
+  format.title "title" output.check
+  new.block
+  note "note" output.check
+  format.date output
+  fin.entry
+}
+
+FUNCTION {default.type} { misc }
+
+%</eng|ger>
+%<*eng>
+MACRO {jan} {"January"}
+
+MACRO {feb} {"February"}
+
+MACRO {mar} {"March"}
+
+MACRO {apr} {"April"}
+
+MACRO {may} {"May"}
+
+MACRO {jun} {"June"}
+
+MACRO {jul} {"July"}
+
+MACRO {aug} {"August"}
+
+MACRO {sep} {"September"}
+
+MACRO {oct} {"October"}
+
+MACRO {nov} {"November"}
+
+MACRO {dec} {"December"}
+%</eng>
+%<*ger>
+MACRO {jan} {"Januar"}
+
+MACRO {feb} {"Februar"}
+
+MACRO {mar} {"M\"arz"}
+
+MACRO {apr} {"April"}
+
+MACRO {may} {"Mai"}
+
+MACRO {jun} {"Juni"}
+
+MACRO {jul} {"Juli"}
+
+MACRO {aug} {"August"}
+
+MACRO {sep} {"September"}
+
+MACRO {oct} {"Oktober"}
+
+MACRO {nov} {"November"}
+
+MACRO {dec} {"Dezember"}
+%</ger>
+%<*eng|ger>
+
+MACRO {acmcs} {"ACM Computing Surveys"}
+
+MACRO {acta} {"Acta Informatica"}
+
+MACRO {cacm} {"Communications of the ACM"}
+
+MACRO {ibmjrd} {"IBM Journal of Research and Development"}
+
+MACRO {ibmsj} {"IBM Systems Journal"}
+
+MACRO {ieeese} {"IEEE Transactions on Software Engineering"}
+
+MACRO {ieeetc} {"IEEE Transactions on Computers"}
+
+MACRO {ieeetcad}
+ {"IEEE Transactions on Computer-Aided Design of Integrated Circuits"}
+
+MACRO {ipl} {"Information Processing Letters"}
+
+MACRO {jacm} {"Journal of the ACM"}
+
+MACRO {jcss} {"Journal of Computer and System Sciences"}
+
+MACRO {scp} {"Science of Computer Programming"}
+
+MACRO {sicomp} {"SIAM Journal on Computing"}
+
+MACRO {tocs} {"ACM Transactions on Computer Systems"}
+
+MACRO {tods} {"ACM Transactions on Database Systems"}
+
+MACRO {tog} {"ACM Transactions on Graphics"}
+
+MACRO {toms} {"ACM Transactions on Mathematical Software"}
+
+MACRO {toois} {"ACM Transactions on Office Information Systems"}
+
+MACRO {toplas} {"ACM Transactions on Programming Languages and Systems"}
+
+MACRO {tcs} {"Theoretical Computer Science"}
+
+READ
+
+FUNCTION {sortify}
+{ purify$
+  "l" change.case$
+}
+
+INTEGERS { len }
+
+FUNCTION {chop.word}
+{ 's :=
+  'len :=
+  s #1 len substring$ =
+    { s len #1 + global.max$ substring$ }
+    's
+  if$
+}
+
+INTEGERS { et.al.char.used }
+
+FUNCTION {initialize.et.al.char.used}
+{ #0 'et.al.char.used :=
+}
+
+EXECUTE {initialize.et.al.char.used}
+
+FUNCTION {format.lab.names}
+{ 's :=
+  s num.names$ 'numnames :=
+  numnames #1 >
+    { numnames #3 > %create short entry for 3 authors max
+        { #1 'namesleft := } %if more than 3 authors take only first one
+        { numnames 'namesleft := }
+      if$
+      #1 'nameptr :=
+      ""
+        { namesleft #0 > }
+        { nameptr numnames =
+            { s nameptr "{ff }{vv }{ll}{ jj}" format.name$ 
+            "others" =
+                { s #1 "{ll}" format.name$ #2 text.prefix$ %% second sign of first author if there are others
+                }
+                { s nameptr "{v{}}{l{}}" format.name$ * } %%formats last author
+              if$
+            }
+            { s nameptr "{v{}}{l{}}" format.name$ * } %%formats first, and if three, also the second author
+          if$
+          nameptr #1 + 'nameptr :=
+          namesleft #1 - 'namesleft :=
+        }
+      while$
+      numnames #3 > 
+        { s #1 "{ll}" format.name$ #2 text.prefix$ } % if more than 3 authors take second letter of first name
+        'skip$
+      if$
+    }
+    { s #1 "{v{}}{l{}}" format.name$
+      duplicate$ text.length$ #2 <
+% Das dritte Zeichen?      
+        { pop$ s #1 "{ll}" format.name$ #2 text.prefix$} %get rid of the rest of the name (only first two letters are needed for one author)
+        'skip$
+      if$
+    }
+  if$
+}
+
+FUNCTION {author.key.label} %% sets the author abbreviation in []
+{ author empty$
+    { key empty$
+	{ title #1 #2 substring$ } % Use First two letters of title if there is no author
+	{ key #3 text.prefix$ }
+      if$
+    }
+    { author format.lab.names }
+  if$
+}
+
+FUNCTION {author.editor.key.label}
+{ author empty$
+    { editor empty$
+	{ key empty$
+	    { title$ #1 #2 substring$ }% Use First two letters of title if there is no editor
+	    { key #3 text.prefix$ }
+	  if$
+	}
+	{ editor format.lab.names }
+      if$
+    }
+    { author format.lab.names }
+  if$
+}
+
+FUNCTION {author.key.organization.label}
+{ author empty$
+    { key empty$
+	{ organization empty$
+	    { cite$ #1 #3 substring$ }
+	    { "The " #4 organization chop.word #3 text.prefix$ }
+	  if$
+	}
+	{ key #3 text.prefix$ }
+      if$
+    }
+    { author format.lab.names }
+  if$
+}
+
+FUNCTION {editor.key.organization.label}
+{ editor empty$
+    { key empty$
+	{ organization empty$
+	    { cite$ #1 #3 substring$ }
+	    { "The " #4 organization chop.word #3 text.prefix$ }
+	  if$
+	}
+	{ key #3 text.prefix$ }
+      if$
+    }
+    { editor format.lab.names }
+  if$
+}
+
+FUNCTION {calc.label}
+{ type$ "book" =
+  type$ "inbook" =
+  or
+    'author.editor.key.label
+    { type$ "proceedings" =
+	'editor.key.organization.label
+	{ type$ "manual" =
+	    'author.key.organization.label
+	    'author.key.label
+	  if$
+	}
+      if$
+    }
+  if$
+  duplicate$
+  year field.or.null purify$ #-1 #2 substring$
+  *
+  'label :=
+  year field.or.null purify$ #-1 #4 substring$
+  *
+  sortify 'sort.label :=
+}
+
+FUNCTION {sort.format.names}
+{ 's :=
+  #1 'nameptr :=
+  ""
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+    { namesleft #0 > }
+    { nameptr #1 >
+	{ "   " * }
+	'skip$
+      if$
+      s nameptr "{vv{ } }{ll{ }}{  ff{ }}{  jj{ }}" format.name$ 't :=
+      nameptr numnames = t "others" = and
+	{ "et al" * }
+	{ t sortify * }
+      if$
+      nameptr #1 + 'nameptr :=
+      namesleft #1 - 'namesleft :=
+    }
+  while$
+}
+
+FUNCTION {sort.format.title}
+{ 't :=
+  "A " #2
+    "An " #3
+      "The " #4 t chop.word
+    chop.word
+  chop.word
+  sortify
+  #1 global.max$ substring$
+}
+
+FUNCTION {author.sort}
+{ author empty$
+    { key empty$
+	{ "to sort, need author or key in " cite$ * warning$
+	  ""
+	}
+	{ key sortify }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
+FUNCTION {author.editor.sort}
+{ author empty$
+    { editor empty$
+	{ key empty$
+	    { "to sort, need author, editor, or key in " cite$ * warning$
+	      ""
+	    }
+	    { key sortify }
+	  if$
+	}
+	{ editor sort.format.names }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
+FUNCTION {author.organization.sort}
+{ author empty$
+    { organization empty$
+	{ key empty$
+	    { "to sort, need author, organization, or key in " cite$ * warning$
+	      ""
+	    }
+	    { key sortify }
+	  if$
+	}
+	{ "The " #4 organization chop.word sortify }
+      if$
+    }
+    { author sort.format.names }
+  if$
+}
+
+FUNCTION {editor.organization.sort}
+{ editor empty$
+    { organization empty$
+	{ key empty$
+	    { "to sort, need editor, organization, or key in " cite$ * warning$
+	      ""
+	    }
+	    { key sortify }
+	  if$
+	}
+	{ "The " #4 organization chop.word sortify }
+      if$
+    }
+    { editor sort.format.names }
+  if$
+}
+
+FUNCTION {presort}
+{ calc.label
+  sort.label
+  "    "
+  *
+  type$ "book" =
+  type$ "inbook" =
+  or
+    'author.editor.sort
+    { type$ "proceedings" =
+	'editor.organization.sort
+	{ type$ "manual" =
+	    'author.organization.sort
+	    'author.sort
+	  if$
+	}
+      if$
+    }
+  if$
+  *
+  "    "
+  *
+  year field.or.null sortify
+  *
+  "    "
+  *
+  title field.or.null
+  sort.format.title
+  *
+  #1 entry.max$ substring$
+  'sort.key$ :=
+}
+
+ITERATE {presort}
+
+SORT
+
+STRINGS { longest.label last.sort.label next.extra }
+
+INTEGERS { longest.label.width last.extra.num }
+
+FUNCTION {initialize.longest.label}
+{ "" 'longest.label :=
+  #0 int.to.chr$ 'last.sort.label :=
+  "" 'next.extra :=
+  #0 'longest.label.width :=
+  #0 'last.extra.num :=
+}
+
+FUNCTION {forward.pass}
+{ last.sort.label sort.label =
+    { last.extra.num #1 + 'last.extra.num :=
+      last.extra.num int.to.chr$ 'extra.label :=
+    }
+    { "a" chr.to.int$ 'last.extra.num :=
+      "" 'extra.label :=
+      sort.label 'last.sort.label :=
+    }
+  if$
+}
+
+FUNCTION {reverse.pass}
+{ next.extra "b" =
+    { "a" 'extra.label := }
+    'skip$
+  if$
+  label extra.label * 'label :=
+  label width$ longest.label.width >
+    { label 'longest.label :=
+      label width$ 'longest.label.width :=
+    }
+    'skip$
+  if$
+  extra.label 'next.extra :=
+}
+
+EXECUTE {initialize.longest.label}
+
+ITERATE {forward.pass}
+
+REVERSE {reverse.pass}
+
+FUNCTION {begin.bib}
+{ et.al.char.used
+% to make it compatible with singlepass, we use \def
+%    { "\newcommand{\etalchar}[1]{$^{#1}$}" write$ newline$ }
+    { "\gdef\etalchar#1{$^{#1}$}" write$ newline$ } 
+    'skip$
+  if$
+  preamble$ empty$
+    'skip$
+    { preamble$ write$ newline$ }
+  if$
+  "\begin{thebibliography}{"  longest.label  * "}" * write$ newline$
+}
+
+EXECUTE {begin.bib}
+
+EXECUTE {init.state.consts}
+
+ITERATE {call.type$}
+
+FUNCTION {end.bib}
+{ newline$
+  "\end{thebibliography}" write$ newline$
+}
+
+EXECUTE {end.bib}
+%</eng|ger>
+%</bibtex>
+%    \end{macrocode}
+%\fi 

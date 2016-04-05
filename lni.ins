@@ -1,0 +1,118 @@
+%%
+%% This is file `lni.ins',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% lni.dtx  (with options: `install')
+%% -------:| -----------------------------------------------------------------
+%%     lni:| A class for submissions to the ``Lecture Notes in Informatics''
+%%  Author:| Martin Sievers
+%%  E-mail:| martin.sievers@schoenerpublizieren.de
+%% License:| Released under the LaTeX Project Public License v1.3c or later
+%%     See:| http://www.latex-project.org/lppl.txt
+%% 
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\declarepreamble\bibtexengpre
+%%
+%% lnig.bst
+%% Lecture Notes in Informatics Style File (english)
+%% Version 1.0 (2014/12/17)
+%%
+%%
+%% The Style File is based on alpha.bst
+%%
+%% This work may be freely used,
+%% distributed and modified.
+%% Modified files should be clearly indicated as such and renamed.
+%%
+%%***************************************************
+%%***************************************************
+\endpreamble
+
+\declarepreamble\bibtexgerpre
+%%
+%% lnig.bst
+%% Lecture Notes in Informatics Style File (german)
+%% Version 2.0 (2014/12/17)
+%%
+%% The Style File is based on alpha.bst
+%%
+%% This work may be freely used,
+%% distributed and modified.
+%% Modified files should be clearly indicated as such and renamed.
+%%
+%%***************************************************
+%%***************************************************
+\endpreamble
+
+\declarepreamble\classpre
+-------:| -----------------------------------------------------------------
+    lni:| A class for submissions to the ``Lecture Notes in Informatics''
+ Author:| Martin Sievers
+ E-mail:| martin.sievers@schoenerpublizieren.de
+License:| Released under the LaTeX Project Public License v1.3c or later
+    See:| http://www.latex-project.org/lppl.txt
+
+\endpreamble
+\postamble
+
+Copyright (C) 2016 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+http://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+Martin Sievers.
+
+This work consists of the file  lni.dtx
+                                lni.ins
+                                README.md
+          and the derived files lni.pdf
+                                lni.cls
+                                lni.bst
+                                lnig.bst
+\endpostamble
+
+\usedir{tex/latex/lni}
+\AddGenerationDate
+\generate{
+  \usepreamble\classpre
+  \file{\jobname.cls}{\from{\jobname.dtx}{class}}
+}
+\usedir{bst/latex/lni}
+\generate{
+  \usepreamble\bibtexengpre
+  \file{\jobname.bst}{\from{\jobname.dtx}{bibtex,eng}}
+  \usepreamble\bibtexgerpre
+  \file{\jobname g.bst}{\from{\jobname.dtx}{bibtex,ger}}
+}
+\endbatchfile
+%% 
+%% Copyright (C) 2016 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3c of this license or (at your option) any later
+%% version.  The latest version of this license is in the file:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% This work is "maintained" (as per LPPL maintenance status) by
+%% Martin Sievers.
+%% 
+%% This work consists of the file  lni.dtx
+%%                                 lni.ins
+%%                                 README.md
+%%           and the derived files lni.pdf
+%%                                 lni.cls
+%%                                 lni.bst
+%%                                 lnig.bst
+%%
+%% End of file `lni.ins'.
