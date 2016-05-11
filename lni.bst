@@ -24,6 +24,7 @@
 %%                                 README.md
 %%           and the derived files lni.pdf
 %%                                 lni.cls
+%%                                 lni-author-template.tex
 %%                                 lni.bst
 %%                                 lnig.bst
 %%

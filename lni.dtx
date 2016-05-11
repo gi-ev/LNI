@@ -22,13 +22,16 @@ This is the current version of the class “lni” for submissions to the
 
 It is based on previous templates created on behalf of the GI.
 
-Stable version are always uploaded to CTAN. You'll find the most recent developer version on GitHub.
+Stable versions are always uploaded to CTAN. In addition you'll find the most 
+recent developer version on GitHub.
 ```
 
 https://github.com/sieversMartin/lni
 
 
 ## Changelog
+
+* v1.0: First upload of the reworked version
 %</readme>
 %<*internal>
 \fi
@@ -118,7 +121,7 @@ https://github.com/sieversMartin/lni
 -------:| -----------------------------------------------------------------
     lni:| A class for submissions to the ``Lecture Notes in Informatics''
  Author:| Martin Sievers
- E-mail:| martin.sievers@schoenerpublizieren.de
+  Email:| martin.sievers@schoenerpublizieren.de
 License:| Released under the LaTeX Project Public License v1.3c or later
     See:| http://www.latex-project.org/lppl.txt
 
@@ -142,6 +145,7 @@ This work consists of the file  lni.dtx
                                 README.md
           and the derived files lni.pdf
                                 lni.cls
+                                lni-author-template.tex
                                 lni.bst
                                 lnig.bst
 \endpostamble
@@ -171,6 +175,7 @@ This work consists of the file  lni.dtx
 \usedir{doc/latex/lni}
 \generate{
   \file{README.md}{\from{\jobname.dtx}{readme}}
+  \file{lni-author-template.tex}{\from{\jobname.dtx}{template}}
 }
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
@@ -187,16 +192,88 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2016/04/05 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2016/05/11 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
 %</class>
 %<*driver>
-\documentclass{ltxdoc}
-\usepackage[a4paper,margin=25mm,left=50mm,nohead]{geometry}
-\usepackage[numbered]{hypdoc}
-
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
+\documentclass[a4paper]{ltxdoc}
+\usepackage[english,ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[scaled=0.85]{beramono}
+\usepackage{microtype}
+\usepackage{textcomp}
+\usepackage{upquote}
+%\usepackage{array,booktabs,tabularx}
+\usepackage[final]{listings}
+%\usepackage[onehalfspacing]{setspace}
+\usepackage{xspace}
+\usepackage[dvipsnames]{xcolor}
+\newcommand*{\MiKTeX}{\textsf{MiK\TeX{}}}
+\usepackage[%
+	pdftitle={lni: A LaTeX class for submissions to the ``Lecture Notes in 
+   	Informatics'', published by the GI},
+   pdfauthor={Martin Sievers},
+   urlcolor=blue,%
+	linktocpage,%
+	colorlinks=true]{hyperref}
+	
+\newcommand{\lni}{\texttt{lni}}	
+\newcommand{\LNI}{Lecture Notes in Informatics}	
+\makeatletter
+\newcommand*\DescribeOption{%
+\leavevmode%
+\@bsphack%
+\begingroup%
+ \MakePrivateLetters%
+ \Describe@Option%
+}%
+\newcommand*\Describe@Option[1]{%
+ \endgroup%
+\marginpar{%
+ \raggedleft%
+ \PrintDescribeEnv{#1}%
+}%
+\SpecialOptionIndex{#1}%
+\@esphack%
+\ignorespaces%
+}%
+\newcommand*\SpecialOptionIndex[1]{%
+\@bsphack%
+\index{%
+ #1\actualchar{\protect\ttfamily#1} (option)\encapchar usage%
+}%
+\index{%
+ options:\levelchar#1\actualchar{\protect\ttfamily#1}%
+ \encapchar usage%
+}%
+\@esphack%
+}%
+\makeatother
+\lstset{
+ basicstyle   = \small\ttfamily,
+ gobble       = 2,
+ keywordstyle = \color{blue}\bfseries,
+ language     = [LaTeX]{TeX},
+ moretexcs    = {,
+   includegraphics,
+ }
+ frame        = single,
+ backgroundcolor = \color{yellow!60},
+ framesep     = 5pt,
+ literate={Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1 {ü}{{\"u}}1 {ä}{{\"a}}1 {ö}{{\"o}}1 
+}%
+\lstnewenvironment{examplecode}[1][]
+{\lstset{#1}}
+{}
+\providecommand*\env[1]{\texttt{#1}}
+\providecommand*\file[1]{\texttt{#1}}
+\providecommand*\opt[1]{\texttt{#1}}
+\providecommand*\pkg[1]{\textsf{#1}}
+\OnlyDescription     %nur Anleitung (ohne Index und History)
+\CodelineIndex       %kein Index wenn auskommentiert
+\EnableCrossrefs     %kein Index wenn auskommentiert
+\RecordChanges       %keine History wenn auskommentiert
 \begin{document}
   \DocInput{\jobname.dtx}
 \end{document}
@@ -209,33 +286,138 @@ This work consists of the file  lni.dtx
 %\title{\textsf{lni} --- A class for submissions to the ``Lecture Notes in Informatics''\thanks{This file
 %   describes version \fileversion, last revised \filedate.}
 %}
-%\author{Martin Sievers\thanks{E-mail: martin.sievers@schoenerpublizieren.de}}
+%\author{Martin Sievers\thanks{Email: martin.sievers@schoenerpublizieren.de}}
 %\date{Released \filedate}
 %
 %\maketitle
 %
-%\changes{v1.00}{2016/01/18}{First public release}
+%\changes{v1.0}{2016/05/11}{First public release}
 %
 % \begin{abstract}
-% ==== Put abstract text here. ====
+% 
 % \end{abstract}
 %
+% \section{Installation}
+% The \lni{} bundle is distributed via \href{https://github.com/sieversMartin/LNI}{Github} and 
+% \href{www.ctan.org}{CTAN}. The later is the basis for all updates of the two 
+% main \TeX{} distributions \MiKTeX{} and 
+% \TeX{}~Live. Thus the easiest way to get all files needed to typeset an 
+% article for the \LNI{} is to use the package manager for your distribution.
+% 
+% 
 % \section{Usage}
+% To use the predefined layout for the \LNI{} just load the class file as usual 
+% with \cs{documentclass\{lni\}}.
 %
-% ==== Put descriptive text here. ====
+% The class file loads a bunch of packages which are all part of modern \TeX{} 
+% distributions. Therefore, if you are confronted 
+% with a missing package, please try to download and install them using your 
+% distribution's package manager. Alternatively got to \href{www.ctan.org}{CTAN} 
+% to download missing packages.
 %
-% \DescribeMacro{\dummyMacro}
-% This macro does nothing.\index{doing nothing|usage} It is merely an
-% example.  If this were a real macro, you would put a paragraph here
-% describing what the macro is supposed to do, what its mandatory and
-% optional arguments are, and so forth.
+% \subsection{Options}
+% Although the class file includes all layout information for a submission to 
+% the \LNI{}, there are options to adapt the output one way or another.
 %
-% \DescribeEnv{dummyEnv}
-% This environment does nothing.  It is merely an example.
-% If this were a real environment, you would put a paragraph here
-% describing what the environment is supposed to do, what its
-% mandatory and optional arguments are, and so forth.
+% \DescribeMacro{english}A document loading the \lni{} class file, uses German 
+% language adoptions by default. To switch to English, just load the class with 
+% option \opt{english}.
 %
+% The language influences not only the hyphenation patterns and terms used in 
+% the text, but also the choice of a corresponding \BibTeX{} file 
+% (cf.~\ref{bibliography}).
+%
+% \DescribeMacro{utf8}\DescribeMacro{latin1}\DescribeMacro{applemac}Although 
+% nowadays all major plattform support and widely use UTF-8 encoding for 
+% working with text files, there might be some need to change the input 
+% encoding the \LaTeX{} document uses.
+%
+% This can be achieved by giving one of the options \opt{utf8} (which is the 
+% default), \opt{latin1} or \opt{applemac} to the document class.
+%
+% \section{Setting up a document}
+% You can use the file \file{lni-author-template.tex} as a good starting point 
+% for setting up a document for submission. The \lni{} class uses the standard 
+% ways to build an article.
+% \subsection{Special macros}
+% \cs{startpage}
+%
+% \subsection{Title page}
+% \DescribeMacro{\title}The title of your work is given using the \cs{title} 
+% macro. In addition to the title itself, you can add a short title to be used 
+% in the header of a page:\\
+% \cs{title\oarg{Short title}\marg{Title}}.
+%
+% \DescribeMacro{\author}\DescribeMacro{\email}The authors of an article are 
+% given using the standard \cs{author} macro. Multiple authors are separated 
+% by \cs{and}; the affiliations have to be added with 
+% \cs{footnote\marg{affiliations}} where you can use 
+% \cs{email\marg{email address}} for the email address of an author.
+%
+% Finally \cs{maketitle} will output the formatted title page.
+%
+% \subsection{Main text}
+% \subsubsection{Headings}
+% \DescribeMacro{\section}\DescribeMacro{\subsection}\DescribeMacro{\subsubsection}
+% You can use the standard macros \cs{section}, \cs{subsection}, \dots{} for 
+% sectioning your text.
+% 
+% \subsubsection{Footnotes}
+% \DescribeMacro{\footnote}%
+% For adding a footnote, just use \cs{footnote\marg{footnote text}} where 
+% needed. Please note, that the footnote counter is automatically set to the 
+% correct value at the beginning of your text, i.\,e. it respects the number 
+% of affiliations given on the title page.
+%
+% \subsubsection{Lists}
+% \DescribeEnv{itemize}\DescribeEnv{enumerate}%
+% The \lni{} class redefines the standard lists environments \env{itemize} and 
+% \env{enumerate} to meet the requirements of the \LNI{}.
+%
+% \subsubsection{Floating objects}
+% \DescribeEnv{figure}\DescribeEnv{table}%
+% The environments \env{figure} and \env{table} can be used the standard way to 
+% include graphics or tables.
+%
+% However, please note, that the default placement parameters are changed to 
+% ``htbp'' by the class \lni{}. If you need some local adjustment, please use 
+% the optional argument of both environments (cf.~Listing~\ref{lst:figure}).
+%
+% \DescribeMacro{\caption}\DescribeMacro{\label}
+% A caption should be added by \cs{caption\marg{caption text}}, followed 
+% immediately by a \cs{label\marg{Unique label}} entry.
+% \begin{examplecode}[label={lst:figure}]
+% \begin{figure}[tb]
+% \includegraphics{...}
+% \caption{...}
+% \label{...}
+% \end{figure}
+% \end{examplecode}
+%
+% If you want to center floats, please \emph{do not} use the \env{center} 
+% environment, but the macro \cs{centering}, which does not add extra white 
+% space (cf.~Listing~\ref{lst:table}).
+% \begin{examplecode}[label={lst:table}]
+% \begin{table}
+% \centering
+% \begin{tabular}{lll}
+% ...
+% \end{tabular}
+% \caption{...}
+% \label{...}
+% \end{table}
+% \end{examplecode}
+%
+% \subsubsection{Listings/Source code}
+% Verbatim Listings
+% \subsubsection{Equations}
+%
+% \subsection{Bibliography}
+% 
+% \section{}
+%
+% \section{Bugs and feature request}
+% 
 %\StopEventually{^^A
 %  \PrintChanges
 %  \PrintIndex
@@ -249,7 +431,7 @@ This work consists of the file  lni.dtx
 \setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
 \setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
 
-% Vielen Dank an Matthias Rust (mrust@rostock.zgdv.de) fuer folgende
+% Vielen Dank an Matthias Rust (mrust@rostock.zgdv.de) für folgende
 % Ausrichtung an LNI Satzspiegel
 %\DeclareOption{forInclusion}{%
 %  \setlength{\topmargin}{0mm}%
@@ -301,7 +483,7 @@ This work consists of the file  lni.dtx
    \RequirePackage[english,ngerman]{babel}
 \fi
 
-% Define Times als main font
+% Define a modern variant of Times as the main font
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage[zerostyle=b,straightquotes]{newtxtt}
@@ -316,11 +498,11 @@ This work consists of the file  lni.dtx
 \setlength{\evensidemargin}{1.85cm}% korrigierte twoside werte
 \setlength{\headsep}{0.31cm}%
 
-% Ragged bottom - verhindert die Ausdehnung der Seite = Veränderung der Abstände
+% Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der Abstände
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
 
-%Seitenzahlen - Größe der Box
+% Seitenzahlen -- Größe der Box
 \renewcommand\@pnumwidth{3em}
 \renewcommand\@tocrmarg{3.5em}
 \def\@dottedtocline#1#2#3#4#5{%
@@ -346,12 +528,12 @@ This work consists of the file  lni.dtx
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\def\and{\unskip\ und\ }#1}}\gdef\@author{#2}}
+\def\@@author[#1]#2{\gdef\@shortauthor{{\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
 
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 
 % Title: Kopie aus article.cls mit anderem \thispagestyle
-\renewcommand\maketitle{\par
+\renewcommand\maketitle{\par%
 % Keine Vertikale Einrückung über dem Titel auf der Titelseite
 %\changepage{0mm}{0mm}{0mm}{0mm}{0mm}{0.56cm}{0mm}{0mm}{0mm}  
 \begingroup
@@ -397,7 +579,7 @@ This work consists of the file  lni.dtx
   \null
   \begin{center}%
   \vskip -24pt% Abstand vor dem Titel
-  \flushleft %Linksbündig
+  \raggedright % Linksbündig
   \let\footnote\thanks
     {\fontsize{14}{17}\fontseries{b}\selectfont \@title \par}%
     \vskip 19pt% Abstand nach dem Titel
@@ -405,7 +587,7 @@ This work consists of the file  lni.dtx
       \lineskip .5em%
         \@author
       \par}%
-    \vskip 28pt%Abstand vor dem Abstract
+    \vskip 28pt% Abstand vor dem Abstract
   \end{center}%
   \par
 }
@@ -448,17 +630,17 @@ This work consists of the file  lni.dtx
 
 % Abbildungen
 \def\fps@figure{htbp}
-\def\fnum@figure{\figurename\thinspace\thefigure}
-\def \@floatboxreset {%
+\def\fnum@figure{\figurename~\thefigure}
+\def\@floatboxreset{%
         \reset@font
         \small
         \@setnobreak
         \@setminipage
 }
-\setcounter{topnumber}{10}%maximale Anzahl gleitender Objekte am Seitenanfang
-\setcounter{bottomnumber}{10}%maximale Anzahl gleitender Objekte am Seitenende
-\renewcommand{\topfraction}{1.0}%Anteil den gleitende Objekte am Seitenanfang einnehmen dürfen
-\renewcommand{\bottomfraction}{1.0}%Anteil den gleitende Objekte am Seitenende einnehmen dürfen
+\setcounter{topnumber}{10}% maximale Anzahl gleitender Objekte am Seitenanfang
+\setcounter{bottomnumber}{10}% maximale Anzahl gleitender Objekte am Seitenende
+\renewcommand{\topfraction}{1.0}% Anteil den gleitende Objekte am Seitenanfang einnehmen dürfen
+\renewcommand{\bottomfraction}{1.0}% Anteil den gleitende Objekte am Seitenende einnehmen dürfen
 
 % Tabellen
 \def\fps@table{htbp}
@@ -565,7 +747,9 @@ This work consists of the file  lni.dtx
 \RequirePackage{listings}
 %\usepackage{changepage} %for changing topmargin on first page
 %\usepackage[figurename=Abb., tablename=Tab., small]{caption}[2008/04/01]
+\newcommand{\andname}{}
 \addto\captionsngerman{%
+  \renewcommand{\andname}{und}%
   \renewcommand{\figurename}{Abb.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
@@ -573,6 +757,7 @@ This work consists of the file  lni.dtx
 }
 
 \addto\captionsenglish{%
+  \renewcommand{\andname}{and}%
   \renewcommand{\figurename}{Fig.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
@@ -2034,5 +2219,36 @@ FUNCTION {end.bib}
 EXECUTE {end.bib}
 %</eng|ger>
 %</bibtex>
+%<*template>
+%% !TeX encoding = UTF-8
+%% !TeX program = pdflatex
+%% !BIB program = bibtex
+\documentclass[]{lni}
+
+%Beginn der Seitenzählung für diesen Beitrag
+\startpage{11}
+
+\editor{Me}
+\booktitle{A test}
+\year{2017}
+
+\begin{document}
+\author[Vorname1 Name1\and Vorname2 Name 2]{Vorname1 Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author1}}\and Vorname2 Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author2}} und weitere Autorinnen und Autoren in der gleichen Notation}
+\title[Short title (if necessary)]{Title}
+\maketitle
+
+\begin{abstract}
+Add your abstract here
+\end{abstract}
+\begin{keywords}
+Add your keywords here
+\end{keywords}
+
+\section{}
+
+
+\bibliography{lniguide}
+\end{document}
+%</template>
 %    \end{macrocode}
 %\fi 
