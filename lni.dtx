@@ -807,7 +807,6 @@ This work consists of the file  lni.dtx
 \clubpenalty=10000
 %    \end{macrocode}
 %    \begin{macrocode}
-\endinput
 %</class>
 %    \end{macrocode}
 %\Finale
@@ -1650,7 +1649,7 @@ FUNCTION {mastersthesis}
 %<*ger>
   "Masterarbeit" format.thesis.type output.nonnull
 %</ger>
-%</eng|ger>  
+%<*eng|ger>  
   school "school" output.check
   address output
   format.date "year" output.check
@@ -1803,7 +1802,7 @@ MACRO {jan} {"Januar"}
 
 MACRO {feb} {"Februar"}
 
-MACRO {mar} {"M\"arz"}
+MACRO {mar} {"März"}
 
 MACRO {apr} {"April"}
 
@@ -1947,7 +1946,7 @@ FUNCTION {author.editor.key.label}
 { author empty$
     { editor empty$
 	{ key empty$
-	    { title$ #1 #2 substring$ }% Use First two letters of title if there is no editor
+	    { title #1 #2 substring$ }% Use First two letters of title if there is no editor
 	    { key #3 text.prefix$ }
 	  if$
 	}
