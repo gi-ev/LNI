@@ -192,7 +192,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2016/05/11 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2016/07/04 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
 %</class>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -201,7 +201,8 @@ This work consists of the file  lni.dtx
 \usepackage[T1]{fontenc}
 \usepackage{libertine}
 \usepackage[scaled=0.85]{beramono}
-\usepackage{microtype}
+\usepackage[final,tracking=smallcaps,expansion=alltext,protrusion=true]{microtype}%
+\SetTracking{encoding=*,shape=sc}{50}%
 \usepackage{textcomp}
 \usepackage{upquote}
 %\usepackage{array,booktabs,tabularx}
@@ -279,6 +280,25 @@ This work consists of the file  lni.dtx
 \end{document}
 %</driver>
 % \fi
+% \CheckSum{0}
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \changes{v1.0}{2016/07/04}{Transfered old files into one dtx file}
+% \changes{v1.0}{2016/07/04}{Added \pkg{mmap}, changed options for \pkg{microtype} and added macro \cs{powerset}}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -474,6 +494,7 @@ This work consists of the file  lni.dtx
 
 % 10 pt, A4, Seitenabstände
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
+\RequirePackage{cmap}
 \RequirePackage{inputenc}
 \RequirePackage[T1]{fontenc}
 
@@ -487,10 +508,27 @@ This work consists of the file  lni.dtx
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage[zerostyle=b,straightquotes]{newtxtt}
-\RequirePackage{microtype}
+\RequirePackage[final,tracking=smallcaps,expansion=alltext,protrusion=true]{microtype}%
+\SetTracking{encoding=*,shape=sc}{50}%
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-
+%    \end{macrocode}
+% Introduce \cs{powerset} - hint by \url{http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377}
+%    \begin{macrocode}
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+%    \end{macrocode}
 % Satzspiegel
+%    \begin{macrocode}
 \setlength{\textheight}{19.2cm}
 \setlength{\textwidth}{12.6cm}
 \setlength{\topmargin}{0.17cm}%

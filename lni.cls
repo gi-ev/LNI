@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2016/05/11 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2016/07/04 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
 \setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
 \setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
 
@@ -44,6 +44,7 @@
 \ProcessOptions\relax
 
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
+\RequirePackage{cmap}
 \RequirePackage{inputenc}
 \RequirePackage[T1]{fontenc}
 
@@ -56,9 +57,21 @@
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage[zerostyle=b,straightquotes]{newtxtt}
-\RequirePackage{microtype}
+\RequirePackage[final,tracking=smallcaps,expansion=alltext,protrusion=true]{microtype}%
+\SetTracking{encoding=*,shape=sc}{50}%
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 \setlength{\textheight}{19.2cm}
 \setlength{\textwidth}{12.6cm}
 \setlength{\topmargin}{0.17cm}%
