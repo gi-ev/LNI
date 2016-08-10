@@ -826,7 +826,9 @@ This work consists of the file  lni.dtx
 \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
 
 \RequirePackage{url}
+%    \end{macrocode}
 % improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+%    \begin{macrocode}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 
 \ifusehyperref
@@ -840,6 +842,10 @@ This work consists of the file  lni.dtx
    pdfstartview=Fit%
 }
 \fi
+%    \end{macrocode}
+% enables correct jumping to figures when referencing
+%    \begin{macrocode}
+\RequirePackage[all]{hypcap}
 
 \def\and{\unskip\,}
 
