@@ -19,6 +19,8 @@ It is based on previous templates created on behalf of the GI.
 
 Stable versions are always uploaded to CTAN. In addition you'll find the most
 recent developer version on GitHub.
+
+Please note, that this is not yet an official release!
 ```
 
 https://github.com/sieversMartin/lni
