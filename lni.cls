@@ -37,10 +37,14 @@
 \newif\iflnienglish
 \lnienglishfalse
 \DeclareOption{english}{\lnienglishtrue\@clearglobaloption{english}}
+\newif\ifusehyperref
+\usehyperreftrue
+\DeclareOption{nohyperref}{\usehyperreffalse}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
 
+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \RequirePackage{cmap}
 \RequirePackage{inputenc}
@@ -347,6 +351,19 @@
 \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 
 \RequirePackage{url}
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+
+\ifusehyperref
+\RequirePackage[pdfusetitle]{hyperref}
+\hypersetup{%
+   bookmarks=false,%
+   %%%breaklinks=true,% set by hyperref based on driver
+   colorlinks=true,%
+   allcolors=black,%
+   pdfpagelayout=PdfTwoPage,%
+   pdfstartview=Fit%
+}
+\fi
 
 \def\and{\unskip\,}
 

@@ -476,11 +476,14 @@ This work consists of the file  lni.dtx
 \newif\iflnienglish
 \lnienglishfalse
 \DeclareOption{english}{\lnienglishtrue\@clearglobaloption{english}}
+\newif\ifusehyperref
+\usehyperreftrue
+\DeclareOption{nohyperref}{\usehyperreffalse}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
 
-% 10 pt, A4, Seitenabstände
+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \RequirePackage{cmap}
 \RequirePackage{inputenc}
@@ -823,6 +826,20 @@ This work consists of the file  lni.dtx
 \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
 
 \RequirePackage{url}
+% improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+
+\ifusehyperref
+\RequirePackage[pdfusetitle]{hyperref}
+\hypersetup{%
+   bookmarks=false,%
+   %%%breaklinks=true,% set by hyperref based on driver
+   colorlinks=true,%
+   allcolors=black,%
+   pdfpagelayout=PdfTwoPage,%
+   pdfstartview=Fit%
+}
+\fi
 
 \def\and{\unskip\,}
 
@@ -2252,30 +2269,46 @@ EXECUTE {end.bib}
 %% !TeX encoding = UTF-8
 %% !TeX program = pdflatex
 %% !BIB program = bibtex
+%%
+%%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne 
+%%% Parameter zu laden.
 \documentclass[]{lni}
-
-
+%%% To write an article in English, please use the option ``english'' in order 
+%%% to get the correct hyphenation patterns and terms.
+%%% \documentclass[english]{class}
+%%
 \begin{document}
-\author[Vorname1 Name1\and Vorname2 Name 2]{Vorname1 Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author1}}\and Vorname2 Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author2}} und weitere Autorinnen und Autoren in der gleichen Notation}
-\title[Short title (if necessary)]{Title}
+%%% Mehrere Autoren werden durch \and voneinander getrennt.
+%%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
+%%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
+\author[Vorname1 Name1\and Vorname2 Name 2]{Vorname1 
+Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl 
+Ort, \email{emailadresse@author1}}\and Vorname2 
+Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl 
+Ort, \email{emailadresse@author2}} und weitere Autorinnen und Autoren in der 
+gleichen Notation}
+%
+\title[Kurztitel (falls nötig)]{Titel}
 %
 \startpage{11}% Beginn der Seitenzählung für diesen Beitrag
-\editor{Me}
-\booktitle{A test}
+\editor{Ich selbst}
+\booktitle{Ein Test}
 \year{2017}
 \maketitle
 
 \begin{abstract}
+Hier kommt die Zusammenfassung hin
 Add your abstract here
 \end{abstract}
 \begin{keywords}
+Hier kommen die Keywords hin
 Add your keywords here
 \end{keywords}
+%%% Beginn des Artikeltexts
+\section{Überschrift}
 
-\section{}
-
-
-\bibliography{lniguide}
+%%% Angabe der .bib-Datei (ohne Endung)
+\bibliography{mybibfile}
 \end{document}
 %</template>
 %    \end{macrocode}
