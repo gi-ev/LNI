@@ -360,10 +360,11 @@
    %%%breaklinks=true,% set by hyperref based on driver
    colorlinks=true,%
    allcolors=black,%
-   pdfpagelayout=PdfTwoPage,%
+   pdfpagelayout=TwoPageRight,%
    pdfstartview=Fit%
 }
 \fi
+\RequirePackage[all]{hypcap}
 
 \def\and{\unskip\,}
 
