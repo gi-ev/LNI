@@ -317,6 +317,8 @@ This work consists of the file  lni.dtx
 % 
 % \end{abstract}
 %
+% \section{Introduction}
+%
 % \section{Installation}
 % The \lni{} bundle is distributed via \href{https://github.com/sieversMartin/LNI}{Github} and 
 % \href{www.ctan.org}{CTAN}. The later is the basis for all updates of the two 
@@ -447,27 +449,13 @@ This work consists of the file  lni.dtx
 %
 %    \begin{macrocode}
 %<*class>
-% Satzspiegelposition gemäß LNI-Herausgeberrichtlinien (Korrektur von Thomas.Kuehne@mcs.vuw.ac.nz)
+%    \end{macrocode}
+% Satzspiegelposition gemäß LNI-Herausgeberrichtlinien (Korrektur von 
+%Thomas.Kuehne@mcs.vuw.ac.nz)
+%    \begin{macrocode}
 \setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
 \setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
-
-% Vielen Dank an Matthias Rust (mrust@rostock.zgdv.de) für folgende
-% Ausrichtung an LNI Satzspiegel
-%\DeclareOption{forInclusion}{%
-%  \setlength{\topmargin}{0mm}%
-%  \setlength{\headheight}{0mm}%
-%  \setlength{\headsep}{0mm}%
-%  \setlength{\hoffset}{-10,9mm}% 
-%  \setlength{\voffset}{-3,9mm}% 
-%  \setlength{\oddsidemargin}{0mm}%
-%  \setlength{\evensidemargin}{0mm}%
-%  \setlength{\paperheight}{235mm}%
-%  \setlength{\paperwidth}{155mm}
-%  \ifpdf%
-%    \setlength{\pdfpageheight}{235mm}%
-%    \setlength{\pdfpagewidth}{155mm}%
-%  \fi}
-
+%
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -566,7 +554,7 @@ This work consists of the file  lni.dtx
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
+\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
 
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 
@@ -810,9 +798,13 @@ This work consists of the file  lni.dtx
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
 
-\let\@rigyear\year
-\newcommand*{\@year}{\the\@rigyear}
-\renewcommand*{\year}[1]{\renewcommand{\@year}{#1}}
+\AtBeginDocument{%
+   \let\@rigyear\year
+   \newcommand*{\@year}{\the\@rigyear}
+   \renewcommand*{\year}[1]{%
+      \renewcommand{\@year}{#1}%
+   }%
+}%
 %    \end{macrocode}
 % Kopfzeileneinstellungen
 %    \begin{macrocode}
@@ -2262,16 +2254,15 @@ EXECUTE {end.bib}
 %% !BIB program = bibtex
 \documentclass[]{lni}
 
-%Beginn der Seitenzählung für diesen Beitrag
-\startpage{11}
-
-\editor{Me}
-\booktitle{A test}
-\year{2017}
 
 \begin{document}
 \author[Vorname1 Name1\and Vorname2 Name 2]{Vorname1 Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author1}}\and Vorname2 Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author2}} und weitere Autorinnen und Autoren in der gleichen Notation}
 \title[Short title (if necessary)]{Title}
+%
+\startpage{11}% Beginn der Seitenzählung für diesen Beitrag
+\editor{Me}
+\booktitle{A test}
+\year{2017}
 \maketitle
 
 \begin{abstract}

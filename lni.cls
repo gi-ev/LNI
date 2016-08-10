@@ -17,8 +17,6 @@
     [2016/07/04 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
 \setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
 \setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
-
-
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -107,7 +105,7 @@
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
+\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
 
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 
@@ -327,9 +325,13 @@
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
 
-\let\@rigyear\year
-\newcommand*{\@year}{\the\@rigyear}
-\renewcommand*{\year}[1]{\renewcommand{\@year}{#1}}
+\AtBeginDocument{%
+   \let\@rigyear\year
+   \newcommand*{\@year}{\the\@rigyear}
+   \renewcommand*{\year}[1]{%
+      \renewcommand{\@year}{#1}%
+   }%
+}%
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year \hspace{5pt}\thepage\hspace{0.05cm}}
