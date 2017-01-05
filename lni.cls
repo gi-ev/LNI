@@ -360,7 +360,6 @@
    %%%breaklinks=true,% set by hyperref based on driver
    colorlinks=true,%
    allcolors=black,%
-   pdfpagelayout=TwoPageRight,%
    pdfstartview=Fit%
 }
 \fi
