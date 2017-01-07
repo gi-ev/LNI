@@ -282,7 +282,6 @@
 
 \renewenvironment{thebibliography}[1]
      {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
-      \inputencoding{latin1}
       \section*{\refname}%
       \bgroup\fontsize{9}{10}\selectfont
       \list{\@biblabel{\@arabic\c@enumiv}}%
@@ -300,7 +299,7 @@
       \sfcode`\.\@m}
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist\egroup\inputencoding{utf8}}
+      \endlist\egroup}
 
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
