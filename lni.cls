@@ -338,7 +338,7 @@
 }%
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year \hspace{5pt}\thepage\hspace{0.05cm}}
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\hspace{0.000001pt}\null\linebreak Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year \hspace{5pt}\thepage\hspace{0.05cm}}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 }
