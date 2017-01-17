@@ -485,7 +485,10 @@ This work consists of the file  lni.dtx
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
 
+\iflnienglish
+\else
 \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+\fi
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \RequirePackage{cmap}
 \RequirePackage{inputenc}
@@ -560,7 +563,7 @@ This work consists of the file  lni.dtx
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
+\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip,\ }#1}}\gdef\@author{#2}}
 
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 
@@ -633,7 +636,7 @@ This work consists of the file  lni.dtx
 
 % Keywords
 \newenvironment{keywords}{\fontsize{9}{10}\selectfont
-    \noindent{\bfseries Keywords:}}{}
+    \noindent{\bfseries Keywords:\ }}{}
 
 % Überschriften
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
@@ -689,6 +692,8 @@ This work consists of the file  lni.dtx
                 \@dblfloat{table}}
                {\end@dblfloat}
 
+\RequirePackage[font=small]{caption}
+
 % Gleichungen mit richtiger Einrückung, 0.5cm
 % fleqn-Option oben
 \setlength{\mathindent}{0.5cm}
@@ -730,7 +735,8 @@ This work consists of the file  lni.dtx
        \setlength{\parsep}{-2pt}}%
        %\setlength{\itemindent}{0.5cm}
   \fi}
-  
+\renewcommand\labelitemi{$\bullet$}
+
   % Nummierierte Aufzählung
   \renewcommand{\labelenumii}{\alph{enumii})}
   \renewcommand*\enumerate{%    
@@ -850,7 +856,7 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \RequirePackage[all]{hypcap}
 
-\def\and{\unskip\,}
+\def\and{\unskip\hspace{-.42em},\hspace{.6em}}
 
 \iflnienglish
    \bibliographystyle{lni}

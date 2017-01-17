@@ -44,7 +44,10 @@
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
 
+\iflnienglish
+\else
 \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+\fi
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \RequirePackage{cmap}
 \RequirePackage{inputenc}
@@ -110,7 +113,7 @@
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
+\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip,\ }#1}}\gdef\@author{#2}}
 
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 
@@ -178,7 +181,7 @@
 }{\endquotation}
 
 \newenvironment{keywords}{\fontsize{9}{10}\selectfont
-    \noindent{\bfseries Keywords:}}{}
+    \noindent{\bfseries Keywords:\ }}{}
 
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\fontseries{b}\selectfont}}
@@ -227,6 +230,8 @@
                 \@dblfloat{table}}
                {\end@dblfloat}
 
+\RequirePackage[font=small]{caption}
+
 \setlength{\mathindent}{0.5cm}
 
 \RequirePackage{verbatim}
@@ -260,6 +265,7 @@
        \setlength{\parsep}{-2pt}}%
        %\setlength{\itemindent}{0.5cm}
   \fi}
+\renewcommand\labelitemi{$\bullet$}
 
   % Nummierierte Aufzählung
   \renewcommand{\labelenumii}{\alph{enumii})}
@@ -367,7 +373,7 @@
 \fi
 \RequirePackage[all]{hypcap}
 
-\def\and{\unskip\,}
+\def\and{\unskip\hspace{-.42em},\hspace{.6em}}
 
 \iflnienglish
    \bibliographystyle{lni}
