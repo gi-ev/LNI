@@ -58,7 +58,7 @@
 
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,straightquotes]{newtxtt}
+\RequirePackage[zerostyle=b,straightquotes,scaled=.9]{newtxtt}
 \RequirePackage[final,tracking=smallcaps,expansion=alltext,protrusion=true]{microtype}%
 \SetTracking{encoding=*,shape=sc}{50}%
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
