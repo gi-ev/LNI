@@ -75,6 +75,7 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 \setlength{\textheight}{19.2cm}
+\setlength{\headheight}{20.39pt}
 \setlength{\textwidth}{12.6cm}
 \setlength{\topmargin}{0.17cm}%
 \setlength{\oddsidemargin}{1.85cm}% korrigierte twoside werte
