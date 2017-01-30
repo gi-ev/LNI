@@ -452,11 +452,7 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 %<*class>
 %    \end{macrocode}
-% Satzspiegelposition gemäß LNI-Herausgeberrichtlinien (Korrektur von 
-%Thomas.Kuehne@mcs.vuw.ac.nz)
 %    \begin{macrocode}
-\setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
-\setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
 %
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -522,13 +518,14 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Satzspiegel
 %    \begin{macrocode}
-\setlength{\textheight}{19.2cm}
-\setlength{\headheight}{20.39pt}
-\setlength{\textwidth}{12.6cm}
-\setlength{\topmargin}{0.17cm}%
-\setlength{\oddsidemargin}{1.85cm}% korrigierte twoside werte
-\setlength{\evensidemargin}{1.85cm}% korrigierte twoside werte
-\setlength{\headsep}{0.31cm}%
+\usepackage[
+  a4paper,
+  total={12.6cm,19.2cm},
+  includehead,
+  headheight=20.39pt,
+  headsep=.31cm,
+  centering]
+  {geometry}
 
 % Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der Abstände
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
