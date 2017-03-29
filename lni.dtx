@@ -192,7 +192,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2016/07/04 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2016/12/19 v1.0RC1 A class for submissions to the ``Lecture Notes in Informatics'']
 %</class>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -451,7 +451,7 @@ This work consists of the file  lni.dtx
 %<*class>
 %    \end{macrocode}
 % Satzspiegelposition gemäß LNI-Herausgeberrichtlinien (Korrektur von 
-%Thomas.Kuehne@mcs.vuw.ac.nz)
+% Thomas.Kuehne@mcs.vuw.ac.nz)
 %    \begin{macrocode}
 \setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
 \setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
@@ -479,6 +479,9 @@ This work consists of the file  lni.dtx
 \newif\ifusehyperref
 \usehyperreftrue
 \DeclareOption{nohyperref}{\usehyperreffalse}
+\newif\ifusebiblatex
+\usebiblatexfalse
+\DeclareOption{biblatex}{\usebiblatextrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -494,8 +497,9 @@ This work consists of the file  lni.dtx
 \else
    \RequirePackage[english,ngerman]{babel}
 \fi
-
+%    \end{macrocode}
 % Define a modern variant of Times as the main font
+%    \begin{macrocode}
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage[zerostyle=b,straightquotes]{newtxtt}
@@ -526,7 +530,20 @@ This work consists of the file  lni.dtx
 \setlength{\oddsidemargin}{1.85cm}% korrigierte twoside werte
 \setlength{\evensidemargin}{1.85cm}% korrigierte twoside werte
 \setlength{\headsep}{0.31cm}%
-
+%    \end{macrocode}
+%    \begin{macrocode}
+\RequirePackage[autostyle]{csquotes}
+\ifusebiblatex
+   \RequirePackage{biblatex-lni}
+\fi%
+%    \end{macrocode}
+%    \begin{macrocode}
+\RequirePackage{graphicx}
+\RequirePackage{grffile}
+\RequirePackage{fancyhdr}
+\RequirePackage{listings}
+%    \end{macrocode}
+%    \begin{macrocode}
 % Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der Abstände
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
@@ -552,15 +569,19 @@ This work consists of the file  lni.dtx
      \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
      \par}%
   \fi}
-  
+%    \end{macrocode}
+%    \begin{macrocode}  
 \renewcommand{\title}{\@dblarg\@@title}
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \renewcommand{\author}{\@dblarg\@@author}
 \def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Title: Kopie aus article.cls mit anderem \thispagestyle
 \renewcommand\maketitle{\par%
 % Keine Vertikale Einrückung über dem Titel auf der Titelseite
@@ -602,7 +623,8 @@ This work consists of the file  lni.dtx
   \global\let\date\relax
   \global\let\and\relax
 }
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \def\@maketitle{%
   \newpage
   \null
@@ -620,18 +642,21 @@ This work consists of the file  lni.dtx
   \end{center}%
   \par
 }
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Abstract
 \renewenvironment*{abstract}{%
  \renewcommand{\abstractname}{Abstract}
  \fontsize{9}{10}\selectfont
     \noindent{\bfseries \abstractname:}%
 }{\endquotation}  
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Keywords
 \newenvironment{keywords}{\fontsize{9}{10}\selectfont
     \noindent{\bfseries Keywords:}}{}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Überschriften
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\fontseries{b}\selectfont}}
@@ -640,7 +665,8 @@ This work consists of the file  lni.dtx
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\fontseries{b}\selectfont}}
 %  {16pt}{4pt}{\fontsize{10}{12}\fontseries{b}\selectfont}}
 % weitere nicht durch Formatvorlage geklärt
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Bildunterschriften
 \setlength{\abovecaptionskip}{4pt}%Abstand vor der Bildunterschrift
 \setlength{\belowcaptionskip}{0pt}%Abstand nach der Bildunterschrift
@@ -656,7 +682,8 @@ This work consists of the file  lni.dtx
     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
   \fi}
   \vskip\belowcaptionskip}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Abbildungen
 \def\fps@figure{htbp}
 \def\fnum@figure{\figurename~\thefigure}
@@ -670,7 +697,8 @@ This work consists of the file  lni.dtx
 \setcounter{bottomnumber}{10}% maximale Anzahl gleitender Objekte am Seitenende
 \renewcommand{\topfraction}{1.0}% Anteil den gleitende Objekte am Seitenanfang einnehmen dürfen
 \renewcommand{\bottomfraction}{1.0}% Anteil den gleitende Objekte am Seitenende einnehmen dürfen
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Tabellen
 \def\fps@table{htbp}
 \def\fnum@table{\tablename~\thetable}
@@ -689,11 +717,13 @@ This work consists of the file  lni.dtx
 % Gleichungen mit richtiger Einrückung, 0.5cm
 % fleqn-Option oben
 \setlength{\mathindent}{0.5cm}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % listings mit richtiger einrückung, 0.5 cm
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Fussnoten mit 5cm Linie und richtiger Größe
 \renewcommand\footnoterule{%
   \kern-3\p@
@@ -706,12 +736,13 @@ This work consists of the file  lni.dtx
     \leftskip \fnindent% Einrückung vor der footnotemark
     \noindent
     \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
-
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Absatzeinzüge und Abstände
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 % Aufzählungen
 % mit Punkt
 \renewcommand*\itemize{%
@@ -727,7 +758,8 @@ This work consists of the file  lni.dtx
        \setlength{\parsep}{-2pt}}%
        %\setlength{\itemindent}{0.5cm}
   \fi}
-  
+%    \end{macrocode}
+%    \begin{macrocode}  
   % Nummierierte Aufzählung
   \renewcommand{\labelenumii}{\alph{enumii})}
   \renewcommand*\enumerate{%    
@@ -747,35 +779,8 @@ This work consists of the file  lni.dtx
       \setlength{\itemsep}{8pt}%
       \setlength{\parsep}{-2pt}}
   }
-
-% bibliography
-\renewenvironment{thebibliography}[1]
-     {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
-      \inputencoding{latin1}
-      \section*{\refname}%
-      \bgroup\fontsize{9}{10}\selectfont
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist\egroup\inputencoding{utf8}}
-
-\RequirePackage{graphicx}
-\RequirePackage{fancyhdr}
-\RequirePackage{listings}
-%\usepackage{changepage} %for changing topmargin on first page
-%\usepackage[figurename=Abb., tablename=Tab., small]{caption}[2008/04/01]
+%    \end{macrocode}
+%    \begin{macrocode}
 \newcommand{\andname}{}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%
@@ -784,23 +789,27 @@ This work consists of the file  lni.dtx
   \renewcommand{\lstlistingname}{List.}
   \renewcommand{\refname}{Literaturverzeichnis}
 }
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \addto\captionsenglish{%
   \renewcommand{\andname}{and}%
   \renewcommand{\figurename}{Fig.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
 }
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
-
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \newcommand*{\@booktitle}{}
 \newcommand*{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \AtBeginDocument{%
    \let\@rigyear\year
    \newcommand*{\@year}{\the\@rigyear}
@@ -817,44 +826,77 @@ This work consists of the file  lni.dtx
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
 }
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \pagestyle{fancy}
 \fancyhead{} % Löscht alle Kopfzeileneinstellungen
 \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
 \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
 \fancyfoot{} % Löscht alle Fußzeileneinstellungen
 \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \RequirePackage{url}
 %    \end{macrocode}
 % improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 %    \begin{macrocode}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \ifusehyperref
-\RequirePackage[pdfusetitle]{hyperref}
-\hypersetup{%
-   bookmarks=false,%
-   %%%breaklinks=true,% set by hyperref based on driver
-   colorlinks=true,%
-   allcolors=black,%
-   pdfpagelayout=TwoPageRight,%
-   pdfstartview=Fit%
-}
-\fi
+   \RequirePackage[pdfusetitle]{hyperref}
+   \hypersetup{%
+      bookmarks=false,%
+      %%%breaklinks=true,% set by hyperref based on driver
+      colorlinks=true,%
+      allcolors=black,%
+      pdfpagelayout=TwoPageRight,%
+      pdfstartview=Fit%
+   }%
+\fi%
 %    \end{macrocode}
 % enables correct jumping to figures when referencing
 %    \begin{macrocode}
 \RequirePackage[all]{hypcap}
-
+%    \end{macrocode}
+%    \begin{macrocode}
 \def\and{\unskip\,}
-
-\iflnienglish
-   \bibliographystyle{lni}
+%    \end{macrocode}
+%    \begin{macrocode}
+\ifusebiblatex
 \else
-   \bibliographystyle{lnig}
-\fi
-
+   \iflnienglish
+      \bibliographystyle{lni}%
+   \else
+      \bibliographystyle{lnig}%
+   \fi%
+\fi%
+%    \end{macrocode}
+% bibliography
+%    \begin{macrocode}
+\renewenvironment{thebibliography}[1]
+{\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
+   \inputencoding{latin1}
+   \section*{\refname}%
+   \bgroup\fontsize{9}{10}\selectfont
+   \list{\@biblabel{\@arabic\c@enumiv}}%
+   {\settowidth\labelwidth{\@biblabel{#1}}%
+      \leftmargin\labelwidth
+      \advance\leftmargin\labelsep
+      \@openbib@code
+      \usecounter{enumiv}%
+      \let\p@enumiv\@empty
+      \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+   \sloppy
+   \clubpenalty4000
+   \@clubpenalty \clubpenalty
+   \widowpenalty4000%
+   \sfcode`\.\@m}
+{\def\@noitemerr
+   {\@latex@warning{Empty `thebibliography' environment}}%
+   \endlist\egroup\inputencoding{utf8}}
+%    \end{macrocode}
+%    \begin{macrocode}
 \frenchspacing    % Abstand nach Satzende
 \widowpenalty=10000   % Vermeidet "widows & orphans"
 \clubpenalty=10000
