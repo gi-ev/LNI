@@ -15,8 +15,6 @@
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
     [2016/07/04 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
-\setlength{\hoffset}{-0,2cm}% correct left margin to 4.2cm
-\setlength{\voffset}{2.60cm}% correct top margin to 5.25cm
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -74,13 +72,14 @@
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
-\setlength{\textheight}{19.2cm}
-\setlength{\headheight}{20.39pt}
-\setlength{\textwidth}{12.6cm}
-\setlength{\topmargin}{0.17cm}%
-\setlength{\oddsidemargin}{1.85cm}% korrigierte twoside werte
-\setlength{\evensidemargin}{1.85cm}% korrigierte twoside werte
-\setlength{\headsep}{0.31cm}%
+\usepackage[
+  a4paper,
+  total={12.6cm,19.2cm},
+  includehead,
+  headheight=20.39pt,
+  headsep=.31cm,
+  centering]
+  {geometry}
 
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
