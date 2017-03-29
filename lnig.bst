@@ -1277,7 +1277,7 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 %% 
-%% Copyright (C) 2016 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+%% Copyright (C) 2016-2017 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either

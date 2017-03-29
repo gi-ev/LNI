@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2016/07/04 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2017/03/31 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -38,6 +38,9 @@
 \newif\ifusehyperref
 \usehyperreftrue
 \DeclareOption{nohyperref}{\usehyperreffalse}
+\newif\ifusebiblatex
+\usebiblatexfalse
+\DeclareOption{biblatex}{\usebiblatextrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -53,13 +56,15 @@
 \else
    \RequirePackage[english,ngerman]{babel}
 \fi
-
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage[zerostyle=b,straightquotes,scaled=.9]{newtxtt}
-\RequirePackage[final,tracking=smallcaps,expansion=alltext,protrusion=true]{microtype}%
+\RequirePackage[%
+   final,%
+   tracking=smallcaps,%
+   expansion=alltext,%
+   protrusion=alltext-nott]{microtype}%
 \SetTracking{encoding=*,shape=sc}{50}%
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
@@ -72,7 +77,7 @@
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
-\usepackage[
+\RequirePackage[
   a4paper,
   total={12.6cm,19.2cm},
   includehead,
@@ -80,7 +85,14 @@
   headsep=.31cm,
   centering]
   {geometry}
-
+\RequirePackage[autostyle]{csquotes}
+\ifusebiblatex
+   \RequirePackage{biblatex-lni}%
+\fi%
+\RequirePackage{graphicx}
+\RequirePackage{grffile}
+\RequirePackage{fancyhdr}
+\RequirePackage{listings}
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
 
@@ -104,15 +116,12 @@
      \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
      \par}%
   \fi}
-
 \renewcommand{\title}{\@dblarg\@@title}
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
-
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble\def\and{\unskip\ \andname\ }#1}}\gdef\@author{#2}}
-
+\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
+   \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
-
 \renewcommand\maketitle{\par%
 \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
@@ -151,7 +160,6 @@
   \global\let\date\relax
   \global\let\and\relax
 }
-
 \def\@maketitle{%
   \newpage
   \null
@@ -169,28 +177,27 @@
   \end{center}%
   \par
 }
-
 \renewenvironment*{abstract}{%
  \renewcommand{\abstractname}{Abstract}
  \fontsize{9}{10}\selectfont
-    \noindent{\bfseries \abstractname:}%
+    \noindent\ignorespaces{\bfseries \abstractname:\ }%
 }{\endquotation}
-
-\newenvironment{keywords}{\fontsize{9}{10}\selectfont
-    \noindent{\bfseries Keywords:}}{}
-
+\newif\ifkeywords
+\newenvironment{keywords}{\global\keywordstrue\fontsize{9}{10}\selectfont
+    \noindent\ignorespaces{\bfseries Keywords:\ }}{\global\keywordsfalse}
+\let\@RIGsection\section
+\pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}{Please change \string\keywords to an environment}\keywordsfalse\fi}{}{}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\fontseries{b}\selectfont}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\fontseries{b}\selectfont}}
-
 \setlength{\abovecaptionskip}{4pt}%Abstand vor der Bildunterschrift
 \setlength{\belowcaptionskip}{0pt}%Abstand nach der Bildunterschrift
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
-  {%\fontsize{5}{6}\selectfont
-   \sbox\@tempboxa{\small#1: #2}%
+  {\small
+   \sbox\@tempboxa{#1: #2}%
   \ifdim \wd\@tempboxa >\hsize
     #1: #2\par
   \else
@@ -198,7 +205,6 @@
     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
   \fi}
   \vskip\belowcaptionskip}
-
 \def\fps@figure{htbp}
 \def\fnum@figure{\figurename~\thefigure}
 \def\@floatboxreset{%
@@ -211,7 +217,6 @@
 \setcounter{bottomnumber}{10}% maximale Anzahl gleitender Objekte am Seitenende
 \renewcommand{\topfraction}{1.0}% Anteil den gleitende Objekte am Seitenanfang einnehmen dürfen
 \renewcommand{\bottomfraction}{1.0}% Anteil den gleitende Objekte am Seitenende einnehmen dürfen
-
 \def\fps@table{htbp}
 \def\fnum@table{\tablename~\thetable}
 \renewcommand{\arraystretch}{1.1}%Abstand zu Linien in Tabelle
@@ -227,10 +232,8 @@
                {\end@dblfloat}
 
 \setlength{\mathindent}{0.5cm}
-
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
-
 \renewcommand\footnoterule{%
   \kern-3\p@
   \hrule\@width 5cm
@@ -242,10 +245,8 @@
     \leftskip \fnindent% Einrückung vor der footnotemark
     \noindent
     \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
-
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-
 \renewcommand*\itemize{%
   \ifnum \@itemdepth >\thr@@\@toodeep\else
    \setlength{\labelsep}{0.70cm}%Abstand zum Aufzählungspunkt
@@ -259,7 +260,6 @@
        \setlength{\parsep}{-2pt}}%
        %\setlength{\itemindent}{0.5cm}
   \fi}
-
   % Nummierierte Aufzählung
   \renewcommand{\labelenumii}{\alph{enumii})}
   \renewcommand*\enumerate{%
@@ -279,32 +279,6 @@
       \setlength{\itemsep}{8pt}%
       \setlength{\parsep}{-2pt}}
   }
-
-\renewenvironment{thebibliography}[1]
-     {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
-      \inputencoding{latin1}
-      \section*{\refname}%
-      \bgroup\fontsize{9}{10}\selectfont
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist\egroup\inputencoding{utf8}}
-
-\RequirePackage{graphicx}
-\RequirePackage{fancyhdr}
-\RequirePackage{listings}
 \newcommand{\andname}{}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%
@@ -313,22 +287,17 @@
   \renewcommand{\lstlistingname}{List.}
   \renewcommand{\refname}{Literaturverzeichnis}
 }
-
 \addto\captionsenglish{%
   \renewcommand{\andname}{and}%
   \renewcommand{\figurename}{Fig.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
 }
-
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
-
 \newcommand*{\@booktitle}{}
 \newcommand*{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
-
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
-
 \AtBeginDocument{%
    \let\@rigyear\year
    \newcommand*{\@year}{\the\@rigyear}
@@ -338,47 +307,67 @@
 }%
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year \hspace{5pt}\thepage\hspace{0.05cm}}
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\hspace{1sp}\null\linebreak%
+       Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+       \hspace{5pt}\thepage\hspace{0.05cm}}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 }
-
 \pagestyle{fancy}
 \fancyhead{} % Löscht alle Kopfzeileneinstellungen
 \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
 \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
 \fancyfoot{} % Löscht alle Fußzeileneinstellungen
 \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
-
 \RequirePackage{url}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
-
 \ifusehyperref
-\RequirePackage[pdfusetitle]{hyperref}
-\hypersetup{%
-   bookmarks=false,%
-   %%%breaklinks=true,% set by hyperref based on driver
-   colorlinks=true,%
-   allcolors=black,%
-   pdfpagelayout=TwoPageRight,%
-   pdfstartview=Fit%
-}
-\fi
+   \RequirePackage[pdfusetitle]{hyperref}
+   \hypersetup{%
+      pdfdisplaydoctitle,
+      bookmarks=false,%
+      %%%breaklinks=true,% set by hyperref based on driver
+      colorlinks=true,%
+      allcolors=black,%
+      %%%pdfpagelayout=TwoPageRight,%
+      pdfstartview=Fit%
+   }%
+\fi%
 \RequirePackage[all]{hypcap}
-
-\def\and{\unskip\,}
-
-\iflnienglish
-   \bibliographystyle{lni}
+\def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
+\ifusebiblatex
 \else
-   \bibliographystyle{lnig}
-\fi
-
+   \iflnienglish
+      \bibliographystyle{lni}%
+   \else
+      \bibliographystyle{lnig}%
+   \fi%
+\fi%
+\renewenvironment{thebibliography}[1]
+{\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
+   \section*{\refname}%
+   \bgroup\fontsize{9}{10}\selectfont
+   \list{\@biblabel{\@arabic\c@enumiv}}%
+   {\settowidth\labelwidth{\@biblabel{#1}}%
+      \leftmargin\labelwidth
+      \advance\leftmargin\labelsep
+      \@openbib@code
+      \usecounter{enumiv}%
+      \let\p@enumiv\@empty
+      \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+   \sloppy
+   \clubpenalty4000
+   \@clubpenalty \clubpenalty
+   \widowpenalty4000%
+   \sfcode`\.\@m}
+{\def\@noitemerr
+   {\@latex@warning{Empty `thebibliography' environment}}%
+   \endlist\egroup}
 \frenchspacing    % Abstand nach Satzende
 \widowpenalty=10000   % Vermeidet "widows & orphans"
 \clubpenalty=10000
 %% 
-%% Copyright (C) 2016 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+%% Copyright (C) 2016-2017 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
