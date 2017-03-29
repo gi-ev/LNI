@@ -58,7 +58,7 @@
 
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,straightquotes]{newtxtt}
+\RequirePackage[zerostyle=b,straightquotes,scaled=.9]{newtxtt}
 \RequirePackage[final,tracking=smallcaps,expansion=alltext,protrusion=true]{microtype}%
 \SetTracking{encoding=*,shape=sc}{50}%
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
@@ -75,6 +75,7 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 \setlength{\textheight}{19.2cm}
+\setlength{\headheight}{20.39pt}
 \setlength{\textwidth}{12.6cm}
 \setlength{\topmargin}{0.17cm}%
 \setlength{\oddsidemargin}{1.85cm}% korrigierte twoside werte
