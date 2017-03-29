@@ -830,6 +830,7 @@ This work consists of the file  lni.dtx
    \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\hspace{1sp}\null\linebreak%
        Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
        \hspace{5pt}\thepage\hspace{0.05cm}}
+   \fancyhead[LE]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
 }
@@ -2336,18 +2337,16 @@ EXECUTE {end.bib}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
 %%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
-\author[Vorname1 Name1\and Vorname2 Name 2]{Vorname1 
-Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl 
-Ort, \email{emailadresse@author1}}\and Vorname2 
-Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl 
-Ort, \email{emailadresse@author2}} und weitere Autorinnen und Autoren in der 
-gleichen Notation}
+\author[Vorname1 Name1\and Vorname2 Name2]
+{Vorname1 Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author1}}\and
+ Vorname2 Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author2}}
+ und weitere Autorinnen und Autoren in der gleichen Notation}
 %
 \title[Kurztitel (falls nötig)]{Titel}
 %
 \startpage{11}% Beginn der Seitenzählung für diesen Beitrag
-\editor{Ich selbst}
-\booktitle{Ein Test}
+\editor{Herausgeber et al.}
+\booktitle{Name-der-Konferenz}
 \year{2017}
 \maketitle
 
