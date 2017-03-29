@@ -247,6 +247,7 @@
     \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
+\renewcommand{\labelitemi}{$\bullet$}
 \renewcommand*\itemize{%
   \ifnum \@itemdepth >\thr@@\@toodeep\else
    \setlength{\labelsep}{0.70cm}%Abstand zum Aufzählungspunkt
@@ -258,9 +259,7 @@
       {\def\makelabel##1{\hss\llap{##1}}%
        \setlength{\itemsep}{8pt}%
        \setlength{\parsep}{-2pt}}%
-       %\setlength{\itemindent}{0.5cm}
   \fi}
-  % Nummierierte Aufzählung
   \renewcommand{\labelenumii}{\alph{enumii})}
   \renewcommand*\enumerate{%
   \ifnum \@enumdepth >\thr@@
@@ -279,34 +278,6 @@
       \setlength{\itemsep}{8pt}%
       \setlength{\parsep}{-2pt}}
   }
-<<<<<<< HEAD
-=======
-
-\renewenvironment{thebibliography}[1]
-     {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
-      \section*{\refname}%
-      \bgroup\fontsize{9}{10}\selectfont
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist\egroup}
-
-\RequirePackage{graphicx}
-\RequirePackage{fancyhdr}
-\RequirePackage{listings}
->>>>>>> a88b5a8fa7913e34803387260dbfc317e7a363ef
 \newcommand{\andname}{}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%
@@ -335,14 +306,10 @@
 }%
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-<<<<<<< HEAD
    \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\hspace{1sp}\null\linebreak%
        Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
        \hspace{5pt}\thepage\hspace{0.05cm}}
-=======
    \fancyhead[LE]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year \hspace{5pt}\thepage\hspace{0.05cm}}
->>>>>>> a88b5a8fa7913e34803387260dbfc317e7a363ef
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 }

@@ -747,9 +747,9 @@ This work consists of the file  lni.dtx
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
 %    \end{macrocode}
+% Aufzählungen mit Punkt
 %    \begin{macrocode}
-% Aufzählungen
-% mit Punkt
+\renewcommand{\labelitemi}{$\bullet$}
 \renewcommand*\itemize{%
   \ifnum \@itemdepth >\thr@@\@toodeep\else
   	\setlength{\labelsep}{0.70cm}%Abstand zum Aufzählungspunkt
@@ -761,11 +761,10 @@ This work consists of the file  lni.dtx
       {\def\makelabel##1{\hss\llap{##1}}%
        \setlength{\itemsep}{8pt}%
        \setlength{\parsep}{-2pt}}%
-       %\setlength{\itemindent}{0.5cm}
   \fi}
 %    \end{macrocode}
+% Nummierierte Aufzählung
 %    \begin{macrocode}  
-  % Nummierierte Aufzählung
   \renewcommand{\labelenumii}{\alph{enumii})}
   \renewcommand*\enumerate{%    
   \ifnum \@enumdepth >\thr@@
