@@ -230,7 +230,6 @@
                 \setlength\belowcaptionskip{0\p@}%
                 \@dblfloat{table}}
                {\end@dblfloat}
-
 \setlength{\mathindent}{0.5cm}
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
