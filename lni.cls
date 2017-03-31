@@ -346,7 +346,6 @@
    \hypersetup{%
       pdfdisplaydoctitle,
       bookmarks=false,%
-      %%%breaklinks=true,% set by hyperref based on driver
       colorlinks=true,%
       allcolors=black,%
       %%%pdfpagelayout=TwoPageRight,%
@@ -360,7 +359,7 @@
      \Crefname{section}{Sect.}{Sect.}
    \else
      \usepackage[ngerman,nameinlink]{cleveref}
-   \fi
+   \fi%
    \crefname{figure}{\figurename}{\figurename}
    \crefname{listing}{\lstlistingname}{\lstlistingname}
    \crefname{table}{\tablename}{\tablename}
