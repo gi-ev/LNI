@@ -222,7 +222,8 @@ This work consists of the file  lni.dtx
    urlcolor=blue,%
 	linktocpage,%
 	colorlinks=true]{hyperref}
-	
+\usepackage[nameinlink,capitalise]{cleveref}
+
 \newcommand{\lni}{\texttt{lni}}	
 \newcommand{\LNI}{\emph{Lecture Notes in Informatics}}
 \makeatletter
@@ -371,7 +372,7 @@ This work consists of the file  lni.dtx
 %
 % The language influences not only the hyphenation patterns and terms used in 
 % the text, but also the choice of a corresponding \BibTeX{} file 
-% (cf.~\ref{sec:bibliography}).
+% (cf.~\cref{sec:bibliography}).
 %
 % \DescribeMacro{utf8}\DescribeMacro{latin1}\DescribeMacro{applemac}Although 
 % nowadays all major plattforms support and widely use UTF-8 encoding for 
@@ -389,7 +390,7 @@ This work consists of the file  lni.dtx
 %
 % There is even a specialized package \pkg{biblatex-lni} which is automatically used 
 % when setting the class option \opt{biblatex}. Please see as well 
-% section~\ref{sec:bibliography}.
+% \cref{sec:bibliography}.
 %
 % \section{Setting-up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 
@@ -398,7 +399,7 @@ This work consists of the file  lni.dtx
 % \subsection{Special macros for editors}
 % \DescribeMacro{\startpage}\DescribeMacro{\editor}\DescribeMacro{\booktitle}%
 % \DescribeMacro{\year}In addition to the macros stated in 
-% section~\ref{sec:titlepage} for authors, there are special editor macros to 
+% \cref{sec:titlepage} for authors, there are special editor macros to
 % influence the layout of the article:
 % \begin{itemize}
 %   \item\cs{startpage} determines the starting page of the article. This should 
@@ -517,7 +518,7 @@ This work consists of the file  lni.dtx
 % automatically.
 % 
 % With option 
-% \opt{biblatex} (cf.~\ref{sec:options}) you can easily switch to the modern 
+% \opt{biblatex} (cf.~\cref{sec:options}) you can easily switch to the modern
 % \pkg{biblatex} package. However, you have to add information on the bib file(s) in 
 % your preamble using \cs{addbibresource} and call \cs{printbibliography} where 
 % you want the bibliography to appear:
