@@ -224,6 +224,19 @@ This work consists of the file  lni.dtx
 	colorlinks=true]{hyperref}
 \usepackage[nameinlink,capitalise]{cleveref}
 
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+    <-6>  MnSymbolC5
+   <6-7>  MnSymbolC6
+   <7-8>  MnSymbolC7
+   <8-9>  MnSymbolC8
+   <9-10> MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
 \newcommand{\lni}{\texttt{lni}}	
 \newcommand{\LNI}{\emph{Lecture Notes in Informatics}}
 \makeatletter
@@ -394,7 +407,7 @@ This work consists of the file  lni.dtx
 % when setting the class option \opt{biblatex}. Please see as well 
 % \cref{sec:bibliography}.
 %
-% \section{Setting-up a document}
+% \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 
 % for setting up a document for submission. The \lni{} class uses the standard 
 % ways to build an article.
@@ -510,7 +523,8 @@ This work consists of the file  lni.dtx
 %
 % \subsubsection{Math}
 % If you need mathematics, you can load \pkg{amsmath} and \pkg{mathtools} for 
-% additional features.
+% additional features. This package offers the command \cs{powerset} to render
+% the powerset symbol correctly as $\powerset$ and not as Weierstrass p ($\wp$).
 %
 % \subsection{Bibliography}\label{sec:bibliography}
 % The old \lni{} class file only supports \BibTeX{} with bst files for German and 
