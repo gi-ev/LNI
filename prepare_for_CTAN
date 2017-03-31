@@ -5,6 +5,8 @@
 #
 echo "Make sure we have the latest version"
 pdflatex lni.dtx
+echo "Make sure all links in lni.pdf are correct"
+pdflatex lni.dtx
 if [ -f lni.tar.gz ]; then
    echo "Remove old archive"
    rm lni.tar.gz
