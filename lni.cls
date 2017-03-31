@@ -56,6 +56,8 @@
 \else
    \RequirePackage[english,ngerman]{babel}
 \fi
+\useshorthands*{"}
+\addto\extrasenglish{\languageshorthands{ngerman}}
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
 \RequirePackage[zerostyle=b,straightquotes,scaled=.9]{newtxtt}

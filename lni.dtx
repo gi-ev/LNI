@@ -589,6 +589,9 @@ This work consists of the file  lni.dtx
 \else
    \RequirePackage[english,ngerman]{babel}
 \fi
+%Hint by http://tex.stackexchange.com/a/321067/9075 -> enable "= as dashes
+\useshorthands*{"}
+\addto\extrasenglish{\languageshorthands{ngerman}}
 %    \end{macrocode}
 % Define a modern variant of Times as the main font
 %    \begin{macrocode}
