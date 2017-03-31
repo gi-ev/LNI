@@ -386,6 +386,12 @@ This work consists of the file  lni.dtx
 % strongly recommended. Please note, that currently the bib file is supposed to use 
 % the same encoding.
 %
+% \DescribeMacro{nocleveref}When referencing figures, one has to type
+% \texttt{Figure\textasciitilde}\cs{ref\{label\}}. The package \pkg{cleveref}
+% reduces the effort by offering the command \cs{cref\{label\}}. This can be used
+% with all floating objects. The package is loaded as default. In case it causes
+% issues, one can diable it using with the \texttt{nocleveref} option.
+%
 % \DescribeMacro{biblatex}Nowadays bibliographies cannot only be produced with 
 % \BibTeX{}, but with a much more powerful approach consisting of the package 
 % \pkg{biblatex} and the tool \texttt{biber}.
@@ -574,6 +580,9 @@ This work consists of the file  lni.dtx
 \newif\ifusehyperref
 \usehyperreftrue
 \DeclareOption{nohyperref}{\usehyperreffalse}
+\newif\ifusecleveref
+\useclevereftrue
+\DeclareOption{nocleveref}{\useclevereffalse}
 \newif\ifusebiblatex
 \usebiblatexfalse
 \DeclareOption{biblatex}{\usebiblatextrue}
@@ -977,6 +986,20 @@ This work consists of the file  lni.dtx
       %%%pdfpagelayout=TwoPageRight,%
       pdfstartview=Fit%
    }%
+\fi%
+%    \end{macrocode}
+%    \begin{macrocode}
+\ifusecleveref%
+   \iflnienglish
+     \usepackage[capitalise,nameinlink]{cleveref}
+     \crefname{section}{Sect.}{Sect.}
+     \Crefname{section}{Sect.}{Sect.}
+   \else
+     \usepackage[ngerman,nameinlink]{cleveref}
+   \fi
+   \crefname{figure}{\figurename}{\figurename}
+   \crefname{listing}{\lstlistingname}{\lstlistingname}
+   \crefname{table}{\tablename}{\tablename}
 \fi%
 %    \end{macrocode}
 % enables correct jumping to figures when referencing
