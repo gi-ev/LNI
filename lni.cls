@@ -38,6 +38,9 @@
 \newif\ifusehyperref
 \usehyperreftrue
 \DeclareOption{nohyperref}{\usehyperreffalse}
+\newif\ifusecleveref
+\useclevereftrue
+\DeclareOption{nocleveref}{\useclevereffalse}
 \newif\ifusebiblatex
 \usebiblatexfalse
 \DeclareOption{biblatex}{\usebiblatextrue}
@@ -337,6 +340,18 @@
       %%%pdfpagelayout=TwoPageRight,%
       pdfstartview=Fit%
    }%
+\fi%
+\ifusecleveref%
+   \iflnienglish
+     \usepackage[capitalise,nameinlink]{cleveref}
+     \crefname{section}{Sect.}{Sect.}
+     \Crefname{section}{Sect.}{Sect.}
+   \else
+     \usepackage[ngerman,nameinlink]{cleveref}
+   \fi
+   \crefname{figure}{\figurename}{\figurename}
+   \crefname{listing}{\lstlistingname}{\lstlistingname}
+   \crefname{table}{\tablename}{\tablename}
 \fi%
 \RequirePackage[all]{hypcap}
 \def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
