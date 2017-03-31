@@ -89,7 +89,11 @@
   {geometry}
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
-   \RequirePackage{biblatex-lni}%
+  \RequirePackage[
+    backend=biber, % UTF-8 support
+    style=LNI,     % The GI style - see https://www.ctan.org/pkg/biblatex-lni
+    natbib=true    % Required for \Citet
+  ]{biblatex}[2016-09-15] %at least version 3.6 of biblatex is required.
 \fi%
 \RequirePackage{graphicx}
 \RequirePackage{grffile}
