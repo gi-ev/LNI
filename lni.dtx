@@ -595,6 +595,32 @@ This work consists of the file  lni.dtx
 % \end{document}
 % \end{examplecode}
 %
+%
+% \section{Trouble shooting}
+% This section lists the most common issues when using this template. For more
+% help, please head to
+% \href{https://github.com/egeerardyn/awesome-LaTeX/blob/master/README.md}%
+% {the awesome LaTeX list}.
+%
+% If the compiler error is \texttt{! pdfTeX error (font expansion): auto
+% expansion is onlypossible with scalable fonts.}, the you have to install the
+% \pkg{cm-super} package. Afterwards, run \texttt{initexmf --mkmaps} on the
+% command line. A longer discussion is available at
+% \url{http://tex.stackexchange.com/a/324972/9075}.
+%
+% If the compiler error is ``\texttt{! LaTeX Error: Command \textbackslash
+% openbox already defined.}'', insert \cs{let}\cs{openbox}\cs{relax} before
+% \cs{usepackage\{amsthm\}}.
+%
+% If the compiler error is ``\texttt{! Undefined control sequence. l.84
+% \textbackslash ulp@afterend}'', just clean up (remove \texttt{paper.aux})
+% and recompile.
+%
+% If the compiler error is ``\texttt{! Package xkeyval Error: 'family\_i'
+% undefined in families blx@opt@namepart'.}'', it is an indicator that you
+% switched from bibtex to biblatex. Clean up (remove \texttt{paper.bbl})
+% and recompile.
+%
 % \section{Bugs and feature request}
 % If you find a bug or have a feature request, please open an ``issue'' at the
 % \href{https://github.com/sieversMartin/LNI/issues}{GitHub website}.
