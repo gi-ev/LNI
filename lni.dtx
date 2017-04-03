@@ -471,6 +471,8 @@ This work consists of the file  lni.dtx
 %    Author 1\footnote{Affiliations including \email{email@author1}} \and%
 %    Author 2\footnote{Affiliations including \email{email@author1}}}
 % \end{examplecode}
+% In case the authors are too long for the page header, see \cref{sec:pageheader}
+% of how to shorten the authors for the page header.
 %
 % Finally \cs{maketitle} will output the formatted title page.
 %
@@ -484,6 +486,25 @@ This work consists of the file  lni.dtx
 % \begin{keywords}
 % Give some keywords to categorize your article
 % \end{keywords}
+% \end{examplecode}
+%
+% \subsection{Page header}\label{sec:pageheader}
+% The template automatically sets the page headers according to the requirements of
+% LNI. From page 2 onwards, the title and the authors are printed. These information
+% has to stay in one line. In case the title is too long, use the optional argument
+% for \cs{title}:
+% \begin{examplecode}
+% \title[Short title]{Title}
+% \end{examplecode}
+%
+% \DescribeMacro{\authorrunning}%
+% In case there are many authors on a paper, they might not fit into the paper.
+% For that purpose, additionally use \cs{authorrunning}:
+% \begin{examplecode}
+% \authors[Firstname1 Lastname1 \and Firstname2 Lastname2 \and Firstname3 Lastname3]
+%  {Firstname1 Lastname1\footnote{...} \and Firstname2 Lastname2\footnote{...} \and
+%   Firstname3 Lastname3\footnote{...}}
+% \authorrunning{Lastname1 et al.}
 % \end{examplecode}
 %
 % \subsection{Main text}
@@ -757,6 +778,9 @@ This work consists of the file  lni.dtx
 \renewcommand{\author}{\@dblarg\@@author}
 \def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
    \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
+%    \end{macrocode}
+%    \begin{macrocode}
+\newcommand{\authorrunning}[1]{\fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}#1}}
 %    \end{macrocode}
 %    \begin{macrocode}
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
