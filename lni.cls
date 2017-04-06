@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/03/31 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2017/04/06 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%

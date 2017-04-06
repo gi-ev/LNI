@@ -28,7 +28,7 @@ Please note, that this is not yet an official release!
 
 ## Changelog
 
-* v1.0: First upload of the reworked version
+* v1.0: First upload of the revised version
 
   [GI]: https://www.gi.de/
   [Lecture Notes in Informatics]: https://www.gi.de/service/publikationen/lni.html

@@ -33,7 +33,7 @@ Please note, that this is not yet an official release!
 
 ## Changelog
 
-* v1.0: First upload of the reworked version
+* v1.0: First upload of the revised version
 
   [GI]: https://www.gi.de/
   [Lecture Notes in Informatics]: https://www.gi.de/service/publikationen/lni.html
@@ -197,7 +197,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/03/31 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2017/04/06 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
 %</class>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -215,7 +215,6 @@ This work consists of the file  lni.dtx
 \usepackage{textcomp}
 \usepackage{upquote}
 \usepackage[final]{listings}
-%%%\usepackage{xspace}
 \usepackage{csquotes}
 \usepackage[dvipsnames]{xcolor}
 \newcommand*{\MiKTeX}{\textsf{MiK\TeX{}}}
@@ -337,8 +336,8 @@ This work consists of the file  lni.dtx
 % \changes{v1.0}{2017/03/31}{First public release}
 %
 % \begin{abstract}
-% \noindent After several years the \lni{} bundle was updated. The resulting new 
-% version fixes some long-standing problems and bugs and supports modern packages 
+% \noindent After several years the \lni{} bundle has been updated. The resulting new 
+% version fixes some long-standing bugs, solves problems and supports modern packages 
 % like \pkg{biblatex} and \pkg{microtype}. It has been put into one DTX file to make 
 % maintaining and distributing via CTAN a bit easier.
 % \end{abstract}
@@ -473,7 +472,7 @@ This work consists of the file  lni.dtx
 % \begin{examplecode}[label={lst:author}] 
 % \author[Author 1 \and Author 2]{%
 %    Author 1\footnote{Affiliations including \email{email@author1}} \and%
-%    Author 2\footnote{Affiliations including \email{email@author1}}}
+%    Author 2\footnote{Affiliations including \email{email@author2}}}
 % \end{examplecode}
 % In case the authors are too long for the page header, see \cref{sec:pageheader}
 % of how to shorten the authors for the page header.
@@ -565,7 +564,7 @@ This work consists of the file  lni.dtx
 % \end{table}
 % \end{examplecode}
 %
-% \subsubsection{Listings/Source code}
+% \subsubsection{Listings\,/\,Source code}
 % The \lni{} bundle loads the \pkg{verbatim} and \pkg{listings} package. While the 
 % former is there for compatability, the later is the standard way of integrating 
 % source code listings into a \LaTeX{} document.
@@ -619,31 +618,36 @@ This work consists of the file  lni.dtx
 % \end{document}
 % \end{examplecode}
 %
-%
+% \newpage
 % \section{Trouble shooting}
 % This section lists the most common issues when using this template. For more
 % help, please head to
 % \href{https://github.com/egeerardyn/awesome-LaTeX/blob/master/README.md}%
-% {the awesome LaTeX list}.
+% {the awesome \LaTeX{} list}.
 %
-% If the compiler error is \texttt{! pdfTeX error (font expansion): auto
-% expansion is onlypossible with scalable fonts.}, the you have to install the
+% \begin{itemize}
+% \item If the compiler error is\\
+% \texttt{! pdfTeX error (font expansion): auto
+% expansion is only possible with scalable fonts.},\\then you have to install the
 % \pkg{cm-super} package. Afterwards, run \texttt{initexmf --mkmaps} on the
 % command line. A longer discussion is available at
 % \url{http://tex.stackexchange.com/a/324972/9075}.
-%
-% If the compiler error is ``\texttt{! LaTeX Error: Command \textbackslash
-% openbox already defined.}'', insert \cs{let}\cs{openbox}\cs{relax} before
-% \cs{usepackage\{amsthm\}}.
-%
-% If the compiler error is ``\texttt{! Undefined control sequence. l.84
-% \textbackslash ulp@afterend}'', just clean up (remove \texttt{paper.aux})
-% and recompile.
-%
-% If the compiler error is ``\texttt{! Package xkeyval Error: 'family\_i'
-% undefined in families blx@opt@namepart'.}'', it is an indicator that you
+% \item If the compiler error is\\
+% \texttt{! LaTeX Error: Command \textbackslash
+% openbox already defined.},\\
+% insert\\
+% \cs{let}\cs{openbox}\cs{relax} before \cs{usepackage\{amsthm\}}.
+% \item If the compiler error is\\
+% \texttt{! Undefined control sequence. l.84
+% \textbackslash ulp@afterend},\\
+% just clean up (remove \texttt{paper.aux}) and recompile.
+% \item If the compiler error is\\
+% \texttt{! Package xkeyval Error: 'family\_i'
+% undefined in families blx@opt@namepart'.},\\
+% it is an indicator that you
 % switched from bibtex to biblatex. Clean up (remove \texttt{paper.bbl})
 % and recompile.
+% \end{itemize}
 %
 % \section{Bugs and feature request}
 % If you find a bug or have a feature request, please open an ``issue'' at the
@@ -2251,7 +2255,7 @@ FUNCTION {format.lab.names}
         { nameptr numnames =
             { s nameptr "{ff }{vv }{ll}{ jj}" format.name$ 
             "others" =
-                { s #1 "{ll}" format.name$ #2 text.prefix$ %% second sign of first author if there are others
+                { pop$ s #1 "{ll}" format.name$ #2 text.prefix$ %% second sign of first author if there are others
                 }
                 { s nameptr "{v{}}{l{}}" format.name$ * } %%formats last author
               if$
@@ -2263,13 +2267,12 @@ FUNCTION {format.lab.names}
         }
       while$
       numnames #3 > 
-        { s #1 "{ll}" format.name$ #2 text.prefix$ } % if more than 3 authors take second letter of first name
+        { pop$ s #1 "{ll}" format.name$ #2 text.prefix$ } % if more than 3 authors take second letter of first name
         'skip$
       if$
     }
     { s #1 "{v{}}{l{}}" format.name$
       duplicate$ text.length$ #2 <
-% Das dritte Zeichen?      
         { pop$ s #1 "{ll}" format.name$ #2 text.prefix$} %get rid of the rest of the name (only first two letters are needed for one author)
         'skip$
       if$
@@ -2405,7 +2408,7 @@ FUNCTION {author.sort}
 
 FUNCTION {author.editor.sort}
 { author empty$
-    { editor empty$
+   { editor empty$
 	{ key empty$
 	    { "to sort, need author, editor, or key in " cite$ * warning$
 	      ""
@@ -2415,8 +2418,8 @@ FUNCTION {author.editor.sort}
 	}
 	{ editor sort.format.names }
       if$
-    }
-    { author sort.format.names }
+   }
+   { author sort.format.names }
   if$
 }
 
