@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/04/06 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2017/04/07 v1.0 Official class for submissions to the ``Lecture Notes in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -399,7 +399,7 @@
 \widowpenalty=10000   % Vermeidet "widows & orphans"
 \clubpenalty=10000
 %% 
-%% Copyright (C) 2016-2017 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+%% Copyright (C) 2016-2017 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either

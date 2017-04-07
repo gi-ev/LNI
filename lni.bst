@@ -968,7 +968,7 @@ FUNCTION {format.lab.names}
         { nameptr numnames =
             { s nameptr "{ff }{vv }{ll}{ jj}" format.name$
             "others" =
-                { s #1 "{ll}" format.name$ #2 text.prefix$ %% second sign of first author if there are others
+                { pop$ s #1 "{ll}" format.name$ #2 text.prefix$ %% second sign of first author if there are others
                 }
                 { s nameptr "{v{}}{l{}}" format.name$ * } %%formats last author
               if$
@@ -980,7 +980,7 @@ FUNCTION {format.lab.names}
         }
       while$
       numnames #3 >
-        { s #1 "{ll}" format.name$ #2 text.prefix$ } % if more than 3 authors take second letter of first name
+        { pop$ s #1 "{ll}" format.name$ #2 text.prefix$ } % if more than 3 authors take second letter of first name
         'skip$
       if$
     }
@@ -1121,7 +1121,7 @@ FUNCTION {author.sort}
 
 FUNCTION {author.editor.sort}
 { author empty$
-    { editor empty$
+   { editor empty$
 { key empty$
     { "to sort, need author, editor, or key in " cite$ * warning$
       ""
@@ -1131,8 +1131,8 @@ FUNCTION {author.editor.sort}
 }
 { editor sort.format.names }
       if$
-    }
-    { author sort.format.names }
+   }
+   { author sort.format.names }
   if$
 }
 
@@ -1277,7 +1277,7 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 %% 
-%% Copyright (C) 2016-2017 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+%% Copyright (C) 2016-2017 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
