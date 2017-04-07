@@ -6,6 +6,7 @@
 %%
 %% lni.dtx  (with options: `bibtex,eng')
 %% 
+%%% and changes, which I tried to incoporate without changing the existing
 ENTRY
   { address
     author

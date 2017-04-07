@@ -14,7 +14,9 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/04/07 v1.0 Official class for submissions to the ``Lecture Notes in Informatics'']
+    [2017/04/07 v1.1BETA Official class for submissions to the ``Lecture Notes
+    in Informatics'']
+%%% and changes, which I tried to incoporate without changing the existing
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -205,8 +207,10 @@
     \noindent\ignorespaces{\bfseries \abstractname:\ }%
 }{\endquotation}
 \newif\ifkeywords
-\newenvironment{keywords}{\global\keywordstrue\fontsize{9}{10}\selectfont
-    \noindent\ignorespaces{\bfseries Keywords:\ }}{\global\keywordsfalse}
+\newenvironment{keywords}{%
+   \global\keywordstrue\fontsize{9}{10}\selectfont%
+   \def\and{\unskip;\space}%
+   \noindent\ignorespaces{\bfseries Keywords:\ }}{\global\keywordsfalse}
 \let\@RIGsection\section
 \pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}{Please change \string\keywords to an environment}\keywordsfalse\fi}{}{}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%

@@ -132,7 +132,7 @@ This work consists of the file  lni.dtx
   \usepreamble\bibtexengpre
   \file{\jobname.bst}{\from{\jobname.dtx}{bibtex,eng}}
   \usepreamble\bibtexgerpre
-  \file{\jobname g.bst}{\from{\jobname.dtx}{bibtex,ger}}
+  \file{\jobname{}g.bst}{\from{\jobname.dtx}{bibtex,ger}}
 }
 %</install>
 %<install>\endbatchfile
@@ -163,7 +163,8 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/04/07 v1.0 Official class for submissions to the ``Lecture Notes in Informatics'']
+    [2017/04/07 v1.1BETA Official class for submissions to the ``Lecture Notes 
+    in Informatics'']
 %</class>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -305,16 +306,17 @@ This work consists of the file  lni.dtx
 % \end{abstract}
 %
 % \section{Introduction}
-% \LaTeX{} templates are often long-lasting. Even if they use meanwhile deprecated 
-% packages they are often passed from one generation of authors to the next.
+% \LaTeX{} templates are often long-lasting. Even if they use meanwhile 
+% deprecated packages they are often passed from one generation of authors to 
+% the next.
 %
 % The \LNI{} thankfully realized, that their bundle should be technologically 
 % modernized while the general layout remains the same.
 %
 % Based on the existing class and bib files I set-up a DTX file and started 
-% reworking the source code. Editors and authors suggested different additions and 
-% changes, which I tried to incoporate without changing the existing mechanisms too 
-% much.
+% reworking the source code. Editors and authors suggested different additions 
+%%% and changes, which I tried to incoporate without changing the existing 
+% mechanisms too much.
 %
 % This is the first public release. I would to thank especially
 % \href{https://github.com/koppor/}{Oliver Kopp} and
@@ -449,15 +451,16 @@ This work consists of the file  lni.dtx
 % Tell the reader what your article is about
 % \end{abstract}   
 % \begin{keywords}
-% Give some keywords to categorize your article
+% Give some keywords to categorize your article. You can use \and between two
+% keywords to get the correct delimiter (semicolon plus space) automatically.
 % \end{keywords}
 % \end{examplecode}
 %
 % \subsection{Page header}\label{sec:pageheader}
-% The template automatically sets the page headers according to the requirements of
-% LNI. From page 2 onwards, the title and the authors are printed. These information
-% has to stay in one line. In case the title is too long, use the optional argument
-% for \cs{title}:
+% The template automatically sets the page headers according to the
+% requirements of \LNI. From page~2 onwards, the title and the authors are 
+% printed. These information has to stay in one line. In case the title is too 
+% long, use the optional argument for \cs{title}:
 % \begin{examplecode}
 % \title[Short title]{Title}
 % \end{examplecode}
@@ -474,7 +477,8 @@ This work consists of the file  lni.dtx
 %
 % \subsection{Main text}
 % \subsubsection{Headings}
-% \DescribeMacro{\section}\DescribeMacro{\subsection}\DescribeMacro{\subsubsection}
+% \DescribeMacro{\section}\DescribeMacro{\subsection}%
+% \DescribeMacro{\subsubsection}
 % You can use the standard macros \cs{section}, \cs{subsection}, \dots{} for 
 % sectioning your text.
 % 
@@ -858,8 +862,10 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 % Keywords
 \newif\ifkeywords
-\newenvironment{keywords}{\global\keywordstrue\fontsize{9}{10}\selectfont
-    \noindent\ignorespaces{\bfseries Keywords:\ }}{\global\keywordsfalse}
+\newenvironment{keywords}{%
+   \global\keywordstrue\fontsize{9}{10}\selectfont%
+   \def\and{\unskip;\space}%
+   \noindent\ignorespaces{\bfseries Keywords:\ }}{\global\keywordsfalse}
 \let\@RIGsection\section
 \pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}{Please change \string\keywords to an environment}\keywordsfalse\fi}{}{}   
 %    \end{macrocode}
@@ -2548,32 +2554,32 @@ EXECUTE {end.bib}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
 %%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
-\author[Vorname1 Name1\and Vorname2 Name2]
-{Vorname1 Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author1}}\and
- Vorname2 Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author2}}
- und weitere Autorinnen und Autoren in der gleichen Notation}
-%
-\title[Kurztitel (falls nötig)]{Titel}
-%
-\startpage{11}% Beginn der Seitenzählung für diesen Beitrag
-\editor{Herausgeber et al.}
-\booktitle{Name-der-Konferenz}
+\title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen 
+Worten und noch mehr Buchstaben}
+%% \subtitle{Test} % not implemented yet
+\author[Vorname1 Nachname1 \and Firstname2 Lastname2]
+{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort, 
+Land \email{emailaddress@author1}} \and
+Firstname2 Lastname2\footnote{University, Department, Address, Country 
+\email{emailaddress@author2}}}
+\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page 
+%numbering at this number
+\editor{Herausgeber et al.} % Names of Editors
+\booktitle{Name-der-Konferenz} % Name of book title
 \year{2017}
 \maketitle
 
 \begin{abstract}
-Hier kommt die Zusammenfassung hin
-Add your abstract here
+Zusammenfassung / Some abstract
 \end{abstract}
 \begin{keywords}
-Hier kommen die Keywords hin
-Add your keywords here
+Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \end{keywords}
 %%% Beginn des Artikeltexts
-\section{Überschrift}
+\section{Überschrift/Heading}
 
-%%% Angabe der .bib-Datei (ohne Endung)
-\bibliography{mybibfile}
+%%% Angabe der .bib-Datei (ohne Endung) / State .bib file (for BibTeX usage)
+\bibliography{mybibfile} %\printbibliography if you use biblatex/Biber
 \end{document}
 %</template>
 %    \end{macrocode}

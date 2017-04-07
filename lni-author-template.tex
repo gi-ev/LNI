@@ -1,3 +1,4 @@
+%%% and changes, which I tried to incoporate without changing the existing
 %% !TeX encoding = UTF-8
 %% !TeX program = pdflatex
 %% !BIB program = bibtex
@@ -13,28 +14,29 @@
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
 %%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
-\author[Vorname1 Name1\and Vorname2 Name2]
-{Vorname1 Nachname1\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author1}}\and
- Vorname2 Nachname2\footnote{Einrichtung/Universität, Abteilung, Anschrift, Postleitzahl Ort, \email{emailadresse@author2}}
- und weitere Autorinnen und Autoren in der gleichen Notation}
-\title[Kurztitel (falls nötig)]{Titel}
-\startpage{11}% Beginn der Seitenzählung für diesen Beitrag
-\editor{Herausgeber et al.}
-\booktitle{Name-der-Konferenz}
+\title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
+Worten und noch mehr Buchstaben}
+%% \subtitle{Test} % not implemented yet
+\author[Vorname1 Nachname1 \and Firstname2 Lastname2]
+{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort,
+Land \email{emailaddress@author1}} \and
+Firstname2 Lastname2\footnote{University, Department, Address, Country
+\email{emailaddress@author2}}}
+\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page
+\editor{Herausgeber et al.} % Names of Editors
+\booktitle{Name-der-Konferenz} % Name of book title
 \year{2017}
 \maketitle
 
 \begin{abstract}
-Hier kommt die Zusammenfassung hin
-Add your abstract here
+Zusammenfassung / Some abstract
 \end{abstract}
 \begin{keywords}
-Hier kommen die Keywords hin
-Add your keywords here
+Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \end{keywords}
 %%% Beginn des Artikeltexts
-\section{Überschrift}
+\section{Überschrift/Heading}
 
-%%% Angabe der .bib-Datei (ohne Endung)
-\bibliography{mybibfile}
+%%% Angabe der .bib-Datei (ohne Endung) / State .bib file (for BibTeX usage)
+\bibliography{mybibfile} %\printbibliography if you use biblatex/Biber
 \end{document}
