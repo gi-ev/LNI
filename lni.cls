@@ -16,7 +16,6 @@
 \ProvidesClass{lni}
     [2017/04/07 v1.1BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
-%%% and changes, which I tried to incoporate without changing the existing
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -141,10 +140,13 @@
   \fi}
 \renewcommand{\title}{\@dblarg\@@title}
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
+\newcommand{\@subtitle}{}
+\newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
 \renewcommand{\author}{\@dblarg\@@author}
 \def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
    \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
-\newcommand{\authorrunning}[1]{\fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}#1}}
+\newcommand{\authorrunning}[1]{%
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}#1}}
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 \renewcommand\maketitle{\par%
 \begingroup
@@ -192,6 +194,11 @@
   \raggedright % Linksbündig
   \let\footnote\thanks
     {\fontsize{14}{17}\fontseries{b}\selectfont \@title \par}%
+    \ifx\@subtitle\empty\else
+    \vskip.5\baselineskip
+    {\fontsize{10}{12}\selectfont\itshape
+    \@subtitle}
+    \fi%
     \vskip 19pt% Abstand nach dem Titel
     {\fontsize{10}{12}\selectfont
       \lineskip .5em%
