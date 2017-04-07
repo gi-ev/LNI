@@ -2,42 +2,6 @@
 %<*internal>
 \iffalse
 %</internal>
-%<*readme>
-# lni
-
-```
-----------------------------------------------------------------------------
-lni      -- A class for submissions to the ``Lecture Notes in Informatics''
-(c) 2016 
-Version:    1.0
-Maintainer: Martin Sievers
-Email:      martin.sievers@schoenerpublizieren.de
-License:    Released under the LaTeX Project Public License v1.3c or later
-See:        http://www.latex-project.org/lppl.txt
-----------------------------------------------------------------------------
-```
-
-This is the current version of the class “lni” for submissions to the 
-“[Lecture Notes in Informatics]” published by the “Gesellschaft für Informatik”
-([GI]).
-
-It is based on previous templates created on behalf of the GI.
-
-Stable versions are always uploaded to CTAN. In addition you'll find the most 
-recent developer version on GitHub at <https://github.com/sieversMartin/lni>.
-The most recent documentation is available at
-<https://github.com/sieversMartin/LNI/blob/master/lni.pdf>. It includes a short
-description how to use the template and also provides trouble shooting hints.
-
-Please note, that this is not yet an official release!
-
-## Changelog
-
-* v1.0: First upload of the revised version
-
-  [GI]: https://www.gi.de/
-  [Lecture Notes in Informatics]: https://www.gi.de/service/publikationen/lni.html
-%</readme>
 %<*internal>
 \fi
 \def\nameofplainTeX{plain}
@@ -53,7 +17,7 @@ Please note, that this is not yet an official release!
 %% 
 %% lnig.bst
 %% Lecture Notes in Informatics Style File (english)
-%% Version 1.0 (2014/12/17)
+%% Version 1.0 (2017/04/07)
 %%
 %%
 %% The Style File is based on alpha.bst
@@ -65,7 +29,10 @@ Please note, that this is not yet an official release!
 %%***************************************************      
 % Changelog:
 %
-%  1.0       (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
+%  1.0       (07.04.17), Martin Sievers
+%  - Revised version
+%
+%            (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
 % Changes:  
 %  - Last Name before the prename
 %  - ; between Autors
@@ -88,7 +55,7 @@ Please note, that this is not yet an official release!
 %% 
 %% lnig.bst
 %% Lecture Notes in Informatics Style File (german)
-%% Version 2.0 (2014/12/17)
+%% Version 1.0 (2017/04/07)
 %%
 %% The Style File is based on alpha.bst
 %%
@@ -99,11 +66,10 @@ Please note, that this is not yet an official release!
 %%***************************************************      
 % Changelog:
 %
-%  1.0      (21.09.90),  Robert Tolksdorf, K\"ortestr. 30, D-1000,  Berlin 61, West Germany
-% Adapted bibliography style `geralpha' that changes several english-language
-% ``constants'' in the style.
+%  1.0       (07.04.17), Martin Sievers
+%  - Revised version
 %
-%  2.0       (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
+%            (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
 % Changes:  
 %  - Last Name before the prename
 %  - ; between Autors
@@ -133,7 +99,7 @@ License:| Released under the LaTeX Project Public License v1.3c or later
 \endpreamble
 \postamble
 
-Copyright (C) 2016-2017 by Martin Sievers <martin.sievers@schoenerpublizieren.de>
+Copyright (C) 2016-2017 by Gesellschaft für Informatik e.V. (GI)
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License (LPPL), either
@@ -179,7 +145,7 @@ This work consists of the file  lni.dtx
 \nopreamble\nopostamble
 \usedir{doc/latex/lni}
 \generate{
-  \file{README.md}{\from{\jobname.dtx}{readme}}
+  %%%\file{README.md}{\from{\jobname.dtx}{readme}}
   \file{lni-author-template.tex}{\from{\jobname.dtx}{template}}
 }
 \ifx\fmtname\nameofplainTeX
@@ -197,7 +163,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/04/06 v1.0 A class for submissions to the ``Lecture Notes in Informatics'']
+    [2017/04/07 v1.0 Official class for submissions to the ``Lecture Notes in Informatics'']
 %</class>
 %<*driver>
 \documentclass[a4paper]{ltxdoc}
@@ -219,7 +185,7 @@ This work consists of the file  lni.dtx
 \usepackage[dvipsnames]{xcolor}
 \newcommand*{\MiKTeX}{\textsf{MiK\TeX{}}}
 \usepackage[%
-	pdftitle={lni: A LaTeX class for submissions to the ``Lecture Notes in 
+	pdftitle={lni: Official LaTeX class for submissions to the ``Lecture Notes in 
    	Informatics'', published by the GI},
    pdfauthor={Martin Sievers},
    urlcolor=blue,%
@@ -318,22 +284,18 @@ This work consists of the file  lni.dtx
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
 %
-% \changes{v1.0}{2016/07/04}{Transfered old files into one dtx file}
-% \changes{v1.0}{2016/07/04}{Added \pkg{mmap}, changed options for \pkg{microtype} 
-%  and added macro \cs{powerset}}
+% \changes{v1.0}{2017/04/07}{Official release of revised version}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
 %
-% \title{\textsf{lni} -- A class for submissions to the\\``Lecture Notes in
+% \title{\textsf{lni} -- Official class for submissions to the\\``Lecture Notes in
 % Informatics''\thanks{This file describes version \fileversion, last revised 
 % \filedate.}}
 % \author{Martin Sievers\thanks{Email: martin.sievers@schoenerpublizieren.de}}
 % \date{Released \filedate}
 %
 % \maketitle
-%
-% \changes{v1.0}{2017/03/31}{First public release}
 %
 % \begin{abstract}
 % \noindent After several years the \lni{} bundle has been updated. The resulting new 
@@ -361,9 +323,9 @@ This work consists of the file  lni.dtx
 % 
 % \section{Installation}
 % The \lni{} bundle is currently distributed via 
-% \href{https://github.com/sieversMartin/LNI}{GitHub}, the
+% \href{https://github.com/gi-ev/LNI}{GitHub}, the
 % \href{https://www.gi.de/service/publikationen/lni/autorenrichtlinien.html}
-% {GI website} and \href{https://www.ctan.org}{CTAN}.
+% {GI website} and (preferably) \href{https://www.ctan.org}{CTAN}.
 % The later is the basis for all updates of the two main \TeX{} distributions
 % \MiKTeX{} and \TeX{}~Live. Thus the easiest way to get all files needed to typeset
 % an article for the \LNI{} is to use the package manager of your distribution.
@@ -645,8 +607,11 @@ This work consists of the file  lni.dtx
 % \texttt{! Package xkeyval Error: 'family\_i'
 % undefined in families blx@opt@namepart'.},\\
 % it is an indicator that you
-% switched from bibtex to biblatex. Clean up (remove \texttt{paper.bbl})
+% switched from \BibTeX{} to \pkg{biblatex}. Clean up (remove \texttt{paper.bbl})
 % and recompile.
+% \item Errors with \BibTeX: The bst files may still report errors, although the 
+% output is okay. This will be solved as soon as possible. However, you might 
+% consider switching to \pkg{biblatex} (cf.~\cref{sec:bibliography}).
 % \end{itemize}
 %
 % \section{Bugs and feature request}
