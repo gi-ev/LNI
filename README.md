@@ -18,11 +18,10 @@ This is the official version of the class “lni” for submissions to the
 
 It is based on previous templates created on behalf of the GI.
 
-Stable versions are always uploaded to CTAN. In addition you'll find the most
-recent developer version on GitHub at <https://github.com/gi-ev/lni>.
-The most recent documentation is available at
-<https://github.com/gi-ev/LNI/blob/master/lni.pdf>. It includes a short
-description how to use the template and also provides trouble shooting hints.
+Stable versions are always uploaded to CTAN (<https://www.ctan.org/pkg/lni>).
+In addition you'll find the most recent developer version on GitHub at <https://github.com/gi-ev/lni>.
+The most recent documentation is available at <https://github.com/gi-ev/LNI/blob/master/lni.pdf>.
+It includes a short description how to use the template and also provides trouble shooting hints.
 
 ## Changelog
 
