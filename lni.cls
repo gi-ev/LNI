@@ -373,8 +373,11 @@
      \usepackage[ngerman,nameinlink]{cleveref}
    \fi%
    \crefname{figure}{\figurename}{\figurename}
+   \Crefname{figure}{\figurename}{\figurename}
    \crefname{listing}{\lstlistingname}{\lstlistingname}
+   \Crefname{listing}{\lstlistingname}{\lstlistingname}
    \crefname{table}{\tablename}{\tablename}
+   \Crefname{table}{\tablename}{\tablename}
 \fi%
 \RequirePackage[all]{hypcap}
 \def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
