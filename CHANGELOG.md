@@ -6,8 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- New macro \subtitle (#44)
-- New Keyword delimiter \and (#43)
+- New macro `\subtitle` ([#44](https://github.com/gi-ev/LNI/issues/44))
+- New Keyword delimiter `\and` ([#43](https://github.com/gi-ev/LNI/issues/43))
 - New files CHANGELOG.md and CONTRIBUTING.md
 
 ### Changed
@@ -15,7 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Documentation
 
 ### Fixed
-- Definition of \crefname to always get "Abb." instead of "ABB." etc. (#45)
+- Definition of `\Crefname` to always get "Abb." instead of "ABB." etc. ([#45](https://github.com/gi-ev/LNI/pull/45))
 
-## [1.0.0] - 2017-04-07
+## 1.0.0 - 2017-04-07
 First release of the revised files
+
+[unreleased]: https://github.com/gi-ev/LNI/compare/v1.0...HEAD
