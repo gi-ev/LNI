@@ -23,9 +23,7 @@ In addition you'll find the most recent developer version on GitHub at <https://
 The most recent documentation is available at <https://github.com/gi-ev/LNI/blob/master/lni.pdf>.
 It includes a short description how to use the template and also provides trouble shooting hints.
 
-## Changelog
-
-* v1.0: First upload of the revised version
+Please see CHANGELOG.md for a version history
 
   [GI]: https://www.gi.de/
   [Lecture Notes in Informatics]: https://www.gi.de/service/publikationen/lni.html
