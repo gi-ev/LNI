@@ -132,7 +132,7 @@ This work consists of the file  lni.dtx
   \usepreamble\bibtexengpre
   \file{\jobname.bst}{\from{\jobname.dtx}{bibtex,eng}}
   \usepreamble\bibtexgerpre
-  \file{\jobname{}g.bst}{\from{\jobname.dtx}{bibtex,ger}}
+  \file{lnig.bst}{\from{\jobname.dtx}{bibtex,ger}}
 }
 %</install>
 %<install>\endbatchfile
@@ -287,23 +287,28 @@ This work consists of the file  lni.dtx
 %   Right brace   \}     Tilde         \~}
 %
 % \changes{v1.0}{2017/04/07}{Official release of revised version}
+% \changes{v1.1}{2017/04/08}{Added macros \cs{subtitle} and keyword delimiter 
+% \cs{add}}
+% \changes{v1.1}{2017/04/08}{Fixed bug with \cs{Crefname}}
+% \changes{v1.1}{2017/04/08}{Updated documentation and bundle structure}  
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
 %
-% \title{\textsf{lni} -- Official class for submissions to the\\``Lecture Notes in
-% Informatics''\thanks{This file describes version \fileversion, last revised 
-% \filedate.}}
+% \title{\textsf{lni} -- Official class for submissions to the\\%
+% ``Lecture Notes in Informatics''\thanks{This file describes version
+% \fileversion, last revised \filedate.}}
 % \author{Martin Sievers\thanks{Email: martin.sievers@schoenerpublizieren.de}}
 % \date{Released \filedate}
 %
 % \maketitle
 %
 % \begin{abstract}
-% \noindent After several years the \lni{} bundle has been updated. The resulting new 
-% version fixes some long-standing bugs, solves problems and supports modern packages 
-% like \pkg{biblatex} and \pkg{microtype}. It has been put into one DTX file to make 
-% maintaining and distributing via CTAN a bit easier.
+% \noindent After several years the \lni{} bundle has been updated. The 
+% resulting new version fixes some long-standing bugs, solves problems and
+% supports modern packages like \pkg{biblatex} and \pkg{microtype}. It has been 
+% put into one DTX file to make maintaining and distributing via CTAN a bit 
+% easier.
 % \end{abstract}
 %
 % \section{Introduction}
@@ -311,7 +316,8 @@ This work consists of the file  lni.dtx
 % deprecated packages they are often passed from one generation of authors to 
 % the next.
 %
-% The \LNI{} thankfully realized, that their bundle should be technologically 
+% The Gesellschaft für Informatik~e.\,V. (GI) thankfully realized, that their 
+% bundle should be technologically 
 % modernized while the general layout remains the same.
 %
 % Based on the existing class and bib files I set-up a DTX file and started 
@@ -340,14 +346,14 @@ This work consists of the file  lni.dtx
 % Don't forget to update your file name database.
 % \newpage
 % \section{Usage}
-% To use the predefined layout for a (German) submission to the \LNI{} just load the 
-% class file as usual with \cs{documentclass\{lni\}}.
+% To use the predefined layout for a (German) submission to the \LNI{} just 
+% load the class file as usual with \cs{documentclass\{lni\}}.
 %
 % The class file loads a bunch of packages which are all part of modern \TeX{} 
 % distributions. Therefore, if you are confronted 
 % with a missing package, please try to download and install it using your 
-% distribution's package manager. Alternatively got to \href{www.ctan.org}{CTAN} 
-% to download missing packages.
+% distribution's package manager. Alternatively got to 
+% \href{www.ctan.org}{CTAN} to download missing packages.
 %
 % \subsection{Options}\label{sec:options}
 % Although the class file includes all layout information for a submission to 
@@ -363,31 +369,31 @@ This work consists of the file  lni.dtx
 %
 % \DescribeMacro{utf8}\DescribeMacro{latin1}\DescribeMacro{applemac}Although 
 % nowadays all major plattforms support and widely use UTF-8 encoding for 
-% text files, there might be some need to change the input  encoding the \LaTeX{} 
-% document uses.
+% text files, there might be some need to change the input  encoding the
+% \LaTeX{} document uses.
 %
 % This can be achieved by giving one of the options \opt{utf8} (which is the 
-% default), \opt{latin1} or \opt{applemac} to the document class. Using UTF-8 is 
-% strongly recommended. Please note, that currently the bib file is supposed to use 
-% the same encoding.
+% default), \opt{latin1} or \opt{applemac} to the document class. Using UTF-8
+% is strongly recommended. Please note, that currently the bib file is supposed
+% to use the same encoding.
 %
 % \DescribeMacro{biblatex}Nowadays bibliographies cannot only be produced with 
 % \BibTeX{}, but with a much more powerful approach consisting of the package 
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
-% There is even a specialized package \pkg{biblatex-lni} which is automatically used 
-% when setting the class option \opt{biblatex}. Please see as well 
+% There is even a specialized package \pkg{biblatex-lni} which is automatically 
+% used when setting the class option \opt{biblatex}. Please see as well 
 % \cref{sec:bibliography}.
 %
 % \DescribeMacro{nocleveref}When referencing figures, one has to type
 % \texttt{Figure\textasciitilde}\cs{ref\marg{label}}. The package \pkg{cleveref}
-% reduces the effort by offering the command \cs{cref\marg{label}}. This can be used
-% with all floating objects. The package is loaded as default. In case it causes
-% issues, one can disable it using with the \opt{nocleveref} option.
+% reduces the effort by offering the command \cs{cref\marg{label}}. This can be
+% used with all floating objects. The package is loaded as default. In case it 
+% causes issues, one can disable it using with the \opt{nocleveref} option.
 %
-% \DescribeMacro{nohyperref}\pkg{hyperref} is used for colored hyperlink within the 
-% articles. If you consider problems or just do not want that feature, you can 
-% disable it by using the option \opt{nohyperref}.
+% \DescribeMacro{nohyperref}\pkg{hyperref} is used for colored hyperlink within 
+% the articles. If you consider problems or just do not want that feature, you 
+% can disable it by using the option \opt{nohyperref}.
 % 
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 
@@ -395,11 +401,11 @@ This work consists of the file  lni.dtx
 % ways to build an article.
 %
 % \subsection{Special meta data}\label{sec:metadata}
-% There is not just one \enquote{\TeX} and one \enquote{bibliography tool}, but many 
-% different ways to transform a .tex file into a PDF.
+% There is not just one \enquote{\TeX} and one \enquote{bibliography tool}, but 
+% many different ways to transform a .tex file into a PDF.
 % Some \TeX{} editors like \texttt{TeXstudio}, \texttt{TeXmaker} and 
-% \texttt{TeXshop} support a special set of meta data to tell the editor, how to 
-% deal with a concrete document.
+% \texttt{TeXshop} support a special set of meta data to tell the editor, how 
+% to deal with a concrete document.
 % 
 % A typical example looks like:
 % \begin{examplecode}
@@ -416,8 +422,8 @@ This work consists of the file  lni.dtx
 % \cref{sec:titlepage} for authors, there are special editor macros to
 % influence the layout of the article:
 % \begin{itemize}
-%   \item\cs{startpage} determines the starting page of the article. This should 
-% always be an odd (right) page.
+%   \item\cs{startpage} determines the starting page of the article. This 
+% should always be an odd (right) page.
 %   \item\cs{editor} states the name of the editor(s)
 %   \item\cs{booktitle} holds the name of a conference
 %   \item\cs{year} can be used to set the year
@@ -543,9 +549,9 @@ This work consists of the file  lni.dtx
 % \end{examplecode}
 %
 % \subsubsection{Listings\,/\,Source code}
-% The \lni{} bundle loads the \pkg{verbatim} and \pkg{listings} package. While the 
-% former is there for compatability, the later is the standard way of integrating 
-% source code listings into a \LaTeX{} document.
+% The \lni{} bundle loads the \pkg{verbatim} and \pkg{listings} package. While 
+% the former is there for compatability, the later is the standard way of 
+% integrating source code listings into a \LaTeX{} document.
 %
 % However, there are currently no config files shipped with the \lni{} bundle. 
 % Please consult the documentation for help on setting up \pkg{listings} for a 
@@ -553,28 +559,27 @@ This work consists of the file  lni.dtx
 %
 % \subsubsection{Math}
 % If you need mathematics, you can load \pkg{amsmath} and \pkg{mathtools} for 
-% additional features. The \lni{} class offers by default the command \cs{powerset} 
-% to render
-% the powerset symbol correctly as $\powerset$ and not as Weierstrass p ($\wp$).
+% additional features. The \lni{} class offers by default the command 
+% \cs{powerset} to render the powerset symbol correctly as $\powerset$ and not 
+% as Weierstrass p ($\wp$).
 %
 % \subsection{Bibliography}\label{sec:bibliography}
-% The old \lni{} class file only supports \BibTeX{} with bst files for German and 
-% English submissions resp. If you want 
-% to use this approach for your article you have to add \cs{bibliography\marg{Bib 
-% file}} at an appropriate position within your text. The correct bst file is loaded 
-% automatically.
+% The old \lni{} class file only supports \BibTeX{} with bst files for German 
+% and English submissions resp. If you want to use this approach for your
+% article you have to add \cs{bibliography\marg{Bib file}} at an appropriate
+% position within your text. The correct bst file is loaded automatically.
 % 
 % With option 
 % \opt{biblatex} (cf.~\cref{sec:options}) you can easily switch to the modern
-% \pkg{biblatex} package. However, you have to add information on the bib file(s) in 
-% your preamble using \cs{addbibresource\marg{Bib file(s)}} and call 
-% \cs{printbibliography} where 
-% you want the bibliography to appear.
+% \pkg{biblatex} package. However, you have to add information on the bib 
+% file(s) in your preamble using \cs{addbibresource\marg{Bib file(s)}} and call 
+% \cs{printbibliography} where you want the bibliography to appear.
 %
 % Please note, that the \lni{} class sets 
-% \texttt{biber} as the default bibliography tool. \texttt{biber} is part of both 
-% major \TeX{} distributions and can easily be used within most \TeX{} editors, 
-% e.\,g. by using special meta data as described in \cref{sec:metadata}.
+% \texttt{biber} as the default bibliography tool. \texttt{biber} is part of 
+% both major \TeX{} distributions and can easily be used within most \TeX{} 
+% editors, e.\,g. by using special meta data as described in
+% \cref{sec:metadata}.
 %
 % If you want to pass settings to \pkg{biblatex} you can use a config 
 % file \texttt{biblatex.cfg}, for additional options please use the macro 
@@ -587,7 +592,7 @@ This work consists of the file  lni.dtx
 % \documentclass[biblatex]{lni}
 % ...
 % \ExecuteBibliographyOptions{...}
-% \addbibresource{$FILENAME.bib}   
+% \addbibresource{FILENAME.bib}   
 % ...
 % \begin{document}
 % ...
@@ -606,7 +611,8 @@ This work consists of the file  lni.dtx
 % \begin{itemize}
 % \item If the compiler error is\\
 % \texttt{! pdfTeX error (font expansion): auto
-% expansion is only possible with scalable fonts.},\\then you have to install the
+% expansion is only possible with scalable fonts.},\\%
+% then you have to install the
 % \pkg{cm-super} package. Afterwards, run \texttt{initexmf --mkmaps} on the
 % command line. A longer discussion is available at
 % \url{http://tex.stackexchange.com/a/324972/9075}.
@@ -623,11 +629,11 @@ This work consists of the file  lni.dtx
 % \texttt{! Package xkeyval Error: 'family\_i'
 % undefined in families blx@opt@namepart'.},\\
 % it is an indicator that you
-% switched from \BibTeX{} to \pkg{biblatex}. Clean up (remove \texttt{paper.bbl})
-% and recompile.
-% \item Errors with \BibTeX: The bst files may still report errors, although the 
-% output is okay. This will be solved as soon as possible. However, you might 
-% consider switching to \pkg{biblatex} (cf.~\cref{sec:bibliography}).
+% switched from \BibTeX{} to \pkg{biblatex}. Clean up (remove 
+% \texttt{paper.bbl}) and recompile.
+% \item Errors with \BibTeX: The bst files may still report errors, although 
+% the output is okay. This will be solved as soon as possible. However, you 
+% might consider switching to \pkg{biblatex} (cf.~\cref{sec:bibliography}).
 % \end{itemize}
 %
 % \section{Bugs and feature request}
@@ -689,7 +695,7 @@ This work consists of the file  lni.dtx
 \else
    \RequirePackage[english,ngerman]{babel}
 \fi
-%Hint by http://tex.stackexchange.com/a/321067/9075 -> enable "= as dashes
+% Hint by http://tex.stackexchange.com/a/321067/9075 -> enable "= as dashes
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
 %    \end{macrocode}
@@ -734,7 +740,7 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
-  \RequirePackage[
+  \RequirePackage[%
     backend=biber, % UTF-8 support
     style=LNI,     % The GI style - see https://www.ctan.org/pkg/biblatex-lni
     natbib=true    % Required for \Citet

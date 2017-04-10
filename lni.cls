@@ -93,7 +93,7 @@
   {geometry}
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
-  \RequirePackage[
+  \RequirePackage[%
     backend=biber, % UTF-8 support
     style=LNI,     % The GI style - see https://www.ctan.org/pkg/biblatex-lni
     natbib=true    % Required for \Citet
