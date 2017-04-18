@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - New macro `\subtitle` ([#44](https://github.com/gi-ev/LNI/issues/44))
 - New Keyword delimiter `\and` ([#43](https://github.com/gi-ev/LNI/issues/43))
 - New files CHANGELOG.md and CONTRIBUTING.md
+- New option `crop` (still experimental)
+- Check for latest German hyphenation pattern
 
 ### Changed
 - CTAN script to include new files
