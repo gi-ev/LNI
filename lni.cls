@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/04/07 v1.1BETA Official class for submissions to the ``Lecture Notes
+    [2017/04/18 v1.1BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -45,16 +45,24 @@
 \newif\ifusebiblatex
 \usebiblatexfalse
 \DeclareOption{biblatex}{\usebiblatextrue}
+\newif\ifcrop
+\cropfalse
+\DeclareOption{crop}{\croptrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
 
-\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+\RequirePackage{hyphsubst}
+\HyphSubstIfExists{ngerman-x-latest}%
+   {\HyphSubstLet{ngerman}{ngerman-x-latest}%
+    \ClassInfo{lni}{Using latest German hyphenation patterns}}%
+   {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
+      \MessageBreak If you write a German article you should check your%
+      installation}}%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \RequirePackage{cmap}
 \RequirePackage{inputenc}
 \RequirePackage[T1]{fontenc}
-
 \iflnienglish
    \RequirePackage[ngerman,english]{babel}
 \else
@@ -83,21 +91,33 @@
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
-\RequirePackage[
-  a4paper,
-  total={12.6cm,19.2cm},
-  includehead,
-  headheight=20.39pt,
-  headsep=.31cm,
-  centering]
-  {geometry}
+\ifcrop
+   \RequirePackage[
+     paperheight=23.5cm,paperwidth=15.5cm,
+     total={12.6cm,19.2cm},
+     includehead,
+     headheight=20.39pt,
+     headsep=.31cm,
+     centering]
+     {geometry}
+   \RequirePackage[a4,center]{crop}
+   %%%\crop{axis,cam,info}
+\else
+   \RequirePackage[
+     total={12.6cm,19.2cm},
+     includehead,
+     headheight=20.39pt,
+     headsep=.31cm,
+     centering]
+     {geometry}
+\fi%
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
   \RequirePackage[%
-    backend=biber, % UTF-8 support
-    style=LNI,     % The GI style - see https://www.ctan.org/pkg/biblatex-lni
-    natbib=true    % Required for \Citet
-  ]{biblatex}[2016-09-15] %at least version 3.6 of biblatex is required.
+    backend=biber,% UTF-8 support
+    style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
+    natbib=true   % Required for \Citet
+  ]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
   % Enable hyperlinked authors when using \citeauthor
   % Source: http://tex.stackexchange.com/a/75916/9075
   \DeclareCiteCommand{\citeauthor}%
@@ -193,11 +213,10 @@
   \vskip -24pt% Abstand vor dem Titel
   \raggedright % Linksbündig
   \let\footnote\thanks
-    {\fontsize{14}{17}\fontseries{b}\selectfont \@title \par}%
+    {\fontsize{14}{17}\fontseries{b}\selectfont\@title\par}%
     \ifx\@subtitle\empty\else
-    \vskip.5\baselineskip
-    {\fontsize{10}{12}\selectfont\itshape
-    \@subtitle}
+      \vskip 16pt
+      {\fontsize{10}{12}\fontseries{b}\selectfont\@subtitle}
     \fi%
     \vskip 19pt% Abstand nach dem Titel
     {\fontsize{10}{12}\selectfont
@@ -211,7 +230,7 @@
 \renewenvironment*{abstract}{%
  \renewcommand{\abstractname}{Abstract}
  \fontsize{9}{10}\selectfont
-    \noindent\ignorespaces{\bfseries \abstractname:\ }%
+    \noindent\ignorespaces{\bfseries\abstractname:\ }%
 }{\endquotation}
 \newif\ifkeywords
 \newenvironment{keywords}{%
