@@ -145,7 +145,6 @@ This work consists of the file  lni.dtx
 \nopreamble\nopostamble
 \usedir{doc/latex/lni}
 \generate{
-  %%%\file{README.md}{\from{\jobname.dtx}{readme}}
   \file{lni-author-template.tex}{\from{\jobname.dtx}{template}}
 }
 \ifx\fmtname\nameofplainTeX
@@ -163,7 +162,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/04/18 v1.1BETA Official class for submissions to the ``Lecture Notes 
+    [2017/04/19 v1.1 Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -187,7 +186,7 @@ This work consists of the file  lni.dtx
 \newcommand*{\MiKTeX}{\textsf{MiK\TeX{}}}
 \usepackage[%
 	pdftitle={lni: Official LaTeX class for submissions to the ``Lecture Notes in 
-   	Informatics'', published by the GI},
+   	Informatics'', published by the ``Gesellschaft für Informatik e.\,V.'' (GI)},
    pdfauthor={Martin Sievers},
    urlcolor=blue,%
 	linktocpage,%
@@ -293,7 +292,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.1}{2017/04/08}{Updated documentation and bundle structure}  
 % \changes{v1.1}{2017/04/12}{Changed spacing for \cs{subtitle}}  
 % \changes{v1.1}{2017/04/18}{Added check for ngerman-x-latest patterns}
-% \changes{v1.1}{2017/04/18}{Added option \texttt{crop} (still experimental)}
+% \changes{v1.1}{2017/04/19}{Added option \opt{crop}}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -301,7 +300,7 @@ This work consists of the file  lni.dtx
 % \title{\textsf{lni} -- Official class for submissions to the\\%
 % ``Lecture Notes in Informatics''\thanks{This file describes version
 % \fileversion, last revised \filedate.}}
-% \author{Martin Sievers\thanks{Email: martin.sievers@schoenerpublizieren.de}}
+% \author{Martin Sievers\setcounter{footnote}{6}\thanks{Email: martin.sievers@schoenerpublizieren.de}}
 % \date{Released \filedate}
 %
 % \maketitle
@@ -355,14 +354,14 @@ This work consists of the file  lni.dtx
 % The class file loads a bunch of packages which are all part of modern \TeX{} 
 % distributions. Therefore, if you are confronted 
 % with a missing package, please try to download and install it using your 
-% distribution's package manager. Alternatively got to 
+% distribution's package manager. Alternatively go to 
 % \href{www.ctan.org}{CTAN} to download missing packages.
 %
 % \subsection{Options}\label{sec:options}
 % Although the class file includes all layout information for a submission to 
 % the \LNI{}, there are options to adapt the output one way or another.
 %
-% \DescribeMacro{english}A document loading the \lni{} class file uses German 
+% \DescribeOption{english}A document loading the \lni{} class file uses German 
 % language adoptions by default. To switch to English, just load the class with 
 % option \opt{english}.
 %
@@ -370,7 +369,7 @@ This work consists of the file  lni.dtx
 % the text, but also the choice of a corresponding \BibTeX{} file 
 % (cf.~\cref{sec:bibliography}).
 %
-% \DescribeMacro{utf8}\DescribeMacro{latin1}\DescribeMacro{applemac}Although 
+% \DescribeOption{utf8}\DescribeOption{latin1}\DescribeOption{applemac}Although 
 % nowadays all major plattforms support and widely use UTF-8 encoding for 
 % text files, there might be some need to change the input  encoding the
 % \LaTeX{} document uses.
@@ -380,7 +379,7 @@ This work consists of the file  lni.dtx
 % is strongly recommended. Please note, that currently the bib file is supposed
 % to use the same encoding.
 %
-% \DescribeMacro{biblatex}Nowadays bibliographies cannot only be produced with 
+% \DescribeOption{biblatex}Nowadays bibliographies cannot only be produced with 
 % \BibTeX{}, but with a much more powerful approach consisting of the package 
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
@@ -388,15 +387,19 @@ This work consists of the file  lni.dtx
 % used when setting the class option \opt{biblatex}. Please see as well 
 % \cref{sec:bibliography}.
 %
-% \DescribeMacro{nocleveref}When referencing figures, one has to type
+% \DescribeOption{nocleveref}When referencing figures, one has to type
 % \texttt{Figure\textasciitilde}\cs{ref\marg{label}}. The package \pkg{cleveref}
 % reduces the effort by offering the command \cs{cref\marg{label}}. This can be
 % used with all floating objects. The package is loaded as default. In case it 
 % causes issues, one can disable it using with the \opt{nocleveref} option.
 %
-% \DescribeMacro{nohyperref}\pkg{hyperref} is used for colored hyperlink within 
+% \DescribeOption{nohyperref}\pkg{hyperref} is used for colored hyperlink within 
 % the articles. If you consider problems or just do not want that feature, you 
 % can disable it by using the option \opt{nohyperref}.
+%
+% \DescribeOption{crop\space(new in v1.1)}%
+% Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to better illustrate the final 
+% result of your article.
 % 
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 
@@ -409,7 +412,7 @@ This work consists of the file  lni.dtx
 % Some \TeX{} editors like \texttt{TeXstudio}, \texttt{TeXmaker} and 
 % \texttt{TeXshop} support a special set of meta data to tell the editor, how 
 % to deal with a concrete document.
-% 
+% \newpage
 % A typical example looks like:
 % \begin{examplecode}
 % % !TeX program = pdflatex
@@ -489,10 +492,10 @@ This work consists of the file  lni.dtx
 % In case there are many authors on a paper, they might not fit into the paper.
 % For that purpose, additionally use \cs{authorrunning}:
 % \begin{examplecode}
-% \author[Firstname1 Lastname1 \and Firstname2 Lastname2 \and Firstname3 
-% Lastname3]
-%  {Firstname1 Lastname1\footnote{...} \and Firstname2 Lastname2\footnote{...} 
-% \and Firstname3 Lastname3\footnote{...}}
+% \author[Firstname1 Lastname1 \and Firstname2 Lastname2% 
+%    \and Firstname3 Lastname3]{Firstname1 Lastname1\footnote{...}%
+%    \and Firstname2 Lastname2\footnote{...}%
+%    \and Firstname3 Lastname3\footnote{...}}%
 % \authorrunning{Lastname1 et al.}
 % \end{examplecode}
 %
@@ -567,7 +570,7 @@ This work consists of the file  lni.dtx
 % as Weierstrass p ($\wp$).
 %
 % \subsection{Bibliography}\label{sec:bibliography}
-% The old \lni{} class file only supports \BibTeX{} with bst files for German 
+% \enlargethispage{\baselineskip}The old \lni{} class file only supports \BibTeX{} with bst files for German 
 % and English submissions resp. If you want to use this approach for your
 % article you have to add \cs{bibliography\marg{Bib file}} at an appropriate
 % position within your text. The correct bst file is loaded automatically.
@@ -613,23 +616,23 @@ This work consists of the file  lni.dtx
 %
 % \begin{itemize}
 % \item If the compiler error is\\
-% \texttt{! pdfTeX error (font expansion): auto
+% \texttt{!pdfTeX error (font expansion): auto
 % expansion is only possible with scalable fonts.},\\%
 % then you have to install the
 % \pkg{cm-super} package. Afterwards, run \texttt{initexmf --mkmaps} on the
 % command line. A longer discussion is available at
 % \url{http://tex.stackexchange.com/a/324972/9075}.
 % \item If the compiler error is\\
-% \texttt{! LaTeX Error: Command \textbackslash
+% \texttt{!LaTeX Error: Command \textbackslash
 % openbox already defined.},\\
 % insert\\
 % \cs{let}\cs{openbox}\cs{relax} before \cs{usepackage\{amsthm\}}.
 % \item If the compiler error is\\
-% \texttt{! Undefined control sequence. l.84
+% \texttt{!Undefined control sequence. l.84
 % \textbackslash ulp@afterend},\\
 % just clean up (remove \texttt{paper.aux}) and recompile.
 % \item If the compiler error is\\
-% \texttt{! Package xkeyval Error: 'family\_i'
+% \texttt{!Package xkeyval Error: 'family\_i'
 % undefined in families blx@opt@namepart'.},\\
 % it is an indicator that you
 % switched from \BibTeX{} to \pkg{biblatex}. Clean up (remove 
@@ -749,8 +752,37 @@ This work consists of the file  lni.dtx
      headsep=.31cm,
      centering]
      {geometry}
-   \RequirePackage[a4,center]{crop}
-   %%%\crop{axis,cam,info}
+   \RequirePackage[a4,center,cam,info]{crop}
+   \renewcommand*\CROP@@info{{%
+      \global\advance\CROP@index\@ne
+      \def\x{\discretionary{}{}{\hbox{\kern.5em---\kern.5em}}}%
+      \advance\paperwidth-20\p@
+      \dimen@4pt
+      \ifx\CROP@pagecolor\@empty
+      \else
+      \advance\dimen@\CROP@overlap
+      \fi
+      \hb@xt@\z@{%
+         \hss
+         \vbox to\z@{%
+            \centering
+            \hsize\paperwidth
+            \vss
+            \normalfont
+            \normalsize
+            \expandafter\csname\CROP@font\endcsname{%
+               ``\jobname''\x
+               \the\@rigyear/\the\month/\the\day\x
+               \CROP@time\x
+               page\kern.5em\thepage\x
+               \#\the\CROP@index
+               \strut
+            }%
+            \vskip\dimen@
+         }%
+         \hss
+      }%
+   }}%
 \else
    \RequirePackage[
      total={12.6cm,19.2cm},
@@ -769,6 +801,9 @@ This work consists of the file  lni.dtx
     style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
     natbib=true   % Required for \Citet
   ]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
+%    \end{macrocode}
+% \begin{macro}{\citeauthor}
+%    \begin{macrocode}
   % Enable hyperlinked authors when using \citeauthor
   % Source: http://tex.stackexchange.com/a/75916/9075
   \DeclareCiteCommand{\citeauthor}%
@@ -781,6 +816,8 @@ This work consists of the file  lni.dtx
      \printtext[bibhyperref]{\printnames{labelname}}}%
     {\multicitedelim}%
     {\usebibmacro{postnote}}%
+% \end{macro}
+%    \begin{macrocode}
 \fi%
 %    \end{macrocode}
 %    \begin{macrocode}
@@ -794,8 +831,9 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
-
+%    \end{macrocode}
 % Seitenzahlen -- Größe der Box
+%    \begin{macrocode}
 \renewcommand\@pnumwidth{3em}
 \renewcommand\@tocrmarg{3.5em}
 \def\@dottedtocline#1#2#3#4#5{%
@@ -817,31 +855,39 @@ This work consists of the file  lni.dtx
      \par}%
   \fi}
 %    \end{macrocode}
+% \begin{macro}{\title}
 %    \begin{macrocode}  
 \renewcommand{\title}{\@dblarg\@@title}
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\subtitle}
 %    \begin{macrocode}
 \newcommand{\@subtitle}{}
 \newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\author}
 %    \begin{macrocode}
 \renewcommand{\author}{\@dblarg\@@author}
 \def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
    \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\authorrunning}
 %    \begin{macrocode}
 \newcommand{\authorrunning}[1]{%
    \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}#1}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\email}
 %    \begin{macrocode}
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 %    \end{macrocode}
-%    \begin{macrocode}
+% \end{macro}
 % Title: Kopie aus article.cls mit anderem \thispagestyle
+%    \begin{macrocode}
 \renewcommand\maketitle{\par%
-% Keine Vertikale Einrückung über dem Titel auf der Titelseite
-%\changepage{0mm}{0mm}{0mm}{0mm}{0mm}{0.56cm}{0mm}{0mm}{0mm}  
 \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
     \def\@makefnmark% keine Einrückung der Fußnoten eingestellt
@@ -901,26 +947,30 @@ This work consists of the file  lni.dtx
     \vskip 28pt% Abstand vor dem Abstract
   \end{center}%
   \par
-}
+}%
 %    \end{macrocode}
+% \begin{environment}{abstract}
 %    \begin{macrocode}
-% Abstract
 \renewenvironment*{abstract}{%
  \renewcommand{\abstractname}{Abstract}
  \fontsize{9}{10}\selectfont
     \noindent\ignorespaces{\bfseries\abstractname:\ }%
 }{\endquotation}  
 %    \end{macrocode}
+% \end{environment}
+% \begin{environment}{keywords}
 %    \begin{macrocode}
-% Keywords
 \newif\ifkeywords
-\newenvironment{keywords}{%
-   \global\keywordstrue\fontsize{9}{10}\selectfont%
-   \def\and{\unskip;\space}%
-   \noindent\ignorespaces{\bfseries Keywords:\ }}{\global\keywordsfalse}
+\newenvironment{keywords}%
+   {\global\keywordstrue\fontsize{9}{10}\selectfont%
+    \def\and{\unskip;\space}%
+    \noindent\ignorespaces{\bfseries Keywords:\ }}%
+   {\global\keywordsfalse}
 \let\@RIGsection\section
-\pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}{Please change \string\keywords to an environment}\keywordsfalse\fi}{}{}   
+\pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}%
+   {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}   
 %    \end{macrocode}
+% \end{environment}
 % Section headings
 %    \begin{macrocode}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
@@ -945,7 +995,7 @@ This work consists of the file  lni.dtx
   \fi}
   \vskip\belowcaptionskip}
 %    \end{macrocode}
-% Abbildungen
+% Take care of floats
 %    \begin{macrocode}
 \def\fps@figure{htbp}
 \def\fnum@figure{\figurename~\thefigure}
@@ -954,46 +1004,45 @@ This work consists of the file  lni.dtx
         \small
         \@setnobreak
         \@setminipage
-}
+}%
 \setcounter{topnumber}{10}% maximale Anzahl gleitender Objekte am Seitenanfang
 \setcounter{bottomnumber}{10}% maximale Anzahl gleitender Objekte am Seitenende
 \renewcommand{\topfraction}{1.0}% Anteil den gleitende Objekte am Seitenanfang einnehmen dürfen
 \renewcommand{\bottomfraction}{1.0}% Anteil den gleitende Objekte am Seitenende einnehmen dürfen
 %    \end{macrocode}
-% Tabellen
+% Tables
 %    \begin{macrocode}
 \def\fps@table{htbp}
 \def\fnum@table{\tablename~\thetable}
 \renewcommand{\arraystretch}{1.1}%Abstand zu Linien in Tabelle
 \renewenvironment{table}
-               {\setlength\abovecaptionskip{6\p@}%
-                \setlength\belowcaptionskip{0\p@}%
-                \@float{table}}
-               {\end@float}
+   {\setlength\abovecaptionskip{6\p@}%
+    \setlength\belowcaptionskip{0\p@}%
+    \@float{table}}%
+   {\end@float}%
 \renewenvironment{table*}
-               {\setlength\abovecaptionskip{6\p@}%
-                \setlength\belowcaptionskip{0\p@}%
-                \@dblfloat{table}}
-               {\end@dblfloat}
+   {\setlength\abovecaptionskip{6\p@}%
+    \setlength\belowcaptionskip{0\p@}%
+    \@dblfloat{table}}%
+   {\end@dblfloat}%
 %    \end{macrocode}
-% Gleichungen mit richtiger Einrückung, 0.5cm
-% fleqn-Option oben
+% Indention for equations with fleqn option
 %    \begin{macrocode}
 \setlength{\mathindent}{0.5cm}
 %    \end{macrocode}
-% listings mit richtiger einrückung, 0.5 cm
+% Indention for verbatim listings
 %    \begin{macrocode}
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
 %    \end{macrocode}
+% Set rule width und correct size
 %    \begin{macrocode}
-% Fussnoten mit 5cm Linie und richtiger Größe
 \renewcommand\footnoterule{%
   \kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
-  \newdimen\fnindent
-  \fnindent0.18cm
+\newdimen\fnindent
+\fnindent0.18cm
 \long\def\@makefntext#1{%
     \parindent \fnindent%
     \leftskip \fnindent% Einrückung vor der footnotemark
@@ -1001,11 +1050,10 @@ This work consists of the file  lni.dtx
     \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 %    \end{macrocode}
 %    \begin{macrocode}
-% Absatzeinzüge und Abstände
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
 %    \end{macrocode}
-% Aufzählungen mit Punkt
+% Set symbols for itemize
 %    \begin{macrocode}
 \renewcommand{\labelitemi}{$\bullet$}
 \renewcommand*\itemize{%
@@ -1021,7 +1069,7 @@ This work consists of the file  lni.dtx
        \setlength{\parsep}{-2pt}}%
   \fi}
 %    \end{macrocode}
-% Nummierierte Aufzählung
+% and numbered lists
 %    \begin{macrocode}  
   \renewcommand{\labelenumii}{\alph{enumii})}
   \renewcommand*\enumerate{%    
@@ -1040,17 +1088,21 @@ This work consists of the file  lni.dtx
 		\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens     
       \setlength{\itemsep}{8pt}%
       \setlength{\parsep}{-2pt}}
-  }
+  }%
 %    \end{macrocode}
+% \begin{macro}{\andname}
 %    \begin{macrocode}
 \newcommand{\andname}{}
+%    \end{macrocode}
+% \end{macro}
+%    \begin{macrocode}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%
   \renewcommand{\figurename}{Abb.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
   \renewcommand{\refname}{Literaturverzeichnis}
-}
+}%
 %    \end{macrocode}
 %    \begin{macrocode}
 \addto\captionsenglish{%
@@ -1058,19 +1110,25 @@ This work consists of the file  lni.dtx
   \renewcommand{\figurename}{Fig.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
-}
+}%
 %    \end{macrocode}
+% \begin{macro}{\startpage}
 %    \begin{macrocode}
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\booktitle}
 %    \begin{macrocode}
 \newcommand*{\@booktitle}{}
 \newcommand*{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\editor}
 %    \begin{macrocode}
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
 %    \end{macrocode}
+% \end{macro}
 %    \begin{macrocode}
 \AtBeginDocument{%
    \let\@rigyear\year
@@ -1080,7 +1138,7 @@ This work consists of the file  lni.dtx
    }%
 }%
 %    \end{macrocode}
-% Kopfzeileneinstellungen
+% set-up for header and footer
 %    \begin{macrocode}
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
@@ -1090,9 +1148,7 @@ This work consists of the file  lni.dtx
    \fancyhead[LE]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
-}
-%    \end{macrocode}
-%    \begin{macrocode}
+}%
 \pagestyle{fancy}
 \fancyhead{} % Löscht alle Kopfzeileneinstellungen
 \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
@@ -1178,9 +1234,18 @@ This work consists of the file  lni.dtx
    \endlist\egroup}
 %    \end{macrocode}
 %    \begin{macrocode}
-\frenchspacing    % Abstand nach Satzende
-\widowpenalty=10000   % Vermeidet "widows & orphans"
-\clubpenalty=10000
+\frenchspacing    
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em
+\hfuzz 0.3pt
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\clubpenalty=9999
+\interfootnotelinepenalty=9999
+\brokenpenalty=2000
+\vfuzz \hfuzz
+\raggedbottom
 %    \end{macrocode}
 %    \begin{macrocode}
 %</class>

@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/04/18 v1.1BETA Official class for submissions to the ``Lecture Notes
+    [2017/04/19 v1.1 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -100,8 +100,37 @@
      headsep=.31cm,
      centering]
      {geometry}
-   \RequirePackage[a4,center]{crop}
-   %%%\crop{axis,cam,info}
+   \RequirePackage[a4,center,cam,info]{crop}
+   \renewcommand*\CROP@@info{{%
+      \global\advance\CROP@index\@ne
+      \def\x{\discretionary{}{}{\hbox{\kern.5em---\kern.5em}}}%
+      \advance\paperwidth-20\p@
+      \dimen@4pt
+      \ifx\CROP@pagecolor\@empty
+      \else
+      \advance\dimen@\CROP@overlap
+      \fi
+      \hb@xt@\z@{%
+         \hss
+         \vbox to\z@{%
+            \centering
+            \hsize\paperwidth
+            \vss
+            \normalfont
+            \normalsize
+            \expandafter\csname\CROP@font\endcsname{%
+               ``\jobname''\x
+               \the\@rigyear/\the\month/\the\day\x
+               \CROP@time\x
+               page\kern.5em\thepage\x
+               \#\the\CROP@index
+               \strut
+            }%
+            \vskip\dimen@
+         }%
+         \hss
+      }%
+   }}%
 \else
    \RequirePackage[
      total={12.6cm,19.2cm},
@@ -137,7 +166,6 @@
 \RequirePackage{listings}
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
-
 \renewcommand\@pnumwidth{3em}
 \renewcommand\@tocrmarg{3.5em}
 \def\@dottedtocline#1#2#3#4#5{%
@@ -226,19 +254,21 @@
     \vskip 28pt% Abstand vor dem Abstract
   \end{center}%
   \par
-}
+}%
 \renewenvironment*{abstract}{%
  \renewcommand{\abstractname}{Abstract}
  \fontsize{9}{10}\selectfont
     \noindent\ignorespaces{\bfseries\abstractname:\ }%
 }{\endquotation}
 \newif\ifkeywords
-\newenvironment{keywords}{%
-   \global\keywordstrue\fontsize{9}{10}\selectfont%
-   \def\and{\unskip;\space}%
-   \noindent\ignorespaces{\bfseries Keywords:\ }}{\global\keywordsfalse}
+\newenvironment{keywords}%
+   {\global\keywordstrue\fontsize{9}{10}\selectfont%
+    \def\and{\unskip;\space}%
+    \noindent\ignorespaces{\bfseries Keywords:\ }}%
+   {\global\keywordsfalse}
 \let\@RIGsection\section
-\pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}{Please change \string\keywords to an environment}\keywordsfalse\fi}{}{}
+\pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}%
+   {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\fontseries{b}\selectfont}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
@@ -264,7 +294,7 @@
         \small
         \@setnobreak
         \@setminipage
-}
+}%
 \setcounter{topnumber}{10}% maximale Anzahl gleitender Objekte am Seitenanfang
 \setcounter{bottomnumber}{10}% maximale Anzahl gleitender Objekte am Seitenende
 \renewcommand{\topfraction}{1.0}% Anteil den gleitende Objekte am Seitenanfang einnehmen dürfen
@@ -273,15 +303,15 @@
 \def\fnum@table{\tablename~\thetable}
 \renewcommand{\arraystretch}{1.1}%Abstand zu Linien in Tabelle
 \renewenvironment{table}
-               {\setlength\abovecaptionskip{6\p@}%
-                \setlength\belowcaptionskip{0\p@}%
-                \@float{table}}
-               {\end@float}
+   {\setlength\abovecaptionskip{6\p@}%
+    \setlength\belowcaptionskip{0\p@}%
+    \@float{table}}%
+   {\end@float}%
 \renewenvironment{table*}
-               {\setlength\abovecaptionskip{6\p@}%
-                \setlength\belowcaptionskip{0\p@}%
-                \@dblfloat{table}}
-               {\end@dblfloat}
+   {\setlength\abovecaptionskip{6\p@}%
+    \setlength\belowcaptionskip{0\p@}%
+    \@dblfloat{table}}%
+   {\end@dblfloat}%
 \setlength{\mathindent}{0.5cm}
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
@@ -289,8 +319,8 @@
   \kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
-  \newdimen\fnindent
-  \fnindent0.18cm
+\newdimen\fnindent
+\fnindent0.18cm
 \long\def\@makefntext#1{%
     \parindent \fnindent%
     \leftskip \fnindent% Einrückung vor der footnotemark
@@ -328,7 +358,7 @@
 \setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens
       \setlength{\itemsep}{8pt}%
       \setlength{\parsep}{-2pt}}
-  }
+  }%
 \newcommand{\andname}{}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%
@@ -336,13 +366,13 @@
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
   \renewcommand{\refname}{Literaturverzeichnis}
-}
+}%
 \addto\captionsenglish{%
   \renewcommand{\andname}{and}%
   \renewcommand{\figurename}{Fig.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
-}
+}%
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
 \newcommand*{\@booktitle}{}
 \newcommand*{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
@@ -363,7 +393,7 @@
    \fancyhead[LE]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
-}
+}%
 \pagestyle{fancy}
 \fancyhead{} % Löscht alle Kopfzeileneinstellungen
 \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
@@ -428,9 +458,18 @@
 {\def\@noitemerr
    {\@latex@warning{Empty `thebibliography' environment}}%
    \endlist\egroup}
-\frenchspacing    % Abstand nach Satzende
-\widowpenalty=10000   % Vermeidet "widows & orphans"
-\clubpenalty=10000
+\frenchspacing
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em
+\hfuzz 0.3pt
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\clubpenalty=9999
+\interfootnotelinepenalty=9999
+\brokenpenalty=2000
+\vfuzz \hfuzz
+\raggedbottom
 %% 
 %% Copyright (C) 2016-2017 by Gesellschaft für Informatik e.V. (GI)
 %% 
