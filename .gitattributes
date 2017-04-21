@@ -1,0 +1,10 @@
+.git* text eol=lf
+*.bib text eol=lf
+*.bst text eol=lf
+*.cls text eol=lf
+*.dtx text eol=lf
+*.ins text eol=lf
+*.md text eol=lf
+prepare_for_CTAN text eol=lf
+
+*.pdf binary
