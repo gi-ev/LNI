@@ -5,6 +5,7 @@
 *.dtx text eol=lf
 *.ins text eol=lf
 *.md text eol=lf
+*.tex text eolf=lf diff=tex
 prepare_for_CTAN text eol=lf
 
 *.pdf binary
