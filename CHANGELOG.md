@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Added
+- Quick start section for README.md ([#48]((https://github.com/gi-ev/LNI/issues/48))
+
 ## [1.1.0] - 2017-04-19
 ### Added
 - New macro `\subtitle` ([#44](https://github.com/gi-ev/LNI/issues/44))
@@ -22,5 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2017-04-07
 First release of the revised files
 
-[1.0.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.1...HEAD
 [1.1.0]: https://github.com/gi-ev/LNI/releases/tag/v1.1
+[1.0.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0
+
