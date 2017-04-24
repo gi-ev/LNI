@@ -23,9 +23,9 @@ Download [lni-author-template.tex](lni-author-template.tex) and edit it in your 
 You will have to use [bibtex](https://www.ctan.org/pkg/bibtex) as bibliography tool.
 In case you want to use [biblatex](https://www.ctan.org/pkg/biblatex), read on in the documentation of this class.
 
-Stable versions are always uploaded to CTAN (<https://www.ctan.org/pkg/lni>).
-In addition you will find the most recent developer version on GitHub at <https://github.com/gi-ev/lni>.
-The most recent documentation is available at <https://github.com/gi-ev/LNI/blob/master/lni.pdf>.
+Stable versions are always uploaded to CTAN (https://www.ctan.org/pkg/lni).
+In addition you will find the most recent developer version on GitHub at https://github.com/gi-ev/lni.
+The most recent documentation is available at https://github.com/gi-ev/LNI/blob/master/lni.pdf.
 It includes a short description how to use the template and also provides trouble shooting hints.
 
 Please see [CHANGELOG.md](CHANGELOG.md) for a version history
