@@ -162,7 +162,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/04/19 v1.1 Official class for submissions to the ``Lecture Notes 
+    [2017/04/26 v1.2BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -293,6 +293,8 @@ This work consists of the file  lni.dtx
 % \changes{v1.1}{2017/04/12}{Changed spacing for \cs{subtitle}}  
 % \changes{v1.1}{2017/04/18}{Added check for ngerman-x-latest patterns}
 % \changes{v1.1}{2017/04/19}{Added option \opt{crop}}
+% \changes{v1.2}{2017/04/26}{Set option \opt{straighquotes} for \pkg{newtxtt} 
+% manually to gain compatibility with version prior to v1.05}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -718,7 +720,17 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,straightquotes,scaled=.9]{newtxtt}
+\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+%    \end{macrocode}
+% For compatibility with version of \pkg{newtxtt} prior to v1.05 we set the 
+% option \opt{straightquotes} manually for recent versions
+%    \begin{macrocode}
+\@ifpackagelater{newtxtt}{2014/11/18}%
+   {\txtt@upqtrue}%
+   {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak 
+    Option `straightquotes' will not be used!}}%
+%    \end{macrocode}
+%    \begin{macrocode}
 \RequirePackage[%
    final,%
    tracking=smallcaps,%

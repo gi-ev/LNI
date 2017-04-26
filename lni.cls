@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/04/19 v1.1 Official class for submissions to the ``Lecture Notes
+    [2017/04/26 v1.2BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -72,7 +72,11 @@
 \addto\extrasenglish{\languageshorthands{ngerman}}
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,straightquotes,scaled=.9]{newtxtt}
+\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+\@ifpackagelater{newtxtt}{2014/11/18}%
+   {\txtt@upqtrue}%
+   {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak
+    Option `straightquotes' will not be used!}}%
 \RequirePackage[%
    final,%
    tracking=smallcaps,%
