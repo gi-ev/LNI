@@ -6,10 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Quick start section for README.md ([#48]((https://github.com/gi-ev/LNI/issues/48))
+- Quick start section for README.md ([#48](https://github.com/gi-ev/LNI/issues/48))
 
 ### Changed
-- Option `straightquotes` is set manually for package `newtxtt` to gain compatibility with versions prior to v1.05 ([#49]((https://github.com/gi-ev/LNI/issues/49))
+- Option `straightquotes` is set manually for package `newtxtt` to gain compatibility with versions prior to v1.05 ([#49](https://github.com/gi-ev/LNI/issues/49))
 
 ## [1.1.0] - 2017-04-19
 ### Added
