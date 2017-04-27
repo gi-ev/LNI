@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/04/26 v1.2BETA Official class for submissions to the ``Lecture Notes
+    [2017/04/27 v1.2BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -52,6 +52,8 @@
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
 
+\RequirePackage{iftex}
+\RequirePDFTeX
 \RequirePackage{hyphsubst}
 \HyphSubstIfExists{ngerman-x-latest}%
    {\HyphSubstLet{ngerman}{ngerman-x-latest}%

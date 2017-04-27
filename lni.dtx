@@ -162,7 +162,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/04/26 v1.2BETA Official class for submissions to the ``Lecture Notes 
+    [2017/04/27 v1.2BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -295,6 +295,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.1}{2017/04/19}{Added option \opt{crop}}
 % \changes{v1.2}{2017/04/26}{Set option \opt{straighquotes} for \pkg{newtxtt} 
 % manually to gain compatibility with version prior to v1.05}
+% \changes{v1.2}{2017/04/27}{Added \pkg{iftex} to check for pdflatex} 
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -695,6 +696,8 @@ This work consists of the file  lni.dtx
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
 
+\RequirePackage{iftex}
+\RequirePDFTeX
 \RequirePackage{hyphsubst}
 \HyphSubstIfExists{ngerman-x-latest}%
    {\HyphSubstLet{ngerman}{ngerman-x-latest}%

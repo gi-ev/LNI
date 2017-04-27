@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Quick start section for README.md ([#48](https://github.com/gi-ev/LNI/issues/48))
+- Check for pdfTeX using package `iftex`
 
 ### Changed
 - Option `straightquotes` is set manually for package `newtxtt` to gain compatibility with versions prior to v1.05 ([#49](https://github.com/gi-ev/LNI/issues/49))
@@ -14,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.1.0] - 2017-04-19
 ### Added
 - New macro `\subtitle` ([#44](https://github.com/gi-ev/LNI/issues/44))
-- New Keyword delimiter `\and` ([#43](https://github.com/gi-ev/LNI/issues/43))
+- New keyword delimiter `\and` ([#43](https://github.com/gi-ev/LNI/issues/43))
 - New files CHANGELOG.md and CONTRIBUTING.md
 - New option `crop` for crop marks
 - Check for latest German hyphenation patterns ([#47](https://github.com/gi-ev/LNI/issues/47))
