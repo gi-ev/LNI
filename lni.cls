@@ -97,6 +97,10 @@
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+\RequirePackage{ccicons}
+\RequirePackage{etoolbox}
+\newlength{\doihoffset}
+\newlength{\doivoffset}
 \ifcrop
    \RequirePackage[
      paperheight=23.5cm,paperwidth=15.5cm,
@@ -137,6 +141,8 @@
          \hss
       }%
    }}%
+   \setlength{\doihoffset}{1.45cm}
+   \setlength{\doivoffset}{1.2cm}
 \else
    \RequirePackage[
      total={12.6cm,19.2cm},
@@ -145,6 +151,8 @@
      headsep=.31cm,
      centering]
      {geometry}
+   \setlength{\doihoffset}{4.2cm}
+   \setlength{\doivoffset}{4.3cm}
 \fi%
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
@@ -167,6 +175,7 @@
     {\usebibmacro{postnote}}%
 \fi%
 \RequirePackage{graphicx}
+\RequirePackage{eso-pic}
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
@@ -202,6 +211,8 @@
 \newcommand{\authorrunning}[1]{%
    \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}#1}}
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
+\newcommand{\@lnidoi}{}
+\newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
 \renewcommand\maketitle{\par%
 \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
@@ -259,6 +270,23 @@
       \par}%
     \vskip 28pt% Abstand vor dem Abstract
   \end{center}%
+  \AddToShipoutPictureBG*{\AtPageLowerLeft{%
+    \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
+      \ifusehyperref
+        \href{https://creativecommons.org/licenses/by-nc/3.0/}{\ccbynceu}
+      \else
+        \ccbynceu
+      \fi
+      \ifdefempty{\@lnidoi}{}{
+        \footnotesize
+        \ifusehyperref
+          \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
+        \else
+          doi:\lnidoi
+        \fi
+      }
+    }
+  }}
   \par
 }%
 \renewenvironment*{abstract}{%

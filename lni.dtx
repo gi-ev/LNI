@@ -245,7 +245,8 @@ This work consists of the file  lni.dtx
  language     = [LaTeX]{TeX},
  moretexcs    = {,
    addbibresource,authorrunning,%
-   email,ExecuteBibliographyOptions,includegraphics,printbibliography,
+   email,lnidoi,
+   ExecuteBibliographyOptions,includegraphics,printbibliography,
  }
  frame        = single,
  backgroundcolor = \color{yellow!60},
@@ -464,6 +465,13 @@ This work consists of the file  lni.dtx
 % \end{examplecode}
 % In case the authors are too long for the page header, see 
 % \cref{sec:pageheader} of how to shorten the authors for the page header.
+%
+% \DescribeMacro{\lnidoi\space(new in v1.2)}%
+% LNI provides a DOI for each paper. In case, the DOI is known, it can be
+% specified using the \cs{lnidoi} macro.
+% \begin{examplecode}[label={lst:lnidoi}]
+% \lnidoi{18.18420/se2016}
+% \end{examplecode}
 %
 % Finally \cs{maketitle} will output the formatted title page.
 %
@@ -756,8 +764,14 @@ This work consists of the file  lni.dtx
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 %    \end{macrocode}
+% Support for CC icons
+\RequirePackage{ccicons}
+% Support for \ifdefempty
+\RequirePackage{etoolbox}
 % Satzspiegel
 %    \begin{macrocode}
+\newlength{\doihoffset}
+\newlength{\doivoffset}
 \ifcrop
    \RequirePackage[
      paperheight=23.5cm,paperwidth=15.5cm,
@@ -798,6 +812,8 @@ This work consists of the file  lni.dtx
          \hss
       }%
    }}%
+   \setlength{\doihoffset}{1.45cm}
+   \setlength{\doivoffset}{1.2cm}
 \else
    \RequirePackage[
      total={12.6cm,19.2cm},
@@ -806,6 +822,8 @@ This work consists of the file  lni.dtx
      headsep=.31cm,
      centering]
      {geometry}
+   \setlength{\doihoffset}{4.2cm}
+   \setlength{\doivoffset}{4.3cm}
 \fi%
 %    \end{macrocode}
 %    \begin{macrocode}
@@ -837,6 +855,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 %    \begin{macrocode}
 \RequirePackage{graphicx}
+\RequirePackage{eso-pic}
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
@@ -900,6 +919,12 @@ This work consists of the file  lni.dtx
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 %    \end{macrocode}
 % \end{macro}
+% \begin{macro}{\lnidoi}
+%    \begin{macrocode}
+\newcommand{\@lnidoi}{}
+\newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
+%    \end{macrocode}
+% \end{macro}
 % Title: Kopie aus article.cls mit anderem \thispagestyle
 %    \begin{macrocode}
 \renewcommand\maketitle{\par%
@@ -961,6 +986,24 @@ This work consists of the file  lni.dtx
       \par}%
     \vskip 28pt% Abstand vor dem Abstract
   \end{center}%
+% output CC license and DOI (if it exists)
+  \AddToShipoutPictureBG*{\AtPageLowerLeft{%
+    \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
+      \ifusehyperref
+        \href{https://creativecommons.org/licenses/by-nc/3.0/}{\ccbynceu}
+      \else
+        \ccbynceu
+      \fi
+      \ifdefempty{\@lnidoi}{}{
+        \footnotesize
+        \ifusehyperref
+          \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
+        \else
+          doi:\lnidoi
+        \fi
+      }
+    }
+  }}
   \par
 }%
 %    \end{macrocode}
@@ -2702,6 +2745,7 @@ Firstname2 Lastname2\footnote{University, Department, Address, Country
 \editor{Herausgeber et al.} % Names of Editors
 \booktitle{Name-der-Konferenz} % Name of book title
 \year{2017}
+%%%\lnidoi{18.18420/provided-by-editor-02} % if known
 \maketitle
 
 \begin{abstract}
