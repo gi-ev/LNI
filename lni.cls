@@ -282,8 +282,8 @@
         \ifusehyperref
           \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
         \else
-          doi:\lnidoi
-        \fi
+          doi:\@lnidoi
+        \fi%
       }
     }
   }}

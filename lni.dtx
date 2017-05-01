@@ -470,7 +470,7 @@ This work consists of the file  lni.dtx
 % LNI provides a DOI for each paper. In case, the DOI is known, it can be
 % specified using the \cs{lnidoi} macro.
 % \begin{examplecode}[label={lst:lnidoi}]
-% \lnidoi{18.18420/se2016}
+% \lnidoi{18.18420/se2016_01}
 % \end{examplecode}
 %
 % Finally \cs{maketitle} will output the formatted title page.
@@ -999,8 +999,8 @@ This work consists of the file  lni.dtx
         \ifusehyperref
           \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
         \else
-          doi:\lnidoi
-        \fi
+          doi:\@lnidoi
+        \fi%
       }
     }
   }}

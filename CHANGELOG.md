@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Quick start section for README.md ([#48](https://github.com/gi-ev/LNI/issues/48))
 - Check for pdfTeX using package `iftex`
+- New macro `\lnidoi` to add DOI to pages (DOI provided by editor)
 
 ### Changed
 - Option `straightquotes` is set manually for package `newtxtt` to gain compatibility with versions prior to v1.05 ([#49](https://github.com/gi-ev/LNI/issues/49))
