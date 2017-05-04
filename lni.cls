@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/04/27 v1.2BETA Official class for submissions to the ``Lecture Notes
+    [2017/05/05 v1.2BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -29,7 +29,6 @@
   \expandafter\ifx\@tempb\@gobble
     \let\@classoptionslist\@empty
   \fi}
-
 \DeclareOption{latin1}{\PassOptionsToPackage{latin1}{inputenc}}
 \DeclareOption{utf8}{\PassOptionsToPackage{utf8}{inputenc}}
 \DeclareOption{ansinew}{\PassOptionsToPackage{ansinew}{inputenc}}
@@ -51,39 +50,53 @@
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
-
 \RequirePackage{iftex}
-\RequirePDFTeX
-\RequirePackage{hyphsubst}
-\HyphSubstIfExists{ngerman-x-latest}%
-   {\HyphSubstLet{ngerman}{ngerman-x-latest}%
-    \ClassInfo{lni}{Using latest German hyphenation patterns}}%
-   {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
-      \MessageBreak If you write a German article you should check your%
-      installation}}%
+\ifPDFTeX
+   \RequirePackage{hyphsubst}
+   \HyphSubstIfExists{ngerman-x-latest}%
+      {\HyphSubstLet{ngerman}{ngerman-x-latest}%
+       \ClassInfo{lni}{Using latest German hyphenation patterns}}%
+      {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
+         \MessageBreak If you write a German article you should check your%
+         installation}}%
+\fi%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
-\RequirePackage{cmap}
-\RequirePackage{inputenc}
-\RequirePackage[T1]{fontenc}
+\ifPDFTeX
+   \RequirePackage{cmap}
+   \RequirePackage{inputenc}
+   \RequirePackage[T1]{fontenc}
+\fi%
 \iflnienglish
    \RequirePackage[ngerman,english]{babel}
 \else
    \RequirePackage[english,ngerman]{babel}
-\fi
+\fi%
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
-\RequirePackage{newtxtext}
-\RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
-\@ifpackagelater{newtxtt}{2014/11/18}%
-   {\txtt@upqtrue}%
-   {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak
-    Option `straightquotes' will not be used!}}%
-\RequirePackage[%
-   final,%
-   tracking=smallcaps,%
-   expansion=alltext,%
-   protrusion=alltext-nott]{microtype}%
+\ifPDFTeX
+   \RequirePackage{newtxtext}
+   \RequirePackage{newtxmath}
+   \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+   \@ifpackagelater{newtxtt}{2014/11/18}%
+      {\txtt@upqtrue}%
+      {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak
+       Option `straightquotes' will not be used!}}%
+\else
+   \usepackage{newtxmath}
+   \usepackage[no-math]{fontspec}
+   \setmainfont[Ligatures=TeX]{TeXGyreTermesX}
+\fi%
+\ifPDFTeX
+   \RequirePackage[%
+      final,%
+      tracking=smallcaps,%
+      expansion=alltext,%
+      protrusion=alltext-nott]{microtype}%
+\else
+   \RequirePackage[%
+      final,%
+      protrusion=alltext-nott]{microtype}%
+\fi%
 \SetTracking{encoding=*,shape=sc}{50}%
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
@@ -258,10 +271,10 @@
   \vskip -24pt% Abstand vor dem Titel
   \raggedright % Linksbündig
   \let\footnote\thanks
-    {\fontsize{14}{17}\fontseries{b}\selectfont\@title\par}%
+    {\fontsize{14}{17}\selectfont\bfseries\@title\par}%
     \ifx\@subtitle\empty\else
       \vskip 16pt
-      {\fontsize{10}{12}\fontseries{b}\selectfont\@subtitle}
+      {\fontsize{10}{12}\selectfont\bfseries\@subtitle}
     \fi%
     \vskip 19pt% Abstand nach dem Titel
     {\fontsize{10}{12}\selectfont
@@ -304,9 +317,9 @@
 \pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}%
    {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\fontseries{b}\selectfont}}
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\selectfont\bfseries}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\fontseries{b}\selectfont}}
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\selectfont\bfseries}}
 \setlength{\abovecaptionskip}{4pt}%Abstand vor der Bildunterschrift
 \setlength{\belowcaptionskip}{0pt}%Abstand nach der Bildunterschrift
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik

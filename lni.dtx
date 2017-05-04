@@ -162,7 +162,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/04/27 v1.2BETA Official class for submissions to the ``Lecture Notes 
+    [2017/05/05 v1.2BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -183,7 +183,8 @@ This work consists of the file  lni.dtx
 \usepackage[final]{listings}
 \usepackage{csquotes}
 \usepackage[dvipsnames]{xcolor}
-\newcommand*{\MiKTeX}{\textsf{MiK\TeX{}}}
+\usepackage{hologo}
+\newcommand*{\MiKTeX}{\hologo{MiKTeX}}
 \usepackage[%
 	pdftitle={lni: Official LaTeX class for submissions to the ``Lecture Notes in 
    	Informatics'', published by the ``Gesellschaft für Informatik e.\,V.'' (GI)},
@@ -297,6 +298,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.2}{2017/04/26}{Set option \opt{straighquotes} for \pkg{newtxtt} 
 % manually to gain compatibility with version prior to v1.05}
 % \changes{v1.2}{2017/04/27}{Added \pkg{iftex} to check for pdflatex} 
+% \changes{v1.2}{2017/05/04}{Added (partial) support for XeTeX and LuaTeX} 
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -361,6 +363,11 @@ This work consists of the file  lni.dtx
 % distribution's package manager. Alternatively go to 
 % \href{www.ctan.org}{CTAN} to download missing packages.
 %
+% Please note, that the support of \hologo{XeLaTeX} and \hologo{LuaLaTeX} is 
+% only partial. For example the mono font is not the same. Moreover \hologo{pdfLaTeX} 
+% is a \TeX{} engine used by the publishers. Therefore it is strongly recommended 
+% to use \hologo{pdfLaTeX}. 
+% 
 % \subsection{Options}\label{sec:options}
 % Although the class file includes all layout information for a submission to 
 % the \LNI{}, there are options to adapt the output one way or another.
@@ -681,7 +688,7 @@ This work consists of the file  lni.dtx
   \expandafter\ifx\@tempb\@gobble
     \let\@classoptionslist\@empty
   \fi}
-
+%
 \DeclareOption{latin1}{\PassOptionsToPackage{latin1}{inputenc}}
 \DeclareOption{utf8}{\PassOptionsToPackage{utf8}{inputenc}}
 \DeclareOption{ansinew}{\PassOptionsToPackage{ansinew}{inputenc}}
@@ -703,50 +710,66 @@ This work consists of the file  lni.dtx
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
-
+%
 \RequirePackage{iftex}
-\RequirePDFTeX
-\RequirePackage{hyphsubst}
-\HyphSubstIfExists{ngerman-x-latest}%
-   {\HyphSubstLet{ngerman}{ngerman-x-latest}%
-    \ClassInfo{lni}{Using latest German hyphenation patterns}}%
-   {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
-      \MessageBreak If you write a German article you should check your%
-      installation}}%
+\ifPDFTeX
+   \RequirePackage{hyphsubst}
+   \HyphSubstIfExists{ngerman-x-latest}%
+      {\HyphSubstLet{ngerman}{ngerman-x-latest}%
+       \ClassInfo{lni}{Using latest German hyphenation patterns}}%
+      {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
+         \MessageBreak If you write a German article you should check your%
+         installation}}%
+\fi%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
-\RequirePackage{cmap}
-\RequirePackage{inputenc}
-\RequirePackage[T1]{fontenc}
+\ifPDFTeX
+   \RequirePackage{cmap}
+   \RequirePackage{inputenc}
+   \RequirePackage[T1]{fontenc}
+\fi%
 %
 \iflnienglish
    \RequirePackage[ngerman,english]{babel}
 \else
    \RequirePackage[english,ngerman]{babel}
-\fi
+\fi%
 % Hint by http://tex.stackexchange.com/a/321067/9075 -> enable "= as dashes
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
 %    \end{macrocode}
 % Define a modern variant of Times as the main font
 %    \begin{macrocode}
-\RequirePackage{newtxtext}
-\RequirePackage{newtxmath}
-\RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+\ifPDFTeX
+   \RequirePackage{newtxtext}
+   \RequirePackage{newtxmath}
+   \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
 %    \end{macrocode}
 % For compatibility with version of \pkg{newtxtt} prior to v1.05 we set the 
 % option \opt{straightquotes} manually for recent versions
 %    \begin{macrocode}
-\@ifpackagelater{newtxtt}{2014/11/18}%
-   {\txtt@upqtrue}%
-   {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak 
-    Option `straightquotes' will not be used!}}%
+   \@ifpackagelater{newtxtt}{2014/11/18}%
+      {\txtt@upqtrue}%
+      {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak 
+       Option `straightquotes' will not be used!}}%
 %    \end{macrocode}
 %    \begin{macrocode}
-\RequirePackage[%
-   final,%
-   tracking=smallcaps,%
-   expansion=alltext,%
-   protrusion=alltext-nott]{microtype}%
+\else
+   \usepackage{newtxmath}
+   \usepackage[no-math]{fontspec}
+   \setmainfont[Ligatures=TeX]{TeXGyreTermesX}
+\fi%
+%    \begin{macrocode}
+\ifPDFTeX
+   \RequirePackage[%
+      final,%
+      tracking=smallcaps,%
+      expansion=alltext,%
+      protrusion=alltext-nott]{microtype}%
+\else
+   \RequirePackage[%
+      final,%
+      protrusion=alltext-nott]{microtype}%
+\fi%
 \SetTracking{encoding=*,shape=sc}{50}%
 %    \end{macrocode}
 % Introduce \cs{powerset} - hint by \url{http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377}
@@ -766,7 +789,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Support for CC icons
 \RequirePackage{ccicons}
-% Support for \ifdefempty
+% Support for \cs{ifdefempty}
 \RequirePackage{etoolbox}
 % Satzspiegel
 %    \begin{macrocode}
@@ -974,10 +997,10 @@ This work consists of the file  lni.dtx
   \vskip -24pt% Abstand vor dem Titel
   \raggedright % Linksbündig
   \let\footnote\thanks
-    {\fontsize{14}{17}\fontseries{b}\selectfont\@title\par}%
+    {\fontsize{14}{17}\selectfont\bfseries\@title\par}%
     \ifx\@subtitle\empty\else
       \vskip 16pt
-      {\fontsize{10}{12}\fontseries{b}\selectfont\@subtitle}
+      {\fontsize{10}{12}\selectfont\bfseries\@subtitle}
     \fi%
     \vskip 19pt% Abstand nach dem Titel
     {\fontsize{10}{12}\selectfont
@@ -1032,9 +1055,9 @@ This work consists of the file  lni.dtx
 % Section headings
 %    \begin{macrocode}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\fontseries{b}\selectfont}}
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\selectfont\bfseries}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\fontseries{b}\selectfont}}
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\selectfont\bfseries}}
 %    \end{macrocode}
 % Bildunterschriften
 %    \begin{macrocode}
