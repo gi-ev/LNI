@@ -53,7 +53,6 @@
 \ProcessOptions\relax
 
 \RequirePackage{iftex}
-\RequirePDFTeX
 \RequirePackage{hyphsubst}
 \HyphSubstIfExists{ngerman-x-latest}%
    {\HyphSubstLet{ngerman}{ngerman-x-latest}%
@@ -62,15 +61,26 @@
       \MessageBreak If you write a German article you should check your%
       installation}}%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
-\RequirePackage{cmap}
-\RequirePackage{inputenc}
-\RequirePackage[T1]{fontenc}
-\iflnienglish
-   \RequirePackage[ngerman,english]{babel}
+\ifXeTeX
+  \RequirePackage{polyglossia}
+  \iflnienglish
+    \setdefaultlanguage{german}
+    \setotherlanguage{english}
+  \else
+    \setdefaultlanguage{english}
+    \setotherlanguage{german}
+  \fi
 \else
-   \RequirePackage[english,ngerman]{babel}
+  \RequirePackage{cmap}
+  \RequirePackage{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \iflnienglish
+    \RequirePackage[ngerman,english]{babel}
+  \else
+    \RequirePackage[english,ngerman]{babel}
+  \fi
+  \useshorthands*{"}
 \fi
-\useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
 \RequirePackage{newtxtext}
 \RequirePackage{newtxmath}
@@ -79,11 +89,17 @@
    {\txtt@upqtrue}%
    {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak
     Option `straightquotes' will not be used!}}%
-\RequirePackage[%
-   final,%
-   tracking=smallcaps,%
-   expansion=alltext,%
-   protrusion=alltext-nott]{microtype}%
+\ifXeTeX
+  \RequirePackage[%
+    final,%
+    protrusion=alltext-nott]{microtype}%
+\else
+  \RequirePackage[%
+    final,%
+    tracking=smallcaps,%
+    expansion=alltext,%
+    protrusion=alltext-nott]{microtype}%
+\fi
 \SetTracking{encoding=*,shape=sc}{50}%
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
