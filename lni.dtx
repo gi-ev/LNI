@@ -705,7 +705,6 @@ This work consists of the file  lni.dtx
 \ProcessOptions\relax
 
 \RequirePackage{iftex}
-\RequirePDFTeX
 \RequirePackage{hyphsubst}
 \HyphSubstIfExists{ngerman-x-latest}%
    {\HyphSubstLet{ngerman}{ngerman-x-latest}%
@@ -714,17 +713,31 @@ This work consists of the file  lni.dtx
       \MessageBreak If you write a German article you should check your%
       installation}}%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
-\RequirePackage{cmap}
-\RequirePackage{inputenc}
-\RequirePackage[T1]{fontenc}
+\ifXeTeX
+  \RequirePackage{polyglossia}
 %
-\iflnienglish
-   \RequirePackage[ngerman,english]{babel}
+  \iflnienglish
+    \setdefaultlanguage{german}
+    \setotherlanguage{english}
+  \else
+    \setdefaultlanguage{english}
+    \setotherlanguage{german}
+  \fi
 \else
-   \RequirePackage[english,ngerman]{babel}
-\fi
+  \RequirePackage{cmap}
+  \RequirePackage{inputenc}
+  \RequirePackage[T1]{fontenc}
+%
+  \iflnienglish
+    \RequirePackage[ngerman,english]{babel}
+  \else
+    \RequirePackage[english,ngerman]{babel}
+  \fi
+%
 % Hint by http://tex.stackexchange.com/a/321067/9075 -> enable "= as dashes
-\useshorthands*{"}
+  \useshorthands*{"}
+\fi
+%
 \addto\extrasenglish{\languageshorthands{ngerman}}
 %    \end{macrocode}
 % Define a modern variant of Times as the main font
@@ -742,11 +755,17 @@ This work consists of the file  lni.dtx
     Option `straightquotes' will not be used!}}%
 %    \end{macrocode}
 %    \begin{macrocode}
-\RequirePackage[%
-   final,%
-   tracking=smallcaps,%
-   expansion=alltext,%
-   protrusion=alltext-nott]{microtype}%
+\ifXeTeX
+  \RequirePackage[%
+    final,%
+    protrusion=alltext-nott]{microtype}%
+\else
+  \RequirePackage[%
+    final,%
+    tracking=smallcaps,%
+    expansion=alltext,%
+    protrusion=alltext-nott]{microtype}%
+\fi
 \SetTracking{encoding=*,shape=sc}{50}%
 %    \end{macrocode}
 % Introduce \cs{powerset} - hint by \url{http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377}
