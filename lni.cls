@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/05/05 v1.2BETA Official class for submissions to the ``Lecture Notes
+    [2017/05/05 v1.2 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -533,6 +533,7 @@
 %% This work consists of the file  lni.dtx
 %%                                 lni.ins
 %%                                 README.md
+%%                                 CHANGELOG.md
 %%           and the derived files lni.pdf
 %%                                 lni.cls
 %%                                 lni-author-template.tex

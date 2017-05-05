@@ -19,10 +19,11 @@ This is the official version of the class “lni” for submissions to the
 It is based on previous templates created on behalf of the GI.
 
 Quick start:
-Download [lni-author-template.tex](lni-author-template.tex) and edit it in your favorite LaTeX editor.
+Download [lni-author-template.tex](lni-author-template.tex) and edit it in 
+your favorite LaTeX editor.
 You will have to use [BibTeX](https://www.ctan.org/pkg/bibtex) as bibliography tool.
-In case you want to use [biblatex](https://www.ctan.org/pkg/biblatex), read on in the documentation of this class.
-
+In case you want to use [biblatex](https://www.ctan.org/pkg/biblatex) and 
+[Biber](https://www.ctan.org/pkg/biber), read on in the documentation of this class.
 You should use `pdflatex` as `xelatex` and `lualatex` lack some features of the class file.
 
 Stable versions are always uploaded to CTAN (https://www.ctan.org/pkg/lni).

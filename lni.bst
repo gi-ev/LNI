@@ -1292,6 +1292,7 @@ EXECUTE {end.bib}
 %% This work consists of the file  lni.dtx
 %%                                 lni.ins
 %%                                 README.md
+%%                                 CHANGELOG.md
 %%           and the derived files lni.pdf
 %%                                 lni.cls
 %%                                 lni-author-template.tex
