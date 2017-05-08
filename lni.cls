@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/05/05 v1.3BETA Official class for submissions to the ``Lecture Notes
+    [2017/05/08 v1.3BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -47,6 +47,9 @@
 \newif\ifcrop
 \cropfalse
 \DeclareOption{crop}{\croptrue}
+\newif\ifnofonts
+\nofontsfalse
+\DeclareOption{nofonts}{\nofontstrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -73,18 +76,21 @@
 \fi%
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
-\ifPDFTeX
-   \RequirePackage{newtxtext}
-   \RequirePackage{newtxmath}
-   \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
-   \@ifpackagelater{newtxtt}{2014/11/18}%
-      {\txtt@upqtrue}%
-      {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak
-       Option `straightquotes' will not be used!}}%
-\else
-   \usepackage{newtxmath}
-   \usepackage[no-math]{fontspec}
-   \setmainfont[Ligatures=TeX]{TeXGyreTermesX}
+\ifnofonts\else
+   \ifPDFTeX
+      \RequirePackage{newtxtext}
+      \RequirePackage{newtxmath}
+      \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+      \@ifpackagelater{newtxtt}{2014/11/18}%
+         {\txtt@upqtrue}%
+         {\ClassWarning{lni}{You are using an old version of
+         `newtxtt'.\MessageBreak
+          Option `straightquotes' will not be used!}}%
+   \else
+      \usepackage{newtxmath}
+      \usepackage[no-math]{fontspec}
+      \setmainfont[Ligatures=TeX]{TeXGyreTermesX}
+   \fi%
 \fi%
 \ifPDFTeX
    \RequirePackage[%

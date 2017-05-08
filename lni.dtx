@@ -163,7 +163,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/05/05 v1.3BETA Official class for submissions to the ``Lecture Notes 
+    [2017/05/08 v1.3BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -300,6 +300,8 @@ This work consists of the file  lni.dtx
 % manually to gain compatibility with version prior to v1.05}
 % \changes{v1.2}{2017/04/27}{Added \pkg{iftex} to check for pdflatex} 
 % \changes{v1.2}{2017/05/04}{Added (partial) support for XeTeX and LuaTeX} 
+% \changes{v1.3}{2017/05/04}{Added option \opt{nofonts} to suppress font 
+% loading completely} 
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -399,20 +401,25 @@ This work consists of the file  lni.dtx
 % used when setting the class option \opt{biblatex}. Please see as well 
 % \cref{sec:bibliography}.
 %
+% \DescribeOption{crop\space(new in v1.1)}%
+% Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to 
+%better illustrate the final 
+% result of your article.
+%
 % \DescribeOption{nocleveref}When referencing figures, one has to type
 % \texttt{Figure\textasciitilde}\cs{ref\marg{label}}. The package \pkg{cleveref}
 % reduces the effort by offering the command \cs{cref\marg{label}}. This can be
 % used with all floating objects. The package is loaded as default. In case it 
 % causes issues, one can disable it using with the \opt{nocleveref} option.
 %
-% \DescribeOption{nohyperref}\pkg{hyperref} is used for colored hyperlink within 
-% the articles. If you consider problems or just do not want that feature, you 
-% can disable it by using the option \opt{nohyperref}.
+% \DescribeOption{nohyperref}\pkg{hyperref} is used for colored hyperlink 
+% within the articles. If you consider problems or just do not want that 
+% feature, you can disable it by using the option \opt{nohyperref}.
 %
-% \DescribeOption{crop\space(new in v1.1)}%
-% Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to better illustrate the final 
-% result of your article.
-% 
+% \DescribeOption{nofonts\space(new in v1.3)}On older systems you might not 
+% have installed the New TX fonts. Therefore option \opt{nofonts} allows to 
+% suppress font loading completely using the engines standard fonts instead.
+% \newpage
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 
 % for setting up a document for submission. The \lni{} class uses the standard 
@@ -424,7 +431,7 @@ This work consists of the file  lni.dtx
 % Some \TeX{} editors like \texttt{TeXstudio}, \texttt{TeXmaker} and 
 % \texttt{TeXshop} support a special set of meta data to tell the editor, how 
 % to deal with a concrete document.
-% \newpage
+% 
 % A typical example looks like:
 % \begin{examplecode}
 % % !TeX program = pdflatex
@@ -708,6 +715,9 @@ This work consists of the file  lni.dtx
 \newif\ifcrop
 \cropfalse
 \DeclareOption{crop}{\croptrue}
+\newif\ifnofonts
+\nofontsfalse
+\DeclareOption{nofonts}{\nofontstrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -740,24 +750,28 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Define a modern variant of Times as the main font
 %    \begin{macrocode}
-\ifPDFTeX
-   \RequirePackage{newtxtext}
-   \RequirePackage{newtxmath}
-   \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+\ifnofonts\else
+   \ifPDFTeX
+      \RequirePackage{newtxtext}
+      \RequirePackage{newtxmath}
+      \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
 %    \end{macrocode}
 % For compatibility with version of \pkg{newtxtt} prior to v1.05 we set the 
 % option \opt{straightquotes} manually for recent versions
 %    \begin{macrocode}
-   \@ifpackagelater{newtxtt}{2014/11/18}%
-      {\txtt@upqtrue}%
-      {\ClassWarning{lni}{You are using an old version of `newtxtt'.\MessageBreak 
-       Option `straightquotes' will not be used!}}%
+      \@ifpackagelater{newtxtt}{2014/11/18}%
+         {\txtt@upqtrue}%
+         {\ClassWarning{lni}{You are using an old version of 
+         `newtxtt'.\MessageBreak 
+          Option `straightquotes' will not be used!}}%
 %    \end{macrocode}
+% for \hologo{XeTeX} or \hologo{LuaTeX} we use \pkg{fontspec}
 %    \begin{macrocode}
-\else
-   \usepackage{newtxmath}
-   \usepackage[no-math]{fontspec}
-   \setmainfont[Ligatures=TeX]{TeXGyreTermesX}
+   \else
+      \usepackage{newtxmath}
+      \usepackage[no-math]{fontspec}
+      \setmainfont[Ligatures=TeX]{TeXGyreTermesX}
+   \fi%
 \fi%
 %    \begin{macrocode}
 \ifPDFTeX
