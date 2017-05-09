@@ -97,7 +97,14 @@
    \else
       \usepackage{newtxmath}
       \usepackage[no-math]{fontspec}
-      \setmainfont[Ligatures=TeX]{TeXGyreTermesX}
+      \setmainfont{texgyretermes}[
+        Extension = .otf,
+        UprightFont = *-regular,
+        BoldFont = *-bold,
+        ItalicFont = *-italic,
+        BoldItalicFont = *-bolditalic,
+        Ligatures=TeX
+      ]
    \fi%
 \fi%
 \ifPDFTeX
