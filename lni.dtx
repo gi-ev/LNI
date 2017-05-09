@@ -750,7 +750,15 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Define a modern variant of Times as the main font
 %    \begin{macrocode}
-\ifnofonts\else
+\ifnofonts
+   \ClassWarning{lni}{Option `nofonts' set! I will use standard fonts
+   \MessageBreak
+   instead of the New TX fonts. Your document will NOT look like the
+   \MessageBreak
+   final result for publication. This should only be used if you have
+   \MessageBreak
+   no possibility to install fonts or upgrade your TeX installation!}%
+\else
    \ifPDFTeX
       \RequirePackage{newtxtext}
       \RequirePackage{newtxmath}

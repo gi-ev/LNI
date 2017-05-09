@@ -76,7 +76,15 @@
 \fi%
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
-\ifnofonts\else
+\ifnofonts
+   \ClassWarning{lni}{Option `nofonts' set! I will use standard fonts
+   \MessageBreak
+   instead of the New TX fonts. Your document will NOT look like the
+   \MessageBreak
+   final result for publication. This should only be used if you have
+   \MessageBreak
+   no possibility to install fonts or upgrade your TeX installation!}%
+\else
    \ifPDFTeX
       \RequirePackage{newtxtext}
       \RequirePackage{newtxmath}
