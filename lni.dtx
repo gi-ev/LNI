@@ -163,7 +163,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/05/08 v1.3BETA Official class for submissions to the ``Lecture Notes 
+    [2017/05/15 v1.3 Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -302,6 +302,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.2}{2017/05/04}{Added (partial) support for XeTeX and LuaTeX} 
 % \changes{v1.3}{2017/05/04}{Added option \opt{nofonts} to suppress font 
 % loading completely} 
+% \changes{v1.3}{2017/05/08}{Changed syntax for \pkg{fontspec}} 
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -398,12 +399,12 @@ This work consists of the file  lni.dtx
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
 % There is even a specialized package \pkg{biblatex-lni} which is automatically 
-% used when setting the class option \opt{biblatex}. Please see as well 
+% used when setting the class option \opt{biblatex}. For more information see as well 
 % \cref{sec:bibliography}.
 %
 % \DescribeOption{crop\space(new in v1.1)}%
 % Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to 
-%better illustrate the final 
+% better illustrate the final 
 % result of your article.
 %
 % \DescribeOption{nocleveref}When referencing figures, one has to type
@@ -419,6 +420,7 @@ This work consists of the file  lni.dtx
 % \DescribeOption{nofonts\space(new in v1.3)}On older systems you might not 
 % have installed the New TX fonts. Therefore option \opt{nofonts} allows to 
 % suppress font loading completely using the engines standard fonts instead.
+% Please note, that your output will differ from the publishers'.
 % \newpage
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 

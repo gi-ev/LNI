@@ -4,9 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.3.0] - 2017-05-15
 ### Added
-- New option `nofont` to use the class file on older systems
+- New option `nofont` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/52))
+
+### Changed
+- Use more stable syntax for font loading with `fontspec` ([#54](https://github.com/gi-ev/LNI/issues/54))
 
 ## [1.2.0] - 2017-05-05
 ### Added
@@ -35,7 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2017-04-07
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.2...HEAD
+[1.3.0]: https://github.com/gi-ev/LNI/releases/tag/v1.3
 [1.2.0]: https://github.com/gi-ev/LNI/releases/tag/v1.2
 [1.1.0]: https://github.com/gi-ev/LNI/releases/tag/v1.1
 [1.0.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0
