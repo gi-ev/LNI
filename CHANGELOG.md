@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.3.0] - 2017-05-15
 ### Added
-- New option `nofont` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/52))
+- New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/52))
 
 ### Changed
 - Use more stable syntax for font loading with `fontspec` ([#54](https://github.com/gi-ev/LNI/issues/54))
