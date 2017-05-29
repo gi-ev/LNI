@@ -470,6 +470,7 @@
 \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \RequirePackage{url}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
+\RequirePackage{xspace}
 \ifusehyperref
    \RequirePackage[pdfusetitle]{hyperref}
    \hypersetup{%
@@ -506,6 +507,19 @@
       \bibliographystyle{lnig}%
    \fi%
 \fi%
+\newcommand*{\lni@abbrv}[1]{#1\@\xspace}
+\newcommand*{\lniabbrv}[2]{\gdef#1{\lni@abbrv{#2}}}
+\newcommand*{\lni@initialism}[1]{\textsc{#1}\xspace}
+\newcommand*{\lniinitialism}[2]{\gdef#1{\lni@initialism{#2}}}
+\newcommand*{\ie}{\lni@abbrv{i.\,e.}}
+\newcommand*{\eg}{\lni@abbrv{e.\,g.}}
+\newcommand*{\cf}{\lni@abbrv{cf.}}
+\newcommand*{\etal}{\lni@abbrv{et~al.}}
+\newcommand*{\OMG}{\lni@initialism{omg}}
+\newcommand*{\BPM}{\lni@initialism{bpm}}
+\newcommand*{\BPMN}{\lni@initialism{bpmn}}
+\newcommand*{\BPEL}{\lni@initialism{bpel}}
+\newcommand*{\UML}{\lni@initialism{uml}}
 \renewenvironment{thebibliography}[1]
 {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
    \section*{\refname}%

@@ -597,6 +597,29 @@ This work consists of the file  lni.dtx
 % \cs{powerset} to render the powerset symbol correctly as $\powerset$ and not 
 % as Weierstrass p ($\wp$).
 %
+% \subsubsection{Abbreviations and initialisms}
+% \DescribeMacro{\eg}\DescribeMacro{\ie}\DescribeMacro{\cf}\DescribeMacro{\etal}%
+% To achieve consistent typesetting of common abbreviations, macros are predefined by the class. These macros should \emph{consistently} being used instead of writing the plain version. For example use \verb|\eg| rather than {\verb|e.g.,|}. The macros take care of spacing within and after the abbreviations.
+% \begin{itemize}
+% \item \cs{eg} for e.\,g.
+% \item \cs{ie} for i.\,e.
+% \item \cs{cf} for cf.
+% \item \cs{etal} for et~al.
+% \end{itemize}
+%
+% \DescribeMacro{\OMG}\DescribeMacro{\BPM}\DescribeMacro{\BPMN}\DescribeMacro{\UML}%
+% In addition to common abbreviations, further initialisms are provided by the class for convenience and for a consistent visual appearance. Note that the class uses \textsc{smallcaps} for typesetting initialisms. The list of predefined initialisms comprises:
+%
+% \begin{itemize}
+% \item \cs{OMG} for \textsc{omg} (Object Management Group).
+% \item \cs{BPM} for \textsc{bpm} (Business Process Management).
+% \item \cs{BPMN} for \textsc{bpmn} (Business Process Model and Notation).
+% \item \cs{BPEL} for \textsc{bpel} (Business Process Execution Language).
+% \item \cs{UML} for \textsc{uml} (Unified Modelling Language).
+% \end{itemize}
+%
+% \DescribeMacro{\lniinitialism} You can add your own initialisms by stating \cs{lniinitialism\marg{\textbackslash initialism\_macro}\marg{text}} in the preamble.
+%
 % \subsection{Bibliography}\label{sec:bibliography}
 % \enlargethispage{\baselineskip}The old \lni{} class file only supports \BibTeX{} with bst files for German 
 % and English submissions resp. If you want to use this approach for your
@@ -1277,6 +1300,9 @@ This work consists of the file  lni.dtx
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 %    \end{macrocode}
 %    \begin{macrocode}
+\RequirePackage{xspace}
+%    \end{macrocode}
+%    \begin{macrocode}
 \ifusehyperref
    \RequirePackage[pdfusetitle]{hyperref}
    \hypersetup{%
@@ -1322,6 +1348,19 @@ This work consists of the file  lni.dtx
       \bibliographystyle{lnig}%
    \fi%
 \fi%
+\newcommand*{\lni@abbrv}[1]{#1\@\xspace}
+\newcommand*{\lniabbrv}[2]{\gdef#1{\lni@abbrv{#2}}}
+\newcommand*{\lni@initialism}[1]{\textsc{#1}\xspace}
+\newcommand*{\lniinitialism}[2]{\gdef#1{\lni@initialism{#2}}}
+\newcommand*{\ie}{\lni@abbrv{i.\,e.}}
+\newcommand*{\eg}{\lni@abbrv{e.\,g.}}
+\newcommand*{\cf}{\lni@abbrv{cf.}}
+\newcommand*{\etal}{\lni@abbrv{et~al.}}
+\newcommand*{\OMG}{\lni@initialism{omg}}
+\newcommand*{\BPM}{\lni@initialism{bpm}}
+\newcommand*{\BPMN}{\lni@initialism{bpmn}}
+\newcommand*{\BPEL}{\lni@initialism{bpel}}
+\newcommand*{\UML}{\lni@initialism{uml}}
 %    \end{macrocode}
 % bibliography
 %    \begin{macrocode}
