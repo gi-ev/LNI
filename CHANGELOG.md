@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- New option `oldfonts` to use the class file on older systems by loading an older font package.
 
 ## [1.3.0] - 2017-05-15
 ### Added

@@ -303,6 +303,8 @@ This work consists of the file  lni.dtx
 % \changes{v1.3}{2017/05/04}{Added option \opt{nofonts} to suppress font 
 % loading completely} 
 % \changes{v1.3}{2017/05/08}{Changed syntax for \pkg{fontspec}} 
+% \changes{v1.4}{2017/05/27}{Added option \opt{oldfonts} to use a font package
+% available}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -417,10 +419,17 @@ This work consists of the file  lni.dtx
 % within the articles. If you consider problems or just do not want that 
 % feature, you can disable it by using the option \opt{nohyperref}.
 %
-% \DescribeOption{nofonts\space(new in v1.3)}On older systems you might not 
+% \DescribeOption{nofonts\space(new in v1.3, deprecated in v1.4)}On old systems you might not
 % have installed the New TX fonts. Therefore option \opt{nofonts} allows to 
 % suppress font loading completely using the engines standard fonts instead.
-% Please note, that your output will differ from the publishers'.
+% Please note, that your output will differ from the publishers'. Thefore, the
+% option \opt{oldfonts} was introduced.
+%
+% \DescribeOption{oldfonts\space(new in v1.4)}On older systems you might not
+% have installed the New TX fonts. Therefore option \opt{oldfonts} allows to
+% to load the package \pkg{mathptmx} instead of the New TX fonts. The output will
+% be according to the publisher's requirements.
+%
 % \newpage
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 
@@ -743,6 +752,9 @@ This work consists of the file  lni.dtx
 \newif\ifnofonts
 \nofontsfalse
 \DeclareOption{nofonts}{\nofontstrue}
+\newif\ifoldfonts
+\oldfontsfalse
+\DeclareOption{oldfonts}{\oldfontstrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -783,6 +795,8 @@ This work consists of the file  lni.dtx
    final result for publication. This should only be used if you have
    \MessageBreak
    no possibility to install fonts or upgrade your TeX installation!}%
+\else\ifoldfonts
+  \RequirePackage{mathptmx}
 \else
    \ifPDFTeX
       \RequirePackage{newtxtext}
@@ -812,7 +826,7 @@ This work consists of the file  lni.dtx
         Ligatures=TeX
       ]
    \fi%
-\fi%
+\fi\fi%
 %    \begin{macrocode}
 \ifPDFTeX
    \RequirePackage[%

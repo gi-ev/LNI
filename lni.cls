@@ -50,6 +50,9 @@
 \newif\ifnofonts
 \nofontsfalse
 \DeclareOption{nofonts}{\nofontstrue}
+\newif\ifoldfonts
+\oldfontsfalse
+\DeclareOption{oldfonts}{\oldfontstrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -84,6 +87,8 @@
    final result for publication. This should only be used if you have
    \MessageBreak
    no possibility to install fonts or upgrade your TeX installation!}%
+\else\ifoldfonts
+  \RequirePackage{mathptmx}
 \else
    \ifPDFTeX
       \RequirePackage{newtxtext}
@@ -106,7 +111,7 @@
         Ligatures=TeX
       ]
    \fi%
-\fi%
+\fi\fi%
 \ifPDFTeX
    \RequirePackage[%
       final,%
