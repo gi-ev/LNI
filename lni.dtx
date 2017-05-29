@@ -26,28 +26,6 @@
 %% distributed and modified.
 %% Modified files should be clearly indicated as such and renamed.
 %%
-%%***************************************************      
-% Changelog:
-%
-%  1.0       (07.04.17), Martin Sievers
-%  - Revised version
-%
-%            (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
-% Changes:  
-%  - Last Name before the prename
-%  - ; between Autors
-%  - : before title
-%  - Lable: Abbreviation of name of first author instead of + (former: A+09 or WFEL14, now Az09 and Wa14)
-%  - Lable: Use first 2 letters of title if there is no author
-%  - add : after In (functions inproceedings and inbook) 
-%  - no emphasize of titles
-%  - editors in bracelets ()
-%  - correct order of reference infos
-%  - correct signs (.,:()) between reference infos 
-%  - Add second prename
-%  - change order of series (not: "number" in "series", now "series" "number"
-%
-%%***************************************************
 %
 \endpreamble
 
@@ -63,28 +41,6 @@
 %% distributed and modified.
 %% Modified files should be clearly indicated as such and renamed.
 %%
-%%***************************************************      
-% Changelog:
-%
-%  1.0       (07.04.17), Martin Sievers
-%  - Revised version
-%
-%            (17.12.14), Judith Michael, Alpen-Adria-Universität Klagenfurt, Austria
-% Changes:  
-%  - Last Name before the prename
-%  - ; between Autors
-%  - : before title
-%  - Lable: Abbreviation of name of first author instead of + (former: A+09 or WFEL14, now Az09 and Wa14)
-%  - Lable: Use first 2 letters of title if there is no author
-%  - add : after In (functions inproceedings and inbook) 
-%  - no emphasize of titles
-%  - editors in bracelets ()
-%  - correct order of reference infos
-%  - correct signs (.,:()) between reference infos 
-%  - Add second prename
-%  - change order of series (not: "number" in "series", now "series" "number"
-%
-%%***************************************************
 %
 \endpreamble
 
@@ -189,9 +145,9 @@ This work consists of the file  lni.dtx
 \usepackage[%
 	pdftitle={lni: Official LaTeX class for submissions to the ``Lecture Notes in 
    	Informatics'', published by the ``Gesellschaft für Informatik e.\,V.'' (GI)},
-   pdfauthor={Martin Sievers},
-   urlcolor=blue,%
-	linktocpage,%
+    pdfauthor={Martin Sievers},
+    urlcolor=blue,%
+	linktoc=both,%
 	colorlinks=true]{hyperref}
 \usepackage[nameinlink,capitalise]{cleveref}
 
@@ -348,7 +304,7 @@ This work consists of the file  lni.dtx
 % The \lni{} bundle is currently distributed via 
 % \href{https://github.com/gi-ev/LNI}{GitHub}, the
 % \href{https://www.gi.de/service/publikationen/lni/autorenrichtlinien.html}
-% {GI website} and (preferably) \href{https://www.ctan.org}{CTAN}.
+% {GI website} and (preferably) \href{https://www.ctan.org/pkg/lni}{CTAN}.
 % The later is the basis for all updates of the two main \TeX{} distributions
 % \MiKTeX{} and \TeX{}~Live. Thus the easiest way to get all files needed to 
 % typeset an article for the \LNI{} is to use the package manager of your
@@ -367,7 +323,7 @@ This work consists of the file  lni.dtx
 % distributions. Therefore, if you are confronted 
 % with a missing package, please try to download and install it using your 
 % distribution's package manager. Alternatively go to 
-% \href{www.ctan.org}{CTAN} to download missing packages.
+% \href{http://www.ctan.org}{CTAN} to download missing packages.
 %
 % Please note, that the support of \hologo{XeLaTeX} and \hologo{LuaLaTeX} is 
 % only partial. For example the mono font is not the same. Moreover \hologo{pdfLaTeX} 
@@ -667,7 +623,6 @@ This work consists of the file  lni.dtx
 % \end{document}
 % \end{examplecode}
 %
-% \newpage
 % \section{Trouble shooting}
 % This section lists the most common issues when using this template. For more
 % help, please head to
@@ -693,7 +648,7 @@ This work consists of the file  lni.dtx
 % just clean up (remove \texttt{paper.aux}) and recompile.
 % \item If the compiler error is\\
 % \texttt{!Package xkeyval Error: 'family\_i'
-% undefined in families blx@opt@namepart'.},\\
+% undefined in families blx@opt@name}\\\texttt{part'.},\\
 % it is an indicator that you
 % switched from \BibTeX{} to \pkg{biblatex}. Clean up (remove 
 % \texttt{paper.bbl}) and recompile.
@@ -704,7 +659,7 @@ This work consists of the file  lni.dtx
 %
 % \section{Bugs and feature request}
 % If you find a bug or have a feature request, please open an ``issue'' at the
-% \href{https://github.com/sieversMartin/LNI/issues}{GitHub website}.
+% \href{https://github.com/gi-ev/LNI/issues}{GitHub website}.
 %
 % \StopEventually{^^A
 %  \PrintChanges
