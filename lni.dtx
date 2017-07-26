@@ -119,7 +119,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/05/15 v1.4BETA Official class for submissions to the ``Lecture Notes 
+    [2017/07/26 v1.4BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -259,8 +259,11 @@ This work consists of the file  lni.dtx
 % \changes{v1.3}{2017/05/04}{Added option \opt{nofonts} to suppress font 
 % loading completely} 
 % \changes{v1.3}{2017/05/08}{Changed syntax for \pkg{fontspec}} 
+% \changes{v1.4}{2017/05/27}{Added new macros taken from the EMISA class file}
 % \changes{v1.4}{2017/05/27}{Added option \opt{oldfonts} to use a font package
 % available}
+% \changes{v1.4}{2017/07/26}{Added package \pkg{caption} and changed all 
+% \cs{fontsize} calls to nativ \LaTeX{} macros}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -268,7 +271,8 @@ This work consists of the file  lni.dtx
 % \title{\textsf{lni} -- Official class for submissions to the\\%
 % ``Lecture Notes in Informatics''\thanks{This file describes version
 % \fileversion, last revised \filedate.}}
-% \author{Martin Sievers\setcounter{footnote}{6}\thanks{Email: martin.sievers@schoenerpublizieren.de}}
+% \author{Martin Sievers\setcounter{footnote}{6}\thanks{Email: 
+% martin.sievers@schoenerpublizieren.de}}
 % \date{Released \filedate}
 %
 % \maketitle
@@ -376,15 +380,16 @@ This work consists of the file  lni.dtx
 % feature, you can disable it by using the option \opt{nohyperref}.
 %
 % \DescribeOption{nofonts\space(new in v1.3, deprecated in v1.4)}On old systems you might not
-% have installed the New TX fonts. Therefore option \opt{nofonts} allows to 
+% have installed the New TX fonts. If for whatever reason the \opt{oldfonts} option 
+% does not work for you, you can activate option \opt{nofonts}. This allows to 
 % suppress font loading completely using the engines standard fonts instead.
-% Please note, that your output will differ from the publishers'. Thefore, the
-% option \opt{oldfonts} was introduced.
+% Usually there should be no need to do so. Please note, that your output will differ 
+% from the publishers'.
 %
 % \DescribeOption{oldfonts\space(new in v1.4)}On older systems you might not
 % have installed the New TX fonts. Therefore option \opt{oldfonts} allows to
 % to load the package \pkg{mathptmx} instead of the New TX fonts. The output will
-% be according to the publisher's requirements.
+% be in accordance to (or at least near) the publisher's requirements.
 %
 % \newpage
 % \section{Setting up a document}
@@ -460,8 +465,9 @@ This work consists of the file  lni.dtx
 % \subsection{Abstract and keywords}
 % \DescribeEnv{abstract}\DescribeEnv{keywords}%
 % \DescribeMacro{\and\space(new in v1.1)}%
-% Each article should start with a short abstract and some keywords. Please use 
-% the environments \env{abstract} and \env{keywords} for that purpose:
+% Each article should start with a short (70 to 150 words) abstract and some 
+% keywords. Please use the environments \env{abstract} and \env{keywords} for 
+% that purpose:
 % \begin{examplecode}
 % \begin{abstract}
 % Tell the reader what your article is about
@@ -706,10 +712,12 @@ This work consists of the file  lni.dtx
 \DeclareOption{crop}{\croptrue}
 \newif\ifnofonts
 \nofontsfalse
-\DeclareOption{nofonts}{\nofontstrue}
+\DeclareOption{nofonts}{\nofontstrue\autofontsfalse}
 \newif\ifoldfonts
 \oldfontsfalse
-\DeclareOption{oldfonts}{\oldfontstrue}
+\DeclareOption{oldfonts}{\oldfontstrue\autofontsfalse}
+\newif\ifautofonts
+\autofontstrue
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -742,7 +750,61 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Define a modern variant of Times as the main font
 %    \begin{macrocode}
-\ifnofonts
+\ifautofonts
+   \ClassInfo{lni}{*******************************************************}
+   \MessageBreak
+   \ClassInfo{lni}{Checking for fonts ...}
+   \ClassInfo{lni}{*******************************************************}
+   \ifPDFTeX
+      \IfFileExists{newtxtext.sty}
+         {%
+            \RequirePackage{newtxtext}
+            \RequirePackage{newtxmath}
+            \RequirePackage[zerostyle=b,scaled=.9]{newtxtt} 
+%    \end{macrocode}
+% For compatibility with version of \pkg{newtxtt} prior to v1.05 we set the 
+% option \opt{straightquotes} manually for recent versions
+%    \begin{macrocode}
+            \@ifpackagelater{newtxtt}{2014/11/18}%
+               {\txtt@upqtrue}%
+               {\ClassWarning{lni}{You are using an old version of 
+                `newtxtt'.\MessageBreak 
+                Option `straightquotes' will not be used!}}%
+%    \end{macrocode}         
+%    \begin{macrocode}
+         }%
+         {\IfFileExists{mathptmx.sty}
+            {\oldfontstrue}%
+            {\nofontstrue}%
+         }%
+%    \end{macrocode}         
+% for \hologo{XeTeX} or \hologo{LuaTeX} we use \pkg{fontspec}
+%    \begin{macrocode}
+   \else%
+      \IfFileExists{newtxmath.sty}
+         {\RequirePackage{newtxmath}}%
+         {}%
+      \RequirePackage[no-math]{fontspec}
+      \IfFontExistsTF{texgyretrmes-regular.otf}
+         {%
+          \setmainfont{texgyretermes}[
+             Extension = .otf,
+             UprightFont = *-regular,
+             BoldFont = *-bold,
+             ItalicFont = *-italic,
+             BoldItalicFont = *-bolditalic,
+             Ligatures=TeX
+             ]
+         }%
+         {\IfFileExists{mathptmx.sty}
+            {\oldfontstrue}%
+            {\nofontstrue}%
+         }%
+   \fi%         
+\fi%         
+\ifoldfonts
+   \RequirePackage{mathptmx}
+\else% nofonts activated
    \ClassWarning{lni}{Option `nofonts' set! I will use standard fonts
    \MessageBreak
    instead of the New TX fonts. Your document will NOT look like the
@@ -750,38 +812,7 @@ This work consists of the file  lni.dtx
    final result for publication. This should only be used if you have
    \MessageBreak
    no possibility to install fonts or upgrade your TeX installation!}%
-\else\ifoldfonts
-  \RequirePackage{mathptmx}
-\else
-   \ifPDFTeX
-      \RequirePackage{newtxtext}
-      \RequirePackage{newtxmath}
-      \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
-%    \end{macrocode}
-% For compatibility with version of \pkg{newtxtt} prior to v1.05 we set the 
-% option \opt{straightquotes} manually for recent versions
-%    \begin{macrocode}
-      \@ifpackagelater{newtxtt}{2014/11/18}%
-         {\txtt@upqtrue}%
-         {\ClassWarning{lni}{You are using an old version of 
-         `newtxtt'.\MessageBreak 
-          Option `straightquotes' will not be used!}}%
-%    \end{macrocode}
-% for \hologo{XeTeX} or \hologo{LuaTeX} we use \pkg{fontspec}
-%    \begin{macrocode}
-   \else
-      \usepackage{newtxmath}
-      \usepackage[no-math]{fontspec}
-      \setmainfont{texgyretermes}[
-        Extension = .otf,
-        UprightFont = *-regular,
-        BoldFont = *-bold,
-        ItalicFont = *-italic,
-        BoldItalicFont = *-bolditalic,
-        Ligatures=TeX
-      ]
-   \fi%
-\fi\fi%
+\fi%
 %    \begin{macrocode}
 \ifPDFTeX
    \RequirePackage[%
@@ -872,6 +903,21 @@ This work consists of the file  lni.dtx
    \setlength{\doihoffset}{4.2cm}
    \setlength{\doivoffset}{4.3cm}
 \fi%
+%    \end{macrocode}
+% We change \cs{small} and \cs{Large} to get the correct baseline skips
+%    \begin{macrocode}
+\renewcommand\small{%
+   \@setfontsize\small\@ixpt{10}%
+   \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus2\p@
+   \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 4\p@ \@plus2\p@ \@minus2\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\renewcommand\Large{\@setfontsize\Large\@xivpt{17}}
 %    \end{macrocode}
 %    \begin{macrocode}
 \RequirePackage[autostyle]{csquotes}
@@ -1021,13 +1067,13 @@ This work consists of the file  lni.dtx
   \vskip -24pt% Abstand vor dem Titel
   \raggedright % Linksbündig
   \let\footnote\thanks
-    {\fontsize{14}{17}\selectfont\bfseries\@title\par}%
+    {\Large\bfseries\@title\par}%
     \ifx\@subtitle\empty\else
       \vskip 16pt
-      {\fontsize{10}{12}\selectfont\bfseries\@subtitle}
+      {\normalsize\bfseries\@subtitle}
     \fi%
     \vskip 19pt% Abstand nach dem Titel
-    {\fontsize{10}{12}\selectfont
+    {\normalsize%
       \lineskip .5em%
         \@author
       \par}%
@@ -1057,9 +1103,8 @@ This work consists of the file  lni.dtx
 % \begin{environment}{abstract}
 %    \begin{macrocode}
 \renewenvironment*{abstract}{%
- \renewcommand{\abstractname}{Abstract}
- \fontsize{9}{10}\selectfont
-    \noindent\ignorespaces{\bfseries\abstractname:\ }%
+   \renewcommand{\abstractname}{Abstract}%
+   \small\noindent\ignorespaces{\bfseries\abstractname:\ }%
 }{\endquotation}  
 %    \end{macrocode}
 % \end{environment}
@@ -1067,7 +1112,7 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \newif\ifkeywords
 \newenvironment{keywords}%
-   {\global\keywordstrue\fontsize{9}{10}\selectfont%
+   {\global\keywordstrue\small%
     \def\and{\unskip;\space}%
     \noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
@@ -1079,26 +1124,18 @@ This work consists of the file  lni.dtx
 % Section headings
 %    \begin{macrocode}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\selectfont\bfseries}}
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 
+  4\p@}{\large\bfseries}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\selectfont\bfseries}}
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 
+  4\p@}{\normalsize\bfseries}}
 %    \end{macrocode}
 % Bildunterschriften
 %    \begin{macrocode}
-\setlength{\abovecaptionskip}{4pt}%Abstand vor der Bildunterschrift
-\setlength{\belowcaptionskip}{0pt}%Abstand nach der Bildunterschrift
+\RequirePackage{caption}
+\captionsetup[figure]{style=base,skip=4pt,font=small}
+\captionsetup[table]{style=base,skip=6pt,font=small}
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik
-\long\def\@makecaption#1#2{%
-  \vskip\abovecaptionskip
-  {\small
-   \sbox\@tempboxa{#1: #2}%
-  \ifdim \wd\@tempboxa >\hsize
-    #1: #2\par
-  \else
-    \global \@minipagefalse
-    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
-  \fi}
-  \vskip\belowcaptionskip}
 %    \end{macrocode}
 % Take care of floats
 %    \begin{macrocode}
@@ -1119,17 +1156,7 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \def\fps@table{htbp}
 \def\fnum@table{\tablename~\thetable}
-\renewcommand{\arraystretch}{1.1}%Abstand zu Linien in Tabelle
-\renewenvironment{table}
-   {\setlength\abovecaptionskip{6\p@}%
-    \setlength\belowcaptionskip{0\p@}%
-    \@float{table}}%
-   {\end@float}%
-\renewenvironment{table*}
-   {\setlength\abovecaptionskip{6\p@}%
-    \setlength\belowcaptionskip{0\p@}%
-    \@dblfloat{table}}%
-   {\end@dblfloat}%
+\renewcommand{\arraystretch}{1.1}
 %    \end{macrocode}
 % Indention for equations with fleqn option
 %    \begin{macrocode}
@@ -1336,7 +1363,7 @@ This work consists of the file  lni.dtx
 \renewenvironment{thebibliography}[1]
 {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
    \section*{\refname}%
-   \bgroup\fontsize{9}{10}\selectfont
+   \bgroup\small%
    \list{\@biblabel{\@arabic\c@enumiv}}%
    {\settowidth\labelwidth{\@biblabel{#1}}%
       \leftmargin\labelwidth
@@ -2812,7 +2839,8 @@ Firstname2 Lastname2\footnote{University, Department, Address, Country
 \maketitle
 
 \begin{abstract}
-Zusammenfassung / Some abstract
+This is a brief overview of the paper, which should be 70 to 150 words long and 
+include the most relevant points. This has to be a single paragraph.
 \end{abstract}
 \begin{keywords}
 Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2

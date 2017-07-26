@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/05/15 v1.4BETA Official class for submissions to the ``Lecture Notes
+    [2017/07/26 v1.4BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -49,10 +49,12 @@
 \DeclareOption{crop}{\croptrue}
 \newif\ifnofonts
 \nofontsfalse
-\DeclareOption{nofonts}{\nofontstrue}
+\DeclareOption{nofonts}{\nofontstrue\autofontsfalse}
 \newif\ifoldfonts
 \oldfontsfalse
-\DeclareOption{oldfonts}{\oldfontstrue}
+\DeclareOption{oldfonts}{\oldfontstrue\autofontsfalse}
+\newif\ifautofonts
+\autofontstrue
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -79,7 +81,52 @@
 \fi%
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
-\ifnofonts
+\ifautofonts
+   \ClassInfo{lni}{*******************************************************}
+   \MessageBreak
+   \ClassInfo{lni}{Checking for fonts ...}
+   \ClassInfo{lni}{*******************************************************}
+   \ifPDFTeX
+      \IfFileExists{newtxtext.sty}
+         {%
+            \RequirePackage{newtxtext}
+            \RequirePackage{newtxmath}
+            \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
+            \@ifpackagelater{newtxtt}{2014/11/18}%
+               {\txtt@upqtrue}%
+               {\ClassWarning{lni}{You are using an old version of
+                `newtxtt'.\MessageBreak
+                Option `straightquotes' will not be used!}}%
+         }%
+         {\IfFileExists{mathptmx.sty}
+            {\oldfontstrue}%
+            {\nofontstrue}%
+         }%
+   \else%
+      \IfFileExists{newtxmath.sty}
+         {\RequirePackage{newtxmath}}%
+         {}%
+      \RequirePackage[no-math]{fontspec}
+      \IfFontExistsTF{texgyretrmes-regular.otf}
+         {%
+          \setmainfont{texgyretermes}[
+             Extension = .otf,
+             UprightFont = *-regular,
+             BoldFont = *-bold,
+             ItalicFont = *-italic,
+             BoldItalicFont = *-bolditalic,
+             Ligatures=TeX
+             ]
+         }%
+         {\IfFileExists{mathptmx.sty}
+            {\oldfontstrue}%
+            {\nofontstrue}%
+         }%
+   \fi%
+\fi%
+\ifoldfonts
+   \RequirePackage{mathptmx}
+\else% nofonts activated
    \ClassWarning{lni}{Option `nofonts' set! I will use standard fonts
    \MessageBreak
    instead of the New TX fonts. Your document will NOT look like the
@@ -87,31 +134,7 @@
    final result for publication. This should only be used if you have
    \MessageBreak
    no possibility to install fonts or upgrade your TeX installation!}%
-\else\ifoldfonts
-  \RequirePackage{mathptmx}
-\else
-   \ifPDFTeX
-      \RequirePackage{newtxtext}
-      \RequirePackage{newtxmath}
-      \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
-      \@ifpackagelater{newtxtt}{2014/11/18}%
-         {\txtt@upqtrue}%
-         {\ClassWarning{lni}{You are using an old version of
-         `newtxtt'.\MessageBreak
-          Option `straightquotes' will not be used!}}%
-   \else
-      \usepackage{newtxmath}
-      \usepackage[no-math]{fontspec}
-      \setmainfont{texgyretermes}[
-        Extension = .otf,
-        UprightFont = *-regular,
-        BoldFont = *-bold,
-        ItalicFont = *-italic,
-        BoldItalicFont = *-bolditalic,
-        Ligatures=TeX
-      ]
-   \fi%
-\fi\fi%
+\fi%
 \ifPDFTeX
    \RequirePackage[%
       final,%
@@ -193,6 +216,18 @@
    \setlength{\doihoffset}{4.2cm}
    \setlength{\doivoffset}{4.3cm}
 \fi%
+\renewcommand\small{%
+   \@setfontsize\small\@ixpt{10}%
+   \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus2\p@
+   \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 4\p@ \@plus2\p@ \@minus2\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\renewcommand\Large{\@setfontsize\Large\@xivpt{17}}
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
   \RequirePackage[%
@@ -297,13 +332,13 @@
   \vskip -24pt% Abstand vor dem Titel
   \raggedright % Linksbündig
   \let\footnote\thanks
-    {\fontsize{14}{17}\selectfont\bfseries\@title\par}%
+    {\Large\bfseries\@title\par}%
     \ifx\@subtitle\empty\else
       \vskip 16pt
-      {\fontsize{10}{12}\selectfont\bfseries\@subtitle}
+      {\normalsize\bfseries\@subtitle}
     \fi%
     \vskip 19pt% Abstand nach dem Titel
-    {\fontsize{10}{12}\selectfont
+    {\normalsize%
       \lineskip .5em%
         \@author
       \par}%
@@ -329,13 +364,12 @@
   \par
 }%
 \renewenvironment*{abstract}{%
- \renewcommand{\abstractname}{Abstract}
- \fontsize{9}{10}\selectfont
-    \noindent\ignorespaces{\bfseries\abstractname:\ }%
+   \renewcommand{\abstractname}{Abstract}%
+   \small\noindent\ignorespaces{\bfseries\abstractname:\ }%
 }{\endquotation}
 \newif\ifkeywords
 \newenvironment{keywords}%
-   {\global\keywordstrue\fontsize{9}{10}\selectfont%
+   {\global\keywordstrue\small%
     \def\and{\unskip;\space}%
     \noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
@@ -343,23 +377,15 @@
 \pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}%
    {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{12}{14}\selectfont\bfseries}}
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus
+  4\p@}{\large\bfseries}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 4\p@}{\fontsize{10}{12}\selectfont\bfseries}}
-\setlength{\abovecaptionskip}{4pt}%Abstand vor der Bildunterschrift
-\setlength{\belowcaptionskip}{0pt}%Abstand nach der Bildunterschrift
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus
+  4\p@}{\normalsize\bfseries}}
+\RequirePackage{caption}
+\captionsetup[figure]{style=base,skip=4pt,font=small}
+\captionsetup[table]{style=base,skip=6pt,font=small}
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik
-\long\def\@makecaption#1#2{%
-  \vskip\abovecaptionskip
-  {\small
-   \sbox\@tempboxa{#1: #2}%
-  \ifdim \wd\@tempboxa >\hsize
-    #1: #2\par
-  \else
-    \global \@minipagefalse
-    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
-  \fi}
-  \vskip\belowcaptionskip}
 \def\fps@figure{htbp}
 \def\fnum@figure{\figurename~\thefigure}
 \def\@floatboxreset{%
@@ -374,17 +400,7 @@
 \renewcommand{\bottomfraction}{1.0}% Anteil den gleitende Objekte am Seitenende einnehmen dürfen
 \def\fps@table{htbp}
 \def\fnum@table{\tablename~\thetable}
-\renewcommand{\arraystretch}{1.1}%Abstand zu Linien in Tabelle
-\renewenvironment{table}
-   {\setlength\abovecaptionskip{6\p@}%
-    \setlength\belowcaptionskip{0\p@}%
-    \@float{table}}%
-   {\end@float}%
-\renewenvironment{table*}
-   {\setlength\abovecaptionskip{6\p@}%
-    \setlength\belowcaptionskip{0\p@}%
-    \@dblfloat{table}}%
-   {\end@dblfloat}%
+\renewcommand{\arraystretch}{1.1}
 \setlength{\mathindent}{0.5cm}
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
@@ -528,7 +544,7 @@
 \renewenvironment{thebibliography}[1]
 {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
    \section*{\refname}%
-   \bgroup\fontsize{9}{10}\selectfont
+   \bgroup\small%
    \list{\@biblabel{\@arabic\c@enumiv}}%
    {\settowidth\labelwidth{\@biblabel{#1}}%
       \leftmargin\labelwidth
