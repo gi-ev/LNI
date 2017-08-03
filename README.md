@@ -1,5 +1,7 @@
 # lni
 
+[![Build Status](https://circleci.com/gh/gi-ev/LNI/tree/master.svg?style=shield)](https://circleci.com/gh/gi-ev/LNI/)
+
 ```
 ----------------------------------------------------------------------------
 lni      -- A class for submissions to the ``Lecture Notes in Informatics''

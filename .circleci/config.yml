@@ -1,0 +1,12 @@
+version: 2
+jobs:
+   build:
+     docker:
+       - image: koppor/texlive
+     steps:
+       - checkout
+       - run: pdflatex lni.dtx
+       - run: pdflatex lni.dtx
+       - run: pdflatex lni.dtx
+       - run: touch mybibfile.bib
+       - run: pdflatex lni-author-template
