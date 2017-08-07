@@ -1,0 +1,175 @@
+% !TeX spellcheck = de_DE
+
+% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass[utf8,biblatex]{lni}
+\bibliography{lni-paper-example-de}
+
+% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
+\usepackage{booktabs}
+
+% Zu Demonstrationszwecken
+\usepackage[math]{blindtext}
+\usepackage{mwe}
+
+%% BibLaTeX-Sonderkonfiguration,
+%% falls man schnell eine existierende Bibliographie wiederverwenden will, aber nicht die .bib-Datei händisch anpassen möchte.
+%% Bitte \iffalse und \fi entfernen, dann ist diese Konfiguration aktiviert.
+
+\iffalse
+\AtEveryBibitem{%
+  \ifentrytype{article}{%
+  }{%
+    \clearfield{doi}%
+    \clearfield{issn}%
+    \clearfield{url}%
+    \clearfield{urldate}%
+  }%
+  \ifentrytype{inproceedings}{%
+  }{%
+    \clearfield{doi}%
+    \clearfield{issn}%
+    \clearfield{url}%
+    \clearfield{urldate}%
+  }%
+}
+\fi
+
+\begin{document}
+%%% Mehrere Autoren werden durch \and voneinander getrennt.
+%%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
+%%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
+\title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
+Worten und noch mehr Buchstaben}
+%%%\subtitle{Untertitel / Subtitle} % falls benötigt
+\author[Vorname1 Nachname1 \and Vorname2 Nachname2]
+{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort,
+Land \email{emailaddress@author1}} \and
+Vorname2 Nachname2\footnote{University, Department, Address, Country
+\email{emailaddress@author2}}}
+\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page
+\editor{Herausgeber et al.} % Namen der Herausgeber
+\booktitle{Name-der-Konferenz} % Name des Tagungsband
+\year{2017}
+%%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
+\maketitle
+
+\begin{abstract}
+Die \LaTeX-Klasse \texttt{lni} setzt die Layout-Vorgaben für Beiträge in LNI Konferenzbänden um.
+Dieses Dokument beschreibt ihre Verwendung und ist ein Beispiel für die entsprechende Darstellung.
+Der Abstract ist ein kurzer Überblick über die Arbeit der zwischen 70 und 150 Wörtern lang sein und das Wichtigste enthalten sollte.
+Die Formatierung erfolgt automatisch innerhalb des abstract-Bereichs.
+\end{abstract}
+
+\begin{keywords}
+LNI Guidelines \and \LaTeX Vorlage
+\end{keywords}
+
+\section{Verwendung}
+Die GI gibt unter \url{http://www.gi-ev.de/LNI} Vorgaben für die Formatierung von Dokumenten in der LNI Reihe.
+Für \LaTeX-Dokumente werden diese durch die Dokumentenklasse \texttt{lni} realisiert.
+
+Dieses Dokument basiert auf der offiziellen Dokumentation, simplifiziert und setzt grundlegendes LaTeX-Wissen voraus.
+Es werden generische Platzhalter an die entsprechenden Stellen (wie beispielsweise die Authoren-Angaben) gesetzt und nicht weiter an anderer Stelle dokumentiert.
+
+Dieses Template ist wie folgt gegliedert:
+\Cref{sec:demos} zeigt Demonstrationen der LNI-Verlage.
+\Cref{sec:lniconformance} zeigt die Einhaltung der Richtlinien durch einfachen Text.
+
+\section{Demonstrationen}
+\label{sec:demos}
+Das Symbol für Potenzmengen ($\powerset$) wird korrekt angezeigt.
+Es ist kein Weierstraß-p ($\wp$) mehr.
+
+Spitze Klammen können direkt eingegeben werden: <test />
+
+Hier eine kleine Demonstration von \href{https://www.ctan.org/pkg/microtype}{microtype}:
+\blindtext
+
+\section{Demonstration der Einhaltung der Richtlinien}
+\label{sec:lniconformance}
+
+\subsection{Literaturverzeichnis}
+Der letzte Abschnitt zeigt ein beispielhaftes Literaturverzeichnis für Bücher mit einem Autor \cite{Ez10} und zwei AutorInnen \cite{AB00}, einem Beitrag in Proceedings mit drei AutorInnen \cite{ABC01}, einem Beitrag in einem LNI Band mit mehr als drei AutorInnen \cite{Az09}, zwei Bücher mit den jeweils selben vier AutorInnen im selben Erscheinungsjahr \cite{Wa14} und \cite{Wa14b}, ein Journal \cite{Gl06}, eine Website \cite{GI14} bzw.\ anderweitige Literatur ohne konkrete AutorInnenschaft \cite{XX14}.
+Es wird biblatex verwendet, da es UTF8 sauber unterstützt und \href{https://github.com/gi-ev/LNI/issues/5}{im Gegensatz zu lni.bst} keine Fehler beim bibtexen auftreten.
+
+Referenzen sollten nicht direkt als Subjekt eingebunden werden, sondern immer nur durch Authorenanganben:
+Beispiel: \Citet{AB00} geben ein Beispiel, aber auch \citet{Az09}.
+Hinweis: Großes C bei Citet, wenn es am Satzanfang steht. Analog zu Cref.
+
+Formatierung und Abkürzungen werden für die Referenzen \texttt{book}, \texttt{inbook}, \texttt{proceedings}, \texttt{inproceedings}, \texttt{article}, \texttt{online} und \texttt{misc} automatisch vorgenommen.
+Mögliche Felder für Referenzen können der Beispieldatei \texttt{paper.bib} entnommen werden.
+Andere Referenzen bzw.\ Felder müssen allenfalls nachträglich angepasst werden.
+
+\subsection{Abbildungen}
+\Cref{fig:demo} zeigt eine Abbildung.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{example-image}
+  \caption{Demographik}
+  \label{fig:demo}
+\end{figure}
+
+\subsection{Tabellen}
+\Cref{tab:demo} zeigt eine Tabelle.
+
+\begin{table}
+\centering
+\begin{tabular}{lll}
+\toprule
+Überschriftsebenen & Beispiel & Schriftgröße und -art \\
+\midrule
+Titel (linksbündig) & Der Titel \ldots & 14 pt, Fett\\
+Überschrift 1 & 1 Einleitung & 12 pt, Fett\\
+Überschrift 2 & 2.1 Titel & 10 pt, Fett\\
+\bottomrule
+\end{tabular}
+\caption{Die Überschriftsarten}
+\label{tab:demo}
+\end{table}
+
+\subsection{Programmcode}
+Die LNI-Formatvorlage verlangt die Einrückung von Listings vom linken Rand.
+In der \texttt{lni}-Dokumentenklasse ist dies für die \texttt{verbatim}-Umgebung realisiert.
+
+\begin{verbatim}
+public class Hello {
+    public static void main (String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+\end{verbatim}
+
+Alternativ kann auch die \texttt{lstlisting}-Umgebung verwendet werden.
+
+\Cref{L1} zeigt uns ein Beispiel, das mit Hilfe der \texttt{lstlisting}-Umgebung realisiert ist.
+
+\lstset{basicstyle=\ttfamily}
+\begin{lstlisting} [captionpos=b, caption=Beschreibung, label=L1, xleftmargin=0.5cm]
+public class Hello {
+    public static void main (String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+\end{lstlisting}
+
+\subsection{Formeln und Gleichungen}
+
+Die korrekte Einrückung und Nummerierung für Formeln ist bei den Umgebungen \texttt{equation} und \texttt{eqnarray} gewährleistet.
+
+\begin{equation}
+  1=4-3
+\end{equation}
+und
+\begin{eqnarray}
+  2=7-5\\
+  3=2-1
+\end{eqnarray}
+
+% \bibliography{paper} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
+% Starten Sie "biber paper", um eine Biliographie zu erzeugen.
+\printbibliography
+
+\end{document}
