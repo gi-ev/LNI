@@ -255,6 +255,10 @@
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
+% Fix basewidth for lstlistings:
+% "The default setting of listings with "fixed columns" has a space 0.6em wide, while the characters in Computer Modern Typewriter are 0.5em wide"
+% Source: https://tex.stackexchange.com/a/179072/9075
+\lstset{basicstyle=\ttfamily, columns=fixed, basewidth=.5em, xleftmargin=0.5cm, captionpos=b}
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
 \renewcommand\@pnumwidth{3em}
