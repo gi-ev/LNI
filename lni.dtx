@@ -955,6 +955,12 @@ This work consists of the file  lni.dtx
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
 %    \end{macrocode}
+% We fix the basewidth for lstlistings:
+% The default setting of listings with ``fixed columns'' has a space 0.6em wide, while the characters in TX Typewriter (as in Computer Modern Typewriter) are 0.5em wide.
+% Source: https://tex.stackexchange.com/a/179072/9075
+%    \begin{macrocode}
+\lstset{basicstyle=\ttfamily, columns=fixed, basewidth=.5em, xleftmargin=0.5cm, captionpos=b}
+%    \end{macrocode}
 % Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der 
 % Abstände
 %    \begin{macrocode}
