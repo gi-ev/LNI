@@ -119,7 +119,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/07/26 v1.4BETA Official class for submissions to the ``Lecture Notes 
+    [2017/09/29 v1.4BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -264,6 +264,8 @@ This work consists of the file  lni.dtx
 % available}
 % \changes{v1.4}{2017/07/26}{Added package \pkg{caption} and changed all 
 % \cs{fontsize} calls to nativ \LaTeX{} macros}
+% \changes{v1.4}{2017/09/11}{Fixed basewidth for lstlistings}
+% \changes{v1.4}{2017/09/29}{Fixed font size for \cs{Large}}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -919,7 +921,7 @@ This work consists of the file  lni.dtx
                \itemsep \parsep}%
    \belowdisplayskip \abovedisplayskip
 }
-\renewcommand\Large{\@setfontsize\Large\@xivpt{17}}
+\renewcommand\Large{\@setfontsize\Large{14}{17}}
 %    \end{macrocode}
 %    \begin{macrocode}
 \RequirePackage[autostyle]{csquotes}
@@ -954,6 +956,12 @@ This work consists of the file  lni.dtx
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
+%    \end{macrocode}
+% We fix the basewidth for lstlistings:
+% The default setting of listings with ``fixed columns'' has a space 0.6em wide, while the characters in TX Typewriter (as in Computer Modern Typewriter) are 0.5em wide.
+% Source: https://tex.stackexchange.com/a/179072/9075
+%    \begin{macrocode}
+\lstset{basicstyle=\ttfamily, columns=fixed, basewidth=.5em, xleftmargin=0.5cm, captionpos=b}
 %    \end{macrocode}
 % Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der 
 % Abstände

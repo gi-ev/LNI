@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/07/26 v1.4BETA Official class for submissions to the ``Lecture Notes
+    [2017/09/29 v1.4BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -229,7 +229,7 @@
                \itemsep \parsep}%
    \belowdisplayskip \abovedisplayskip
 }
-\renewcommand\Large{\@setfontsize\Large\@xivpt{17}}
+\renewcommand\Large{\@setfontsize\Large{14}{17}}
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
   \RequirePackage[%
@@ -255,9 +255,6 @@
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
-% Fix basewidth for lstlistings:
-% "The default setting of listings with "fixed columns" has a space 0.6em wide, while the characters in Computer Modern Typewriter are 0.5em wide"
-% Source: https://tex.stackexchange.com/a/179072/9075
 \lstset{basicstyle=\ttfamily, columns=fixed, basewidth=.5em, xleftmargin=0.5cm, captionpos=b}
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}

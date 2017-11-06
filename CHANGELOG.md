@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Package `caption` is loaded in order to make the class more robust ([#59](https://github.com/gi-ev/LNI/issues/59))
 
+### Fixed
+- Basewidth for `lstlistings` ([#62](https://github.com/gi-ev/LNI/issues/62))
+- Font size for `\Large`
+
+
 ## [1.3.0] - 2017-05-15
 ### Added
 - New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/52))
