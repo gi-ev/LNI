@@ -255,7 +255,12 @@
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
-\lstset{basicstyle=\ttfamily, columns=fixed, basewidth=.5em, xleftmargin=0.5cm, captionpos=b}
+\lstset{%
+   basicstyle=\ttfamily,%
+   columns=fixed,%
+   basewidth=.5em,%
+   xleftmargin=0.5cm,%
+   captionpos=b}%
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
 \renewcommand\@pnumwidth{3em}
@@ -388,6 +393,7 @@
 \RequirePackage{caption}
 \captionsetup[figure]{style=base,skip=4pt,font=small}
 \captionsetup[table]{style=base,skip=6pt,font=small}
+\captionsetup[lstlisting]{style=base,skip=6pt,font=small}
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik
 \def\fps@figure{htbp}
 \def\fnum@figure{\figurename~\thefigure}

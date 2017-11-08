@@ -279,9 +279,10 @@ This work consists of the file  lni.dtx
 % available}
 % \changes{v1.4}{2017/07/26}{Added package \pkg{caption} and changed all 
 % \cs{fontsize} calls to nativ \LaTeX{} macros}
-% \changes{v1.4}{2017/09/11}{Fixed basewidth for lstlistings}
+% \changes{v1.4}{2017/09/11}{Fixed basewidth for \env{lstlistings}}
 % \changes{v1.4}{2017/09/29}{Fixed font size for \cs{Large}}
 % \changes{v1.4}{2017/11/08}{Add German template}
+% \changes{v1.4}{2017/11/08}{Adapting captions of \env{lstlistings}}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -974,10 +975,17 @@ This work consists of the file  lni.dtx
 \RequirePackage{listings}
 %    \end{macrocode}
 % We fix the basewidth for lstlistings:
-% The default setting of listings with ``fixed columns'' has a space 0.6em wide, while the characters in TX Typewriter (as in Computer Modern Typewriter) are 0.5em wide.
+% The default setting of listings with ``fixed columns'' has a space 0.6em
+% wide, while the characters in TX Typewriter (as in Computer Modern
+% Typewriter) are 0.5em wide.
 % Source: https://tex.stackexchange.com/a/179072/9075
 %    \begin{macrocode}
-\lstset{basicstyle=\ttfamily, columns=fixed, basewidth=.5em, xleftmargin=0.5cm, captionpos=b}
+\lstset{%
+   basicstyle=\ttfamily,%
+   columns=fixed,%
+   basewidth=.5em,%
+   xleftmargin=0.5cm,%
+   captionpos=b}%
 %    \end{macrocode}
 % Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der 
 % Abstände
@@ -1161,6 +1169,7 @@ This work consists of the file  lni.dtx
 \RequirePackage{caption}
 \captionsetup[figure]{style=base,skip=4pt,font=small}
 \captionsetup[table]{style=base,skip=6pt,font=small}
+\captionsetup[lstlisting]{style=base,skip=6pt,font=small}
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik
 %    \end{macrocode}
 % Take care of floats
@@ -2968,16 +2977,16 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 @Comment{jabref-meta: databaseType:biblatex;}
 %</exampledebib>
 %<*exampledetex>
-% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
+%% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}
 
 \documentclass[utf8,biblatex]{lni}
 \bibliography{lni-paper-example-de}
 
-% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
+%% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
 \usepackage{booktabs}
 
-% Zu Demonstrationszwecken
+%% Zu Demonstrationszwecken
 \usepackage[math]{blindtext}
 \usepackage{mwe}
 
