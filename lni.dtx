@@ -51,6 +51,10 @@ License:| Released under the LaTeX Project Public License v1.3c or later
 \perCent\space !TeX encoding = UTF-8^^J%
 \perCent\space !TeX program = pdflatex^^J%
 \perCent\space !BIB program = bibtex^^J%
+}
+
+\def\templatepreger{%
+\perCent\space !TeX encoding = UTF-8^^J%
 \perCent\space !TeX spellcheck = de_DE^^J%
 }
 
@@ -109,10 +113,11 @@ This work consists of the file  lni.dtx
   \file{lni-author-template.tex}{\from{\jobname.dtx}{template}}
 }
 \generate{
-  \file{lni-paper-example-de.bib}{\from{\jobname.dtx}{example-de-bib}}
+  \file{lni-paper-example-de.bib}{\from{\jobname.dtx}{exampledebib}}
 }
 \generate{
-  \file{lni-paper-example-de.tex}{\from{\jobname.dtx}{example-de-tex}}
+  \usepreamble\templatepreger  
+  \file{lni-paper-example-de.tex}{\from{\jobname.dtx}{exampledetex}}
 }
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
@@ -129,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2017/09/29 v1.4BETA Official class for submissions to the ``Lecture Notes 
+    [2017/11/08 v1.4BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -276,6 +281,7 @@ This work consists of the file  lni.dtx
 % \cs{fontsize} calls to nativ \LaTeX{} macros}
 % \changes{v1.4}{2017/09/11}{Fixed basewidth for lstlistings}
 % \changes{v1.4}{2017/09/29}{Fixed font size for \cs{Large}}
+% \changes{v1.4}{2017/11/08}{Add German template}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -2868,7 +2874,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \bibliography{mybibfile} %\printbibliography if you use biblatex/Biber
 \end{document}
 %</template>
-%<*example-de-bib>
+%<*exampledebib>
 % Encoding: UTF-8
 
 @InProceedings{ABC01,
@@ -2960,10 +2966,8 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}
-%</example-de-bib>
-%<*example-de-tex>
-% !TeX spellcheck = de_DE
-
+%</exampledebib>
+%<*exampledetex>
 % Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}
 
@@ -3133,6 +3137,6 @@ und
 \printbibliography
 
 \end{document}
-%</example-de-tex>
+%</exampledetex>
 %    \end{macrocode}
 %\fi 
