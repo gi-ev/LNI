@@ -1304,6 +1304,8 @@ EXECUTE {end.bib}
 %%           and the derived files lni.pdf
 %%                                 lni.cls
 %%                                 lni-author-template.tex
+%%                                 lni-paper-example-de.bib
+%%                                 lni-paper-example-de.tex
 %%                                 lni.bst
 %%                                 lnig.bst
 %%

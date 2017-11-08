@@ -10,3 +10,7 @@ jobs:
        - run: pdflatex lni.dtx
        - run: touch mybibfile.bib
        - run: pdflatex lni-author-template
+       - run: pdflatex lni-paper-example-de
+       - run: biber lni-paper-example-de
+       - run: pdflatex lni-paper-example-de
+       - run: pdflatex lni-paper-example-de
