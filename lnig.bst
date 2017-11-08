@@ -5,7 +5,15 @@
 %% The original source files were:
 %%
 %% lni.dtx  (with options: `bibtex,ger')
+%% lnig.bst
+%% Lecture Notes in Informatics Style File (german)
+%% Version 1.0 (2017/04/07)
 %% 
+%% The Style File is based on alpha.bst
+%% 
+%% This work may be freely used,
+%% distributed and modified.
+%% Modified files should be clearly indicated as such and renamed.
 ENTRY
   { address
     author

@@ -5,13 +5,13 @@
 %% The original source files were:
 %%
 %% lni.dtx  (with options: `class')
-%% -------:| -----------------------------------------------------------------
+%% --------| -----------------------------------------------------------------
 %%     lni:| A class for submissions to the ``Lecture Notes in Informatics''
 %%  Author:| Martin Sievers
 %%   Email:| martin.sievers@schoenerpublizieren.de
 %% License:| Released under the LaTeX Project Public License v1.3c or later
 %%     See:| http://www.latex-project.org/lppl.txt
-%% 
+%% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
     [2017/09/29 v1.4BETA Official class for submissions to the ``Lecture Notes

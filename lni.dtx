@@ -14,45 +14,46 @@
 \keepsilent
 \askforoverwritefalse
 \declarepreamble\bibtexengpre
-%% 
-%% lnig.bst
-%% Lecture Notes in Informatics Style File (english)
-%% Version 1.0 (2017/04/07)
-%%
-%%
-%% The Style File is based on alpha.bst
-%%
-%% This work may be freely used,
-%% distributed and modified.
-%% Modified files should be clearly indicated as such and renamed.
-%%
-%
+lnig.bst
+Lecture Notes in Informatics Style File (english)
+Version 1.0 (2017/04/07)
+
+The Style File is based on alpha.bst
+
+This work may be freely used,
+distributed and modified.
+Modified files should be clearly indicated as such and renamed.
 \endpreamble
 
 \declarepreamble\bibtexgerpre
-%% 
-%% lnig.bst
-%% Lecture Notes in Informatics Style File (german)
-%% Version 1.0 (2017/04/07)
-%%
-%% The Style File is based on alpha.bst
-%%
-%% This work may be freely used,
-%% distributed and modified.
-%% Modified files should be clearly indicated as such and renamed.
-%%
-%
+lnig.bst
+Lecture Notes in Informatics Style File (german)
+Version 1.0 (2017/04/07)
+
+The Style File is based on alpha.bst
+
+This work may be freely used,
+distributed and modified.
+Modified files should be clearly indicated as such and renamed.
 \endpreamble
 
 \declarepreamble\classpre
--------:| -----------------------------------------------------------------
+--------| -----------------------------------------------------------------
     lni:| A class for submissions to the ``Lecture Notes in Informatics''
  Author:| Martin Sievers
   Email:| martin.sievers@schoenerpublizieren.de
 License:| Released under the LaTeX Project Public License v1.3c or later
     See:| http://www.latex-project.org/lppl.txt
-
+--------| -----------------------------------------------------------------
 \endpreamble
+
+\def\templatepre{%
+\perCent\space !TeX encoding = UTF-8^^J%
+\perCent\space !TeX program = pdflatex^^J%
+\perCent\space !BIB program = bibtex^^J%
+\perCent\space !TeX spellcheck = de_DE^^J%
+}
+
 \postamble
 
 Copyright (C) 2016-2017 by Gesellschaft für Informatik e.V. (GI)
@@ -102,6 +103,7 @@ This work consists of the file  lni.dtx
 \nopreamble\nopostamble
 \usedir{doc/latex/lni}
 \generate{
+  \usepreamble\templatepre
   \file{lni-author-template.tex}{\from{\jobname.dtx}{template}}
 }
 \ifx\fmtname\nameofplainTeX
@@ -411,7 +413,7 @@ This work consists of the file  lni.dtx
 % % !TeX program = pdflatex
 % % !BIB program = bibtex8
 % % !TeX encoding = UTF-8
-% % !TeX spellcheck = en_GB
+% !TeX spellcheck = de_DE
 % \documentclass[english]{lni}
 % \end{examplecode}
 %
@@ -2817,10 +2819,6 @@ EXECUTE {end.bib}
 %</eng|ger>
 %</bibtex>
 %<*template>
-%% !TeX encoding = UTF-8
-%% !TeX program = pdflatex
-%% !BIB program = bibtex
-%%
 %%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne 
 %%% Parameter zu laden.
 \documentclass[]{lni}
