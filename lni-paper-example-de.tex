@@ -40,16 +40,13 @@
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
 %%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
-\title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
-Worten und noch mehr Buchstaben}
+\title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen Worten und noch mehr Buchstaben}
 %%%\subtitle{Untertitel / Subtitle} % falls benötigt
 \author[Vorname1 Nachname1 \and Vorname2 Nachname2]
-{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort,
-Land \email{emailaddress@author1}} \and
-Vorname2 Nachname2\footnote{University, Department, Address, Country
-\email{emailaddress@author2}}}
-\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page
-\editor{Herausgeber et al.} % Namen der Herausgeber
+{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort, Land \email{emailaddress@author1}} \and
+ Vorname2 Nachname2\footnote{University, Department, Address, Country \email{emailaddress@author2}}}
+\startpage{11} % Beginn der Seitenzählung für diesen Beitrag
+\editor{Herausgeber et al.}    % Namen der Herausgeber
 \booktitle{Name-der-Konferenz} % Name des Tagungsband
 \year{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
@@ -96,11 +93,11 @@ Es wird biblatex verwendet, da es UTF8 sauber unterstützt und \href{https://git
 
 Referenzen sollten nicht direkt als Subjekt eingebunden werden, sondern immer nur durch Authorenanganben:
 Beispiel: \Citet{AB00} geben ein Beispiel, aber auch \citet{Az09}.
-Hinweis: Großes C bei Citet, wenn es am Satzanfang steht. Analog zu Cref.
+Hinweis: Großes C bei \texttt{Citet}, wenn es am Satzanfang steht. Dies ist analog zu \texttt{Cref}.
 
 Formatierung und Abkürzungen werden für die Referenzen \texttt{book}, \texttt{inbook}, \texttt{proceedings}, \texttt{inproceedings}, \texttt{article}, \texttt{online} und \texttt{misc} automatisch vorgenommen.
-Mögliche Felder für Referenzen können der Beispieldatei \texttt{paper.bib} entnommen werden.
-Andere Referenzen bzw.\ Felder müssen allenfalls nachträglich angepasst werden.
+Mögliche Felder für Referenzen können der Beispieldatei \texttt{lni-paper-example-de.bib} entnommen werden.
+Andere Referenzen sowie Felder müssen allenfalls nachträglich angepasst werden.
 
 \subsection{Abbildungen}
 \Cref{fig:demo} zeigt eine Abbildung.
@@ -167,7 +164,7 @@ und
   3=2-1
 \end{eqnarray}
 
-% \bibliography{paper} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
+% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
 % Starten Sie "biber paper", um eine Biliographie zu erzeugen.
 \printbibliography
 
