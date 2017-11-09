@@ -218,6 +218,7 @@
    \setlength{\doihoffset}{4.2cm}
    \setlength{\doivoffset}{4.3cm}
 \fi%
+\let\oldsmall\small%
 \renewcommand\small{%
    \@setfontsize\small\@ixpt{10}%
    \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
@@ -291,7 +292,7 @@
 \def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
    \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
 \newcommand{\authorrunning}[1]{%
-   \fancyhead[LE]{\hspace{0.05cm}\fontsize{9}{11}\selectfont\thepage\hspace{5pt}#1}}
+   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
 \newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
@@ -391,8 +392,9 @@
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus
   4\p@}{\normalsize\bfseries}}
 \RequirePackage{caption}
-\captionsetup[figure]{style=base,skip=4pt,font=small}
-\captionsetup[table]{style=base,skip=6pt,font=small}
+\DeclareCaptionFont{oldsmall}{\oldsmall}
+\captionsetup[figure]{style=base,skip=4pt,font=oldsmall}
+\captionsetup[table]{style=base,skip=6pt,font=oldsmall}
 \captionsetup[lstlisting]{style=base,skip=6pt,font=small}
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik
 \def\fps@figure{htbp}

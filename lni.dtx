@@ -283,8 +283,8 @@ This work consists of the file  lni.dtx
 % \changes{v1.4}{2017/09/29}{Fixed font size for \cs{Large}}
 % \changes{v1.4}{2017/11/08}{Added full example for an article in German}
 % \changes{v1.4}{2017/11/08}{Adapting captions of \env{lstlistings}}
-% \changes{v1.4}{2017/11/08}{Fix font size bug reagarding the running header: 
-% \cs{small} was redefined, so we need an explicit font set here}
+% \changes{v1.4}{2017/11/08}{Fix font size bug reagarding the running header 
+% and the captions: \cs{small} was redefined, so we need an \cs{oldsmall} here}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -927,8 +927,10 @@ This work consists of the file  lni.dtx
    \setlength{\doivoffset}{4.3cm}
 \fi%
 %    \end{macrocode}
-% We change \cs{small} and \cs{Large} to get the correct baseline skips
+% We change \cs{small} and \cs{Large} to get the correct baseline skips and add 
+% an \cs{oldsmall}
 %    \begin{macrocode}
+\let\oldsmall\small%
 \renewcommand\small{%
    \@setfontsize\small\@ixpt{10}%
    \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
@@ -1040,7 +1042,7 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\authorrunning}
 %    \begin{macrocode}
 \newcommand{\authorrunning}[1]{%
-   \fancyhead[LE]{\hspace{0.05cm}\fontsize{9}{11}\selectfont\thepage\hspace{5pt}#1}}
+   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\email}
@@ -1169,8 +1171,9 @@ This work consists of the file  lni.dtx
 % Bildunterschriften
 %    \begin{macrocode}
 \RequirePackage{caption}
-\captionsetup[figure]{style=base,skip=4pt,font=small}
-\captionsetup[table]{style=base,skip=6pt,font=small}
+\DeclareCaptionFont{oldsmall}{\oldsmall}
+\captionsetup[figure]{style=base,skip=4pt,font=oldsmall}
+\captionsetup[table]{style=base,skip=6pt,font=oldsmall}
 \captionsetup[lstlisting]{style=base,skip=6pt,font=small}
 \setlength{\intextsep}{6pt}%Abstand nach der Grafik
 %    \end{macrocode}
