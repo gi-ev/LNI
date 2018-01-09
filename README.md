@@ -1,6 +1,4 @@
-# lni
-
-[![Build Status](https://circleci.com/gh/gi-ev/LNI/tree/master.svg?style=shield)](https://circleci.com/gh/gi-ev/LNI/)
+# lni [![Build Status](https://circleci.com/gh/gi-ev/LNI/tree/master.svg?style=shield)](https://circleci.com/gh/gi-ev/LNI/) [![CTAN](https://img.shields.io/badge/CTAN-lni-blue.svg?style=flat-square)](https://ctan.org/pkg/lni)
 
 ```
 ----------------------------------------------------------------------------
