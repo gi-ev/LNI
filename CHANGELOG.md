@@ -60,6 +60,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2017-04-07
 First release of the revised files
 
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.4...HEAD
 [1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.4
 [1.3.0]: https://github.com/gi-ev/LNI/releases/tag/v1.3
 [1.2.0]: https://github.com/gi-ev/LNI/releases/tag/v1.2
