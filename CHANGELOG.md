@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Basewidth for `lstlistings` ([#62](https://github.com/gi-ev/LNI/issues/62))
 - Adapting captions of `lstlistings`
-
+- License statement of paper: CC-BY-SA instead of CC-BY-NC ([#67](https://github.com/gi-ev/LNI/issues/67))
 
 ## [1.3.0] - 2017-05-15
 

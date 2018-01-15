@@ -356,9 +356,9 @@
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
       \ifusehyperref
-        \href{https://creativecommons.org/licenses/by-nc/3.0/}{\ccbynceu}
+        \href{https://creativecommons.org/licenses/by-sa/4.0/}{\ccbysa}
       \else
-        \ccbynceu
+        \ccbysa
       \fi
       \ifdefempty{\@lnidoi}{}{
         \footnotesize
