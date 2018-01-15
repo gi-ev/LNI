@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2017/11/08 v1.4BETA Official class for submissions to the ``Lecture Notes
+    [2018/01/15 v1.4 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -585,7 +585,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2017 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2018 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
