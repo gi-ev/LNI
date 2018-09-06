@@ -504,10 +504,9 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \ifusehyperref
-   \RequirePackage[pdfusetitle]{hyperref}
+   \RequirePackage[pdfusetitle,bookmarks=false]{hyperref}
    \hypersetup{%
       pdfdisplaydoctitle,
-      bookmarks=false,%
       colorlinks=true,%
       allcolors=black,%
       %%%pdfpagelayout=TwoPageRight,%
