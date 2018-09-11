@@ -1359,10 +1359,9 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \ifusehyperref
    \AtEndPreamble{%
-      \RequirePackage[pdfusetitle]{hyperref}
+      \RequirePackage[pdfusetitle,bookmarks=false]{hyperref}
       \hypersetup{%
-         pdfdisplaydoctitle,
-         bookmarks=false,%
+         pdfdisplaydoctitle,%
          colorlinks=true,%
          allcolors=black,%
          pdfstartview=Fit%

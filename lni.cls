@@ -507,10 +507,9 @@
 \RequirePackage{xspace}
 \ifusehyperref
    \AtEndPreamble{%
-      \RequirePackage[pdfusetitle]{hyperref}
+      \RequirePackage[pdfusetitle,bookmarks=false]{hyperref}
       \hypersetup{%
-         pdfdisplaydoctitle,
-         bookmarks=false,%
+         pdfdisplaydoctitle,%
          colorlinks=true,%
          allcolors=black,%
          pdfstartview=Fit%
