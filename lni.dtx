@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2018/01/15 v1.5BETA Official class for submissions to the ``Lecture Notes 
+    [2018/09/11 v1.5BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -285,6 +285,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.4}{2017/11/08}{Adapting captions of \env{lstlistings}}
 % \changes{v1.4}{2017/11/08}{Fix font size bug regarding the running header 
 % and the captions: \cs{small} was redefined, so we need an \cs{oldsmall} here}
+% \changes{v1.5}{2018/09/11}{Postpone loading of \pkg{cleveref}}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -400,17 +401,18 @@ This work consists of the file  lni.dtx
 % within the articles. If you consider problems or just do not want that 
 % feature, you can disable it by using the option \opt{nohyperref}.
 %
-% \DescribeOption{nofonts\space(new in v1.3, deprecated in v1.4)}On old systems you might not
-% have installed the New TX fonts. If for whatever reason the \opt{oldfonts} option 
+% \DescribeOption{nofonts\space(new in v1.3, deprecated in v1.4)}On old systems 
+% you might not have installed the New TX fonts. If for whatever reason the 
+% \opt{oldfonts} option 
 % does not work for you, you can activate option \opt{nofonts}. This allows to 
 % suppress font loading completely using the engines standard fonts instead.
-% Usually there should be no need to do so. Please note, that your output will differ 
-% from the publishers'.
+% Usually there should be no need to do so. Please note, that your output will 
+% differ from the publishers'.
 %
 % \DescribeOption{oldfonts\space(new in v1.4)}On older systems you might not
 % have installed the New TX fonts. Therefore option \opt{oldfonts} allows to
-% to load the package \pkg{mathptmx} instead of the New TX fonts. The output will
-% be in accordance to (or at least near) the publisher's requirements.
+% to load the package \pkg{mathptmx} instead of the New TX fonts. The output 
+% will be in accordance to (or at least near) the publisher's requirements.
 %
 % \newpage
 % \section{Setting up a document}
@@ -584,14 +586,20 @@ This work consists of the file  lni.dtx
 % specific programming language.
 %
 % \subsubsection{Math}
-% If you need mathematics, you can load packages \pkg{amsmath} and \pkg{mathtools} for 
+% If you need mathematics, you can load packages \pkg{amsmath} and 
+% \pkg{mathtools} for 
 % additional features. The \lni{} class offers by default the command 
 % \cs{powerset} to render the powerset symbol correctly as $\powerset$ and not 
 % as Weierstrass p ($\wp$).
 %
 % \subsubsection{Abbreviations and initialisms}
-% \DescribeMacro{\eg}\DescribeMacro{\ie}\DescribeMacro{\cf}\DescribeMacro{\etal}%
-% To achieve consistent typesetting of common abbreviations, macros are predefined by the class. These macros should \emph{consistently} being used instead of writing the plain version. For example use \verb|\eg| rather than {\verb|e.g.,|}. The macros take care of spacing within and after the abbreviations.
+% \DescribeMacro{\eg}\DescribeMacro{\ie}\DescribeMacro{\cf}%
+% \DescribeMacro{\etal}%
+% To achieve consistent typesetting of common abbreviations, macros are 
+% predefined by the class. These macros should \emph{consistently} being used 
+% instead of writing the plain version. For example use \verb|\eg| rather than 
+% {\verb|e.g.,|}. The macros take care of spacing within and after the 
+% abbreviations.
 % \begin{itemize}
 % \item \cs{eg} for e.\,g.
 % \item \cs{ie} for i.\,e.
@@ -600,7 +608,10 @@ This work consists of the file  lni.dtx
 % \end{itemize}
 %
 % \DescribeMacro{\OMG}\DescribeMacro{\BPM}\DescribeMacro{\BPMN}\DescribeMacro{\UML}%
-% In addition to common abbreviations, further initialisms are provided by the class for convenience and for a consistent visual appearance. Note that the class uses \textsc{smallcaps} for typesetting initialisms. The list of predefined initialisms comprises:
+% In addition to common abbreviations, further initialisms are provided by the 
+% class for convenience and for a consistent visual appearance. Note that the 
+% class uses \textsc{smallcaps} for typesetting initialisms. The list of 
+% predefined initialisms comprises:
 %
 % \begin{itemize}
 % \item \cs{OMG} for \textsc{omg} (Object Management Group).
@@ -610,10 +621,13 @@ This work consists of the file  lni.dtx
 % \item \cs{UML} for \textsc{uml} (Unified Modelling Language).
 % \end{itemize}
 %
-% \DescribeMacro{\lniinitialism} You can add your own initialisms by stating \cs{lniinitialism\marg{\textbackslash initialism\_macro}\marg{text}} in the preamble.
+% \DescribeMacro{\lniinitialism} You can add your own initialisms by stating 
+% \cs{lniinitialism\marg{\textbackslash initialism\_macro}\marg{text}} in the
+% preamble.
 %
 % \subsection{Bibliography}\label{sec:bibliography}
-% \enlargethispage{\baselineskip}The old \lni{} class file only supports \BibTeX{} with bst files for German 
+% \enlargethispage{\baselineskip}The old \lni{} class file only supports 
+% \BibTeX{} with bst files for German 
 % and English submissions resp. If you want to use this approach for your
 % article you have to add \cs{bibliography\marg{Bib file}} at an appropriate
 % position within your text. The correct bst file is loaded automatically.
@@ -1340,37 +1354,40 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 %    \begin{macrocode}
 \ifusehyperref
-   \RequirePackage[pdfusetitle]{hyperref}
-   \hypersetup{%
-      pdfdisplaydoctitle,
-      bookmarks=false,%
-      colorlinks=true,%
-      allcolors=black,%
-      %%%pdfpagelayout=TwoPageRight,%
-      pdfstartview=Fit%
+   \AtEndPreamble{%
+      \RequirePackage[pdfusetitle]{hyperref}
+      \hypersetup{%
+         pdfdisplaydoctitle,
+         bookmarks=false,%
+         colorlinks=true,%
+         allcolors=black,%
+         pdfstartview=Fit%
+      }%
    }%
 \fi%
 %    \end{macrocode}
 %    \begin{macrocode}
 \ifusecleveref%
-   \iflnienglish
-     \usepackage[capitalise,nameinlink]{cleveref}
-     \crefname{section}{Sect.}{Sect.}
-     \Crefname{section}{Sect.}{Sect.}
-   \else
-     \usepackage[ngerman,nameinlink]{cleveref}
-   \fi%
-   \crefname{figure}{\figurename}{\figurename}
-   \Crefname{figure}{\figurename}{\figurename}
-   \crefname{listing}{\lstlistingname}{\lstlistingname}
-   \Crefname{listing}{\lstlistingname}{\lstlistingname}
-   \crefname{table}{\tablename}{\tablename}
-   \Crefname{table}{\tablename}{\tablename}
+   \AtEndPreamble{%
+      \iflnienglish
+        \RequirePackage[capitalise,nameinlink]{cleveref}
+        \crefname{section}{Sect.}{Sect.}
+        \Crefname{section}{Sect.}{Sect.}
+      \else
+        \RequirePackage[ngerman,nameinlink]{cleveref}
+      \fi%
+      \crefname{figure}{\figurename}{\figurename}
+      \Crefname{figure}{\figurename}{\figurename}
+      \crefname{listing}{\lstlistingname}{\lstlistingname}
+      \Crefname{listing}{\lstlistingname}{\lstlistingname}
+      \crefname{table}{\tablename}{\tablename}
+      \Crefname{table}{\tablename}{\tablename}
+   }%
 \fi%
 %    \end{macrocode}
 % enables correct jumping to figures when referencing
 %    \begin{macrocode}
-\RequirePackage[all]{hypcap}
+\AtEndPreamble{\RequirePackage[all]{hypcap}}
 %    \end{macrocode}
 %    \begin{macrocode}
 \def\and{\unskip\hspace{-0.42em},\hspace{.6em}}

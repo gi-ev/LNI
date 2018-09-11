@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2018/01/15 v1.5BETA Official class for submissions to the ``Lecture Notes
+    [2018/09/11 v1.5BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -504,32 +504,35 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \ifusehyperref
-   \RequirePackage[pdfusetitle]{hyperref}
-   \hypersetup{%
-      pdfdisplaydoctitle,
-      bookmarks=false,%
-      colorlinks=true,%
-      allcolors=black,%
-      %%%pdfpagelayout=TwoPageRight,%
-      pdfstartview=Fit%
+   \AtEndPreamble{%
+      \RequirePackage[pdfusetitle]{hyperref}
+      \hypersetup{%
+         pdfdisplaydoctitle,
+         bookmarks=false,%
+         colorlinks=true,%
+         allcolors=black,%
+         pdfstartview=Fit%
+      }%
    }%
 \fi%
 \ifusecleveref%
-   \iflnienglish
-     \usepackage[capitalise,nameinlink]{cleveref}
-     \crefname{section}{Sect.}{Sect.}
-     \Crefname{section}{Sect.}{Sect.}
-   \else
-     \usepackage[ngerman,nameinlink]{cleveref}
-   \fi%
-   \crefname{figure}{\figurename}{\figurename}
-   \Crefname{figure}{\figurename}{\figurename}
-   \crefname{listing}{\lstlistingname}{\lstlistingname}
-   \Crefname{listing}{\lstlistingname}{\lstlistingname}
-   \crefname{table}{\tablename}{\tablename}
-   \Crefname{table}{\tablename}{\tablename}
+   \AtEndPreamble{%
+      \iflnienglish
+        \RequirePackage[capitalise,nameinlink]{cleveref}
+        \crefname{section}{Sect.}{Sect.}
+        \Crefname{section}{Sect.}{Sect.}
+      \else
+        \RequirePackage[ngerman,nameinlink]{cleveref}
+      \fi%
+      \crefname{figure}{\figurename}{\figurename}
+      \Crefname{figure}{\figurename}{\figurename}
+      \crefname{listing}{\lstlistingname}{\lstlistingname}
+      \Crefname{listing}{\lstlistingname}{\lstlistingname}
+      \crefname{table}{\tablename}{\tablename}
+      \Crefname{table}{\tablename}{\tablename}
+   }%
 \fi%
-\RequirePackage[all]{hypcap}
+\AtEndPreamble{\RequirePackage[all]{hypcap}}
 \def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
 \ifusebiblatex
 \else
