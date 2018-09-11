@@ -286,6 +286,8 @@ This work consists of the file  lni.dtx
 % \changes{v1.4}{2017/11/08}{Fix font size bug regarding the running header 
 % and the captions: \cs{small} was redefined, so we need an \cs{oldsmall} here}
 % \changes{v1.5}{2018/09/11}{Postpone loading of \pkg{cleveref}}
+% \changes{v1.5}{2018/09/11}{Load \pkg{textcomp} by default and add option 
+% \opt{upquote} to \pkg{listings}}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -383,8 +385,8 @@ This work consists of the file  lni.dtx
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
 % There is even a specialized package \pkg{biblatex-lni} which is automatically 
-% used when setting the class option \opt{biblatex}. For more information see as well 
-% \cref{sec:bibliography}.
+% used when setting the class option \opt{biblatex}. For more information see 
+% as well \cref{sec:bibliography}.
 %
 % \DescribeOption{crop\space(new in v1.1)}%
 % Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to 
@@ -772,6 +774,7 @@ This work consists of the file  lni.dtx
    \RequirePackage{cmap}
    \RequirePackage{inputenc}
    \RequirePackage[T1]{fontenc}
+   \RequirePackage[full]{textcomp}
 \fi%
 %
 \iflnienglish
@@ -1003,7 +1006,8 @@ This work consists of the file  lni.dtx
    columns=fixed,%
    basewidth=.5em,%
    xleftmargin=0.5cm,%
-   captionpos=b}%
+   captionpos=b,%
+   upquote}%
 %    \end{macrocode}
 % Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der 
 % Abstände

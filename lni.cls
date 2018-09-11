@@ -73,6 +73,7 @@
    \RequirePackage{cmap}
    \RequirePackage{inputenc}
    \RequirePackage[T1]{fontenc}
+   \RequirePackage[full]{textcomp}
 \fi%
 \iflnienglish
    \RequirePackage[ngerman,english]{babel}
@@ -261,7 +262,8 @@
    columns=fixed,%
    basewidth=.5em,%
    xleftmargin=0.5cm,%
-   captionpos=b}%
+   captionpos=b,%
+   upquote}%
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
 \global\let\@textbottom\relax}}
 \renewcommand\@pnumwidth{3em}

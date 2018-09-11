@@ -6,9 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Load package `textcomp` by default and add option `upquote` to `listings` package ([#69](https://github.com/gi-ev/LNI/issues/69))
+
 ### Fixed
 - German paper example: Correct language `Java` at example listing
 - Packages `hyperef`, `cleveref` and `hypcap` are always at the end of the preamble ([#71](https://github.com/gi-ev/LNI/issues/71))
+
 
 ## [1.4.0] - 2018-01-15
 
