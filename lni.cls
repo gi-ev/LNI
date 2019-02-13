@@ -288,7 +288,6 @@
   \fi}
 \renewcommand{\title}{\@dblarg\@@title}
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
-\newcommand{\@subtitle}{}
 \newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
 \renewcommand{\author}{\@dblarg\@@author}
 \def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
@@ -345,9 +344,11 @@
   \let\footnote\thanks
     {\Large\bfseries\@title\par}%
     \ifx\@subtitle\empty\else
-      \vskip 16pt
-      {\normalsize\bfseries\@subtitle}
-    \fi%
+	  \ifx\@subtitle\undefined\else
+        \vskip 16pt
+        {\normalsize\bfseries\@subtitle}
+      \fi%
+	\fi%
     \vskip 19pt% Abstand nach dem Titel
     {\normalsize%
       \lineskip .5em%
@@ -474,6 +475,7 @@
   \renewcommand{\figurename}{Fig.}%
   \renewcommand{\tablename}{Tab.}%
   \renewcommand{\lstlistingname}{List.}
+  \renewcommand{\refname}{Bibliography}
 }%
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
 \newcommand*{\@booktitle}{}
