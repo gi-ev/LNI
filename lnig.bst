@@ -1285,7 +1285,7 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 %% 
-%% Copyright (C) 2016-2018 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2019 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either

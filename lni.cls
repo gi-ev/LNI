@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2018/09/11 v1.5BETA Official class for submissions to the ``Lecture Notes
+    [2019/02/13 v1.5BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -340,15 +340,15 @@
   \null
   \begin{center}%
   \vskip -24pt% Abstand vor dem Titel
-  \raggedright % Linksbündig
+  \raggedright% Linksbündig
   \let\footnote\thanks
     {\Large\bfseries\@title\par}%
     \ifx\@subtitle\empty\else
-	  \ifx\@subtitle\undefined\else
-        \vskip 16pt
-        {\normalsize\bfseries\@subtitle}
+      \ifx\@subtitle\undefined\else
+         \vskip 16pt
+         {\normalsize\bfseries\@subtitle}%
       \fi%
-	\fi%
+    \fi%
     \vskip 19pt% Abstand nach dem Titel
     {\normalsize%
       \lineskip .5em%
@@ -467,15 +467,15 @@
   \renewcommand{\andname}{und}%
   \renewcommand{\figurename}{Abb.}%
   \renewcommand{\tablename}{Tab.}%
-  \renewcommand{\lstlistingname}{List.}
-  \renewcommand{\refname}{Literaturverzeichnis}
+  \renewcommand{\lstlistingname}{List.}%
+  \renewcommand{\refname}{Literaturverzeichnis}%
 }%
 \addto\captionsenglish{%
   \renewcommand{\andname}{and}%
   \renewcommand{\figurename}{Fig.}%
   \renewcommand{\tablename}{Tab.}%
-  \renewcommand{\lstlistingname}{List.}
-  \renewcommand{\refname}{Bibliography}
+  \renewcommand{\lstlistingname}{List.}%
+  \renewcommand{\refname}{Bibliography}%
 }%
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
 \newcommand*{\@booktitle}{}
@@ -591,7 +591,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2018 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2019 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
