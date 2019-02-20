@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2019/02/13 v1.5BETA Official class for submissions to the ``Lecture Notes
+    [2019/02/20 v1.5BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -55,6 +55,8 @@
 \DeclareOption{oldfonts}{\oldfontstrue\autofontsfalse}
 \newif\ifautofonts
 \autofontstrue
+\newif\ifnorunningheads
+\DeclareOption{norunningheads}{\norunningheadstrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -314,13 +316,17 @@
         \@maketitle
       \else
         \twocolumn[\@maketitle]%
-      \fi
+      \fi%
     \else
       \newpage
       \global\@topnum\z@   % Prevents figures from going at top of page.
       \@maketitle
-    \fi
-    \thispagestyle{plain}
+    \fi%
+    \ifnorunningheads
+      \thispagestyle{empty}
+    \else
+      \thispagestyle{plain}
+    \fi%
     \@thanks
   \endgroup
   \global\let\thanks\relax
@@ -498,12 +504,16 @@
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 }%
-\pagestyle{fancy}
-\fancyhead{} % Löscht alle Kopfzeileneinstellungen
-\fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
-\fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
-\fancyfoot{} % Löscht alle Fußzeileneinstellungen
-\renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
+\ifnorunningheads
+   \pagestyle{empty}
+\else
+   \pagestyle{fancy}
+   \fancyhead{} % Löscht alle Kopfzeileneinstellungen
+   \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
+   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
+   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
+\fi%
 \RequirePackage{url}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}

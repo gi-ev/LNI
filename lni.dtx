@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2019/02/13 v1.5BETA Official class for submissions to the ``Lecture Notes 
+    [2019/02/20 v1.5BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -290,6 +290,7 @@ This work consists of the file  lni.dtx
 % \opt{upquote} to \pkg{listings}}
 % \changes{v1.5}{2019/02/13}{Fix layout for English texts}
 % \changes{v1.5}{2019/02/13}{Changed \cs{refname} for English texts}
+% \changes{v1.5}{2019/02/20}{New option \opt{norunningheads}}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -356,9 +357,9 @@ This work consists of the file  lni.dtx
 % \href{http://www.ctan.org}{CTAN} to download missing packages.
 %
 % Please note, that the support of \hologo{XeLaTeX} and \hologo{LuaLaTeX} is 
-% only partial. For example the mono font is not the same. Moreover \hologo{pdfLaTeX} 
-% is a \TeX{} engine used by the publishers. Therefore it is strongly recommended 
-% to use \hologo{pdfLaTeX}. 
+% only partial. For example the mono font is not the same. Moreover 
+% \hologo{pdfLaTeX} is a \TeX{} engine used by the publishers. Therefore it is
+% strongly recommended to use \hologo{pdfLaTeX}. 
 % 
 % \subsection{Options}\label{sec:options}
 % Although the class file includes all layout information for a submission to 
@@ -418,6 +419,8 @@ This work consists of the file  lni.dtx
 % to load the package \pkg{mathptmx} instead of the New TX fonts. The output 
 % will be in accordance to (or at least near) the publisher's requirements.
 %
+% \DescribeOption{norunningheads\space(new in v1.5)}To easily remove all running
+% headers from your document, you can use the option \opt{norunningheads}.
 % \newpage
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point 
@@ -757,6 +760,8 @@ This work consists of the file  lni.dtx
 \DeclareOption{oldfonts}{\oldfontstrue\autofontsfalse}
 \newif\ifautofonts
 \autofontstrue
+\newif\ifnorunningheads
+\DeclareOption{norunningheads}{\norunningheadstrue}
 \ExecuteOptions{utf8}
 \DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
 \ProcessOptions\relax
@@ -1094,13 +1099,17 @@ This work consists of the file  lni.dtx
         \@maketitle
       \else
         \twocolumn[\@maketitle]%
-      \fi
+      \fi%
     \else
       \newpage
       \global\@topnum\z@   % Prevents figures from going at top of page.
       \@maketitle
-    \fi
-    \thispagestyle{plain}
+    \fi%
+    \ifnorunningheads
+      \thispagestyle{empty}
+    \else
+      \thispagestyle{plain}
+    \fi%
     \@thanks   
   \endgroup
   \global\let\thanks\relax
@@ -1343,12 +1352,16 @@ This work consists of the file  lni.dtx
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
 }%
-\pagestyle{fancy}
-\fancyhead{} % Löscht alle Kopfzeileneinstellungen
-\fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
-\fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
-\fancyfoot{} % Löscht alle Fußzeileneinstellungen
-\renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
+\ifnorunningheads
+   \pagestyle{empty}
+\else
+   \pagestyle{fancy}
+   \fancyhead{} % Löscht alle Kopfzeileneinstellungen
+   \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
+   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
+   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
+\fi%
 %    \end{macrocode}
 %    \begin{macrocode}
 \RequirePackage{url}

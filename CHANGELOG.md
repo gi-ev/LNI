@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Load package `textcomp` by default and add option `upquote` to `listings` package ([#69](https://github.com/gi-ev/LNI/issues/69))
+- New option `norunningheads` to remove all running headers from the document
+([#77](https://github.com/gi-ev/LNI/issues/77))
 
 ### Changed
 - `\refname` changed to `Bibliography` for English texts
