@@ -3,7 +3,7 @@
 ```
 ----------------------------------------------------------------------------
 lni      -- A class for submissions to the ``Lecture Notes in Informatics''
-(c) 2016-2018 Gesellschaft für Informatik (GI)
+(c) 2016-2019 Gesellschaft für Informatik (GI)
 Version:    1.5BETA
 Maintainer: Martin Sievers
 Email:      martin.sievers@schoenerpublizieren.de
