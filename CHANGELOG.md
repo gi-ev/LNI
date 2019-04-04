@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.5.0] -2019-04-04
+
 ### Added
 - Load package `textcomp` by default and add option `upquote` to `listings` package ([#69](https://github.com/gi-ev/LNI/issues/69))
 - New option `norunningheads` to remove all running headers from the document
@@ -19,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Packages `hyperef`, `cleveref` and `hypcap` are always at the end of the preamble ([#71](https://github.com/gi-ev/LNI/issues/71))
 - Option `bookmarks` of `hyperref` now set at load-time. Had no effect before.
 - Layout for English texts (subtitle)
+- URL for GI in example file
 
 ## [1.4.0] - 2018-01-15
 
@@ -77,6 +80,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 First release of the revised files
 
 [Unreleased]: https://github.com/gi-ev/LNI/compare/v1.4...HEAD
+[1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.5
 [1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.4
 [1.3.0]: https://github.com/gi-ev/LNI/releases/tag/v1.3
 [1.2.0]: https://github.com/gi-ev/LNI/releases/tag/v1.2
