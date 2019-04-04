@@ -1,16 +1,14 @@
-% !TeX document-id = {55d6fbce-51eb-4c4f-8f7f-0e77e03489ed}
 % !TeX encoding = UTF-8
 % !TeX program = pdflatex
 % !BIB program = bibtex
 
 %%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne
 %%% Parameter zu laden.
-\documentclass[norunningheads]{lni}
+\documentclass[]{lni}
 %%% To write an article in English, please use the option ``english'' in order
 %%% to get the correct hyphenation patterns and terms.
 %%% \documentclass[english]{class}
 %%
-\usepackage{blindtext}
 \begin{document}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
 %%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
@@ -39,7 +37,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \end{keywords}
 %%% Beginn des Artikeltexts
 \section{Überschrift/Heading}
-\blindtext[4]
+
 %%% Angabe der .bib-Datei (ohne Endung) / State .bib file (for BibTeX usage)
 \bibliography{mybibfile} %\printbibliography if you use biblatex/Biber
 \end{document}
