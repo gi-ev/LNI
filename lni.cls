@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2019/02/20 v1.5BETA Official class for submissions to the ``Lecture Notes
+    [2019/04/18 v1.6BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -296,7 +296,7 @@
    \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
 \newcommand{\authorrunning}[1]{%
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
-\newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
+\newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
 \renewcommand\maketitle{\par%

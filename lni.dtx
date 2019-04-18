@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2019/04/04 v1.5 Official class for submissions to the ``Lecture Notes 
+    [2019/04/18 v1.6BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -291,6 +291,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.5}{2019/02/13}{Fix layout for English texts}
 % \changes{v1.5}{2019/02/13}{Changed \cs{refname} for English texts}
 % \changes{v1.5}{2019/02/20}{New option \opt{norunningheads}}
+% \changes{v1.6}{2019/04/18}{\cs{email} now generates a mailto: hyperlink}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -1071,7 +1072,7 @@ This work consists of the file  lni.dtx
 % \end{macro}
 % \begin{macro}{\email}
 %    \begin{macrocode}
-\newcommand*{\email}[1]{{\urlstyle{same}\protect\url{#1}}}
+\newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\lnidoi}

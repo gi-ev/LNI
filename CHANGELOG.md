@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- `\email` now generates a `mailto:` hyperlink
+
+
 ## [1.5.0] -2019-04-04
 
 ### Added
@@ -80,7 +84,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 First release of the revised files
 
 [Unreleased]: https://github.com/gi-ev/LNI/compare/v1.4...HEAD
-[1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.5
+[1.5.0]: https://github.com/gi-ev/LNI/releases/tag/v1.5
 [1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.4
 [1.3.0]: https://github.com/gi-ev/LNI/releases/tag/v1.3
 [1.2.0]: https://github.com/gi-ev/LNI/releases/tag/v1.2
