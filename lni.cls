@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2019/04/18 v1.6BETA Official class for submissions to the ``Lecture Notes
+    [2019/04/23 v1.6BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -58,7 +58,7 @@
 \newif\ifnorunningheads
 \DeclareOption{norunningheads}{\norunningheadstrue}
 \ExecuteOptions{utf8}
-\DeclareOption*{\ClassWarning{Option `\CurrentOption` is not supported!}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 \RequirePackage{iftex}
 \ifPDFTeX

@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - `\email` now generates a `mailto:` hyperlink
 
+### Fixed
+- Global options are passed to `article` class ([#78](https://github.com/gi-ev/LNI/issues/78))
+
 
 ## [1.5.0] -2019-04-04
 
