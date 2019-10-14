@@ -294,6 +294,8 @@ This work consists of the file  lni.dtx
 % \changes{v1.6}{2019/04/18}{\cs{email} now generates a mailto: hyperlink}
 % \changes{v1.6}{2019/04/23}{Global options are passed to article class}
 % \changes{v1.6}{2019/09/14}{New macro \cs{booksubtitle}}
+% \changes{v1.6}{2019/09/14}{Add option `driver=none` to `geometry` for better 
+% crop results
 % \changes{v1.6}{2019/09/14}{\cs{booktitle} now uses an optional argument for
 % shorttitle}
 % \changes{v1.6}{2019/10/14}{Fix for BibTeX style}
@@ -885,7 +887,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % When using \hologo{LuaLaTeX} we can activate \pkg{selnolig}
 %    \begin{macrocode}
-   \ifluatex      
+   \ifluatex
       \iflnienglish
          \RequirePackage[english]{selnolig}%
       \else
@@ -910,11 +912,12 @@ This work consists of the file  lni.dtx
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 %    \end{macrocode}
+%    \begin{macrocode}
 % Support for CC icons
 \RequirePackage{ccicons}
 % Support for \cs{ifdefempty}
 \RequirePackage{etoolbox}
-% Satzspiegel
+%    \end{macrocode}
 %    \begin{macrocode}
 \newlength{\doihoffset}
 \newlength{\doivoffset}
@@ -925,7 +928,8 @@ This work consists of the file  lni.dtx
      includehead,
      headheight=20.39pt,
      headsep=.31cm,
-     centering]
+     centering,
+     driver=none]
      {geometry}
    \RequirePackage[a4,center,cam,info]{crop}
    \renewcommand*\CROP@@info{{%
