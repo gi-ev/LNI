@@ -4,7 +4,7 @@
 ----------------------------------------------------------------------------
 lni      -- A class for submissions to the ``Lecture Notes in Informatics''
 (c) 2016-2019 Gesellschaft für Informatik (GI)
-Version:    1.5
+Version:    1.6BETA
 Maintainer: Martin Sievers
 Email:      martin.sievers@schoenerpublizieren.de
 License:    Released under the LaTeX Project Public License v1.3c or later
@@ -19,10 +19,10 @@ This is the official version of the class “lni” for submissions to the
 It is based on previous templates created on behalf of the GI.
 
 Quick start:
-Download [lni-author-template.tex](lni-author-template.tex) and edit it in 
+Download [lni-author-template.tex](lni-author-template.tex) and edit it in
 your favorite LaTeX editor.
 You will have to use [BibTeX](https://www.ctan.org/pkg/bibtex) as bibliography tool.
-In case you want to use [biblatex](https://www.ctan.org/pkg/biblatex) and 
+In case you want to use [biblatex](https://www.ctan.org/pkg/biblatex) and
 [Biber](https://www.ctan.org/pkg/biber), read on in the documentation of this class.
 You should use `pdflatex` as `xelatex` and `lualatex` lack some features of the class file.
 

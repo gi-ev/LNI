@@ -48,7 +48,7 @@
  Vorname2 Nachname2\footnote{University, Department, Address, Country \email{emailaddress@author2}}}
 \startpage{11} % Beginn der Seitenzählung für diesen Beitrag
 \editor{Herausgeber et al.}    % Namen der Herausgeber
-\booktitle{Name-der-Konferenz} % Name des Tagungsband
+\booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
 \year{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
 \maketitle
@@ -154,16 +154,17 @@ public class Hello {
 
 \subsection{Formeln und Gleichungen}
 
-Die korrekte Einrückung und Nummerierung für Formeln ist bei den Umgebungen \texttt{equation} und \texttt{eqnarray} gewährleistet.
+Die korrekte Einrückung und Nummerierung für Formeln ist bei den Umgebungen
+\texttt{equation} und \texttt{align} gewährleistet.
 
 \begin{equation}
   1=4-3
 \end{equation}
 und
-\begin{eqnarray}
-  2=7-5\\
-  3=2-1
-\end{eqnarray}
+\begin{align}
+  2&=7-5\\
+  3&=2-1
+\end{align}
 
 %% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
 %% Starten Sie "biber paper", um eine Biliographie zu erzeugen.
