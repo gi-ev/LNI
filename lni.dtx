@@ -297,6 +297,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.6}{2019/09/14}{\cs{booktitle} now uses an optional argument for
 % shorttitle}
 % \changes{v1.6}{2019/10/14}{Fix for BibTeX style}
+% \changes{v1.6}{2019/10/14}{Add support for `selnolig`}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -881,6 +882,16 @@ This work consists of the file  lni.dtx
    \RequirePackage[%
       final,%
       protrusion=alltext-nott]{microtype}%
+%    \end{macrocode}
+% When using \hologo{LuaLaTeX} we can activate \pkg{selnolig}
+%    \begin{macrocode}
+   \ifluatex      
+      \iflnienglish
+         \RequirePackage[english]{selnolig}%
+      \else
+         \RequirePackage[ngerman]{selnolig}%
+      \fi%
+   \fi%
 \fi%
 \SetTracking{encoding=*,shape=sc}{50}%
 %    \end{macrocode}
