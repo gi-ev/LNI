@@ -294,10 +294,11 @@ This work consists of the file  lni.dtx
 % \changes{v1.6}{2019/04/18}{\cs{email} now generates a mailto: hyperlink}
 % \changes{v1.6}{2019/04/23}{Global options are passed to article class}
 % \changes{v1.6}{2019/09/14}{New macro \cs{booksubtitle}}
-% \changes{v1.6}{2019/09/14}{Add option `driver=none` to `geometry` for better 
+% \changes{v1.6}{2019/09/14}{Add option `driver=none` to `geometry` for better
 % crop results
 % \changes{v1.6}{2019/09/14}{\cs{booktitle} now uses an optional argument for
 % shorttitle}
+% \changes{v1.6}{2019/09/14}{New macro \cs{booksubtitle}}
 % \changes{v1.6}{2019/10/14}{Fix for BibTeX style}
 % \changes{v1.6}{2019/10/14}{Add support for `selnolig`}
 %
@@ -1348,8 +1349,11 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\booktitle}
 %    \begin{macrocode}
 \newcommand{\booktitle}{\@dblarg\@@booktitle}
-\def\@@booktitle[#1]#2{\gdef\@shortbooktitle{#1}\gdef\@booktitle{#2}}
+\def\@@booktitle[#1]#2{\gdef\@bookshorttitle{#1}\gdef\@booktitle{#2}}
 %    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\booksubtitle}
+\newcommand{\booksubtitle}[1]{\gdef\@booksubtitle{#1}}
 % \end{macro}
 % \begin{macro}{\editor}
 %    \begin{macrocode}
@@ -1370,12 +1374,11 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\
-   \@shortbooktitle,\hspace{1sp}\null\linebreak%
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@bookshorttitle,\hspace{1sp}\null\linebreak%
        Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
        \hspace{5pt}\thepage\hspace{0.05cm}}
    \fancyhead[LE]{\small\@editor~(Hrsg.):\
-   \@shortbooktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
+   \@bookshorttitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
    in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
