@@ -116,7 +116,7 @@ This work consists of the file  lni.dtx
   \file{lni-paper-example-de.bib}{\from{\jobname.dtx}{exampledebib}}
 }
 \generate{
-  \usepreamble\templatepreger  
+  \usepreamble\templatepreger
   \file{lni-paper-example-de.tex}{\from{\jobname.dtx}{exampledetex}}
 }
 \ifx\fmtname\nameofplainTeX
@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2019/10/14 v1.6BETA Official class for submissions to the ``Lecture Notes 
+    [2019/10/14 v1.6BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -158,7 +158,7 @@ This work consists of the file  lni.dtx
 \usepackage{hologo}
 \newcommand*{\MiKTeX}{\hologo{MiKTeX}}
 \usepackage[%
-	pdftitle={lni: Official LaTeX class for submissions to the ``Lecture Notes in 
+	pdftitle={lni: Official LaTeX class for submissions to the ``Lecture Notes in
    	Informatics'', published by the ``Gesellschaft für Informatik e.\,V.'' (GI)},
     pdfauthor={Martin Sievers},
     urlcolor=blue,%
@@ -179,7 +179,7 @@ This work consists of the file  lni.dtx
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
-\newcommand{\lni}{\texttt{lni}}	
+\newcommand{\lni}{\texttt{lni}}
 \newcommand{\LNI}{\emph{Lecture Notes in Informatics}}
 \makeatletter
 \newcommand*\DescribeOption{%
@@ -224,7 +224,7 @@ This work consists of the file  lni.dtx
  frame        = single,
  backgroundcolor = \color{yellow!60},
  framesep     = 5pt,
- literate={Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1 {ü}{{\"u}}1 {ä}{{\"a}}1 {ö}{{\"o}}1 
+ literate={Ö}{{\"O}}1 {Ä}{{\"A}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1 {ü}{{\"u}}1 {ä}{{\"a}}1 {ö}{{\"o}}1
 }%
 \lstnewenvironment{examplecode}[1][]
 {\lstset{#1}}
@@ -260,39 +260,43 @@ This work consists of the file  lni.dtx
 %   Right brace   \}     Tilde         \~}
 %
 % \changes{v1.0}{2017/04/07}{Official release of revised version}
-% \changes{v1.1}{2017/04/08}{Added macros \cs{subtitle} and keyword delimiter 
+% \changes{v1.1}{2017/04/08}{Added macros \cs{subtitle} and keyword delimiter
 % \cs{add}}
 % \changes{v1.1}{2017/04/08}{Fixed bug with \cs{Crefname}}
-% \changes{v1.1}{2017/04/08}{Updated documentation and bundle structure}  
-% \changes{v1.1}{2017/04/12}{Changed spacing for \cs{subtitle}}  
+% \changes{v1.1}{2017/04/08}{Updated documentation and bundle structure}
+% \changes{v1.1}{2017/04/12}{Changed spacing for \cs{subtitle}}
 % \changes{v1.1}{2017/04/18}{Added check for ngerman-x-latest patterns}
 % \changes{v1.1}{2017/04/19}{Added option \opt{crop}}
-% \changes{v1.2}{2017/04/26}{Set option \opt{straighquotes} for \pkg{newtxtt} 
+% \changes{v1.2}{2017/04/26}{Set option \opt{straighquotes} for \pkg{newtxtt}
 % manually to gain compatibility with version prior to v1.05}
-% \changes{v1.2}{2017/04/27}{Added \pkg{iftex} to check for pdflatex} 
-% \changes{v1.2}{2017/05/04}{Added (partial) support for XeTeX and LuaTeX} 
-% \changes{v1.3}{2017/05/04}{Added option \opt{nofonts} to suppress font 
-% loading completely} 
-% \changes{v1.3}{2017/05/08}{Changed syntax for \pkg{fontspec}} 
+% \changes{v1.2}{2017/04/27}{Added \pkg{iftex} to check for pdflatex}
+% \changes{v1.2}{2017/05/04}{Added (partial) support for XeTeX and LuaTeX}
+% \changes{v1.3}{2017/05/04}{Added option \opt{nofonts} to suppress font
+% loading completely}
+% \changes{v1.3}{2017/05/08}{Changed syntax for \pkg{fontspec}}
 % \changes{v1.4}{2017/05/27}{Added new macros taken from the EMISA class file}
 % \changes{v1.4}{2017/05/27}{Added option \opt{oldfonts} to use a font package
 % available}
-% \changes{v1.4}{2017/07/26}{Added package \pkg{caption} and changed all 
+% \changes{v1.4}{2017/07/26}{Added package \pkg{caption} and changed all
 % \cs{fontsize} calls to nativ \LaTeX{} macros}
 % \changes{v1.4}{2017/09/11}{Fixed basewidth for \env{lstlistings}}
 % \changes{v1.4}{2017/09/29}{Fixed font size for \cs{Large}}
 % \changes{v1.4}{2017/11/08}{Added full example for an article in German}
 % \changes{v1.4}{2017/11/08}{Adapting captions of \env{lstlistings}}
-% \changes{v1.4}{2017/11/08}{Fix font size bug regarding the running header 
+% \changes{v1.4}{2017/11/08}{Fix font size bug regarding the running header
 % and the captions: \cs{small} was redefined, so we need an \cs{oldsmall} here}
 % \changes{v1.5}{2018/09/11}{Postpone loading of \pkg{cleveref}}
-% \changes{v1.5}{2018/09/11}{Load \pkg{textcomp} by default and add option 
+% \changes{v1.5}{2018/09/11}{Load \pkg{textcomp} by default and add option
 % \opt{upquote} to \pkg{listings}}
 % \changes{v1.5}{2019/02/13}{Fix layout for English texts}
 % \changes{v1.5}{2019/02/13}{Changed \cs{refname} for English texts}
 % \changes{v1.5}{2019/02/20}{New option \opt{norunningheads}}
 % \changes{v1.6}{2019/04/18}{\cs{email} now generates a mailto: hyperlink}
 % \changes{v1.6}{2019/04/23}{Global options are passed to article class}
+% \changes{v1.6}{2019/09/14}{New macro \cs{booksubtitle}}
+% \changes{v1.6}{2019/09/14}{\cs{booktitle} now uses an optional argument for
+% shorttitle}
+% \changes{v1.6}{2019/10/14}{Fix for BibTeX style}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -300,191 +304,193 @@ This work consists of the file  lni.dtx
 % \title{\textsf{lni} -- Official class for submissions to the\\%
 % ``Lecture Notes in Informatics''\thanks{This file describes version
 % \fileversion, last revised \filedate.}}
-% \author{Martin Sievers\setcounter{footnote}{6}\thanks{Email: 
+% \author{Martin Sievers\setcounter{footnote}{6}\thanks{Email:
 % martin.sievers@schoenerpublizieren.de}}
 % \date{Released \filedate}
 %
 % \maketitle
 %
 % \begin{abstract}
-% \noindent After several years the \lni{} bundle has been updated. The 
+% \noindent After several years the \lni{} bundle has been updated. The
 % resulting new version fixes some long-standing bugs, solves problems and
-% supports modern packages like \pkg{biblatex} and \pkg{microtype}. It has been 
-% put into one DTX file to make maintaining and distributing via CTAN a bit 
+% supports modern packages like \pkg{biblatex} and \pkg{microtype}. It has been
+% put into one DTX file to make maintaining and distributing via CTAN a bit
 % easier.
 % \end{abstract}
 %
 % \section{Introduction}
-% \LaTeX{} templates are often long-lasting. Even if they use meanwhile 
-% deprecated packages they are often passed from one generation of authors to 
+% \LaTeX{} templates are often long-lasting. Even if they use meanwhile
+% deprecated packages they are often passed from one generation of authors to
 % the next.
 %
-% The Gesellschaft für Informatik~e.\,V. (GI) thankfully realized, that their 
-% bundle should be technologically 
+% The Gesellschaft für Informatik~e.\,V. (GI) thankfully realized, that their
+% bundle should be technologically
 % modernized while the general layout remains the same.
 %
-% Based on the existing class and bib files I set-up a DTX file and started 
-% reworking the source code. Editors and authors suggested different additions 
-% and changes, which I tried to incoporate without changing the existing 
+% Based on the existing class and bib files I set-up a DTX file and started
+% reworking the source code. Editors and authors suggested different additions
+% and changes, which I tried to incoporate without changing the existing
 % mechanisms too much.
 %
 % This is the first public release. I would to thank especially
 % \href{https://github.com/koppor/}{Oliver Kopp} and
-% \href{https://www.fernuni-hagen.de/evis/team/stefan.strecker.shtml}{Stefan 
+% \href{https://www.fernuni-hagen.de/evis/team/stefan.strecker.shtml}{Stefan
 % Strecker} and his team for their suggestions and tests.
-% 
+%
 % \section{Installation}
-% The \lni{} bundle is currently distributed via 
+% The \lni{} bundle is currently distributed via
 % \href{https://github.com/gi-ev/LNI}{GitHub}, the
 % \href{https://www.gi.de/service/publikationen/lni/autorenrichtlinien.html}
 % {GI website} and (preferably) \href{https://www.ctan.org/pkg/lni}{CTAN}.
 % The later is the basis for all updates of the two main \TeX{} distributions
-% \MiKTeX{} and \TeX{}~Live. Thus the easiest way to get all files needed to 
+% \MiKTeX{} and \TeX{}~Live. Thus the easiest way to get all files needed to
 % typeset an article for the \LNI{} is to use the package manager of your
 % distribution.
-% 
-% For a manual installation please call \texttt{pdflatex lni.dtx} at least 
-% twice and 
-% copy all resulting files (cls, tex, pdf and bst) to your local TEXMF tree. 
+%
+% For a manual installation please call \texttt{pdflatex lni.dtx} at least
+% twice and
+% copy all resulting files (cls, tex, pdf and bst) to your local TEXMF tree.
 % Don't forget to update your file name database.
 % \newpage
 % \section{Usage}
-% To use the predefined layout for a (German) submission to the \LNI{} just 
+% To use the predefined layout for a (German) submission to the \LNI{} just
 % load the class file as usual with \cs{documentclass\{lni\}}.
 %
-% The class file loads a bunch of packages which are all part of modern \TeX{} 
-% distributions. Therefore, if you are confronted 
-% with a missing package, please try to download and install it using your 
-% distribution's package manager. Alternatively go to 
+% The class file loads a bunch of packages which are all part of modern \TeX{}
+% distributions. Therefore, if you are confronted
+% with a missing package, please try to download and install it using your
+% distribution's package manager. Alternatively go to
 % \href{http://www.ctan.org}{CTAN} to download missing packages.
 %
-% Please note, that the support of \hologo{XeLaTeX} and \hologo{LuaLaTeX} is 
-% only partial. For example the mono font is not the same. Moreover 
-% \hologo{pdfLaTeX} is a \TeX{} engine used by the publishers. Therefore it is
-% strongly recommended to use \hologo{pdfLaTeX}. 
-% 
+% The \lni{} class can be used with \hologo{pdfLaTeX} as well as with
+% \hologo{XeLaTeX} and \hologo{LuaLaTeX}. To achieve same results, the
+% Type1-based packages \pkg{newtxtext}, \pkg{newtxmath} and \pkg{newtxtt}
+% are used even for the unicode engines.
+%
 % \subsection{Options}\label{sec:options}
-% Although the class file includes all layout information for a submission to 
+% Although the class file includes all layout information for a submission to
 % the \LNI{}, there are options to adapt the output one way or another.
 %
-% \DescribeOption{english}A document loading the \lni{} class file uses German 
-% language adoptions by default. To switch to English, just load the class with 
+% \DescribeOption{english}A document loading the \lni{} class file uses German
+% language adoptions by default. To switch to English, just load the class with
 % option \opt{english}.
 %
-% The language influences not only the hyphenation patterns and terms used in 
-% the text, but also the choice of a corresponding \BibTeX{} file 
+% The language influences not only the hyphenation patterns and terms used in
+% the text, but also the choice of a corresponding \BibTeX{} file
 % (cf.~\cref{sec:bibliography}).
 %
-% \DescribeOption{utf8}\DescribeOption{latin1}\DescribeOption{applemac}Although 
-% nowadays all major plattforms support and widely use UTF-8 encoding for 
+% \DescribeOption{utf8}\DescribeOption{latin1}\DescribeOption{applemac}Although
+% nowadays all major plattforms support and widely use UTF-8 encoding for
 % text files, there might be some need to change the input  encoding the
 % \LaTeX{} document uses.
 %
-% This can be achieved by giving one of the options \opt{utf8} (which is the 
+% This can be achieved by giving one of the options \opt{utf8} (which is the
 % default), \opt{latin1} or \opt{applemac} to the document class. Using UTF-8
 % is strongly recommended. Please note, that currently the bib file is supposed
 % to use the same encoding.
 %
-% \DescribeOption{biblatex}Nowadays bibliographies cannot only be produced with 
-% \BibTeX{}, but with a much more powerful approach consisting of the package 
+% \DescribeOption{biblatex}Nowadays bibliographies cannot only be produced with
+% \BibTeX{}, but with a much more powerful approach consisting of the package
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
-% There is even a specialized package \pkg{biblatex-lni} which is automatically 
-% used when setting the class option \opt{biblatex}. For more information see 
+% There is even a specialized package \pkg{biblatex-lni} which is automatically
+% used when setting the class option \opt{biblatex}. For more information see
 % as well \cref{sec:bibliography}.
 %
 % \DescribeOption{crop\space(new in v1.1)}%
-% Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to 
-% better illustrate the final 
+% Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to
+% better illustrate the final
 % result of your article.
 %
 % \DescribeOption{nocleveref}When referencing figures, one has to type
 % \texttt{Figure\textasciitilde}\cs{ref\marg{label}}. The package \pkg{cleveref}
 % reduces the effort by offering the command \cs{cref\marg{label}}. This can be
-% used with all floating objects. The package is loaded as default. In case it 
+% used with all floating objects. The package is loaded as default. In case it
 % causes issues, one can disable it using with the \opt{nocleveref} option.
 %
-% \DescribeOption{nohyperref}\pkg{hyperref} is used for colored hyperlinks 
-% within the articles. If you consider problems or just do not want that 
+% \DescribeOption{nohyperref}\pkg{hyperref} is used for colored hyperlinks
+% within the articles. If you consider problems or just do not want that
 % feature, you can disable it by using the option \opt{nohyperref}.
 %
-% \DescribeOption{nofonts\space(new in v1.3, deprecated in v1.4)}On old systems 
-% you might not have installed the New TX fonts. If for whatever reason the 
-% \opt{oldfonts} option 
-% does not work for you, you can activate option \opt{nofonts}. This allows to 
+% \DescribeOption{nofonts\space(new in v1.3, deprecated in v1.4)}On old systems
+% you might not have installed the New TX fonts. If for whatever reason the
+% \opt{oldfonts} option
+% does not work for you, you can activate option \opt{nofonts}. This allows to
 % suppress font loading completely using the engines standard fonts instead.
-% Usually there should be no need to do so. Please note, that your output will 
+% Usually there should be no need to do so. Please note, that your output will
 % differ from the publishers'.
 %
 % \DescribeOption{oldfonts\space(new in v1.4)}On older systems you might not
 % have installed the New TX fonts. Therefore option \opt{oldfonts} allows to
-% to load the package \pkg{mathptmx} instead of the New TX fonts. The output 
+% to load the package \pkg{mathptmx} instead of the New TX fonts. The output
 % will be in accordance to (or at least near) the publisher's requirements.
 %
 % \DescribeOption{norunningheads\space(new in v1.5)}To easily remove all running
 % headers from your document, you can use the option \opt{norunningheads}.
 % \newpage
 % \section{Setting up a document}
-% You can use the file \file{lni-author-template.tex} as a starting point 
-% for setting up a document for submission. The \lni{} class uses the standard 
+% You can use the file \file{lni-author-template.tex} as a starting point
+% for setting up a document for submission. The \lni{} class uses the standard
 % ways to build an article.
 %
 % \subsection{Special meta data}\label{sec:metadata}
-% There is not just one \enquote{\TeX} and one \enquote{bibliography tool}, but 
+% There is not just one \enquote{\TeX} and one \enquote{bibliography tool}, but
 % many different ways to transform a .tex file into a PDF.
-% Some \TeX{} editors like \texttt{TeXstudio}, \texttt{TeXmaker} and 
-% \texttt{TeXshop} support a special set of meta data to tell the editor, how 
+% Some \TeX{} editors like \texttt{TeXstudio}, \texttt{TeXmaker} and
+% \texttt{TeXshop} support a special set of meta data to tell the editor, how
 % to deal with a concrete document.
-% 
+%
 % A typical example looks like:
 % \begin{examplecode}
 % % !TeX program = pdflatex
 % % !BIB program = bibtex8
 % % !TeX encoding = UTF-8
-% !TeX spellcheck = de_DE
+% % !TeX spellcheck = de_DE
 % \documentclass[english]{lni}
 % \end{examplecode}
 %
 % \subsection{Special macros for editors}
-% \DescribeMacro{\startpage}\DescribeMacro{\editor}\DescribeMacro{\booktitle}%
-% \DescribeMacro{\year}In addition to the macros stated in 
+% \DescribeMacro{\startpage}\DescribeMacro{\editor}%
+% \DescribeMacro{\booktitle\space(changed in v1.6)}%
+% \DescribeMacro{\booksubtitle\space(new in v1.6)}%
+% \DescribeMacro{\year}In addition to the macros stated in
 % \cref{sec:titlepage} for authors, there are special editor macros to
 % influence the layout of the article:
 % \begin{itemize}
-%   \item\cs{startpage} determines the starting page of the article. This 
+%   \item\cs{startpage} determines the starting page of the article. This
 % should always be an odd (right) page.
 %   \item\cs{editor} states the name of the editor(s)
-%   \item\cs{booktitle} holds the name of a conference. In addition to 
-%     the title itself, you can add a short title to be used in the header of a 
-%     page.
+%   \item\cs{booktitle} holds the name of a conference (optional argument for
+%   a short title used in the running headers)
+%   \item\cs{booksubtitle} holds an optional subtitle of a conference
 %   \item\cs{year} can be used to set the year
 % \end{itemize}
 %
 % \subsection{Title page}\label{sec:titlepage}
 % \DescribeMacro{\title}%
 % \DescribeMacro{\subtitle\space(new in v1.1)}%
-% The title of your work is given using the \cs{title} macro. In addition to 
-% the title itself, you can add a short title to be used 
+% The title of your work is given using the \cs{title} macro. In addition to
+% the title itself, you can add a short title to be used
 % in the header of a page:
 % \begin{examplecode}[label={lst:title}]
 % \title[Short title]{Title}
 % \end{examplecode}
-% 
+%
 % You can also add a subtitle by \cs{subtitle\marg{subtitle}}.
-% 
+%
 % \DescribeMacro{\author}\DescribeMacro{\email}\DescribeMacro{\footnote}%
 % \DescribeMacro{\and}%
-% The authors of an article are 
-% given using the standard \cs{author} macro. Multiple authors are separated 
-% by \cs{and}; affiliations have to be added with 
-% \cs{footnote\marg{affiliations}} where you can use 
+% The authors of an article are
+% given using the standard \cs{author} macro. Multiple authors are separated
+% by \cs{and}; affiliations have to be added with
+% \cs{footnote\marg{affiliations}} where you can use
 % \cs{email\marg{email address}} for the email address of an author:
-% \begin{examplecode}[label={lst:author}] 
+% \begin{examplecode}[label={lst:author}]
 % \author[Author 1 \and Author 2]{%
 %    Author 1\footnote{Affiliations including \email{email@author1}} \and%
 %    Author 2\footnote{Affiliations including \email{email@author2}}}
 % \end{examplecode}
-% In case the authors are too long for the page header, see 
+% In case the authors are too long for the page header, see
 % \cref{sec:pageheader} of how to shorten the authors for the page header.
 %
 % \DescribeMacro{\lnidoi\space(new in v1.2)}%
@@ -499,13 +505,13 @@ This work consists of the file  lni.dtx
 % \subsection{Abstract and keywords}
 % \DescribeEnv{abstract}\DescribeEnv{keywords}%
 % \DescribeMacro{\and\space(new in v1.1)}%
-% Each article should start with a short (70 to 150 words) abstract and some 
-% keywords. Please use the environments \env{abstract} and \env{keywords} for 
+% Each article should start with a short (70 to 150 words) abstract and some
+% keywords. Please use the environments \env{abstract} and \env{keywords} for
 % that purpose:
 % \begin{examplecode}
 % \begin{abstract}
 % Tell the reader what your article is about
-% \end{abstract}   
+% \end{abstract}
 % \begin{keywords}
 % Give some keywords to categorize your article. You can use \and between two
 % keywords to get the correct delimiter (semicolon plus space) automatically.
@@ -514,8 +520,8 @@ This work consists of the file  lni.dtx
 %
 % \subsection{Page header}\label{sec:pageheader}
 % The template automatically sets the page headers according to the
-% requirements of \LNI. From page~2 onwards, the title and the authors are 
-% printed. These information has to stay in one line. In case the title is too 
+% requirements of \LNI. From page~2 onwards, the title and the authors are
+% printed. These information has to stay in one line. In case the title is too
 % long, use the optional argument for \cs{title}:
 % \begin{examplecode}
 % \title[Short title]{Title}
@@ -525,7 +531,7 @@ This work consists of the file  lni.dtx
 % In case there are many authors on a paper, they might not fit into the paper.
 % For that purpose, additionally use \cs{authorrunning}:
 % \begin{examplecode}
-% \author[Firstname1 Lastname1 \and Firstname2 Lastname2% 
+% \author[Firstname1 Lastname1 \and Firstname2 Lastname2%
 %    \and Firstname3 Lastname3]{Firstname1 Lastname1\footnote{...}%
 %    \and Firstname2 Lastname2\footnote{...}%
 %    \and Firstname3 Lastname3\footnote{...}}%
@@ -536,34 +542,34 @@ This work consists of the file  lni.dtx
 % \subsubsection{Headings}
 % \DescribeMacro{\section}\DescribeMacro{\subsection}%
 % \DescribeMacro{\subsubsection}
-% You can use the standard macros \cs{section}, \cs{subsection}, \dots{} for 
+% You can use the standard macros \cs{section}, \cs{subsection}, \dots{} for
 % sectioning your text.
-% 
+%
 % \subsubsection{Footnotes}
 % \DescribeMacro{\footnote}%
-% For adding a footnote, just use \cs{footnote\marg{footnote text}} where 
-% needed. Please note, that the footnote counter is automatically set to the 
-% correct value at the beginning of your text, i.\,e. it respects the number 
+% For adding a footnote, just use \cs{footnote\marg{footnote text}} where
+% needed. Please note, that the footnote counter is automatically set to the
+% correct value at the beginning of your text, i.\,e. it respects the number
 % of affiliations given on the title page.
 %
 % \subsubsection{Lists}
 % \DescribeEnv{itemize}\DescribeEnv{enumerate}%
-% The \lni{} class redefines the standard lists environments \env{itemize} and 
+% The \lni{} class redefines the standard lists environments \env{itemize} and
 % \env{enumerate} to meet the requirements of the \LNI{}.
-% 
+%
 % Lists can be filled as usual by adding \cs{item} macros.
 %
 % \subsubsection{Floating objects}
 % \DescribeEnv{figure}\DescribeEnv{table}%
-% The environments \env{figure} and \env{table} can be used the standard way to 
+% The environments \env{figure} and \env{table} can be used the standard way to
 % include graphics or tables resp.
 %
-% However, please note, that the default placement parameters are changed to 
-% \opt{htbp} by the class \lni{}. If you need some local adjustment, please use 
+% However, please note, that the default placement parameters are changed to
+% \opt{htbp} by the class \lni{}. If you need some local adjustment, please use
 % the optional argument of both environments (cf.~Listing~\ref{lst:figure}).
 %
 % \DescribeMacro{\caption}\DescribeMacro{\label}
-% A caption should be added by \cs{caption\marg{caption text}}, followed 
+% A caption should be added by \cs{caption\marg{caption text}}, followed
 % immediately by a \cs{label\marg{unique label}} entry.
 % \begin{examplecode}[label={lst:figure}]
 % \begin{figure}[tb]
@@ -573,8 +579,8 @@ This work consists of the file  lni.dtx
 % \end{figure}
 % \end{examplecode}
 %
-% If you want to center floats, please \emph{do not} use the \env{center} 
-% environment, but the macro \cs{centering}, which does not add extra white 
+% If you want to center floats, please \emph{do not} use the \env{center}
+% environment, but the macro \cs{centering}, which does not add extra white
 % space (cf.~Listing~\ref{lst:table}).
 % \begin{examplecode}[label={lst:table}]
 % \begin{table}
@@ -588,28 +594,28 @@ This work consists of the file  lni.dtx
 % \end{examplecode}
 %
 % \subsubsection{Listings\,/\,Source code}
-% The \lni{} bundle loads the \pkg{verbatim} and \pkg{listings} package. While 
-% the former is there for compatability, the later is the standard way of 
+% The \lni{} bundle loads the \pkg{verbatim} and \pkg{listings} package. While
+% the former is there for compatability, the later is the standard way of
 % integrating source code listings into a \LaTeX{} document.
 %
-% However, there are currently no config files shipped with the \lni{} bundle. 
-% Please consult the documentation for help on setting up \pkg{listings} for a 
+% However, there are currently no config files shipped with the \lni{} bundle.
+% Please consult the documentation for help on setting up \pkg{listings} for a
 % specific programming language.
 %
 % \subsubsection{Math}
-% If you need mathematics, you can load packages \pkg{amsmath} and 
-% \pkg{mathtools} for 
-% additional features. The \lni{} class offers by default the command 
-% \cs{powerset} to render the powerset symbol correctly as $\powerset$ and not 
+% If you need mathematics, you can load packages \pkg{amsmath} and
+% \pkg{mathtools} for
+% additional features. The \lni{} class offers by default the command
+% \cs{powerset} to render the powerset symbol correctly as $\powerset$ and not
 % as Weierstrass p ($\wp$).
 %
 % \subsubsection{Abbreviations and initialisms}
 % \DescribeMacro{\eg}\DescribeMacro{\ie}\DescribeMacro{\cf}%
 % \DescribeMacro{\etal}%
-% To achieve consistent typesetting of common abbreviations, macros are 
-% predefined by the class. These macros should \emph{consistently} being used 
-% instead of writing the plain version. For example use \verb|\eg| rather than 
-% {\verb|e.g.,|}. The macros take care of spacing within and after the 
+% To achieve consistent typesetting of common abbreviations, macros are
+% predefined by the class. These macros should \emph{consistently} being used
+% instead of writing the plain version. For example use \verb|\eg| rather than
+% {\verb|e.g.,|}. The macros take care of spacing within and after the
 % abbreviations.
 % \begin{itemize}
 % \item \cs{eg} for e.\,g.
@@ -619,9 +625,9 @@ This work consists of the file  lni.dtx
 % \end{itemize}
 %
 % \DescribeMacro{\OMG}\DescribeMacro{\BPM}\DescribeMacro{\BPMN}\DescribeMacro{\UML}%
-% In addition to common abbreviations, further initialisms are provided by the 
-% class for convenience and for a consistent visual appearance. Note that the 
-% class uses \textsc{smallcaps} for typesetting initialisms. The list of 
+% In addition to common abbreviations, further initialisms are provided by the
+% class for convenience and for a consistent visual appearance. Note that the
+% class uses \textsc{smallcaps} for typesetting initialisms. The list of
 % predefined initialisms comprises:
 %
 % \begin{itemize}
@@ -632,41 +638,41 @@ This work consists of the file  lni.dtx
 % \item \cs{UML} for \textsc{uml} (Unified Modelling Language).
 % \end{itemize}
 %
-% \DescribeMacro{\lniinitialism} You can add your own initialisms by stating 
+% \DescribeMacro{\lniinitialism} You can add your own initialisms by stating
 % \cs{lniinitialism\marg{\textbackslash initialism\_macro}\marg{text}} in the
 % preamble.
 %
 % \subsection{Bibliography}\label{sec:bibliography}
-% \enlargethispage{\baselineskip}The old \lni{} class file only supports 
-% \BibTeX{} with bst files for German 
+% \enlargethispage{\baselineskip}The old \lni{} class file only supports
+% \BibTeX{} with bst files for German
 % and English submissions resp. If you want to use this approach for your
 % article you have to add \cs{bibliography\marg{Bib file}} at an appropriate
 % position within your text. The correct bst file is loaded automatically.
-% 
-% With option 
+%
+% With option
 % \opt{biblatex} (cf.~\cref{sec:options}) you can easily switch to the modern
-% \pkg{biblatex} package. However, you have to add information on the bib 
-% file(s) in your preamble using \cs{addbibresource\marg{Bib file(s)}} and call 
+% \pkg{biblatex} package. However, you have to add information on the bib
+% file(s) in your preamble using \cs{addbibresource\marg{Bib file(s)}} and call
 % \cs{printbibliography} where you want the bibliography to appear.
 %
-% Please note, that the \lni{} class sets 
-% \texttt{biber} as the default bibliography tool. \texttt{biber} is part of 
-% both major \TeX{} distributions and can easily be used within most \TeX{} 
+% Please note, that the \lni{} class sets
+% \texttt{biber} as the default bibliography tool. \texttt{biber} is part of
+% both major \TeX{} distributions and can easily be used within most \TeX{}
 % editors, e.\,g. by using special meta data as described in
 % \cref{sec:metadata}.
 %
-% If you want to pass settings to \pkg{biblatex} you can use a config 
-% file \texttt{biblatex.cfg}, for additional options please use the macro 
+% If you want to pass settings to \pkg{biblatex} you can use a config
+% file \texttt{biblatex.cfg}, for additional options please use the macro
 % \cs{ExecuteBibliographyOptions}. Please consult the
 % \href{http://texdoc.net/pkg/biblatex}{package's documentation} for
 % more information.
 % \begin{examplecode}
 % % !TeX program = pdflatex
-% % !BIB program = biber   
+% % !BIB program = biber
 % \documentclass[biblatex]{lni}
 % ...
 % \ExecuteBibliographyOptions{...}
-% \addbibresource{FILENAME.bib}   
+% \addbibresource{FILENAME.bib}
 % ...
 % \begin{document}
 % ...
@@ -702,10 +708,10 @@ This work consists of the file  lni.dtx
 % \texttt{!Package xkeyval Error: 'family\_i'
 % undefined in families blx@opt@name}\\\texttt{part'.},\\
 % it is an indicator that you
-% switched from \BibTeX{} to \pkg{biblatex}. Clean up (remove 
+% switched from \BibTeX{} to \pkg{biblatex}. Clean up (remove
 % \texttt{paper.bbl}) and recompile.
-% \item Errors with \BibTeX: The bst files may still report errors, although 
-% the output is okay. This will be solved as soon as possible. However, you 
+% \item Errors with \BibTeX: The bst files may still report errors, although
+% the output is okay. This will be solved as soon as possible. However, you
 % might consider switching to \pkg{biblatex} (cf.~\cref{sec:bibliography}).
 % \end{itemize}
 %
@@ -809,24 +815,24 @@ This work consists of the file  lni.dtx
          {%
             \RequirePackage{newtxtext}
             \RequirePackage{newtxmath}
-            \RequirePackage[zerostyle=b,scaled=.9]{newtxtt} 
+            \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
 %    \end{macrocode}
-% For compatibility with version of \pkg{newtxtt} prior to v1.05 we set the 
+% For compatibility with version of \pkg{newtxtt} prior to v1.05 we set the
 % option \opt{straightquotes} manually for recent versions
 %    \begin{macrocode}
             \@ifpackagelater{newtxtt}{2014/11/18}%
                {\txtt@upqtrue}%
-               {\ClassWarning{lni}{You are using an old version of 
-                `newtxtt'.\MessageBreak 
+               {\ClassWarning{lni}{You are using an old version of
+                `newtxtt'.\MessageBreak
                 Option `straightquotes' will not be used!}}%
-%    \end{macrocode}         
+%    \end{macrocode}
 %    \begin{macrocode}
          }%
          {\IfFileExists{mathptmx.sty}
             {\oldfontstrue}%
             {\nofontstrue}%
          }%
-%    \end{macrocode}         
+%    \end{macrocode}
 % for \hologo{XeTeX} or \hologo{LuaTeX} we use \pkg{fontspec}
 %    \begin{macrocode}
    \else%
@@ -849,8 +855,8 @@ This work consists of the file  lni.dtx
             {\oldfontstrue}%
             {\nofontstrue}%
          }%
-   \fi%         
-\fi%         
+   \fi%
+\fi%
 \ifoldfonts
    \RequirePackage{mathptmx}
 \else%
@@ -955,7 +961,7 @@ This work consists of the file  lni.dtx
    \setlength{\doivoffset}{4.3cm}
 \fi%
 %    \end{macrocode}
-% We change \cs{small} and \cs{Large} to get the correct baseline skips and add 
+% We change \cs{small} and \cs{Large} to get the correct baseline skips and add
 % an \cs{oldsmall}
 %    \begin{macrocode}
 \let\oldsmall\small%
@@ -1020,7 +1026,7 @@ This work consists of the file  lni.dtx
    captionpos=b,%
    upquote}%
 %    \end{macrocode}
-% Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der 
+% Ragged bottom -- verhindert die Ausdehnung der Seite = Veränderung der
 % Abstände
 %    \begin{macrocode}
 \def\thisbottomragged{\def\@textbottom{\vskip\z@ plus.0001fil
@@ -1050,7 +1056,7 @@ This work consists of the file  lni.dtx
   \fi}
 %    \end{macrocode}
 % \begin{macro}{\title}
-%    \begin{macrocode}  
+%    \begin{macrocode}
 \renewcommand{\title}{\@dblarg\@@title}
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 %    \end{macrocode}
@@ -1114,7 +1120,7 @@ This work consists of the file  lni.dtx
     \else
       \thispagestyle{plain}
     \fi%
-    \@thanks   
+    \@thanks
   \endgroup
   \global\let\thanks\relax
   \global\let\maketitle\relax
@@ -1177,7 +1183,7 @@ This work consists of the file  lni.dtx
 \renewenvironment*{abstract}{%
    \renewcommand{\abstractname}{Abstract}%
    \small\noindent\ignorespaces{\bfseries\abstractname:\ }%
-}{\endquotation}  
+}{\endquotation}
 %    \end{macrocode}
 % \end{environment}
 % \begin{environment}{keywords}
@@ -1190,16 +1196,16 @@ This work consists of the file  lni.dtx
    {\global\keywordsfalse}
 \let\@RIGsection\section
 \pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}%
-   {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}   
+   {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}
 %    \end{macrocode}
 % \end{environment}
 % Section headings
 %    \begin{macrocode}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus 
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus
   4\p@}{\large\bfseries}}
 \renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}%
-  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus 
+  {-16\p@ \@plus -4\p@ \@minus -4\p@}{8\p@ \@plus 4\p@ \@minus
   4\p@}{\normalsize\bfseries}}
 %    \end{macrocode}
 % Bildunterschriften
@@ -1266,9 +1272,9 @@ This work consists of the file  lni.dtx
   \ifnum \@itemdepth >\thr@@\@toodeep\else
   	\setlength{\labelsep}{0.70cm}%Abstand zum Aufzählungspunkt
     \advance\@itemdepth\@ne
-    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%   
+    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
     \expandafter
-    \list  
+    \list
       \csname\@itemitem\endcsname
       {\def\makelabel##1{\hss\llap{##1}}%
        \setlength{\itemsep}{8pt}%
@@ -1276,13 +1282,13 @@ This work consists of the file  lni.dtx
   \fi}
 %    \end{macrocode}
 % and numbered lists
-%    \begin{macrocode}  
+%    \begin{macrocode}
   \renewcommand{\labelenumii}{\alph{enumii})}
-  \renewcommand*\enumerate{%    
+  \renewcommand*\enumerate{%
   \ifnum \@enumdepth >\thr@@
       \@toodeep
     \else
-		\setlength{\labelsep}{0.70cm}%Abstand zur Aufzählungsnummer      
+		\setlength{\labelsep}{0.70cm}%Abstand zur Aufzählungsnummer
       \advance\@enumdepth \@ne
       \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
     \fi
@@ -1291,7 +1297,7 @@ This work consists of the file  lni.dtx
     \expandafter\list\csname label\@enumctr\endcsname{%
       \usecounter{\@enumctr}%
       \def\makelabel##1{\hss\llap{##1}}
-		\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens     
+		\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens
       \setlength{\itemsep}{8pt}%
       \setlength{\parsep}{-2pt}}
   }%
@@ -1349,15 +1355,15 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\ 
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\
    \@shortbooktitle,\hspace{1sp}\null\linebreak%
        Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
        \hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\small\@editor~(Hrsg.):\ 
-   \@shortbooktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes 
+   \fancyhead[LE]{\small\@editor~(Hrsg.):\
+   \@shortbooktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
    in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
-   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
+   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 }%
 \ifnorunningheads
    \pagestyle{empty}
@@ -1367,7 +1373,7 @@ This work consists of the file  lni.dtx
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
    \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
-   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
+   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
 %    \end{macrocode}
 %    \begin{macrocode}
@@ -1466,7 +1472,7 @@ This work consists of the file  lni.dtx
    \endlist\egroup}
 %    \end{macrocode}
 %    \begin{macrocode}
-\frenchspacing    
+\frenchspacing
 \tolerance 1414
 \hbadness 1414
 \emergencystretch 1.5em
@@ -1673,7 +1679,7 @@ FUNCTION {format.names} %formats the names of the authors
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr "{vv~}{ll}{, jj}{, ff}" format.name$ 't 
+    { s nameptr "{vv~}{ll}{, jj}{, ff}" format.name$ 't
 % last name, prename(s)
      :=
       nameptr #1 >
@@ -1695,7 +1701,7 @@ FUNCTION {format.names} %formats the names of the authors
               if$
               t "others" =
                 { " et~al." * }
-% ``and'' changed to ``;'' 
+% ``and'' changed to ``;''
                 { "; " * t * }
               if$
             }
@@ -1707,7 +1713,7 @@ FUNCTION {format.names} %formats the names of the authors
       namesleft #1 - 'namesleft :=
     }
   while$
-   
+
 }
 
 FUNCTION {format.authors}
@@ -1733,7 +1739,7 @@ FUNCTION {format.editors}
 	{ ", Hrsg." * }
 	{ ", Hrsg." * }
 %</ger>
-%<*eng|ger>	
+%<*eng|ger>
       if$
     }
   if$
@@ -1742,7 +1748,7 @@ FUNCTION {format.editors}
 FUNCTION {format.title}
 { title empty$
     { "" }
-% (RT) the title as typed in the database here 
+% (RT) the title as typed in the database here
 %    { title "t" change.case$ }
     'title
   if$
@@ -1816,20 +1822,20 @@ FUNCTION {format.bvolume}
 %<*eng>
     { "volume" volume tie.or.space.connect
 %</eng>
-%<*ger>    
+%<*ger>
     { "Jgg." volume tie.or.space.connect
 %</ger>
-%<*eng|ger>    
+%<*eng|ger>
       series empty$
 	'skip$
 %</eng|ger>
-%<*eng>	
-	{ " of " * series % no emphasize 
+%<*eng>
+	{ " of " * series % no emphasize
 %</eng>
 %<*ger>
-	{ " in " * series % no emphasize 
+	{ " in " * series % no emphasize
 %</ger>
-%<*eng|ger>	 	
+%<*eng|ger>
 	* }
       if$
       "volume and number" number either.or.check
@@ -1848,7 +1854,7 @@ FUNCTION {format.number.series}
 	  series empty$
         { "" }
         { series * }
-      if$          
+      if$
           number tie.or.space.connect % series and then the number, eg LNI 001
         }
     if$
@@ -1862,7 +1868,7 @@ FUNCTION {format.edition}
     { "" }
     { output.state mid.sentence =
 %</eng|ger>
-%<*eng>    
+%<*eng>
 	{ edition "l" change.case$ " edition" * }
 	{ edition "t" change.case$ " edition" * }
 %</eng>
@@ -1870,7 +1876,7 @@ FUNCTION {format.edition}
 	{ edition "l" change.case$ ".~Auflage" * }
 	{ edition "t" change.case$ ".~Auflage" * }
 %</ger>
-%<*eng|ger>	
+%<*eng|ger>
       if$
     }
   if$
@@ -1913,7 +1919,7 @@ FUNCTION {format.pages}
 	{ "S." pages n.dashify tie.or.space.connect }
 	{ "S." pages tie.or.space.connect }
 %</ger>
-%<*eng|ger>	
+%<*eng|ger>
       if$
     }
   if$
@@ -1945,13 +1951,13 @@ FUNCTION {format.chapter.pages}
     'format.pages
     { type empty$
 %</eng|ger>
-%<*eng>    
+%<*eng>
 	{ "chapter" }
 %</eng>
 %<*ger>
 	{ "Kapitel" }
 %</ger>
-%<*eng|ger>	
+%<*eng|ger>
 	{ type "l" change.case$ }
       if$
       chapter tie.or.space.connect
@@ -1967,7 +1973,7 @@ FUNCTION {format.in.ed.booktitle}
 { booktitle empty$
     { "" }
     { editor empty$
-% no emphasize    
+% no emphasize
 %       { "In: " booktitle emphasize * }
 %       { "In: " format.editors * ", " * booktitle emphasize * }
         { "In: " booktitle  * }
@@ -2005,7 +2011,7 @@ FUNCTION {format.tr.number}
 %<*ger>
     { "Bericht" }
 %</ger>
-%<*eng|ger>    
+%<*eng|ger>
     'type
   if$
   number empty$
@@ -2064,7 +2070,7 @@ FUNCTION {format.book.crossref}
       " in " *
     }
 %</ger>
-%<*eng|ger>    
+%<*eng|ger>
   if$
   editor empty$
   editor field.or.null author field.or.null =
@@ -2117,7 +2123,7 @@ FUNCTION {article}
   format.title "title" output.check
   new.block
   crossref missing$
-    { journal % no emphasize 
+    { journal % no emphasize
     "journal" output.check
       format.vol.num.pages output
       format.date "year" output.check
@@ -2192,7 +2198,7 @@ FUNCTION {inbook}
   format.btitle "title" output.check
   new.block
   crossref missing$ %changed whole order of next lines
-    { 
+    {
       format.in.ed.booktitle "booktitle" output.check %added: mention title of the related book and editors
       format.bvolume output
       new.block
@@ -2248,7 +2254,7 @@ FUNCTION {inproceedings}
   new.block
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      new.block      
+      new.block
       format.bvolume output
       format.number.series output
       address empty$
@@ -2322,7 +2328,7 @@ FUNCTION {mastersthesis}
 %<*ger>
   "Masterarbeit" format.thesis.type output.nonnull
 %</ger>
-%<*eng|ger>  
+%<*eng|ger>
   school "school" output.check
   address output
   format.date "year" output.check
@@ -2372,7 +2378,7 @@ FUNCTION {phdthesis}
 %<*ger>
   "Dissertation" format.thesis.type output.nonnull
 %</ger>
-%<*eng|ger>  
+%<*eng|ger>
   school "school" output.check
   address output
   format.date "year" output.check
@@ -2576,7 +2582,7 @@ FUNCTION {format.lab.names}
       ""
         { namesleft #0 > }
         { nameptr numnames =
-            { s nameptr "{ff }{vv }{ll}{ jj}" format.name$ 
+            { s nameptr "{ff }{vv }{ll}{ jj}" format.name$
             "others" =
                 { pop$ s #1 "{ll}" format.name$ #2 text.prefix$ %% second sign of first author if there are others
                 }
@@ -2589,7 +2595,7 @@ FUNCTION {format.lab.names}
           namesleft #1 - 'namesleft :=
         }
       while$
-      numnames #3 > 
+      numnames #3 >
         { pop$ s #1 "{ll}" format.name$ #2 text.prefix$ } % if more than 3 authors take second letter of first name
         'skip$
       if$
@@ -2866,7 +2872,7 @@ FUNCTION {begin.bib}
 { et.al.char.used
 % to make it compatible with singlepass, we use \def
 %    { "\newcommand{\etalchar}[1]{$^{#1}$}" write$ newline$ }
-    { "\gdef\etalchar#1{$^{#1}$}" write$ newline$ } 
+    { "\gdef\etalchar#1{$^{#1}$}" write$ newline$ }
     'skip$
   if$
   preamble$ empty$
@@ -2891,10 +2897,10 @@ EXECUTE {end.bib}
 %</eng|ger>
 %</bibtex>
 %<*template>
-%%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne 
+%%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne
 %%% Parameter zu laden.
 \documentclass[]{lni}
-%%% To write an article in English, please use the option ``english'' in order 
+%%% To write an article in English, please use the option ``english'' in order
 %%% to get the correct hyphenation patterns and terms.
 %%% \documentclass[english]{class}
 %%
@@ -2902,15 +2908,15 @@ EXECUTE {end.bib}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
 %%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
-\title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen 
+\title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
 Worten und noch mehr Buchstaben}
 %%%\subtitle{Untertitel / Subtitle} % if needed
 \author[Vorname1 Nachname1 \and Firstname2 Lastname2]
-{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort, 
+{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort,
 Land \email{emailaddress@author1}} \and
-Firstname2 Lastname2\footnote{University, Department, Address, Country 
+Firstname2 Lastname2\footnote{University, Department, Address, Country
 \email{emailaddress@author2}}}
-\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page 
+\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page
 %numbering at this number
 \editor{Herausgeber et al.} % Names of Editors
 \booktitle{Name-der-Konferenz} % Name of book title
@@ -2919,7 +2925,7 @@ Firstname2 Lastname2\footnote{University, Department, Address, Country
 \maketitle
 
 \begin{abstract}
-This is a brief overview of the paper, which should be 70 to 150 words long and 
+This is a brief overview of the paper, which should be 70 to 150 words long and
 include the most relevant points. This has to be a single paragraph.
 \end{abstract}
 \begin{keywords}
@@ -3179,7 +3185,7 @@ public class Hello {
 
 \subsection{Formeln und Gleichungen}
 
-Die korrekte Einrückung und Nummerierung für Formeln ist bei den Umgebungen 
+Die korrekte Einrückung und Nummerierung für Formeln ist bei den Umgebungen
 \texttt{equation} und \texttt{align} gewährleistet.
 
 \begin{equation}
@@ -3198,4 +3204,4 @@ und
 \end{document}
 %</exampledetex>
 %    \end{macrocode}
-%\fi 
+%\fi
