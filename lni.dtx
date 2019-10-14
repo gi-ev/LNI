@@ -299,6 +299,10 @@ This work consists of the file  lni.dtx
 % \changes{v1.6}{2019/09/14}{\cs{booktitle} now uses an optional argument for
 % shorttitle}
 % \changes{v1.6}{2019/09/14}{New macro \cs{booksubtitle}}
+% \changes{v1.6}{2019/09/14}{\pkg{hypcap} is only loaded if \pkg{hyperref}
+% has been loaded before.}
+% \changes{v1.6}{2019/09/14}{\pkg{hyperref} is loaded without options to make
+% it more compatible with other packages like \pkg{authorarchive}}
 % \changes{v1.6}{2019/10/14}{Fix for BibTeX style}
 % \changes{v1.6}{2019/10/14}{Add support for `selnolig`}
 %
@@ -1407,12 +1411,14 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \ifusehyperref
    \AtEndPreamble{%
-      \RequirePackage[pdfusetitle,bookmarks=false]{hyperref}
+      \RequirePackage[bookmarks=false]{hyperref}
       \hypersetup{%
          pdfdisplaydoctitle,%
          colorlinks=true,%
          allcolors=black,%
-         pdfstartview=Fit%
+         pdfstartview=Fit,%
+         pdfauthor={\@author},%
+         pdftitle={\@title}%
       }%
    }%
 \fi%
@@ -1438,7 +1444,11 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % enables correct jumping to figures when referencing
 %    \begin{macrocode}
-\AtEndPreamble{\RequirePackage[all]{hypcap}}
+\AtEndPreamble{%
+   \@ifpackageloaded{hyperref}
+   {\RequirePackage[all]{hypcap}}%
+   {}%
+}%
 %    \end{macrocode}
 %    \begin{macrocode}
 \def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
