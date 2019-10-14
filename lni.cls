@@ -150,6 +150,13 @@
    \RequirePackage[%
       final,%
       protrusion=alltext-nott]{microtype}%
+   \ifluatex
+      \iflnienglish
+         \RequirePackage[english]{selnolig}%
+      \else
+         \RequirePackage[ngerman]{selnolig}%
+      \fi%
+   \fi%
 \fi%
 \SetTracking{encoding=*,shape=sc}{50}%
 \DeclareFontFamily{U}{MnSymbolC}{}
@@ -175,7 +182,8 @@
      includehead,
      headheight=20.39pt,
      headsep=.31cm,
-     centering]
+     centering,
+     driver=none]
      {geometry}
    \RequirePackage[a4,center,cam,info]{crop}
    \renewcommand*\CROP@@info{{%
@@ -485,7 +493,8 @@
 }%
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
 \newcommand{\booktitle}{\@dblarg\@@booktitle}
-\def\@@booktitle[#1]#2{\gdef\@shortbooktitle{#1}\gdef\@booktitle{#2}}
+\def\@@booktitle[#1]#2{\gdef\@bookshorttitle{#1}\gdef\@booktitle{#2}}
+\newcommand{\booksubtitle}[1]{\gdef\@booksubtitle{#1}}
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
 \AtBeginDocument{%
@@ -497,12 +506,11 @@
 }%
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\
-   \@shortbooktitle,\hspace{1sp}\null\linebreak%
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@bookshorttitle,\hspace{1sp}\null\linebreak%
        Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
        \hspace{5pt}\thepage\hspace{0.05cm}}
    \fancyhead[LE]{\small\@editor~(Hrsg.):\
-   \@shortbooktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
+   \@bookshorttitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
    in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
@@ -522,12 +530,14 @@
 \RequirePackage{xspace}
 \ifusehyperref
    \AtEndPreamble{%
-      \RequirePackage[pdfusetitle,bookmarks=false]{hyperref}
+      \RequirePackage[bookmarks=false]{hyperref}
       \hypersetup{%
          pdfdisplaydoctitle,%
          colorlinks=true,%
          allcolors=black,%
-         pdfstartview=Fit%
+         pdfstartview=Fit,%
+         pdfauthor={\@author},%
+         pdftitle={\@title}%
       }%
    }%
 \fi%
@@ -548,7 +558,11 @@
       \Crefname{table}{\tablename}{\tablename}
    }%
 \fi%
-\AtEndPreamble{\RequirePackage[all]{hypcap}}
+\AtEndPreamble{%
+   \@ifpackageloaded{hyperref}
+   {\RequirePackage[all]{hypcap}}%
+   {}%
+}%
 \def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
 \ifusebiblatex
 \else

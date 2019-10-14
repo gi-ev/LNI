@@ -6,18 +6,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.0] - 2019-10-14
+
 ### Added
 - Optional argument for `\booktitle` to support a short book title for running headers
+- New macro `\booksubtitle`
+- Add support for `selnolig` (LuaTeX-only)
 
 ### Changed
 - `\email` now generates a `mailto:` hyperlink
 - Example file: `align` instead of `eqnarray`
+- Add `driver=none` option to `geometry` for better crop results (independent from engine)
 
 ### Fixed
 - Global options are passed to `article` class ([#78](https://github.com/gi-ev/LNI/issues/78))
 - Finally fix BiBTeX issue thanks to @ytzemih ([#6](https://github.com/gi-ev/LNI/issues/6))
+- `hyperref` is loaded without options to make it more compatible with other packages like `authorarchive`
 
-## [1.5.0] -2019-04-04
+## [1.5.0] - 2019-04-04
 
 ### Added
 - Load package `textcomp` by default and add option `upquote` to `listings` package ([#69](https://github.com/gi-ev/LNI/issues/69))
@@ -90,7 +96,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2017-04-07
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.4...HEAD
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.6...HEAD
+[1.6.0]: https://github.com/gi-ev/LNI/releases/tag/v1.6
 [1.5.0]: https://github.com/gi-ev/LNI/releases/tag/v1.5
 [1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.4
 [1.3.0]: https://github.com/gi-ev/LNI/releases/tag/v1.3
