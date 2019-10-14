@@ -553,7 +553,7 @@ FUNCTION {format.incoll.inproc.crossref}
 
 FUNCTION {article}
 { output.bibitem
-  format.authors %"author" output.check %% No dot after authors
+  format.authors write$ %"author" output.check %% No dot after authors
   new.block
   format.title "title" output.check
   new.block
@@ -576,7 +576,7 @@ FUNCTION {book}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check }
-    { format.authors %output.nonnull %%no dot after authors:
+    { format.authors write$ %output.nonnull %%no dot after authors:
       crossref missing$
 { "author and editor" editor either.or.check }
 'skip$
@@ -622,7 +622,7 @@ FUNCTION {inbook}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check }
-    { format.authors %*output.nonnull %%no dot after authors:
+    { format.authors write$ %*output.nonnull %%no dot after authors:
       crossref missing$
 { "author and editor" editor either.or.check }
 'skip$
@@ -657,7 +657,7 @@ FUNCTION {inbook}
 
 FUNCTION {incollection}
 { output.bibitem
-  format.authors %"author" output.check %%no dot after authors:
+  format.authors write$ %"author" output.check %%no dot after authors:
   new.block
   format.title "title" output.check
   new.block
@@ -683,7 +683,7 @@ FUNCTION {incollection}
 
 FUNCTION {inproceedings}
 { output.bibitem
-  format.authors %"author" output.check %%no dot after authors:
+  format.authors write$ %"author" output.check %%no dot after authors:
   new.block
   format.title "title" output.check
   new.block
@@ -752,7 +752,7 @@ FUNCTION {manual}
 
 FUNCTION {mastersthesis}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.title "title" output.check
   new.block
@@ -795,7 +795,7 @@ FUNCTION {online}
 
 FUNCTION {phdthesis}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.btitle "title" output.check
   new.block
@@ -845,7 +845,7 @@ FUNCTION {proceedings}
 
 FUNCTION {techreport}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.title "title" output.check
   new.block
@@ -860,7 +860,7 @@ FUNCTION {techreport}
 
 FUNCTION {unpublished}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.title "title" output.check
   new.block

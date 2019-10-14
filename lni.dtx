@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2019/04/23 v1.6BETA Official class for submissions to the ``Lecture Notes 
+    [2019/10/14 v1.6BETA Official class for submissions to the ``Lecture Notes 
     in Informatics'']
 %</class>
 %<*driver>
@@ -454,7 +454,9 @@ This work consists of the file  lni.dtx
 %   \item\cs{startpage} determines the starting page of the article. This 
 % should always be an odd (right) page.
 %   \item\cs{editor} states the name of the editor(s)
-%   \item\cs{booktitle} holds the name of a conference
+%   \item\cs{booktitle} holds the name of a conference. In addition to 
+%     the title itself, you can add a short title to be used in the header of a 
+%     page.
 %   \item\cs{year} can be used to set the year
 % \end{itemize}
 %
@@ -468,7 +470,7 @@ This work consists of the file  lni.dtx
 % \title[Short title]{Title}
 % \end{examplecode}
 % 
-% You can also add a subtitle by \cs{substitle\marg{subtitle}}.
+% You can also add a subtitle by \cs{subtitle\marg{subtitle}}.
 % 
 % \DescribeMacro{\author}\DescribeMacro{\email}\DescribeMacro{\footnote}%
 % \DescribeMacro{\and}%
@@ -1324,8 +1326,8 @@ This work consists of the file  lni.dtx
 % \end{macro}
 % \begin{macro}{\booktitle}
 %    \begin{macrocode}
-\newcommand*{\@booktitle}{}
-\newcommand*{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
+\newcommand{\booktitle}{\@dblarg\@@booktitle}
+\def\@@booktitle[#1]#2{\gdef\@shortbooktitle{#1}\gdef\@booktitle{#2}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\editor}
@@ -1347,10 +1349,13 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\hspace{1sp}\null\linebreak%
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\ 
+   \@shortbooktitle,\hspace{1sp}\null\linebreak%
        Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
        \hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
+   \fancyhead[LE]{\small\@editor~(Hrsg.):\ 
+   \@shortbooktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes 
+   in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile 
 }%
@@ -2107,7 +2112,7 @@ FUNCTION {format.incoll.inproc.crossref}
 
 FUNCTION {article}
 { output.bibitem
-  format.authors %"author" output.check %% No dot after authors
+  format.authors write$ %"author" output.check %% No dot after authors
   new.block
   format.title "title" output.check
   new.block
@@ -2130,7 +2135,7 @@ FUNCTION {book}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check }
-    { format.authors %output.nonnull %%no dot after authors:
+    { format.authors write$ %output.nonnull %%no dot after authors:
       crossref missing$
 	{ "author and editor" editor either.or.check }
 	'skip$
@@ -2176,7 +2181,7 @@ FUNCTION {inbook}
 { output.bibitem
   author empty$
     { format.editors "author and editor" output.check }
-    { format.authors %*output.nonnull %%no dot after authors:
+    { format.authors write$ %*output.nonnull %%no dot after authors:
       crossref missing$
 	{ "author and editor" editor either.or.check }
 	'skip$
@@ -2211,7 +2216,7 @@ FUNCTION {inbook}
 
 FUNCTION {incollection}
 { output.bibitem
-  format.authors %"author" output.check %%no dot after authors:
+  format.authors write$ %"author" output.check %%no dot after authors:
   new.block
   format.title "title" output.check
   new.block
@@ -2237,7 +2242,7 @@ FUNCTION {incollection}
 
 FUNCTION {inproceedings}
 { output.bibitem
-  format.authors %"author" output.check %%no dot after authors:
+  format.authors write$ %"author" output.check %%no dot after authors:
   new.block
   format.title "title" output.check
   new.block
@@ -2306,7 +2311,7 @@ FUNCTION {manual}
 
 FUNCTION {mastersthesis}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.title "title" output.check
   new.block
@@ -2356,7 +2361,7 @@ FUNCTION {online}
 
 FUNCTION {phdthesis}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.btitle "title" output.check
   new.block
@@ -2413,7 +2418,7 @@ FUNCTION {proceedings}
 
 FUNCTION {techreport}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.title "title" output.check
   new.block
@@ -2428,7 +2433,7 @@ FUNCTION {techreport}
 
 FUNCTION {unpublished}
 { output.bibitem
-  format.authors %"author" output.check
+  format.authors write$ %"author" output.check
   new.block
   format.title "title" output.check
   new.block
@@ -3068,7 +3073,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
  Vorname2 Nachname2\footnote{University, Department, Address, Country \email{emailaddress@author2}}}
 \startpage{11} % Beginn der Seitenzählung für diesen Beitrag
 \editor{Herausgeber et al.}    % Namen der Herausgeber
-\booktitle{Name-der-Konferenz} % Name des Tagungsband
+\booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
 \year{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
 \maketitle
@@ -3174,16 +3179,17 @@ public class Hello {
 
 \subsection{Formeln und Gleichungen}
 
-Die korrekte Einrückung und Nummerierung für Formeln ist bei den Umgebungen \texttt{equation} und \texttt{eqnarray} gewährleistet.
+Die korrekte Einrückung und Nummerierung für Formeln ist bei den Umgebungen 
+\texttt{equation} und \texttt{align} gewährleistet.
 
 \begin{equation}
   1=4-3
 \end{equation}
 und
-\begin{eqnarray}
-  2=7-5\\
-  3=2-1
-\end{eqnarray}
+\begin{align}
+  2&=7-5\\
+  3&=2-1
+\end{align}
 
 %% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
 %% Starten Sie "biber paper", um eine Biliographie zu erzeugen.

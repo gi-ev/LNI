@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2019/04/23 v1.6BETA Official class for submissions to the ``Lecture Notes
+    [2019/10/14 v1.6BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -484,8 +484,8 @@
   \renewcommand{\refname}{Bibliography}%
 }%
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
-\newcommand*{\@booktitle}{}
-\newcommand*{\booktitle}[1]{\renewcommand{\@booktitle}{#1}}
+\newcommand{\booktitle}{\@dblarg\@@booktitle}
+\def\@@booktitle[#1]#2{\gdef\@shortbooktitle{#1}\gdef\@booktitle{#2}}
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
 \AtBeginDocument{%
@@ -497,10 +497,13 @@
 }%
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@booktitle,\hspace{1sp}\null\linebreak%
+   \fancyhead[RO]{\small\@editor~(Hrsg.):\
+   \@shortbooktitle,\hspace{1sp}\null\linebreak%
        Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
        \hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\small\@editor~(Hrsg.):\ \@booktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
+   \fancyhead[LE]{\small\@editor~(Hrsg.):\
+   \@shortbooktitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
+   in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 }%

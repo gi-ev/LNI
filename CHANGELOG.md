@@ -6,12 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Optional argument for `\booktitle` to support a short book title for running headers
+
 ### Changed
 - `\email` now generates a `mailto:` hyperlink
+- Example file: `align` instead of `eqnarray`
 
 ### Fixed
 - Global options are passed to `article` class ([#78](https://github.com/gi-ev/LNI/issues/78))
-
+- Finally fix BiBTeX issue thanks to @ytzemih ([#6](https://github.com/gi-ev/LNI/issues/6))
 
 ## [1.5.0] -2019-04-04
 
@@ -93,4 +97,3 @@ First release of the revised files
 [1.2.0]: https://github.com/gi-ev/LNI/releases/tag/v1.2
 [1.1.0]: https://github.com/gi-ev/LNI/releases/tag/v1.1
 [1.0.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0
-
