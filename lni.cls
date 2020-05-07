@@ -110,7 +110,7 @@
          {\RequirePackage{newtxmath}}%
          {}%
       \RequirePackage[no-math]{fontspec}
-      \IfFontExistsTF{texgyretrmes-regular.otf}
+      \IfFontExistsTF{texgyretermes-regular.otf}
          {%
           \setmainfont{texgyretermes}[
              Extension = .otf,
