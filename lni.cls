@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2019/10/14 v1.6BETA Official class for submissions to the ``Lecture Notes
+    [2020/12/03 v1.6BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -348,6 +348,7 @@
   \global\let\author\relax
   \global\let\date\relax
   \global\let\and\relax
+  \global\let\year\@rigyear
 }
 \def\@maketitle{%
   \newpage
@@ -630,7 +631,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2019 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2020 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
