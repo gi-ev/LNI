@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- Revert redefinition of `\year` after `\maketitle`. (it would be better to completely switch to `\date` instead)
+  
 ## [1.6.0] - 2019-10-14
 
 ### Added
