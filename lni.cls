@@ -492,6 +492,7 @@
   \renewcommand{\refname}{Bibliography}%
 }%
 \newcommand*{\startpage}[1]{\setcounter{page}{#1}}
+\def\@bookshorttitle{}
 \newcommand{\booktitle}{\@dblarg\@@booktitle}
 \def\@@booktitle[#1]#2{\gdef\@bookshorttitle{#1}\gdef\@booktitle{#2}}
 \newcommand{\booksubtitle}[1]{\gdef\@booksubtitle{#1}}
@@ -506,12 +507,23 @@
 }%
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
-   \fancyhead[RO]{\small\@editor~(Hrsg.):\ \@bookshorttitle,\hspace{1sp}\null\linebreak%
-       Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
-       \hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\small\@editor~(Hrsg.):\
-   \@bookshorttitle,\linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
-   in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year}
+   \fancyhead[RO]{%
+      \small\@editor~(Hrsg.):\
+      \ifdefempty{\@bookshorttitle}%
+         {}%
+         {\@bookshorttitle,\hspace{1sp}}%
+      \null\linebreak%
+      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+      \hspace{5pt}\thepage\hspace{0.05cm}%
+   }%
+   \fancyhead[LE]{%
+      \small\@editor~(Hrsg.):\
+      \ifdefempty{\@bookshorttitle}%
+      {}%
+      {\@bookshorttitle,\hspace{1sp}}%
+      \linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
+      in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+   }%
    \fancyfoot{} % Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 }%
