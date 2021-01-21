@@ -314,8 +314,8 @@
 			\begin{minipage}[t]{\baselineskip}
 				\includegraphics[width=\textwidth]{ORCIDiD_iconvector.pdf}
 			\end{minipage}%
-			\iffoot
-	    		~https://orcid.org/#1%
+			\iffoot%
+                ~https://orcid.org/#1%
 			\fi
 		}%
 	}%
