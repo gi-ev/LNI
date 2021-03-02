@@ -466,7 +466,7 @@ This work consists of the file  lni.dtx
 % \DescribeMacro{\startpage}\DescribeMacro{\editor}%
 % \DescribeMacro{\booktitle\space(changed in v1.6)}%
 % \DescribeMacro{\booksubtitle\space(new in v1.6)}%
-% \DescribeMacro{\year}In addition to the macros stated in
+% \DescribeMacro{\yearofpublication}In addition to the macros stated in
 % \cref{sec:titlepage} for authors, there are special editor macros to
 % influence the layout of the article:
 % \begin{itemize}
@@ -955,7 +955,7 @@ This work consists of the file  lni.dtx
             \normalsize
             \expandafter\csname\CROP@font\endcsname{%
                ``\jobname''\x
-               \the\@rigyear/\the\month/\the\day\x
+               \the\year/\the\month/\the\day\x
                \CROP@time\x
                page\kern.5em\thepage\x
                \#\the\CROP@index
@@ -1168,7 +1168,6 @@ This work consists of the file  lni.dtx
   \global\let\author\relax
   \global\let\date\relax
   \global\let\and\relax
-  \global\let\year\@rigyear
 }
 %    \end{macrocode}
 %    \begin{macrocode}
@@ -1388,13 +1387,8 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % \end{macro}
 %    \begin{macrocode}
-\AtBeginDocument{%
-   \let\@rigyear\year
-   \newcommand*{\@year}{\the\@rigyear}
-   \renewcommand*{\year}[1]{%
-      \renewcommand{\@year}{#1}%
-   }%
-}%
+\newcommand*{\@yearofpublication}{\the\year}
+\newcommand*{\yearofpublication}[1]{\renewcommand*{\@yearofpublication}{#1}}
 %    \end{macrocode}
 % set-up for header and footer
 %    \begin{macrocode}
@@ -1406,7 +1400,8 @@ This work consists of the file  lni.dtx
          {}%
          {\@bookshorttitle,\hspace{1sp}}%
       \null\linebreak%
-      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, 
+      Bonn~\@yearofpublication%
       \hspace{5pt}\thepage\hspace{0.05cm}%
    }%
    \fancyhead[LE]{%
@@ -1415,19 +1410,20 @@ This work consists of the file  lni.dtx
       {}%
       {\@bookshorttitle,\hspace{1sp}}%
       \linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
-      in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+      in Informatics (LNI), Gesellschaft für Informatik, 
+      Bonn~\@yearofpublication%
    }%
-   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
-   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
+   \fancyfoot{}% Löscht alle Fußzeileneinstellungen
+   \renewcommand{\headrulewidth}{0.4pt}% Linie unter Kopfzeile
 }%
 \ifnorunningheads
    \pagestyle{empty}
 \else
    \pagestyle{fancy}
-   \fancyhead{} % Löscht alle Kopfzeileneinstellungen
+   \fancyhead{}% Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
    \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
-   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
+   \fancyfoot{}% Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
 %    \end{macrocode}
@@ -2985,7 +2981,7 @@ Firstname2 Lastname2\footnote{University, Department, Address, Country
 %numbering at this number
 \editor{Herausgeber et al.} % Names of Editors
 \booktitle{Name-der-Konferenz} % Name of book title
-\year{2017}
+\yearofpublication{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % if known
 \maketitle
 
@@ -3145,7 +3141,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \startpage{11} % Beginn der Seitenzählung für diesen Beitrag
 \editor{Herausgeber et al.}    % Namen der Herausgeber
 \booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
-\year{2017}
+\yearofpublication{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
 \maketitle
 

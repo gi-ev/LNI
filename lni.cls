@@ -198,7 +198,7 @@
             \normalsize
             \expandafter\csname\CROP@font\endcsname{%
                ``\jobname''\x
-               \the\@rigyear/\the\month/\the\day\x
+               \the\year/\the\month/\the\day\x
                \CROP@time\x
                page\kern.5em\thepage\x
                \#\the\CROP@index
@@ -357,7 +357,6 @@
   \global\let\author\relax
   \global\let\date\relax
   \global\let\and\relax
-  \global\let\year\@rigyear
 }
 \def\@maketitle{%
   \newpage
@@ -513,13 +512,8 @@
 \newcommand{\booksubtitle}[1]{\gdef\@booksubtitle{#1}}
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
-\AtBeginDocument{%
-   \let\@rigyear\year
-   \newcommand*{\@year}{\the\@rigyear}
-   \renewcommand*{\year}[1]{%
-      \renewcommand{\@year}{#1}%
-   }%
-}%
+\newcommand*{\@yearofpublication}{\the\year}
+\newcommand*{\yearofpublication}[1]{\renewcommand*{\@yearofpublication}{#1}}
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{%
@@ -528,7 +522,8 @@
          {}%
          {\@bookshorttitle,\hspace{1sp}}%
       \null\linebreak%
-      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik,
+      Bonn~\@yearofpublication%
       \hspace{5pt}\thepage\hspace{0.05cm}%
    }%
    \fancyhead[LE]{%
@@ -537,19 +532,20 @@
       {}%
       {\@bookshorttitle,\hspace{1sp}}%
       \linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
-      in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+      in Informatics (LNI), Gesellschaft für Informatik,
+      Bonn~\@yearofpublication%
    }%
-   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
-   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
+   \fancyfoot{}% Löscht alle Fußzeileneinstellungen
+   \renewcommand{\headrulewidth}{0.4pt}% Linie unter Kopfzeile
 }%
 \ifnorunningheads
    \pagestyle{empty}
 \else
    \pagestyle{fancy}
-   \fancyhead{} % Löscht alle Kopfzeileneinstellungen
+   \fancyhead{}% Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
    \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
-   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
+   \fancyfoot{}% Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
 \RequirePackage{url}
