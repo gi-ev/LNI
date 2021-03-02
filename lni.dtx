@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2020/12/03 v1.7BETA Official class for submissions to the ``Lecture Notes
+    [2021/03/02 v1.7 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -305,8 +305,11 @@ This work consists of the file  lni.dtx
 % it more compatible with other packages like \pkg{authorarchive}}
 % \changes{v1.6}{2019/10/14}{Fix for BibTeX style}
 % \changes{v1.6}{2019/10/14}{Add support for \pkg{selnolig}}
-% \changes{v1.6}{2020/12/03}{Revert redefinition of \cs{year} after 
+% \changes{v1.7}{2020/12/03}{Revert redefinition of \cs{year} after 
 % \cs{maketitle}}
+% \changes{v1.7}{2021/03/02}{Fix setting of pdf metadata}
+% \changes{v1.7}{2021/03/02}{Change loading of latest ngerman hyphenation
+% patterns}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -788,15 +791,6 @@ This work consists of the file  lni.dtx
 \ProcessOptions\relax
 %
 \RequirePackage{iftex}
-\ifPDFTeX
-   \RequirePackage{hyphsubst}
-   \HyphSubstIfExists{ngerman-x-latest}%
-      {\HyphSubstLet{ngerman}{ngerman-x-latest}%
-       \ClassInfo{lni}{Using latest German hyphenation patterns}}%
-      {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
-         \MessageBreak If you write a German article you should check your%
-         installation}}%
-\fi%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \ifPDFTeX
    \RequirePackage{cmap}
@@ -809,6 +803,8 @@ This work consists of the file  lni.dtx
    \RequirePackage[ngerman,english]{babel}
 \else
    \RequirePackage[english,ngerman]{babel}
+   \babelprovide[hyphenrules=ngerman-x-latest]{ngerman}
+   \ClassInfo{lni}{Using latest German hyphenation patterns}%
 \fi%
 % Hint by http://tex.stackexchange.com/a/321067/9075 -> enable "= as dashes
 \useshorthands*{"}

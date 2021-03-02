@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2020/12/03 v1.7BETA Official class for submissions to the ``Lecture Notes
+    [2021/03/02 v1.7 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -61,15 +61,6 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 \RequirePackage{iftex}
-\ifPDFTeX
-   \RequirePackage{hyphsubst}
-   \HyphSubstIfExists{ngerman-x-latest}%
-      {\HyphSubstLet{ngerman}{ngerman-x-latest}%
-       \ClassInfo{lni}{Using latest German hyphenation patterns}}%
-      {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
-         \MessageBreak If you write a German article you should check your%
-         installation}}%
-\fi%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \ifPDFTeX
    \RequirePackage{cmap}
@@ -81,6 +72,8 @@
    \RequirePackage[ngerman,english]{babel}
 \else
    \RequirePackage[english,ngerman]{babel}
+   \babelprovide[hyphenrules=ngerman-x-latest]{ngerman}
+   \ClassInfo{lni}{Using latest German hyphenation patterns}%
 \fi%
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
