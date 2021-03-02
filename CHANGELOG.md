@@ -6,8 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.7.0] - 2021-03-02
+
+### Changed
+
+- Change loading of latest ngerman hyphenation patterns (#47)
+- Change `\year` to `\yearofpublication` to avoid problems (#85)
+
 ### Fixed
-- Revert redefinition of `\year` after `\maketitle`. (it would be better to completely switch to `\date` instead)
+- Fix setting of pdf metadata (#87)
   
 ## [1.6.0] - 2019-10-14
 
@@ -99,7 +106,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2017-04-07
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.6...HEAD
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.7...HEAD
+[1.7.0]: https://github.com/gi-ev/LNI/releases/tag/v1.7
 [1.6.0]: https://github.com/gi-ev/LNI/releases/tag/v1.6
 [1.5.0]: https://github.com/gi-ev/LNI/releases/tag/v1.5
 [1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.4
