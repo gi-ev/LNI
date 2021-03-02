@@ -300,15 +300,23 @@
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 \newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
-   \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
+\newcommand{\@@author}[2][]{%
+   \DeclareRobustCommand{\@shortauthor}{%
+         {%
+            %\let\footnote\@gobble%
+            \def\and{\texorpdfstring{\unskip,\ }{}}%
+            #1%
+         }%
+      }%
+      \DeclareRobustCommand{\@author}{#2}%
+   }
 \newcommand{\authorrunning}[1]{%
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
 \renewcommand\maketitle{\par%
-\begingroup
+   \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
     \def\@makefnmark% keine Einrückung der Fußnoten eingestellt
  {\@textsuperscript{\normalfont\@thefnmark}}%
@@ -327,7 +335,7 @@
       \fi%
     \else
       \newpage
-      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \global\@topnum\z@% Prevents figures from going at top of page.
       \@maketitle
     \fi%
     \ifnorunningheads
@@ -337,6 +345,14 @@
     \fi%
     \@thanks
   \endgroup
+  \ifusehyperref
+      \HyXeTeX@CheckUnicode
+      \HyPsd@PrerenderUnicode{\@shortauthor}%
+      \pdfstringdef\@pdfauthor{\@shortauthor}%
+      \HyXeTeX@CheckUnicode
+      \HyPsd@PrerenderUnicode{\@title}%
+      \pdfstringdef\@pdftitle{\@title}%
+  \fi%
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@maketitle\relax
@@ -401,8 +417,13 @@
     \noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
 \let\@RIGsection\section
-\pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}%
-   {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}
+\pretocmd\@startsection{%
+   \ifkeywords\ClassError{lni}%
+      {keywords is an environment, not a macro}%
+      {Please change \string\keywords\space to an environment}%
+      \keywordsfalse%
+   \fi%
+}{}{}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus
   4\p@}{\large\bfseries}}
@@ -449,7 +470,7 @@
 \renewcommand{\labelitemi}{$\bullet$}
 \renewcommand*\itemize{%
   \ifnum \@itemdepth >\thr@@\@toodeep\else
-   \setlength{\labelsep}{0.70cm}%Abstand zum Aufzählungspunkt
+   \setlength{\labelsep}{0.70cm}%
     \advance\@itemdepth\@ne
     \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
     \expandafter
@@ -549,10 +570,14 @@
          colorlinks=true,%
          allcolors=black,%
          pdfstartview=Fit,%
-         pdfauthor={\@author},%
-         pdftitle={\@title}%
       }%
+%%%      \pdfstringdefDisableCommands{%
+%%%         \def\unskip{}%
+%%%         \renewcommand{\footnote}[1]{}%
+%%%      }%
    }%
+\else
+   \providecommand{\texorpdfstring}[2]{#2}%
 \fi%
 \ifusecleveref%
    \AtEndPreamble{%
@@ -573,10 +598,10 @@
 \fi%
 \AtEndPreamble{%
    \@ifpackageloaded{hyperref}
-   {\RequirePackage[all]{hypcap}}%
-   {}%
+      {\RequirePackage[all]{hypcap}}%
+      {}%
 }%
-\def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
+\def\and{\texorpdfstring{\unskip\hspace{-0.42em},\hspace{.6em}}{, }}%
 \ifusebiblatex
 \else
    \iflnienglish
@@ -631,7 +656,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2020 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2021 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
