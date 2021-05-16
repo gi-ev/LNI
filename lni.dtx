@@ -344,13 +344,19 @@ This work consists of the file  lni.dtx
 %
 % Based on the existing class and bib files I set-up a DTX file and started
 % reworking the source code. Editors and authors suggested different additions
-% and changes, which I tried to incoporate without changing the existing
+% and changes, which I tried to incorporate without changing the existing
 % mechanisms too much.
 %
 % This is the first public release. I would to thank especially
 % \href{https://github.com/koppor/}{Oliver Kopp} and
 % \href{https://www.fernuni-hagen.de/evis/team/stefan.strecker.shtml}{Stefan
 % Strecker} and his team for their suggestions and tests.
+%
+% There is an additional package 
+% \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}} for an easy 
+% way of getting a correctly formed bibliography. This package can be 
+% incorporated using the option \opt{biblatex}. See \cref{sec:bibliography} for 
+% more information.
 %
 % \section{Installation}
 % The \lni{} bundle is currently distributed via
@@ -408,9 +414,10 @@ This work consists of the file  lni.dtx
 % \BibTeX{}, but with a much more powerful approach consisting of the package
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
-% There is even a specialized package \pkg{biblatex-lni} which is automatically
-% used when setting the class option \opt{biblatex}. For more information see
-% as well \cref{sec:bibliography}.
+% There is even a specialized package 
+% \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}} which is 
+% automatically used when setting the class option \opt{biblatex}. For more 
+% information see as well \cref{sec:bibliography}.
 %
 % \DescribeOption{crop\space(new in v1.1)}%
 % Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to
@@ -448,12 +455,12 @@ This work consists of the file  lni.dtx
 % for setting up a document for submission. The \lni{} class uses the standard
 % ways to build an article.
 %
-% \subsection{Special meta data}\label{sec:metadata}
+% \subsection{Special meta comments}\label{sec:metadata}
 % There is not just one \enquote{\TeX} and one \enquote{bibliography tool}, but
 % many different ways to transform a .tex file into a PDF.
 % Some \TeX{} editors like \texttt{TeXstudio}, \texttt{TeXmaker} and
-% \texttt{TeXshop} support a special set of meta data to tell the editor, how
-% to deal with a concrete document.
+% \texttt{TeXshop} support a special set of meta comments to give some 
+% information, how to deal with a concrete document.
 %
 % A typical example looks like:
 % \begin{examplecode}
@@ -665,9 +672,11 @@ This work consists of the file  lni.dtx
 % article you have to add \cs{bibliography\marg{Bib file}} at an appropriate
 % position within your text. The correct bst file is loaded automatically.
 %
-% With option
-% \opt{biblatex} (cf.~\cref{sec:options}) you can easily switch to the modern
-% \pkg{biblatex} package. However, you have to add information on the bib
+% With document option
+% \opt{biblatex} (cf.~\cref{sec:options}) you can easily switch to the 
+% \pkg{biblatex} style \enquote{lni} provided by 
+% \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}}.
+% However, you have to add information on the bib
 % file(s) in your preamble using \cs{addbibresource\marg{Bib file(s)}} and call
 % \cs{printbibliography} where you want the bibliography to appear.
 %
