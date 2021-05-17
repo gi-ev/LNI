@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Add more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
+- Add `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
+
 ## [1.7.0] - 2021-03-02
 
 ### Changed
