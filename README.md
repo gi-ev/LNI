@@ -25,8 +25,9 @@ By default [BibTeX](https://www.ctan.org/pkg/bibtex) is used as bibliography too
 In case you want to use [biblatex](https://www.ctan.org/pkg/biblatex) together with
 [Biber](https://www.ctan.org/pkg/biber) (strongly recommended), read on in the 
 documentation. There is a specialized package 
-[`biblatex-lni`](https://github.com/gi-ev/biblatex-lni), which can easily be included 
-to get correctly formed bibliographies.
+[`biblatex-lni`](https://ctan.org/pkg/biblatex-lni), which can easily be included 
+to get correctly formed bibliographies. The easiest way is to add `biblatex` as class 
+option. See documentation for details.
 
 You should use `pdflatex` as `xelatex` and `lualatex` lack some features of the class file.
 
