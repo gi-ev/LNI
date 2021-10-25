@@ -1,4 +1,4 @@
-# lni [![Build Status](https://circleci.com/gh/gi-ev/LNI/tree/master.svg?style=shield)](https://circleci.com/gh/gi-ev/LNI/) [![CTAN](https://img.shields.io/badge/CTAN-lni-blue.svg?style=flat-square)](https://ctan.org/pkg/lni)
+# lni [![Build Status](https://circleci.com/gh/gi-ev/LNI/tree/main.svg?style=shield)](https://circleci.com/gh/gi-ev/LNI/) [![CTAN](https://img.shields.io/badge/CTAN-lni-blue.svg?style=flat-square)](https://ctan.org/pkg/lni)
 
 ```
 ----------------------------------------------------------------------------
@@ -33,7 +33,7 @@ You should use `pdflatex` as `xelatex` and `lualatex` lack some features of the 
 
 Stable versions are always uploaded to CTAN (https://www.ctan.org/pkg/lni).
 In addition you will find the most recent developer version on GitHub at https://github.com/gi-ev/lni.
-The most recent documentation is available at https://github.com/gi-ev/LNI/blob/master/lni.pdf.
+The most recent documentation is available at <https://github.com/gi-ev/LNI/blob/main/lni.pdf>.
 It includes a short description how to use the template and also provides trouble shooting hints.
 
 Please see [CHANGELOG.md](CHANGELOG.md) for a version history
