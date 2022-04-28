@@ -23,7 +23,7 @@ In other words:
 3. Make your changes.
 4. Commit your changes.
    Thereby, try to write a [good commit message](https://github.com/joelparkerhenderson/git_commit_message).
-5. Push your chaneges (to your repository)
+5. Push your changes (to your repository)
 6. [submit a pull request](https://github.com/gi-ev/lni/compare/)
 7. At this point you're waiting on us.
    We like to at least comment on pull requests as soon as possible.
