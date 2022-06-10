@@ -769,7 +769,7 @@ FUNCTION {misc}
 { output.bibitem
   author empty$
     { ""  }
-    { format.authors output.nonnull }
+    { format.authors write$ }
   if$
   %title howpublished new.block.checkb
   format.title output
