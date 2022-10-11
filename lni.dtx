@@ -16,7 +16,7 @@
 \declarepreamble\bibtexengpre
 lnig.bst
 Lecture Notes in Informatics Style File (english)
-Version 1.0 (2017/04/07)
+Version 1.1 (2022/06/10)
 
 The Style File is based on alpha.bst
 
@@ -28,7 +28,7 @@ Modified files should be clearly indicated as such and renamed.
 \declarepreamble\bibtexgerpre
 lnig.bst
 Lecture Notes in Informatics Style File (german)
-Version 1.0 (2017/04/07)
+Version 1.1 (2022/06/10)
 
 The Style File is based on alpha.bst
 
@@ -60,7 +60,7 @@ License:| Released under the LaTeX Project Public License v1.3c or later
 
 \postamble
 
-Copyright (C) 2016-2021 by Gesellschaft für Informatik e.V. (GI)
+Copyright (C) 2016-2022 by Gesellschaft für Informatik e.V. (GI)
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License (LPPL), either
@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2021/03/02 v1.7 Official class for submissions to the ``Lecture Notes
+    [2022/06/10 v1.8 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -312,6 +312,8 @@ This work consists of the file  lni.dtx
 % patterns (#47)}
 % \changes{v1.7}{2021/03/02}{Change \cs{year} to \cs{yearofpublication} to 
 % avoid problems (#85)}
+% \changes{v1.8}{2022/06/10}{Improvements for documentation}
+% \changes{v1.8}{2022/06/10}{Fix output error in bst files (#97)}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -360,9 +362,7 @@ This work consists of the file  lni.dtx
 %
 % \section{Installation}
 % The \lni{} bundle is currently distributed via
-% \href{https://github.com/gi-ev/LNI}{GitHub}, the
-% \href{https://www.gi.de/service/publikationen/lni/autorenrichtlinien.html}
-% {GI website} and (preferably) \href{https://www.ctan.org/pkg/lni}{CTAN}.
+% \href{https://github.com/gi-ev/LNI}{GitHub} and (preferably) \href{https://www.ctan.org/pkg/lni}{CTAN}.
 % The later is the basis for all updates of the two main \TeX{} distributions
 % \MiKTeX{} and \TeX{}~Live. Thus the easiest way to get all files needed to
 % typeset an article for the \LNI{} is to use the package manager of your
@@ -2413,7 +2413,7 @@ FUNCTION {misc}
 { output.bibitem
   author empty$
     { ""  }
-    { format.authors output.nonnull }
+    { format.authors write$ }
   if$
   %title howpublished new.block.checkb
   format.title output
