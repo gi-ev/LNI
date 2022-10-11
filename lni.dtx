@@ -1125,7 +1125,10 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\lnidoi}
 %    \begin{macrocode}
 \newcommand{\@lnidoi}{}
-\newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
+\newcommand{\lnidoi}{%
+      \begingroup\catcode`\_12 \lnidoi@i}
+\newcommand{\lnidoi@i}[1]{%
+      \gdef\@lnidoi{#1}\endgroup}
 %    \end{macrocode}
 % \end{macro}
 % Title: Kopie aus article.cls mit anderem \thispagestyle

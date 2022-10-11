@@ -307,7 +307,10 @@
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \newcommand{\@lnidoi}{}
-\newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
+\newcommand{\lnidoi}{%
+      \begingroup\catcode`\_12 \lnidoi@i}
+\newcommand{\lnidoi@i}[1]{%
+      \gdef\@lnidoi{#1}\endgroup}
 \renewcommand\maketitle{\par%
    \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
