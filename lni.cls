@@ -384,11 +384,24 @@
   \end{center}%
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
-      \ifusehyperref
-        \href{https://creativecommons.org/licenses/by-sa/4.0/}{\ccbysa}
-      \else
-        \ccbysa
-      \fi
+      \ifdefempty{\@lni@cc@type}{}{
+        \IfEq{\@lni@cc@type}{zero}{%
+         \def\@lni@CC@Url{https://creativecommons.org/publicdomain/zero/1.0/}\def\@lni@CC@Icon{\cczero}}{%
+        \edef\@lni@CC@Url{https://creativecommons.org/licenses/\@lni@cc@type/\@lni@cc@version/}%
+        \IfEq{\@lni@cc@type}{by}{\def\@lni@CC@Icon{\ccby}}{%
+        \IfEq{\@lni@cc@type}{by-sa}{\def\@lni@CC@Icon{\ccbysa}}{%
+        \IfEq{\@lni@cc@type}{by-nc-sa}{\def\@lni@CC@Icon{\ccbyncsa}}{%
+        \IfEq{\@lni@cc@type}{by-nc}{\def\@lni@CC@Icon{\ccbync}}{%
+        \IfEq{\@lni@cc@type}{by-nd}{\def\@lni@CC@Icon{\ccbynd}}{%
+        \IfEq{\@lni@cc@type}{by-nc-nd}{\def\@lni@CC@Icon{\ccbyncnd}}{%
+        \message{Invalid value for setcctype}%
+        }}}}}}}%
+        \ifusehyperref
+          \href{\@lni@CC@Url}{\@lni@CC@Icon}
+        \else
+          \@lni@CC@Icon
+        \fi
+      }
       \ifdefempty{\@lnidoi}{}{
         \footnotesize
         \ifusehyperref
@@ -615,6 +628,10 @@
 \newcommand*{\BPMN}{\lni@initialism{bpmn}}
 \newcommand*{\BPEL}{\lni@initialism{bpel}}
 \newcommand*{\UML}{\lni@initialism{uml}}
+\newcommand\setcctype[2][4.0]{%
+  \def\@lni@cc@version{#1}%
+  \def\@lni@cc@type{#2}}
+\setcctype{}
 \renewenvironment{thebibliography}[1]
 {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
    \section*{\refname}%
