@@ -57,6 +57,15 @@
 \autofontstrue
 \newif\ifnorunningheads
 \DeclareOption{norunningheads}{\norunningheadstrue}
+\newif\ifanonymous
+\anonymousfalse
+\DeclareOption{anonymous}{\anonymoustrue}
+\newcommand{\anon}[2][\iflnienglish ANONYMIZED\else ANONYMISIERT\fi]{%
+  \ifanonymous%
+    {\color{orange}#1}%
+  \else%
+    #2%
+  \fi}
 \ExecuteOptions{utf8}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
@@ -305,7 +314,7 @@
       \DeclareRobustCommand{\@author}{#2}%
    }
 \newcommand{\authorrunning}[1]{%
-   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
+   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else#1\fi}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}{%
@@ -345,7 +354,7 @@
   \ifusehyperref
       \HyXeTeX@CheckUnicode
       \HyPsd@PrerenderUnicode{\@shortauthor}%
-      \pdfstringdef\@pdfauthor{\@shortauthor}%
+      \ifanonymous\else\pdfstringdef\@pdfauthor{\@shortauthor}\fi%
       \HyXeTeX@CheckUnicode
       \HyPsd@PrerenderUnicode{\@title}%
       \pdfstringdef\@pdftitle{\@title}%
@@ -379,7 +388,15 @@
     \fi%
     {\normalsize%
       \lineskip .5em%
+      \ifanonymous
+        \iflnienglish
+          anonymized for review\footnote{placeholder for contact information}
+        \else
+          anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
+        \fi%
+      \else
         \@author
+      \fi%
       \par}%
     \vskip 21pt% Abstand vor dem Abstract
   \end{center}%
@@ -403,14 +420,14 @@
           \@lni@CC@Icon
         \fi
       }
-      \ifdefempty{\@lnidoi}{}{
+      \ifanonymous\else\ifdefempty{\@lnidoi}{}{
         \footnotesize
         \ifusehyperref
           \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
         \else
           doi:\@lnidoi
         \fi%
-      }
+      }\fi
     }
   }}
   \par
@@ -536,7 +553,7 @@
    \pagestyle{fancy}
    \fancyhead{}% Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else\@shortauthor\fi}
    \fancyfoot{}% Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
