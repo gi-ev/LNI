@@ -652,6 +652,20 @@
 {\def\@noitemerr
    {\@latex@warning{Empty `thebibliography' environment}}%
    \endlist\egroup}
+\renewcommand*{\bibfont}{\small}% font size 9pt
+\NewCommandCopy{\lniorigprintbibliography}{\printbibliography}
+\renewcommand{\printbibliography}{
+{
+\iflnienglish
+\lniorigprintbibliography[title=Bibliography]
+\else
+{
+Literaturverzeichnis% font size 10pt
+\lniorigprintbibliography[heading=none]
+}
+\fi
+}
+}
 \frenchspacing
 \tolerance 1414
 \hbadness 1414
