@@ -366,22 +366,22 @@
   \newpage
   \null
   \begin{center}%
-  \vskip -24pt% Abstand vor dem Titel
+  \vskip -27pt% Abstand vor dem Titel
   \raggedright% Linksbündig
   \let\footnote\thanks
     {\Large\bfseries\@title\par}%
-    \ifx\@subtitle\empty\else
-      \ifx\@subtitle\undefined\else
-         \vskip 16pt
+    \ifx\@subtitle\empty\vskip 9pt\else % Abstand nach dem Titel
+      \ifx\@subtitle\undefined\vskip 9pt\else
+         \vskip 9pt
          {\normalsize\bfseries\@subtitle}%
+         \vskip 15pt% Abstand nach dem Titel
       \fi%
     \fi%
-    \vskip 19pt% Abstand nach dem Titel
     {\normalsize%
       \lineskip .5em%
         \@author
       \par}%
-    \vskip 28pt% Abstand vor dem Abstract
+    \vskip 21pt% Abstand vor dem Abstract
   \end{center}%
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
@@ -423,7 +423,7 @@
 \newenvironment{keywords}%
    {\global\keywordstrue\small%
     \def\and{\unskip;\space}%
-    \noindent\ignorespaces{\bfseries Keywords:\ }}%
+    \vskip -2pt\noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
 \let\@RIGsection\section
 \pretocmd\@startsection{%
