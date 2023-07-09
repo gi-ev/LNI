@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
+
+### Fixed
+
+- `! LaTeX Error: Environment align undefined` in `lni-paper-example.de.tex` is not appearing any more.
+
 ## [1.8.0] - 2022-06-10
 
 ### Changed
@@ -15,6 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Improvement for documentation (merge requests [#89](https://github.com/gi-ev/LNI/issues/89),[#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96)
 
 ### Fixed
+
+- hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 
 ## [1.7.0] - 2021-03-02
@@ -27,7 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fix setting of pdf metadata ([#87](https://github.com/gi-ev/LNI/issues/87))
-  
+
 ## [1.6.0] - 2019-10-14
 
 ### Added
