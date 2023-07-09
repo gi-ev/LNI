@@ -26,7 +26,7 @@ jobs:
       - name: Prepare build
         run: |
           /bin/entrypoint work pwd
-          fmtutil --all
+          fmtutil-sys --all
           initexmf --mklangs
           initexmf -u
 
