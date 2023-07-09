@@ -35,6 +35,9 @@ jobs:
           name: PDFs
           path: '/work/out'
 
+      - name: Install dependencies for ctanify
+        run: apk add perl-file-copy-recursive
+
       - name: Prepare for CTAN
         run: ./prepare_for_CTAN
 
