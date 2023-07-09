@@ -21,7 +21,7 @@ jobs:
 
       - name: Prepare build
         run: |
-          /bin/entrypoint pwd
+          /bin/entrypoint work pwd
           fmtutils-sys --all
 
       - name: Build examples (using build.sh)
