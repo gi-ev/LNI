@@ -26,6 +26,9 @@ jobs:
       - name: Build examples (using build.sh)
         run: /bin/entrypoint work
 
+      - name: Add x86_64-linuxmusl to PATH
+        run: echo "/usr/local/texlive/2023/bin/x86_64-linuxmusl" >> $GITHUB_PATH
+
       - name: Upload build result
         uses: actions/upload-artifact@v3
         with:
