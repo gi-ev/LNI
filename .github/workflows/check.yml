@@ -23,11 +23,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Prepare build
-        run: |
-          /bin/entrypoint work pwd
-          fmtutil-sys --all
-
       - name: Build examples (using build.sh)
         run: /bin/entrypoint work
 
