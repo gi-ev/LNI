@@ -12,12 +12,27 @@ jobs:
     container:
       image: reitzig/texlive-base:2023.1
       options: --user root
+      env:
+        SRC_DIR: /__w/LNI/LNI
 
     steps:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Debug
-        run: |
-          pwd
-          /bin/entrypoint work pwd
+      - name: Build examples (using build.sh)
+        run: /bin/entrypoint work
+
+      - name: Upload build result
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDFs
+          path: /work/out
+
+      - name: Prepare for CTAN
+        run: ./prepare_for_CTAN
+
+      - name: Upload CTAN build
+        uses: actions/upload-artifact@v3
+        with:
+          name: CTAN
+          path: *.tar.gz
