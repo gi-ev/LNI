@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: PDFs
-          path: /work/out
+          path: '/work/out'
 
       - name: Prepare for CTAN
         run: ./prepare_for_CTAN
@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: CTAN
-          path: *.tar.gz
+          path: '*.tar.gz'
