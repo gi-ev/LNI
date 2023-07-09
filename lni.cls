@@ -260,6 +260,7 @@
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
+\RequirePackage{enumitem}
 \lstset{%
    basicstyle=\ttfamily,%
    columns=fixed,%
@@ -475,37 +476,12 @@
     \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand*\itemize{%
-  \ifnum \@itemdepth >\thr@@\@toodeep\else
-   \setlength{\labelsep}{0.70cm}%
-    \advance\@itemdepth\@ne
-    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
-    \expandafter
-    \list
-      \csname\@itemitem\endcsname
-      {\def\makelabel##1{\hss\llap{##1}}%
-       \setlength{\itemsep}{8pt}%
-       \setlength{\parsep}{-2pt}}%
-  \fi}
-  \renewcommand{\labelenumii}{\alph{enumii})}
-  \renewcommand*\enumerate{%
-  \ifnum \@enumdepth >\thr@@
-      \@toodeep
-    \else
-\setlength{\labelsep}{0.70cm}%Abstand zur Aufzählungsnummer
-      \advance\@enumdepth \@ne
-      \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
-    \fi
-    \@ifnextchar[{\@enumlabel@{\@enumerate@}[}{\@enumerate@}}
-  \def\@enumerate@{%
-    \expandafter\list\csname label\@enumctr\endcsname{%
-      \usecounter{\@enumctr}%
-      \def\makelabel##1{\hss\llap{##1}}
-\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens
-      \setlength{\itemsep}{8pt}%
-      \setlength{\parsep}{-2pt}}
-  }%
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{topsep=9pt}
+\setlist[enumerate]{labelsep=0.60cm}%Einrückung des Aufzählungszeichens
+\setlist[enumerate,2]{label=\alph*),topsep=9pt}
 \newcommand{\andname}{}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%

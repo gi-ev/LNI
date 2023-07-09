@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
+- Improve spacing in and around lists to better match the Word template. [#102](https://github.com/gi-ev/LNI/pull/102)
 
 ### Fixed
 
