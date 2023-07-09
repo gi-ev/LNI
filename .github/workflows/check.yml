@@ -1,0 +1,19 @@
+name: check
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: texlive-base:2023.1
+      options: --user root
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Debug
+        run: |
+          pwd
+          /bin/entrypoint work pwd
