@@ -5,7 +5,10 @@
 *.dtx text eol=lf
 *.ins text eol=lf
 *.md text eol=lf
+*.sh text eol=lf
 *.tex text eolf=lf diff=tex
+*.yml text eol=lf
+*.json text eol=lf
 prepare_for_CTAN text eol=lf
 
 *.pdf binary

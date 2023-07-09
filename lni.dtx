@@ -60,7 +60,7 @@ License:| Released under the LaTeX Project Public License v1.3c or later
 
 \postamble
 
-Copyright (C) 2016-2022 by Gesellschaft für Informatik e.V. (GI)
+Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License (LPPL), either
@@ -162,7 +162,7 @@ This work consists of the file  lni.dtx
    	Informatics'', published by the ``Gesellschaft für Informatik e.\,V.'' (GI)},
    pdfauthor={Martin Sievers},
    urlcolor=blue,%
-	linktoc=both,%
+	linktoc=all,%
 	colorlinks=true]{hyperref}
 \usepackage[nameinlink,capitalise]{cleveref}
 
@@ -305,12 +305,12 @@ This work consists of the file  lni.dtx
 % it more compatible with other packages like \pkg{authorarchive}}
 % \changes{v1.6}{2019/10/14}{Fix for BibTeX style}
 % \changes{v1.6}{2019/10/14}{Add support for \pkg{selnolig}}
-% \changes{v1.7}{2020/12/03}{Revert redefinition of \cs{year} after 
+% \changes{v1.7}{2020/12/03}{Revert redefinition of \cs{year} after
 % \cs{maketitle}}
 % \changes{v1.7}{2021/03/02}{Fix setting of pdf metadata (#87)}
 % \changes{v1.7}{2021/03/02}{Change loading of latest ngerman hyphenation
 % patterns (#47)}
-% \changes{v1.7}{2021/03/02}{Change \cs{year} to \cs{yearofpublication} to 
+% \changes{v1.7}{2021/03/02}{Change \cs{year} to \cs{yearofpublication} to
 % avoid problems (#85)}
 % \changes{v1.8}{2022/06/10}{Improvements for documentation}
 % \changes{v1.8}{2022/06/10}{Fix output error in bst files (#97)}
@@ -354,10 +354,10 @@ This work consists of the file  lni.dtx
 % \href{https://www.fernuni-hagen.de/evis/team/stefan.strecker.shtml}{Stefan
 % Strecker} and his team for their suggestions and tests.
 %
-% There is an additional package 
-% \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}} for an easy 
-% way of getting a correctly formed bibliography. This package can be 
-% incorporated using the option \opt{biblatex}. See \cref{sec:bibliography} for 
+% There is an additional package
+% \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}} for an easy
+% way of getting a correctly formed bibliography. This package can be
+% incorporated using the option \opt{biblatex}. See \cref{sec:bibliography} for
 % more information.
 %
 % \section{Installation}
@@ -414,9 +414,9 @@ This work consists of the file  lni.dtx
 % \BibTeX{}, but with a much more powerful approach consisting of the package
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
-% There is even a specialized package 
-% \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}} which is 
-% automatically used when setting the class option \opt{biblatex}. For more 
+% There is even a specialized package
+% \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}} which is
+% automatically used when setting the class option \opt{biblatex}. For more
 % information see as well \cref{sec:bibliography}.
 %
 % \DescribeOption{crop\space(new in v1.1)}%
@@ -459,7 +459,7 @@ This work consists of the file  lni.dtx
 % There is not just one \enquote{\TeX} and one \enquote{bibliography tool}, but
 % many different ways to transform a .tex file into a PDF.
 % Some \TeX{} editors like \texttt{TeXstudio}, \texttt{TeXmaker} and
-% \texttt{TeXshop} support a special set of meta comments to give some 
+% \texttt{TeXshop} support a special set of meta comments to give some
 % information, how to deal with a concrete document.
 %
 % A typical example looks like:
@@ -682,8 +682,8 @@ This work consists of the file  lni.dtx
 % position within your text. The correct bst file is loaded automatically.
 %
 % With document option
-% \opt{biblatex} (cf.~\cref{sec:options}) you can easily switch to the 
-% \pkg{biblatex} style \enquote{lni} provided by 
+% \opt{biblatex} (cf.~\cref{sec:options}) you can easily switch to the
+% \pkg{biblatex} style \enquote{lni} provided by
 % \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}}.
 % However, you have to add information on the bib
 % file(s) in your preamble using \cs{addbibresource\marg{Bib file(s)}} and call
@@ -1418,12 +1418,12 @@ This work consists of the file  lni.dtx
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{%
-      \small\@editor~(Hrsg.):\ 
+      \small\@editor~(Hrsg.):\
       \ifdefempty{\@bookshorttitle}%
          {}%
          {\@bookshorttitle,\hspace{1sp}}%
       \null\linebreak%
-      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, 
+      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik,
       Bonn~\@yearofpublication%
       \hspace{5pt}\thepage\hspace{0.05cm}%
    }%
@@ -1433,7 +1433,7 @@ This work consists of the file  lni.dtx
       {}%
       {\@bookshorttitle,\hspace{1sp}}%
       \linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
-      in Informatics (LNI), Gesellschaft für Informatik, 
+      in Informatics (LNI), Gesellschaft für Informatik,
       Bonn~\@yearofpublication%
    }%
    \fancyfoot{}% Löscht alle Fußzeileneinstellungen
@@ -3126,6 +3126,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \usepackage{booktabs}
 
 %% Zu Demonstrationszwecken
+\usepackage{amsmath}
 \usepackage[math]{blindtext}
 \usepackage{mwe}
 
