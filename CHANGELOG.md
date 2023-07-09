@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
 
+### Fixed
+
+- `! LaTeX Error: Environment align undefined` in `lni-paper-example.de.tex` is not appearing any more.
+
 ## [1.8.0] - 2022-06-10
 
 ### Changed
