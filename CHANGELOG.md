@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 
 ## [1.7.0] - 2021-03-02
