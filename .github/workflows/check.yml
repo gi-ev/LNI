@@ -27,6 +27,8 @@ jobs:
         run: |
           /bin/entrypoint work pwd
           fmtutils-sys --all
+          initexmf --mklangs
+          initexmf -u
 
       - name: Build examples (using build.sh)
         run: /bin/entrypoint work
