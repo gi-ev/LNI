@@ -2,11 +2,15 @@ name: check
 
 on: [push, pull_request]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: texlive-base:2023.1
+      image: reitzig/texlive-base:2023.1
       options: --user root
 
     steps:
