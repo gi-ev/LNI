@@ -38,12 +38,16 @@ jobs:
           name: PDFs
           path: '/work/out'
 
-      - name: Prepare GitHub pages output
+      - run: |
+          cd /work/out
+          tar czf artifacts.tar.gz *.pdf
+
+      - name: Upload GitHub pages output
         uses: actions/upload-artifact@v3
         with:
           name: github-pages
           path: |
-            /work/out/*.pdf
+            /work/out/artifacts.tar.gz
 
       - name: Install dependencies for ctanify
         run: apk add perl-file-copy-recursive zip
