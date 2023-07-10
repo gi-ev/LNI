@@ -40,7 +40,8 @@ jobs:
 
       - run: |
           cd /work/out
-          tar czf artifacts.tar.gz *.pdf
+          cp /__w/LNI/LNI/README.md index.md
+          tar czf artifacts.tar.gz index.md *.pdf
 
       - name: Upload GitHub pages output
         uses: actions/upload-artifact@v3
