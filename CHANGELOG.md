@@ -1,23 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
-## [1.8.0] - 2022-06-10
-
 ### Changed
 
+- Improve spacing in and around lists to better match the Word template. [#102](https://github.com/gi-ev/LNI/pull/102)
+- Synced title spacing with Word template. [#104](https://github.com/gi-ev/LNI/pull/104)
+- (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
 - Add more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
 - Add `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
 - Improvement for documentation (merge requests [#89](https://github.com/gi-ev/LNI/issues/89),[#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96)
 
 ### Fixed
+
+- `! LaTeX Error: Environment align undefined` in `lni-paper-example.de.tex` is not appearing any more.
+- hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 
-## [1.7.0] - 2021-03-02
+## [1.7] - 2021-03-02
 
 ### Changed
 
@@ -27,8 +30,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fix setting of pdf metadata ([#87](https://github.com/gi-ev/LNI/issues/87))
-  
-## [1.6.0] - 2019-10-14
+
+## [1.6] - 2019-10-14
 
 ### Added
 
@@ -48,7 +51,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Finally fix BiBTeX issue thanks to @ytzemih ([#6](https://github.com/gi-ev/LNI/issues/6))
 - `hyperref` is loaded without options to make it more compatible with other packages like `authorarchive`
 
-## [1.5.0] - 2019-04-04
+## [1.5] - 2019-04-04
 
 ### Added
 
@@ -68,7 +71,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Layout for English texts (subtitle)
 - URL for GI in example file
 
-## [1.4.0] - 2018-01-15
+## [1.4] - 2018-01-15
 
 ### Added
 
@@ -87,7 +90,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Adapting captions of `lstlistings`
 - License statement of paper: CC-BY-SA instead of CC-BY-NC ([#67](https://github.com/gi-ev/LNI/issues/67))
 
-## [1.3.0] - 2017-05-15
+## [1.3] - 2017-05-15
 
 ### Added
 
@@ -97,7 +100,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Use more stable syntax for font loading with `fontspec` ([#54](https://github.com/gi-ev/LNI/issues/54))
 
-## [1.2.0] - 2017-05-05
+## [1.2] - 2017-05-05
 
 ### Added
 
@@ -109,7 +112,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Option `straightquotes` is set manually for package `newtxtt` to gain compatibility with versions prior to v1.05 ([#49](https://github.com/gi-ev/LNI/issues/49))
 
-## [1.1.0] - 2017-04-19
+## [1.1] - 2017-04-19
 
 ### Added
 
@@ -128,16 +131,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Definition of `\Crefname` to always get "Abb." instead of "ABB." etc. ([#45](https://github.com/gi-ev/LNI/pull/45))
 
-## [1.0.0] - 2017-04-07
+## [1.0] - 2017-04-07
 
 First release of the revised files
 
 [Unreleased]: https://github.com/gi-ev/LNI/compare/v1.7...HEAD
-[1.7.0]: https://github.com/gi-ev/LNI/releases/tag/v1.7
-[1.6.0]: https://github.com/gi-ev/LNI/releases/tag/v1.6
-[1.5.0]: https://github.com/gi-ev/LNI/releases/tag/v1.5
-[1.4.0]: https://github.com/gi-ev/LNI/releases/tag/v1.4
-[1.3.0]: https://github.com/gi-ev/LNI/releases/tag/v1.3
-[1.2.0]: https://github.com/gi-ev/LNI/releases/tag/v1.2
-[1.1.0]: https://github.com/gi-ev/LNI/releases/tag/v1.1
-[1.0.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0
+[1.7]: https://github.com/gi-ev/LNI/releases/tag/v1.7
+[1.6]: https://github.com/gi-ev/LNI/releases/tag/v1.6
+[1.5]: https://github.com/gi-ev/LNI/releases/tag/v1.5
+[1.4]: https://github.com/gi-ev/LNI/releases/tag/v1.4
+[1.3]: https://github.com/gi-ev/LNI/releases/tag/v1.3
+[1.2]: https://github.com/gi-ev/LNI/releases/tag/v1.2
+[1.1]: https://github.com/gi-ev/LNI/releases/tag/v1.1
+[1.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0

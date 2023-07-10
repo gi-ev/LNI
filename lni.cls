@@ -260,6 +260,7 @@
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
+\RequirePackage{enumitem}
 \lstset{%
    basicstyle=\ttfamily,%
    columns=fixed,%
@@ -365,22 +366,22 @@
   \newpage
   \null
   \begin{center}%
-  \vskip -24pt% Abstand vor dem Titel
+  \vskip -27pt% Abstand vor dem Titel
   \raggedright% Linksbündig
   \let\footnote\thanks
     {\Large\bfseries\@title\par}%
-    \ifx\@subtitle\empty\else
-      \ifx\@subtitle\undefined\else
-         \vskip 16pt
+    \ifx\@subtitle\empty\vskip 9pt\else % Abstand nach dem Titel
+      \ifx\@subtitle\undefined\vskip 9pt\else
+         \vskip 9pt
          {\normalsize\bfseries\@subtitle}%
+         \vskip 15pt% Abstand nach dem Titel
       \fi%
     \fi%
-    \vskip 19pt% Abstand nach dem Titel
     {\normalsize%
       \lineskip .5em%
         \@author
       \par}%
-    \vskip 28pt% Abstand vor dem Abstract
+    \vskip 21pt% Abstand vor dem Abstract
   \end{center}%
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
@@ -422,7 +423,7 @@
 \newenvironment{keywords}%
    {\global\keywordstrue\small%
     \def\and{\unskip;\space}%
-    \noindent\ignorespaces{\bfseries Keywords:\ }}%
+    \vskip -2pt\noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
 \let\@RIGsection\section
 \pretocmd\@startsection{%
@@ -475,37 +476,12 @@
     \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand*\itemize{%
-  \ifnum \@itemdepth >\thr@@\@toodeep\else
-   \setlength{\labelsep}{0.70cm}%
-    \advance\@itemdepth\@ne
-    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
-    \expandafter
-    \list
-      \csname\@itemitem\endcsname
-      {\def\makelabel##1{\hss\llap{##1}}%
-       \setlength{\itemsep}{8pt}%
-       \setlength{\parsep}{-2pt}}%
-  \fi}
-  \renewcommand{\labelenumii}{\alph{enumii})}
-  \renewcommand*\enumerate{%
-  \ifnum \@enumdepth >\thr@@
-      \@toodeep
-    \else
-\setlength{\labelsep}{0.70cm}%Abstand zur Aufzählungsnummer
-      \advance\@enumdepth \@ne
-      \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
-    \fi
-    \@ifnextchar[{\@enumlabel@{\@enumerate@}[}{\@enumerate@}}
-  \def\@enumerate@{%
-    \expandafter\list\csname label\@enumctr\endcsname{%
-      \usecounter{\@enumctr}%
-      \def\makelabel##1{\hss\llap{##1}}
-\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens
-      \setlength{\itemsep}{8pt}%
-      \setlength{\parsep}{-2pt}}
-  }%
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{topsep=9pt}
+\setlist[enumerate]{labelsep=0.60cm}%Einrückung des Aufzählungszeichens
+\setlist[enumerate,2]{label=\alph*),topsep=9pt}
 \newcommand{\andname}{}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%
@@ -679,7 +655,7 @@ Literaturverzeichnis% font size 10pt
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2022 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
