@@ -1050,6 +1050,7 @@ This work consists of the file  lni.dtx
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
+\RequirePackage{enumitem}
 %    \end{macrocode}
 % We fix the basewidth for lstlistings:
 % The default setting of listings with ``fixed columns'' has a space 0.6em
@@ -1198,31 +1199,44 @@ This work consists of the file  lni.dtx
   \newpage
   \null
   \begin{center}%
-  \vskip -24pt% Abstand vor dem Titel
+  \vskip -27pt% Abstand vor dem Titel
   \raggedright% Linksbündig
   \let\footnote\thanks
     {\Large\bfseries\@title\par}%
-    \ifx\@subtitle\empty\else
-      \ifx\@subtitle\undefined\else
-         \vskip 16pt
+    \ifx\@subtitle\empty\vskip 9pt\else % Abstand nach dem Titel
+      \ifx\@subtitle\undefined\vskip 9pt\else
+         \vskip 9pt
          {\normalsize\bfseries\@subtitle}%
+         \vskip 15pt% Abstand nach dem Titel
       \fi%
     \fi%
-    \vskip 19pt% Abstand nach dem Titel
     {\normalsize%
       \lineskip .5em%
         \@author
       \par}%
-    \vskip 28pt% Abstand vor dem Abstract
+    \vskip 21pt% Abstand vor dem Abstract
   \end{center}%
 % output CC license and DOI (if it exists)
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
-      \ifusehyperref
-        \href{https://creativecommons.org/licenses/by-sa/4.0/}{\ccbysa}
-      \else
-        \ccbysa
-      \fi
+      \ifdefempty{\@lni@cc@type}{}{
+        \IfEq{\@lni@cc@type}{zero}{%
+         \def\@lni@CC@Url{https://creativecommons.org/publicdomain/zero/1.0/}\def\@lni@CC@Icon{\cczero}}{%
+        \edef\@lni@CC@Url{https://creativecommons.org/licenses/\@lni@cc@type/\@lni@cc@version/}%
+        \IfEq{\@lni@cc@type}{by}{\def\@lni@CC@Icon{\ccby}}{%
+        \IfEq{\@lni@cc@type}{by-sa}{\def\@lni@CC@Icon{\ccbysa}}{%
+        \IfEq{\@lni@cc@type}{by-nc-sa}{\def\@lni@CC@Icon{\ccbyncsa}}{%
+        \IfEq{\@lni@cc@type}{by-nc}{\def\@lni@CC@Icon{\ccbync}}{%
+        \IfEq{\@lni@cc@type}{by-nd}{\def\@lni@CC@Icon{\ccbynd}}{%
+        \IfEq{\@lni@cc@type}{by-nc-nd}{\def\@lni@CC@Icon{\ccbyncnd}}{%
+        \message{Invalid value for setcctype}%
+        }}}}}}}%
+        \ifusehyperref
+          \href{\@lni@CC@Url}{\@lni@CC@Icon}
+        \else
+          \@lni@CC@Icon
+        \fi
+      }
       \ifdefempty{\@lnidoi}{}{
         \footnotesize
         \ifusehyperref
@@ -1250,7 +1264,7 @@ This work consists of the file  lni.dtx
 \newenvironment{keywords}%
    {\global\keywordstrue\small%
     \def\and{\unskip;\space}%
-    \noindent\ignorespaces{\bfseries Keywords:\ }}%
+    \vskip -2pt\noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
 \let\@RIGsection\section
 \pretocmd\@startsection{%
@@ -1328,42 +1342,17 @@ This work consists of the file  lni.dtx
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
 %    \end{macrocode}
-% Set symbols for itemize
+% Set symbols and spacings for itemize
 %    \begin{macrocode}
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand*\itemize{%
-  \ifnum \@itemdepth >\thr@@\@toodeep\else
-  	\setlength{\labelsep}{0.70cm}%
-    \advance\@itemdepth\@ne
-    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
-    \expandafter
-    \list
-      \csname\@itemitem\endcsname
-      {\def\makelabel##1{\hss\llap{##1}}%
-       \setlength{\itemsep}{8pt}%
-       \setlength{\parsep}{-2pt}}%
-  \fi}
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{topsep=9pt}
 %    \end{macrocode}
 % and numbered lists
 %    \begin{macrocode}
-  \renewcommand{\labelenumii}{\alph{enumii})}
-  \renewcommand*\enumerate{%
-  \ifnum \@enumdepth >\thr@@
-      \@toodeep
-    \else
-		\setlength{\labelsep}{0.70cm}%Abstand zur Aufzählungsnummer
-      \advance\@enumdepth \@ne
-      \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
-    \fi
-    \@ifnextchar[{\@enumlabel@{\@enumerate@}[}{\@enumerate@}}
-  \def\@enumerate@{%
-    \expandafter\list\csname label\@enumctr\endcsname{%
-      \usecounter{\@enumctr}%
-      \def\makelabel##1{\hss\llap{##1}}
-		\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens
-      \setlength{\itemsep}{8pt}%
-      \setlength{\parsep}{-2pt}}
-  }%
+\setlist[enumerate]{labelsep=0.60cm}%Einrückung des Aufzählungszeichens
+\setlist[enumerate,2]{label=\alph*),topsep=9pt}
 %    \end{macrocode}
 % \begin{macro}{\andname}
 %    \begin{macrocode}
@@ -1531,6 +1520,13 @@ This work consists of the file  lni.dtx
 \newcommand*{\BPMN}{\lni@initialism{bpmn}}
 \newcommand*{\BPEL}{\lni@initialism{bpel}}
 \newcommand*{\UML}{\lni@initialism{uml}}
+%    \end{macrocode}
+% Creative Commons license choice
+%    \begin{macrocode}
+\newcommand\setcctype[2][4.0]{%
+  \def\@lni@cc@version{#1}%
+  \def\@lni@cc@type{#2}}
+\setcctype{}
 %    \end{macrocode}
 % bibliography
 %    \begin{macrocode}
@@ -2981,6 +2977,9 @@ EXECUTE {end.bib}
 %</eng|ger>
 %</bibtex>
 %<*template>
+% % !TeX program = pdflatex
+% % !BIB program = biber
+% % !TeX spellcheck = de-DE
 %%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne
 %%% Parameter zu laden.
 \documentclass[]{lni}
@@ -2994,23 +2993,26 @@ EXECUTE {end.bib}
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
 \title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
 Worten und noch mehr Buchstaben}
-%%%\subtitle{Untertitel / Subtitle} % if needed
+%% \subtitle{Untertitel / Subtitle} % if needed
 \author[Vorname1 Nachname1 \and Firstname2 Lastname2]
 {Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort,
 Land \email{emailaddress@author1}} \and
 Firstname2 Lastname2\footnote{University, Department, Address, Country
 \email{emailaddress@author2}}}
-\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page
-%numbering at this number
+%% (en) numbering starts at this number
+%% (de) Beginn der Seitenzählung für diesen Beitrag
+\startpage{11}
 \editor{Herausgeber et al.} % Names of Editors
 \booktitle{Name-der-Konferenz} % Name of book title
 \yearofpublication{2017}
-%%%\lnidoi{18.18420/provided-by-editor-02} % if known
+%% \lnidoi{18.18420/provided-by-editor-02} % activate and adapt if the DOI is known
+%% \setcctype{by-sa} % can be: zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd
 \maketitle
 
 \begin{abstract}
-This is a brief overview of the paper, which should be 70 to 150 words long and
-include the most relevant points. This has to be a single paragraph.
+Dies ist eine kurze Übersicht über das Dokument mit einer Länge von
+70 bis 150 Wörtern. Es sollte ein Absatz sein, der die relevantesten
+Aspekte enthält.
 \end{abstract}
 \begin{keywords}
 Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
@@ -3018,8 +3020,9 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 %%% Beginn des Artikeltexts
 \section{Überschrift/Heading}
 
-%%% Angabe der .bib-Datei (ohne Endung) / State .bib file (for BibTeX usage)
-\bibliography{mybibfile} %\printbibliography if you use biblatex/Biber
+%%% Angabe der .bib-Datei (ohne Endung) / State .bib file (im Falle der Nutzung von BibTeX)
+%% \bibliography{mybibfile}
+%% \printbibliography % im Falle der Nutzung von biblatex
 \end{document}
 %</template>
 %<*exampledebib>
@@ -3116,6 +3119,10 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 @Comment{jabref-meta: databaseType:biblatex;}
 %</exampledebib>
 %<*exampledetex>
+% % !TeX program = pdflatex
+% % !BIB program = biber
+% % !TeX spellcheck = de-DE
+
 %% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}
 
@@ -3167,6 +3174,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
 \yearofpublication{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
+%%%\setcctype{by-sa} % Möglichkeiten: zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd
 \maketitle
 
 \begin{abstract}
