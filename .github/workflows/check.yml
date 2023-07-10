@@ -48,7 +48,7 @@ jobs:
           cp /work/out/*.pdf .
           apk add git
 
-      - name: Deploy
+      - name: Deploy to GH pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
