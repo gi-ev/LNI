@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.8] - 2023-07-10
 
 ### Changed
 
@@ -136,7 +136,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.7...HEAD
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8...HEAD
+[1.8]: https://github.com/gi-ev/LNI/releases/tag/v1.8
 [1.7.0]: https://github.com/gi-ev/LNI/releases/tag/v1.7
 [1.6.0]: https://github.com/gi-ev/LNI/releases/tag/v1.6
 [1.5.0]: https://github.com/gi-ev/LNI/releases/tag/v1.5
