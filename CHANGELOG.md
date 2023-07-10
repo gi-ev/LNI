@@ -11,21 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Improve spacing in and around lists to better match the Word template. [#102](https://github.com/gi-ev/LNI/pull/102)
 - Synced title spacing with Word template. [#104](https://github.com/gi-ev/LNI/pull/104)
 - (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
-
-### Fixed
-
-- `! LaTeX Error: Environment align undefined` in `lni-paper-example.de.tex` is not appearing any more.
-
-## [1.8.0] - 2022-06-10
-
-### Changed
-
 - Add more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
 - Add `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
 - Improvement for documentation (merge requests [#89](https://github.com/gi-ev/LNI/issues/89),[#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96)
 
 ### Fixed
 
+- `! LaTeX Error: Environment align undefined` in `lni-paper-example.de.tex` is not appearing any more.
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 
