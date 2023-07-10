@@ -16,7 +16,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- `! LaTeX Error: Environment align undefined` in `lni-paper-example.de.tex` is not appearing any more.
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 
