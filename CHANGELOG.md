@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
+- Font size of bibliography is 9pt (instead of 10pt)
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 
