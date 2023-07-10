@@ -38,17 +38,20 @@ jobs:
           name: PDFs
           path: '/work/out'
 
-      - run: |
-          cd /work/out
+      - name: Prepare GH pages content
+        run: |
+          set -e
+          mkdir /tmp/gh-pages
+          cd /tmp/gh-pages
           cp /__w/LNI/LNI/README.md index.md
-          tar czf artifacts.tar.gz index.md *.pdf
+          cp /work/out/*.pdf .
 
-      - name: Upload GitHub pages output
-        uses: actions/upload-artifact@v3
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+#        if: github.ref == 'refs/heads/main'
         with:
-          name: github-pages
-          path: |
-            /work/out/artifacts.tar.gz
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: /tmp/gh-pages
 
       - name: Install dependencies for ctanify
         run: apk add perl-file-copy-recursive zip
@@ -61,22 +64,3 @@ jobs:
         with:
           name: CTAN
           path: '*.tar.gz'
-
-  deploy:
-    needs: build
-    # if: github.ref == 'refs/heads/main'
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
