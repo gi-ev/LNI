@@ -236,6 +236,22 @@
 }
 \renewcommand\Large{\@setfontsize\Large{14}{17}}
 \RequirePackage[autostyle]{csquotes}
+\ifusehyperref
+  \RequirePackage[bookmarks=false]{hyperref}
+  \AtEndPreamble{%
+  \RequirePackage[bookmarks=false]{hyperref}
+  \hypersetup{%
+     pdfdisplaydoctitle,%
+     colorlinks=true,%
+     allcolors=black,%
+     pdfstartview=Fit,%
+  }%
+%%%      \pdfstringdefDisableCommands{%
+%%%         \def\unskip{}%
+%%%         \renewcommand{\footnote}[1]{}%
+%%%      }%
+}%
+\fi
 \ifusebiblatex
   \RequirePackage[%
     backend=biber,% UTF-8 support
@@ -544,19 +560,6 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \ifusehyperref
-   \AtEndPreamble{%
-      \RequirePackage[bookmarks=false]{hyperref}
-      \hypersetup{%
-         pdfdisplaydoctitle,%
-         colorlinks=true,%
-         allcolors=black,%
-         pdfstartview=Fit,%
-      }%
-%%%      \pdfstringdefDisableCommands{%
-%%%         \def\unskip{}%
-%%%         \renewcommand{\footnote}[1]{}%
-%%%      }%
-   }%
 \else
    \providecommand{\texorpdfstring}[2]{#2}%
 \fi%

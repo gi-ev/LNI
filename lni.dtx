@@ -749,7 +749,7 @@ This work consists of the file  lni.dtx
 % might consider switching to \pkg{biblatex} (cf.~\cref{sec:bibliography}).
 % \end{itemize}
 %
-% \section{Bugs and feature request}
+% \section{Bugs and feature requests}
 % If you find a bug or have a feature request, please open an ``issue'' at the
 % \href{https://github.com/gi-ev/LNI/issues}{GitHub website}.
 %
@@ -1019,6 +1019,22 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 %    \begin{macrocode}
 \RequirePackage[autostyle]{csquotes}
+\ifusehyperref
+  \RequirePackage[bookmarks=false]{hyperref}
+  \AtEndPreamble{%
+  \RequirePackage[bookmarks=false]{hyperref}
+  \hypersetup{%
+     pdfdisplaydoctitle,%
+     colorlinks=true,%
+     allcolors=black,%
+     pdfstartview=Fit,%
+  }%
+%%%      \pdfstringdefDisableCommands{%
+%%%         \def\unskip{}%
+%%%         \renewcommand{\footnote}[1]{}%
+%%%      }%
+}%
+\fi
 \ifusebiblatex
   \RequirePackage[%
     backend=biber,% UTF-8 support
@@ -1451,19 +1467,6 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 %    \begin{macrocode}
 \ifusehyperref
-   \AtEndPreamble{%
-      \RequirePackage[bookmarks=false]{hyperref}
-      \hypersetup{%
-         pdfdisplaydoctitle,%
-         colorlinks=true,%
-         allcolors=black,%
-         pdfstartview=Fit,%
-      }%
-%%%      \pdfstringdefDisableCommands{%
-%%%         \def\unskip{}%
-%%%         \renewcommand{\footnote}[1]{}%
-%%%      }%
-   }%
 \else
    \providecommand{\texorpdfstring}[2]{#2}%
 \fi%
