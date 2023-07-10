@@ -12,6 +12,20 @@ We base on [reitzig's TeXLive Docker Images](https://github.com/reitzig/texlive-
 They require each new package listed in `Texlivefile`.
 Thus, if you add a new LaTeX package, please also add it into that file.
 
+You can have a full `bash` environment to experiment by using following command (assuming you are on Windows and checked out the repository at `c:\git-repositories\gi\LNI`):
+
+    docker run -it --rm -v c:\git-repositories\gi\LNI:/work/src reitzig/texlive-base:2023.1 work bash
+
+After `cd /work/src`, you are in the directory hosting `lni.dtx` and all other files.
+
+You can check successful generation of `lni.cls` based on `lni.dtx` using following command:
+
+    docker run --rm -v c:\git-repositories\gi\LNI:/work/src reitzig/texlive-base:2023.1 work
+
+⚠ Running that command overwrites `lni.cls` (based on `lni.dtx`), so be careful. ⚠
+
+## CI checks
+
 We have a GitHub workflow running, which checks the complete build using that Docker image.
 
 ## Hints on GitHub usage
