@@ -1550,7 +1550,9 @@ This work consists of the file  lni.dtx
 {\def\@noitemerr
    {\@latex@warning{Empty `thebibliography' environment}}%
    \endlist\egroup}
-\renewcommand*{\bibfont}{\small}% font size 9pt
+\ifusebiblatex
+  \renewcommand*{\bibfont}{\small}% font size 9pt
+\fi
 %    \end{macrocode}
 %    \begin{macrocode}
 \frenchspacing

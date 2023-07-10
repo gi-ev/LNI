@@ -628,6 +628,9 @@
 {\def\@noitemerr
    {\@latex@warning{Empty `thebibliography' environment}}%
    \endlist\egroup}
+\ifusebiblatex
+  \renewcommand*{\bibfont}{\small}% font size 9pt
+\fi
 \frenchspacing
 \tolerance 1414
 \hbadness 1414
