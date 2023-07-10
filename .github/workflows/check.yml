@@ -42,7 +42,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: github-pages
-          path: '/work/out/lni.pdf'
+          path: |
+            /work/out/*.pdf
 
       - name: Install dependencies for ctanify
         run: apk add perl-file-copy-recursive zip
