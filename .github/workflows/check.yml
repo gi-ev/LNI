@@ -46,7 +46,7 @@ jobs:
           cd /tmp/gh-pages
           cp /__w/LNI/LNI/README.md index.md
           cp /work/out/*.pdf .
-          apk install git
+          apk add git
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
