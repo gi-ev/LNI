@@ -15,23 +15,26 @@
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
 \title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
 Worten und noch mehr Buchstaben}
-%%%\subtitle{Untertitel / Subtitle} % if needed
+%% \subtitle{Untertitel / Subtitle} % if needed
 \author[Vorname1 Nachname1 \and Firstname2 Lastname2]
 {Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort,
 Land \email{emailaddress@author1}} \and
 Firstname2 Lastname2\footnote{University, Department, Address, Country
 \email{emailaddress@author2}}}
-\startpage{11} % Beginn der Seitenzählung für diesen Beitrag / Start page
+%% (en) numbering starts at this number
+%% (de) Beginn der Seitenzählung für diesen Beitrag
+\startpage{11}
 \editor{Herausgeber et al.} % Names of Editors
 \booktitle{Name-der-Konferenz} % Name of book title
 \yearofpublication{2017}
-%%%\lnidoi{18.18420/provided-by-editor-02} % if known
-%%%\setcctype{by-sa} % can be: zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd
+%% \lnidoi{18.18420/provided-by-editor-02} % activate and adapt if the DOI is known
+%% \setcctype{by-sa} % can be: zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd
 \maketitle
 
 \begin{abstract}
-This is a brief overview of the paper, which should be 70 to 150 words long and
-include the most relevant points. This has to be a single paragraph.
+Dies ist eine kurze Übersicht über das Dokument mit einer Länge von
+70 bis 150 Wörtern. Es sollte ein Absatz sein, der die relevantesten
+Aspekte enthält.
 \end{abstract}
 \begin{keywords}
 Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
@@ -39,6 +42,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 %%% Beginn des Artikeltexts
 \section{Überschrift/Heading}
 
-%%% Angabe der .bib-Datei (ohne Endung) / State .bib file (for BibTeX usage)
-\bibliography{mybibfile} %\printbibliography if you use biblatex/Biber
+%%% Angabe der .bib-Datei (ohne Endung) / State .bib file (im Falle der Nutzung von BibTeX)
+%% \bibliography{mybibfile}
+%% \printbibliography % im Falle der Nutzung von biblatex
 \end{document}
