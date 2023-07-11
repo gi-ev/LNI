@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+
+- Added option `anonymous` for anonymizing an article. [#100](https://github.com/gi-ev/LNI/pull/100)
+
 ### Changed
 
 - Improve spacing in and around lists to better match the Word template. [#102](https://github.com/gi-ev/LNI/pull/102)
