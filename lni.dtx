@@ -449,6 +449,14 @@ This work consists of the file  lni.dtx
 %
 % \DescribeOption{norunningheads\space(new in v1.5)}To easily remove all running
 % headers from your document, you can use the option \opt{norunningheads}.
+%
+% \DescribeOption{anonymous\space(new in v1.X)}To easily anonymize a paper for
+% blind review, use this option. Then all author information will be replaced
+% with a placeholder. Additionally, there is a new macro \cs{anon\marg{hide in review}}
+% which will be replaced with ``ANONIMIZED'' if the option is set.
+% Also, \cs{anon\marg[for review]{for final version}} can be used that outputs ``for review''
+% if the option is set, and ``for final version'' otherwise.
+%
 % \newpage
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point
@@ -806,6 +814,15 @@ This work consists of the file  lni.dtx
 \autofontstrue
 \newif\ifnorunningheads
 \DeclareOption{norunningheads}{\norunningheadstrue}
+\newif\ifanonymous
+\anonymousfalse
+\DeclareOption{anonymous}{\anonymoustrue}
+\newcommand{\anon}[2][\iflnienglish ANONYMIZED\else ANONYMISIERT\fi]{%
+  \ifanonymous%
+    {\color{orange}#1}%
+  \else%
+    #2%
+  \fi}
 \ExecuteOptions{utf8}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
@@ -1125,7 +1142,7 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\authorrunning}
 %    \begin{macrocode}
 \newcommand{\authorrunning}[1]{%
-   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
+   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else#1\fi}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\email}
@@ -1177,7 +1194,7 @@ This work consists of the file  lni.dtx
   \ifusehyperref
       \HyXeTeX@CheckUnicode
       \HyPsd@PrerenderUnicode{\@shortauthor}%
-      \pdfstringdef\@pdfauthor{\@shortauthor}%
+      \ifanonymous\else\pdfstringdef\@pdfauthor{\@shortauthor}\fi%
       \HyXeTeX@CheckUnicode
       \HyPsd@PrerenderUnicode{\@title}%
       \pdfstringdef\@pdftitle{\@title}%
@@ -1213,7 +1230,15 @@ This work consists of the file  lni.dtx
     \fi%
     {\normalsize%
       \lineskip .5em%
+      \ifanonymous
+        \iflnienglish
+          anonymized for review\footnote{placeholder for contact information}
+        \else
+          anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
+        \fi%
+      \else
         \@author
+      \fi%
       \par}%
     \vskip 21pt% Abstand vor dem Abstract
   \end{center}%
@@ -1238,14 +1263,14 @@ This work consists of the file  lni.dtx
           \@lni@CC@Icon
         \fi
       }
-      \ifdefempty{\@lnidoi}{}{
+      \ifanonymous\else\ifdefempty{\@lnidoi}{}{
         \footnotesize
         \ifusehyperref
           \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
         \else
           doi:\@lnidoi
         \fi%
-      }
+      }\fi
     }
   }}
   \par
@@ -1435,7 +1460,7 @@ This work consists of the file  lni.dtx
    \pagestyle{fancy}
    \fancyhead{}% Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else\@shortauthor\fi}
    \fancyfoot{}% Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
@@ -2984,10 +3009,12 @@ EXECUTE {end.bib}
 % % !TeX spellcheck = de-DE
 %%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne
 %%% Parameter zu laden.
+%%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden.
 \documentclass[]{lni}
 %%% To write an article in English, please use the option ``english'' in order
 %%% to get the correct hyphenation patterns and terms.
 %%% \documentclass[english]{class}
+%%% for anonymizing an article you can use the ``anonymous'' option.
 %%
 \begin{document}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
@@ -3128,6 +3155,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 %% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}
 
+%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden, siehe auch \anon-Makro.
 \documentclass[utf8,biblatex]{lni}
 \bibliography{lni-paper-example-de}
 
@@ -3207,6 +3235,8 @@ Das Symbol für Potenzmengen ($\powerset$) wird korrekt angezeigt.
 Es ist kein Weierstraß-p ($\wp$) mehr.
 
 Spitze Klammen können direkt eingegeben werden: <test />
+
+Anonymisierungen können mittels anonymous-Option in der documentclass automatisch vorgenommen werden. Dafür gibt es das \texttt{anon}-Makro, z.\,B. \anon{Geheim für Review} und \anon[nur für Review]{nur für finale Version}.
 
 Hier eine kleine Demonstration von \href{https://www.ctan.org/pkg/microtype}{microtype}:
 \blindtext

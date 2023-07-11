@@ -5,6 +5,7 @@
 %% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}
 
+%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden, siehe auch \anon-Makro.
 \documentclass[utf8,biblatex]{lni}
 \bibliography{lni-paper-example-de}
 
@@ -84,6 +85,8 @@ Das Symbol für Potenzmengen ($\powerset$) wird korrekt angezeigt.
 Es ist kein Weierstraß-p ($\wp$) mehr.
 
 Spitze Klammen können direkt eingegeben werden: <test />
+
+Anonymisierungen können mittels anonymous-Option in der documentclass automatisch vorgenommen werden. Dafür gibt es das \texttt{anon}-Makro, z.\,B. \anon{Geheim für Review} und \anon[nur für Review]{nur für finale Version}.
 
 Hier eine kleine Demonstration von \href{https://www.ctan.org/pkg/microtype}{microtype}:
 \blindtext
