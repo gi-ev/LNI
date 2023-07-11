@@ -305,19 +305,19 @@
 \newcommand{\authorrunning}[1]{%
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
+\PassOptionsToPackage{bookmarks=false}{hyperref}
+\RequirePackage{orcidlink}
 \newif\iffoot\footfalse
 \let\origthanks\thanks
 \renewcommand{\thanks}[1]{\foottrue\origthanks{#1}\footfalse}
 \newcommand{\orcid}[1]{%
 	\ifstrempty{#1}{}{%
-		\href{https://orcid.org/#1}{
-			\begin{minipage}[t]{\baselineskip}
-				\includegraphics[width=\textwidth]{ORCIDiD_iconvector.pdf}
-			\end{minipage}%
-			\iffoot%
-                ~https://orcid.org/#1%
-			\fi
-		}%
+		\orcidlink{#1}%
+		\iffoot
+			\href{https://orcid.org/#1}{
+	    		~https://orcid.org/#1%
+	    	}%
+		\fi
 	}%
 }
 \newcommand{\@lnidoi}{}
