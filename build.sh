@@ -1,6 +1,4 @@
 set -e
-printf "\n\033[32mCompiling lni-paper-example-de using lni.cls\n\n\033[37m"
-pdflatex lni-paper-example-de
 
 cp lni.cls lni.old
 cp lni-paper-example-de.tex lni-paper-example-de.old

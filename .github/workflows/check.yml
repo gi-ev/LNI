@@ -3,7 +3,7 @@ name: check
 on:
   push:
     branches:
-      -main
+      - main
   pull_request:
   schedule:
     - cron: '1 2 5 * *'
