@@ -7,7 +7,7 @@
 %% lni.dtx  (with options: `bibtex,ger')
 %% lnig.bst
 %% Lecture Notes in Informatics Style File (german)
-%% Version 1.0 (2017/04/07)
+%% Version 1.1 (2022/06/10)
 %% 
 %% The Style File is based on alpha.bst
 %% 
@@ -769,7 +769,7 @@ FUNCTION {misc}
 { output.bibitem
   author empty$
     { ""  }
-    { format.authors output.nonnull }
+    { format.authors write$ }
   if$
   %title howpublished new.block.checkb
   format.title output
@@ -1285,7 +1285,7 @@ FUNCTION {end.bib}
 
 EXECUTE {end.bib}
 %% 
-%% Copyright (C) 2016-2020 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either

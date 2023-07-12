@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2020/12/03 v1.7BETA Official class for submissions to the ``Lecture Notes
+    [2022/06/10 v1.8 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -57,19 +57,19 @@
 \autofontstrue
 \newif\ifnorunningheads
 \DeclareOption{norunningheads}{\norunningheadstrue}
+\newif\ifanonymous
+\anonymousfalse
+\DeclareOption{anonymous}{\anonymoustrue}
+\newcommand{\anon}[2][\iflnienglish ANONYMIZED\else ANONYMISIERT\fi]{%
+  \ifanonymous%
+    {\color{orange}#1}%
+  \else%
+    #2%
+  \fi}
 \ExecuteOptions{utf8}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 \RequirePackage{iftex}
-\ifPDFTeX
-   \RequirePackage{hyphsubst}
-   \HyphSubstIfExists{ngerman-x-latest}%
-      {\HyphSubstLet{ngerman}{ngerman-x-latest}%
-       \ClassInfo{lni}{Using latest German hyphenation patterns}}%
-      {\ClassWarning{lni}{Latest German hyphenation patterns could not be found!%
-         \MessageBreak If you write a German article you should check your%
-         installation}}%
-\fi%
 \LoadClass[10pt,twoside,a4paper,fleqn]{article}
 \ifPDFTeX
    \RequirePackage{cmap}
@@ -81,6 +81,8 @@
    \RequirePackage[ngerman,english]{babel}
 \else
    \RequirePackage[english,ngerman]{babel}
+   \babelprovide[hyphenrules=ngerman-x-latest]{ngerman}
+   \ClassInfo{lni}{Using latest German hyphenation patterns}%
 \fi%
 \useshorthands*{"}
 \addto\extrasenglish{\languageshorthands{ngerman}}
@@ -205,7 +207,7 @@
             \normalsize
             \expandafter\csname\CROP@font\endcsname{%
                ``\jobname''\x
-               \the\@rigyear/\the\month/\the\day\x
+               \the\year/\the\month/\the\day\x
                \CROP@time\x
                page\kern.5em\thepage\x
                \#\the\CROP@index
@@ -247,6 +249,7 @@
   \RequirePackage[%
     backend=biber,% UTF-8 support
     style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
+    hyperref=manual,
     natbib=true   % Required for \Citet
   ]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
   % Enable hyperlinked authors when using \citeauthor
@@ -267,6 +270,7 @@
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
+\RequirePackage{enumitem}
 \lstset{%
    basicstyle=\ttfamily,%
    columns=fixed,%
@@ -300,10 +304,18 @@
 \def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
 \newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
 \renewcommand{\author}{\@dblarg\@@author}
-\def\@@author[#1]#2{\gdef\@shortauthor{{\let\footnote\@gobble%
-   \def\and{\unskip,\ }#1}}\gdef\@author{#2}}
+\newcommand{\@@author}[2][]{%
+   \DeclareRobustCommand{\@shortauthor}{%
+         {%
+            %\let\footnote\@gobble%
+            \def\and{\texorpdfstring{\unskip,\ }{}}%
+            #1%
+         }%
+      }%
+      \DeclareRobustCommand{\@author}{#2}%
+   }
 \newcommand{\authorrunning}[1]{%
-   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}#1}}
+   \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else#1\fi}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \PassOptionsToPackage{bookmarks=false}{hyperref}
 \RequirePackage{orcidlink}
@@ -321,9 +333,12 @@
 	}%
 }
 \newcommand{\@lnidoi}{}
-\newcommand{\lnidoi}[1]{\gdef\@lnidoi{#1}}
+\newcommand{\lnidoi}{%
+      \begingroup\catcode`\_12 \lnidoi@i}
+\newcommand{\lnidoi@i}[1]{%
+      \gdef\@lnidoi{#1}\endgroup}
 \renewcommand\maketitle{\par%
-\begingroup
+   \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
     \def\@makefnmark% keine Einrückung der Fußnoten eingestellt
  {\@textsuperscript{\normalfont\@thefnmark}}%
@@ -342,7 +357,7 @@
       \fi%
     \else
       \newpage
-      \global\@topnum\z@   % Prevents figures from going at top of page.
+      \global\@topnum\z@% Prevents figures from going at top of page.
       \@maketitle
     \fi%
     \ifnorunningheads
@@ -352,6 +367,14 @@
     \fi%
     \@thanks
   \endgroup
+  \ifusehyperref
+      \HyXeTeX@CheckUnicode
+      \HyPsd@PrerenderUnicode{\@shortauthor}%
+      \ifanonymous\else\pdfstringdef\@pdfauthor{\@shortauthor}\fi%
+      \HyXeTeX@CheckUnicode
+      \HyPsd@PrerenderUnicode{\@title}%
+      \pdfstringdef\@pdftitle{\@title}%
+  \fi%
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@maketitle\relax
@@ -363,44 +386,64 @@
   \global\let\author\relax
   \global\let\date\relax
   \global\let\and\relax
-  \global\let\year\@rigyear
 }
 \def\@maketitle{%
   \newpage
   \null
   \begin{center}%
-  \vskip -24pt% Abstand vor dem Titel
+  \vskip -27pt% Abstand vor dem Titel
   \raggedright% Linksbündig
   \let\footnote\thanks
     {\Large\bfseries\@title\par}%
-    \ifx\@subtitle\empty\else
-      \ifx\@subtitle\undefined\else
-         \vskip 16pt
+    \ifx\@subtitle\empty\vskip 9pt\else % Abstand nach dem Titel
+      \ifx\@subtitle\undefined\vskip 9pt\else
+         \vskip 9pt
          {\normalsize\bfseries\@subtitle}%
+         \vskip 15pt% Abstand nach dem Titel
       \fi%
     \fi%
-    \vskip 19pt% Abstand nach dem Titel
     {\normalsize%
       \lineskip .5em%
+      \ifanonymous
+        \iflnienglish
+          anonymized for review\footnote{placeholder for contact information}
+        \else
+          anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
+        \fi%
+      \else
         \@author
+      \fi%
       \par}%
-    \vskip 28pt% Abstand vor dem Abstract
+    \vskip 21pt% Abstand vor dem Abstract
   \end{center}%
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
-      \ifusehyperref
-        \href{https://creativecommons.org/licenses/by-sa/4.0/}{\ccbysa}
-      \else
-        \ccbysa
-      \fi
-      \ifdefempty{\@lnidoi}{}{
+      \ifdefempty{\@lni@cc@type}{}{
+        \IfEq{\@lni@cc@type}{zero}{%
+         \def\@lni@CC@Url{https://creativecommons.org/publicdomain/zero/1.0/}\def\@lni@CC@Icon{\cczero}}{%
+        \edef\@lni@CC@Url{https://creativecommons.org/licenses/\@lni@cc@type/\@lni@cc@version/}%
+        \IfEq{\@lni@cc@type}{by}{\def\@lni@CC@Icon{\ccby}}{%
+        \IfEq{\@lni@cc@type}{by-sa}{\def\@lni@CC@Icon{\ccbysa}}{%
+        \IfEq{\@lni@cc@type}{by-nc-sa}{\def\@lni@CC@Icon{\ccbyncsa}}{%
+        \IfEq{\@lni@cc@type}{by-nc}{\def\@lni@CC@Icon{\ccbync}}{%
+        \IfEq{\@lni@cc@type}{by-nd}{\def\@lni@CC@Icon{\ccbynd}}{%
+        \IfEq{\@lni@cc@type}{by-nc-nd}{\def\@lni@CC@Icon{\ccbyncnd}}{%
+        \message{Invalid value for setcctype}%
+        }}}}}}}%
+        \ifusehyperref
+          \href{\@lni@CC@Url}{\@lni@CC@Icon}
+        \else
+          \@lni@CC@Icon
+        \fi
+      }
+      \ifanonymous\else\ifdefempty{\@lnidoi}{}{
         \footnotesize
         \ifusehyperref
           \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
         \else
           doi:\@lnidoi
         \fi%
-      }
+      }\fi
     }
   }}
   \par
@@ -413,11 +456,16 @@
 \newenvironment{keywords}%
    {\global\keywordstrue\small%
     \def\and{\unskip;\space}%
-    \noindent\ignorespaces{\bfseries Keywords:\ }}%
+    \vskip -2pt\noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
 \let\@RIGsection\section
-\pretocmd\@startsection{\ifkeywords\ClassError{lni}{keywords is an environment, not a macro}%
-   {Please change \string\keywords\space to an environment}\keywordsfalse\fi}{}{}
+\pretocmd\@startsection{%
+   \ifkeywords\ClassError{lni}%
+      {keywords is an environment, not a macro}%
+      {Please change \string\keywords\space to an environment}%
+      \keywordsfalse%
+   \fi%
+}{}{}
 \renewcommand{\section}{\@startsection{section}{1}{\z@}%
   {-16\p@ \@plus -4\p@ \@minus -4\p@}{5\p@ \@plus 4\p@ \@minus
   4\p@}{\large\bfseries}}
@@ -461,37 +509,12 @@
     \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand*\itemize{%
-  \ifnum \@itemdepth >\thr@@\@toodeep\else
-   \setlength{\labelsep}{0.70cm}%Abstand zum Aufzählungspunkt
-    \advance\@itemdepth\@ne
-    \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
-    \expandafter
-    \list
-      \csname\@itemitem\endcsname
-      {\def\makelabel##1{\hss\llap{##1}}%
-       \setlength{\itemsep}{8pt}%
-       \setlength{\parsep}{-2pt}}%
-  \fi}
-  \renewcommand{\labelenumii}{\alph{enumii})}
-  \renewcommand*\enumerate{%
-  \ifnum \@enumdepth >\thr@@
-      \@toodeep
-    \else
-\setlength{\labelsep}{0.70cm}%Abstand zur Aufzählungsnummer
-      \advance\@enumdepth \@ne
-      \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
-    \fi
-    \@ifnextchar[{\@enumlabel@{\@enumerate@}[}{\@enumerate@}}
-  \def\@enumerate@{%
-    \expandafter\list\csname label\@enumctr\endcsname{%
-      \usecounter{\@enumctr}%
-      \def\makelabel##1{\hss\llap{##1}}
-\setlength{\labelsep}{0.6cm} %Einrückung des Aufzählungszeichens
-      \setlength{\itemsep}{8pt}%
-      \setlength{\parsep}{-2pt}}
-  }%
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{topsep=9pt}
+\setlist[enumerate]{labelsep=0.60cm}%Einrückung des Aufzählungszeichens
+\setlist[enumerate,2]{label=\alph*),topsep=9pt}
 \newcommand{\andname}{}
 \addto\captionsngerman{%
   \renewcommand{\andname}{und}%
@@ -514,13 +537,8 @@
 \newcommand{\booksubtitle}[1]{\gdef\@booksubtitle{#1}}
 \newcommand*{\@editor}{}
 \newcommand*{\editor}[1]{\renewcommand{\@editor}{#1}}
-\AtBeginDocument{%
-   \let\@rigyear\year
-   \newcommand*{\@year}{\the\@rigyear}
-   \renewcommand*{\year}[1]{%
-      \renewcommand{\@year}{#1}%
-   }%
-}%
+\newcommand*{\@yearofpublication}{\the\year}
+\newcommand*{\yearofpublication}[1]{\renewcommand*{\@yearofpublication}{#1}}
 \fancypagestyle{plain}{%
    \fancyhead{} % Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{%
@@ -529,7 +547,8 @@
          {}%
          {\@bookshorttitle,\hspace{1sp}}%
       \null\linebreak%
-      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+      Lecture Notes in Informatics (LNI), Gesellschaft für Informatik,
+      Bonn~\@yearofpublication%
       \hspace{5pt}\thepage\hspace{0.05cm}%
    }%
    \fancyhead[LE]{%
@@ -538,19 +557,20 @@
       {}%
       {\@bookshorttitle,\hspace{1sp}}%
       \linebreak\hspace{0.05cm}\thepage\hspace{5pt} Lecture Notes
-      in Informatics (LNI), Gesellschaft für Informatik, Bonn~\@year%
+      in Informatics (LNI), Gesellschaft für Informatik,
+      Bonn~\@yearofpublication%
    }%
-   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
-   \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
+   \fancyfoot{}% Löscht alle Fußzeileneinstellungen
+   \renewcommand{\headrulewidth}{0.4pt}% Linie unter Kopfzeile
 }%
 \ifnorunningheads
    \pagestyle{empty}
 \else
    \pagestyle{fancy}
-   \fancyhead{} % Löscht alle Kopfzeileneinstellungen
+   \fancyhead{}% Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\@shortauthor}
-   \fancyfoot{} % Löscht alle Fußzeileneinstellungen
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else\@shortauthor\fi}
+   \fancyfoot{}% Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
 \RequirePackage{url}
@@ -564,10 +584,15 @@
          colorlinks=true,%
          allcolors=black,%
          pdfstartview=Fit,%
-         pdfauthor={\@author},%
-         pdftitle={\@title}%
       }%
+      \BiblatexManualHyperrefOn%
+%%%      \pdfstringdefDisableCommands{%
+%%%         \def\unskip{}%
+%%%         \renewcommand{\footnote}[1]{}%
+%%%      }%
    }%
+\else
+   \providecommand{\texorpdfstring}[2]{#2}%
 \fi%
 \ifusecleveref%
    \AtEndPreamble{%
@@ -588,10 +613,10 @@
 \fi%
 \AtEndPreamble{%
    \@ifpackageloaded{hyperref}
-   {\RequirePackage[all]{hypcap}}%
-   {}%
+      {\RequirePackage[all]{hypcap}}%
+      {}%
 }%
-\def\and{\unskip\hspace{-0.42em},\hspace{.6em}}
+\def\and{\texorpdfstring{\unskip\hspace{-0.42em},\hspace{.6em}}{, }}%
 \ifusebiblatex
 \else
    \iflnienglish
@@ -613,6 +638,10 @@
 \newcommand*{\BPMN}{\lni@initialism{bpmn}}
 \newcommand*{\BPEL}{\lni@initialism{bpel}}
 \newcommand*{\UML}{\lni@initialism{uml}}
+\newcommand\setcctype[2][4.0]{%
+  \def\@lni@cc@version{#1}%
+  \def\@lni@cc@type{#2}}
+\setcctype{}
 \renewenvironment{thebibliography}[1]
 {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
    \section*{\refname}%
@@ -646,7 +675,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2020 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either

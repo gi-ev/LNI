@@ -1,3 +1,11 @@
+lni.pdf
+lni-author-template.pdf
+lni-paper-example-de.pdf
+
+mybibfile.bib
+
+*.hd
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

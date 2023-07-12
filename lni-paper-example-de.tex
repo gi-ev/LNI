@@ -1,9 +1,11 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = de_DE
 
+
 %% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}
 
+%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden, siehe auch \anon-Makro.
 \documentclass[utf8,biblatex]{lni}
 \bibliography{lni-paper-example-de}
 
@@ -11,6 +13,7 @@
 \usepackage{booktabs}
 
 %% Zu Demonstrationszwecken
+\usepackage{amsmath}
 \usepackage[math]{blindtext}
 \usepackage{mwe}
 
@@ -49,8 +52,9 @@
 \startpage{11} % Beginn der Seitenzählung für diesen Beitrag
 \editor{Herausgeber et al.}    % Namen der Herausgeber
 \booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
-\year{2017}
+\yearofpublication{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
+%%%\setcctype{by-sa} % Möglichkeiten: zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd
 \maketitle
 
 \begin{abstract}
@@ -81,6 +85,8 @@ Das Symbol für Potenzmengen ($\powerset$) wird korrekt angezeigt.
 Es ist kein Weierstraß-p ($\wp$) mehr.
 
 Spitze Klammen können direkt eingegeben werden: <test />
+
+Anonymisierungen können mittels anonymous-Option in der documentclass automatisch vorgenommen werden. Dafür gibt es das \texttt{anon}-Makro, z.\,B. \anon{Geheim für Review} und \anon[nur für Review]{nur für finale Version}.
 
 Hier eine kleine Demonstration von \href{https://www.ctan.org/pkg/microtype}{microtype}:
 \blindtext
