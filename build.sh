@@ -16,7 +16,7 @@ for (( i=0; i<${#FILES[@]}; i+=2 )); do
     echo "$DIFF"
     printf "\033[31mPlease adapt lni.dtx to include these changes\033[37m\n"
     printf "\nSee https://github.com/gi-ev/LNI/issues/108 for more background information\n"
-    exit 1
+    exit 99
   fi
 done
 
