@@ -12,7 +12,7 @@
 %% License:| Released under the LaTeX Project Public License v1.3c or later
 %%     See:| http://www.latex-project.org/lppl.txt
 %% --------| -----------------------------------------------------------------
-\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\NeedsTeXFormat{LaTeX2e}[2020/12/01]
 \ProvidesClass{lni}
     [2022/06/10 v1.8 Official class for submissions to the ``Lecture Notes
     in Informatics'']
@@ -657,19 +657,19 @@
 \brokenpenalty=2000
 \vfuzz \hfuzz
 \raggedbottom
-%% 
+%%
 %% Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
-%% 
+%%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
 %% version 1.3c of this license or (at your option) any later
 %% version.  The latest version of this license is in the file:
-%% 
+%%
 %% http://www.latex-project.org/lppl.txt
-%% 
+%%
 %% This work is "maintained" (as per LPPL maintenance status) by
 %% Martin Sievers.
-%% 
+%%
 %% This work consists of the file  lni.dtx
 %%                                 lni.ins
 %%                                 README.md
