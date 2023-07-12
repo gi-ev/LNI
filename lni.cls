@@ -12,7 +12,7 @@
 %% License:| Released under the LaTeX Project Public License v1.3c or later
 %%     See:| http://www.latex-project.org/lppl.txt
 %% --------| -----------------------------------------------------------------
-\NeedsTeXFormat{LaTeX2e}[2020/12/01]
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
     [2022/06/10 v1.8 Official class for submissions to the ``Lecture Notes
     in Informatics'']
