@@ -1,0 +1,48 @@
+name: check lni-paper-example-de
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '1 2 5 * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: reitzig/texlive-base:2023.1
+      options: --user root
+      env:
+        SRC_DIR: /__w/LNI/LNI
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Add x86_64-linuxmusl to PATH
+        run: echo "/usr/local/texlive/2023/bin/x86_64-linuxmusl" >> $GITHUB_PATH
+
+      - name: pdflatex lni-paper-example-de
+        run: /bin/entrypoint work pdflatex lni-paper-example-de
+
+      - name: biber lni-paper-example-de
+        run: /bin/entrypoint work biber lni-paper-example-de
+
+      - name: pdflatex lni-paper-example-de
+        run: /bin/entrypoint work pdflatex lni-paper-example-de
+
+      - name: pdflatex lni-paper-example-de
+        run: /bin/entrypoint work pdflatex lni-paper-example-de
+
+      - name: Upload build result
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDFs
+          path: '/work/out'
