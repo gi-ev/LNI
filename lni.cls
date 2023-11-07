@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2022/06/10 v1.8 Official class for submissions to the ``Lecture Notes
+    [2023/11/06 v1.8BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -66,11 +66,12 @@
   \else%
     #2%
   \fi}
-\ExecuteOptions{utf8}
+\ExecuteOptions{utf8,norunningheads}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 \RequirePackage{iftex}
-\LoadClass[10pt,twoside,a4paper,fleqn]{article}
+\PassOptionsToPackage{fleqn}{amsmath}
+\LoadClass[10pt,twoside,a4paper]{article}
 \ifPDFTeX
    \RequirePackage{cmap}
    \RequirePackage{inputenc}
@@ -173,7 +174,6 @@
   <12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
-\RequirePackage{ccicons}
 \RequirePackage{etoolbox}
 \newlength{\doihoffset}
 \newlength{\doivoffset}
@@ -248,9 +248,18 @@
 \ifusebiblatex
   \RequirePackage[%
     backend=biber,% UTF-8 support
+    date=year,
     style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
     natbib=true   % Required for \Citet
   ]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
+   \DefineBibliographyStrings{ngerman}{%
+      bibliography = {Literaturverzeichnis},
+      references = {Literaturverzeichnis},
+   }%
+   \DefineBibliographyStrings{english}{%
+      bibliography = {Bibliography},
+      references = {Bibliography},
+   }%
   % Enable hyperlinked authors when using \citeauthor
   % Source: http://tex.stackexchange.com/a/75916/9075
   \DeclareCiteCommand{\citeauthor}%
@@ -264,6 +273,7 @@
     {\multicitedelim}%
     {\usebibmacro{postnote}}%
 \fi%
+\RequirePackage{amsmath}
 \RequirePackage{graphicx}
 \RequirePackage{eso-pic}
 \RequirePackage{grffile}
@@ -402,24 +412,6 @@
   \end{center}%
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
-      \ifdefempty{\@lni@cc@type}{}{
-        \IfEq{\@lni@cc@type}{zero}{%
-         \def\@lni@CC@Url{https://creativecommons.org/publicdomain/zero/1.0/}\def\@lni@CC@Icon{\cczero}}{%
-        \edef\@lni@CC@Url{https://creativecommons.org/licenses/\@lni@cc@type/\@lni@cc@version/}%
-        \IfEq{\@lni@cc@type}{by}{\def\@lni@CC@Icon{\ccby}}{%
-        \IfEq{\@lni@cc@type}{by-sa}{\def\@lni@CC@Icon{\ccbysa}}{%
-        \IfEq{\@lni@cc@type}{by-nc-sa}{\def\@lni@CC@Icon{\ccbyncsa}}{%
-        \IfEq{\@lni@cc@type}{by-nc}{\def\@lni@CC@Icon{\ccbync}}{%
-        \IfEq{\@lni@cc@type}{by-nd}{\def\@lni@CC@Icon{\ccbynd}}{%
-        \IfEq{\@lni@cc@type}{by-nc-nd}{\def\@lni@CC@Icon{\ccbyncnd}}{%
-        \message{Invalid value for setcctype}%
-        }}}}}}}%
-        \ifusehyperref
-          \href{\@lni@CC@Url}{\@lni@CC@Icon}
-        \else
-          \@lni@CC@Icon
-        \fi
-      }
       \ifanonymous\else\ifdefempty{\@lnidoi}{}{
         \footnotesize
         \ifusehyperref
@@ -439,7 +431,7 @@
 \newif\ifkeywords
 \newenvironment{keywords}%
    {\global\keywordstrue\small%
-    \def\and{\unskip;\space}%
+    \def\and{\unskip,\space}%
     \vskip -2pt\noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
 \let\@RIGsection\section
@@ -621,10 +613,6 @@
 \newcommand*{\BPMN}{\lni@initialism{bpmn}}
 \newcommand*{\BPEL}{\lni@initialism{bpel}}
 \newcommand*{\UML}{\lni@initialism{uml}}
-\newcommand\setcctype[2][4.0]{%
-  \def\@lni@cc@version{#1}%
-  \def\@lni@cc@type{#2}}
-\setcctype{}
 \renewenvironment{thebibliography}[1]
 {\iflnienglish\selectlanguage{english}\else\selectlanguage{ngerman}\fi
    \section*{\refname}%
@@ -657,19 +645,19 @@
 \brokenpenalty=2000
 \vfuzz \hfuzz
 \raggedbottom
-%%
+%% 
 %% Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
-%%
+%% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
 %% version 1.3c of this license or (at your option) any later
 %% version.  The latest version of this license is in the file:
-%%
+%% 
 %% http://www.latex-project.org/lppl.txt
-%%
+%% 
 %% This work is "maintained" (as per LPPL maintenance status) by
 %% Martin Sievers.
-%%
+%% 
 %% This work consists of the file  lni.dtx
 %%                                 lni.ins
 %%                                 README.md
