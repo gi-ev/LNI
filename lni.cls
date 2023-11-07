@@ -2,8 +2,6 @@
 %% This is file `lni.cls',
 %% generated with the docstrip utility.
 %%
-%% The original source files were:
-%%
 %% lni.dtx  (with options: `class')
 %% --------| -----------------------------------------------------------------
 %%     lni:| A class for submissions to the ``Lecture Notes in Informatics''
