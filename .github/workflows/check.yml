@@ -16,39 +16,52 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: reitzig/texlive-base:2023.1
-      options: --user root
-      env:
-        SRC_DIR: /__w/LNI/LNI
-
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          show-progess: ''
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+           package_file: Texlivefile
+      - name: Generate lni.cls, *.tex, ...
+        run: |
+          pdflatex lni.dtx
+          pdflatex lni.dtx
+          pdflatex lni.dtx
+      - name: Check for modifications
+        run: |
+          if ! git diff-index --quiet HEAD --; then
+            echo "Worktree is not clean."
+            git diff-index --name-status HEAD
+            exit 1
+          fi
+      - name: Generate mybibfile.bib
+        run: touch mybibfile.bib
 
-      - name: Add x86_64-linuxmusl to PATH
-        run: echo "/usr/local/texlive/2023/bin/x86_64-linuxmusl" >> $GITHUB_PATH
+      - run: pdflatex lni-author-template
 
-      - name: Install git
-        run: apk add git
-
-      - name: Build examples (using build.sh)
-        run: /bin/entrypoint work
+      - run: pdflatex lni-paper-example-de
+      - run: biber lni-paper-example-de
+      - run: pdflatex lni-paper-example-de
+      - run: pdflatex lni-paper-example-de
 
       - name: Upload build result
         uses: actions/upload-artifact@v3
         with:
           name: PDFs
-          path: '/work/out'
+          path: |
+            'lni-author-template.pdf'
+            'lni-paper-example*.pdf'
 
       - name: Prepare GH pages content
         if: github.ref == 'refs/heads/main'
         run: |
           set -e
           mkdir /tmp/gh-pages
-          cd /tmp/gh-pages
-          cp /__w/LNI/LNI/README.md index.md
-          cp /work/out/*.pdf .
+          cp README.md /tmp/gh-pages/index.md
+          cp *.pdf /tmp/gh-pages
 
       - name: Deploy to GH pages
         uses: peaceiris/actions-gh-pages@v3
@@ -58,7 +71,7 @@ jobs:
           publish_dir: /tmp/gh-pages
 
       - name: Install dependencies for ctanify
-        run: apk add perl-file-copy-recursive zip
+        run: sudo apt-get install -y perl-file-copy-recursive zip
 
       - name: Prepare for CTAN
         run: ./prepare_for_CTAN
