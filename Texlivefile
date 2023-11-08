@@ -1,5 +1,6 @@
 latex-bin
 amsmath
+babel-english
 babel-german
 bera
 blindtext
