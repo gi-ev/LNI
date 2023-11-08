@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ## [1.8] - 2023-07-10
 
+### Added
+
+- Added option `anonymous` for anonymizing an article. [#100](https://github.com/gi-ev/LNI/pull/100)
+
 ### Changed
 
 - Improve spacing in and around lists to better match the Word template. [#102](https://github.com/gi-ev/LNI/pull/102)
@@ -16,7 +20,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Fixed
 
-- `! LaTeX Error: Environment align undefined` in `lni-paper-example.de.tex` is not appearing any more.
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 

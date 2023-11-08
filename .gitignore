@@ -4,6 +4,8 @@ lni-paper-example-de.pdf
 
 mybibfile.bib
 
+*.old
+
 *.hd
 
 ## Core latex/pdflatex auxiliary files:

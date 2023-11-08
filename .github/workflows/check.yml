@@ -3,7 +3,7 @@ name: check
 on:
   push:
     branches:
-      -main
+      - main
   pull_request:
   schedule:
     - cron: '1 2 5 * *'
@@ -29,6 +29,9 @@ jobs:
       - name: Add x86_64-linuxmusl to PATH
         run: echo "/usr/local/texlive/2023/bin/x86_64-linuxmusl" >> $GITHUB_PATH
 
+      - name: Install git
+        run: apk add git
+
       - name: Build examples (using build.sh)
         run: /bin/entrypoint work
 
@@ -46,7 +49,6 @@ jobs:
           cd /tmp/gh-pages
           cp /__w/LNI/LNI/README.md index.md
           cp /work/out/*.pdf .
-          apk add git
 
       - name: Deploy to GH pages
         uses: peaceiris/actions-gh-pages@v3
