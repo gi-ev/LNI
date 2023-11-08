@@ -1,4 +1,5 @@
 latex-bin
+amsmath
 babel-german
 bera
 blindtext
@@ -7,14 +8,21 @@ biblatex
 biblatex-lni
 ccicons
 cleveref
+cm-super
+collection-fontsrecommended
 csquotes
 ctanify
 dehyph-exptl
 enumitem
+etoolbox
 hyphen-german
 hypdoc
 libertine
+microtype
+multicol
 mnsymbol
 mwe
 nag
+siunitx
+tools
 upquote
