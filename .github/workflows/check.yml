@@ -35,7 +35,7 @@ jobs:
           git update-index --refresh
           if ! git diff-index --quiet HEAD --; then
             echo "Worktree is not clean."
-            git diff-index HEAD
+            git diff-index --name-status HEAD
             exit 1
           fi
       - name: Generate mybibfile.bib
