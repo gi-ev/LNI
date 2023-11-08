@@ -8,6 +8,8 @@ mybibfile.bib
 
 *.hd
 
+texlogsieve
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
