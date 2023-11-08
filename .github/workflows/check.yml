@@ -32,6 +32,7 @@ jobs:
           pdflatex lni.dtx
       - name: Check for modifications
         run: |
+          git update-index --refresh
           if ! git diff-index --quiet HEAD --; then
             echo "Worktree is not clean."
             git diff-index HEAD
