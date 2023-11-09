@@ -23,7 +23,6 @@ fancyhdr
 geometry
 grffile
 hologo
-hypcap
 hyperref
 hyphen-german
 hypdoc
@@ -37,6 +36,7 @@ microtype
 mnsymbol
 mwe
 nag
+oberdiek
 siunitx
 tools
 upquote
