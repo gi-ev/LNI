@@ -9,6 +9,7 @@ biblatex
 biblatex-lni
 booktabs
 caption
+carlisle
 ccicons
 cleveref
 cm-super
@@ -42,7 +43,6 @@ mwe
 nag
 newtx
 oberdiek
-scalefnt
 selnolig
 siunitx
 tex-gyre
