@@ -24,7 +24,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
         with:
-          show-progess: ''
+          show-progress: ''
       - name: Install TeX Live
         uses: zauguin/install-texlive@v3
         with:
