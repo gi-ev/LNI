@@ -23,6 +23,7 @@ fancyhdr
 geometry
 grffile
 hologo
+hypcap
 hyperref
 hyphen-german
 hypdoc
