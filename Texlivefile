@@ -23,6 +23,7 @@ epstopdf-pkg
 eso-pic
 etoolbox
 fancyhdr
+fontspec
 geometry
 graphics
 grffile
