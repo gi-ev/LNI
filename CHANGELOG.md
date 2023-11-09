@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 ### Added
 
 - Added option `anonymous` for anonymizing an article. [#100](https://github.com/gi-ev/LNI/pull/100)
+- Added `\pdfoutput=1` to fix compatibility with arXiv. [#81](https://github.com/gi-ev/LNI/issues/81)
 
 ### Changed
 
