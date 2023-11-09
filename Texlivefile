@@ -38,11 +38,13 @@ libertine
 listings
 ltxcmds
 luatex
+luatexbase
 microtype
 mnsymbol
 mwe
 nag
 newtx
+newtxtt
 oberdiek
 selnolig
 siunitx
