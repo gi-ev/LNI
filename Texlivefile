@@ -9,6 +9,7 @@ biblatex
 biblatex-lni
 booktabs
 caption
+carlisle
 ccicons
 cleveref
 cm-super
@@ -22,6 +23,7 @@ epstopdf-pkg
 eso-pic
 etoolbox
 fancyhdr
+fontspec
 geometry
 graphics
 grffile
@@ -35,12 +37,20 @@ kvdefinekeys
 libertine
 listings
 ltxcmds
+luatex
+luatexbase
 microtype
 mnsymbol
 mwe
 nag
+newtx
+newtxtt
 oberdiek
+selnolig
 siunitx
+tex-gyre
 tools
 upquote
 xcolor
+xpatch
+xstring
