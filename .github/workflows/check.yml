@@ -52,10 +52,13 @@ jobs:
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
 
+      - name: debug
+        run: ls -la
+
       - name: Upload build result
         uses: actions/upload-artifact@v3
         with:
-          name: PDFs
+          name: PDFs-${{ matrix.engine }}
           path: |
             'lni-author-template.pdf'
             'lni-paper-example*.pdf'
@@ -76,16 +79,13 @@ jobs:
           publish_dir: /tmp/gh-pages
 
       - name: Install dependencies for ctanify
-        if: matrix.engine == 'lualatex'
         run: sudo apt-get install -y libfile-copy-recursive-perl zip
 
       - name: Prepare for CTAN
-        if: matrix.engine == 'lualatex'
         run: ./prepare_for_CTAN
 
       - name: Upload CTAN build
-        if: matrix.engine == 'lualatex'
         uses: actions/upload-artifact@v3
         with:
-          name: CTAN
+          name: CTAN-${{ matrix.engine }}
           path: '*.tar.gz'
