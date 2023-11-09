@@ -16,6 +16,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        engine: [pdflatex, lualatex]
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -41,12 +44,12 @@ jobs:
       - name: Generate mybibfile.bib
         run: touch mybibfile.bib
 
-      - run: pdflatex lni-author-template
+      - run: ${{ matrix.engine }} lni-author-template
 
-      - run: pdflatex lni-paper-example-de
+      - run: ${{ matrix.engine }} lni-paper-example-de
       - run: biber lni-paper-example-de
-      - run: pdflatex lni-paper-example-de
-      - run: pdflatex lni-paper-example-de
+      - run: ${{ matrix.engine }} lni-paper-example-de
+      - run: ${{ matrix.engine }} lni-paper-example-de
 
       - name: Upload build result
         uses: actions/upload-artifact@v3
@@ -57,7 +60,7 @@ jobs:
             'lni-paper-example*.pdf'
 
       - name: Prepare GH pages content
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && matrix.engine == 'lualatex'
         run: |
           set -e
           mkdir /tmp/gh-pages
@@ -66,18 +69,21 @@ jobs:
 
       - name: Deploy to GH pages
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && matrix.engine == 'lualatex'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: /tmp/gh-pages
 
       - name: Install dependencies for ctanify
+        if: matrix.engine == 'lualatex'
         run: sudo apt-get install -y libfile-copy-recursive-perl zip
 
       - name: Prepare for CTAN
+        if: matrix.engine == 'lualatex'
         run: ./prepare_for_CTAN
 
       - name: Upload CTAN build
+        if: matrix.engine == 'lualatex'
         uses: actions/upload-artifact@v3
         with:
           name: CTAN
