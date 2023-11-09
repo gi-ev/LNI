@@ -18,6 +18,7 @@ dehyph-exptl
 enumitem
 eso-pic
 etoolbox
+fancyhdr
 geometry
 grffile
 hologo
