@@ -4,7 +4,16 @@ lni-paper-example-de.pdf
 
 mybibfile.bib
 
+*.old
+
 *.hd
+
+texlogsieve
+
+LNI-english.lbx
+LNI-ngerman.lbx
+LNI.bbx
+LNI.cbx
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
