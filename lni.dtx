@@ -1006,7 +1006,6 @@ This work consists of the file  lni.dtx
 }
 \renewcommand\Large{\@setfontsize\Large{14}{17}}
 %    \end{macrocode}
-% \changes{v1.8}{20203/11/06}{Change name for bibliography to ``Bibliography``}
 %    \begin{macrocode}
 \RequirePackage[autostyle]{csquotes}
 \ifusebiblatex
@@ -1016,14 +1015,6 @@ This work consists of the file  lni.dtx
     style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
     natbib=true   % Required for \Citet
   ]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
-   \DefineBibliographyStrings{ngerman}{%
-      bibliography = {Literaturverzeichnis},
-      references = {Literaturverzeichnis},
-   }%
-   \DefineBibliographyStrings{english}{%
-      bibliography = {Bibliography},
-      references = {Bibliography},
-   }%
 %    \end{macrocode}
 % \begin{macro}{\citeauthor}
 %    \begin{macrocode}
@@ -1044,7 +1035,7 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 \fi%
 %    \end{macrocode}
-% \changes{v1.8}{2023/11/06}{Load \pkg{amsmath} by default and set up flush left equations}
+% \changes{v1.8}{2023/11/06}{Load \pkg{amsmath} explicitly by default (was implicitly done before)}
 %    \begin{macrocode}
 \RequirePackage{amsmath}
 \RequirePackage{graphicx}
