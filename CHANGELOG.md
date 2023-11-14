@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
+- Use hook to make biblatex aware of biblatex and to get correct links for references in the text ([#107](https://github.com/gi-ev/LNI/issues/107))
 
 ## [1.7] - 2021-03-02
 
