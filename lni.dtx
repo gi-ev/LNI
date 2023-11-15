@@ -1038,6 +1038,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.8}{2023/11/06}{Load \pkg{amsmath} explicitly by default (was implicitly done before)}
 %    \begin{macrocode}
 \RequirePackage{amsmath}
+\RequirePackage{etoolbox}
 \RequirePackage{graphicx}
 \RequirePackage{eso-pic}
 \RequirePackage{grffile}
@@ -1091,7 +1092,8 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\title}
 %    \begin{macrocode}
 \renewcommand{\title}{\@dblarg\@@title}
-\def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
+\def\@@title[#1]#2{%
+   \gdef\@shorttitle{#1}\gdef\@title{#2}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\subtitle}
@@ -1308,10 +1310,13 @@ This work consists of the file  lni.dtx
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
 %    \end{macrocode}
+%    \begin{macrocode}
+\robustify{\footnote}
+%    \end{macrocode}
 % Set rule width und correct size
 %    \begin{macrocode}
 \renewcommand\footnoterule{%
-  \kern-3\p@
+  \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
 \newdimen\fnindent
@@ -1435,7 +1440,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 %    \begin{macrocode}
 \ifusehyperref
-   \AtEndPreamble{%
+   \AddToHook{env/document/begin}[cid/loadhyp]{
       \RequirePackage[bookmarks=false]{hyperref}
       \hypersetup{%
          pdfdisplaydoctitle,%
@@ -1443,11 +1448,11 @@ This work consists of the file  lni.dtx
          allcolors=black,%
          pdfstartview=Fit,%
       }%
-%%%      \pdfstringdefDisableCommands{%
-%%%         \def\unskip{}%
-%%%         \renewcommand{\footnote}[1]{}%
-%%%      }%
+      \pdfstringdefDisableCommands{%
+         \def\footnote#1{}%
+      }
    }%
+   \DeclareHookRule{env/document/begin}{cid/loadhyp}{before}{biblatex}
 \else
    \providecommand{\texorpdfstring}[2]{#2}%
 \fi%
@@ -2957,14 +2962,19 @@ EXECUTE {end.bib}
 % % !TeX program = pdflatex
 % % !BIB program = biber
 % % !TeX spellcheck = de-DE
-%%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne
-%%% Parameter zu laden.
-%%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden.
-\documentclass[]{lni}
+% Needs to be written in the first 5 lines, because of arXiv's requirements
+\RequirePackage{iftex}\ifluatex\else
+\pdfoutput=1
+\fi
 %%% To write an article in English, please use the option ``english'' in order
 %%% to get the correct hyphenation patterns and terms.
 %%% \documentclass[english]{class}
 %%% for anonymizing an article you can use the ``anonymous'' option.
+%%%
+%%% Um einen Artikel auf deutsch zu schreiben, genügt es die Klasse ohne
+%%% Parameter zu laden.
+%%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden.
+\documentclass[]{lni}
 %%
 \begin{document}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
@@ -3100,6 +3110,10 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 % % !TeX program = pdflatex
 % % !BIB program = biber
 % % !TeX spellcheck = de-DE
+% Needs to be written in the first 5 lines, because of arXiv's requirements
+\RequirePackage{iftex}\ifluatex\else
+\pdfoutput=1
+\fi
 
 %% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}

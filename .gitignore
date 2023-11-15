@@ -1,12 +1,19 @@
 lni.pdf
-lni-author-template.pdf
-lni-paper-example-de.pdf
+lni-author-template*.pdf
+lni-paper-example-*.pdf
 
 mybibfile.bib
 
 *.old
 
 *.hd
+
+texlogsieve
+
+LNI-english.lbx
+LNI-ngerman.lbx
+LNI.bbx
+LNI.cbx
 
 ## Core latex/pdflatex auxiliary files:
 *.aux

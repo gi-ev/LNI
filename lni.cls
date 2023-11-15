@@ -266,6 +266,7 @@
     {\usebibmacro{postnote}}%
 \fi%
 \RequirePackage{amsmath}
+\RequirePackage{etoolbox}
 \RequirePackage{graphicx}
 \RequirePackage{eso-pic}
 \RequirePackage{grffile}
@@ -302,7 +303,8 @@
      \par}%
   \fi}
 \renewcommand{\title}{\@dblarg\@@title}
-\def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
+\def\@@title[#1]#2{%
+   \gdef\@shorttitle{#1}\gdef\@title{#2}}
 \newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
 \renewcommand{\author}{\@dblarg\@@author}
 \newcommand{\@@author}[2][]{%
@@ -464,8 +466,9 @@
 \setlength{\mathindent}{0.5cm}
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
+\robustify{\footnote}
 \renewcommand\footnoterule{%
-  \kern-3\p@
+  \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
 \newdimen\fnindent
@@ -545,7 +548,7 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \ifusehyperref
-   \AtEndPreamble{%
+   \AddToHook{env/document/begin}[cid/loadhyp]{
       \RequirePackage[bookmarks=false]{hyperref}
       \hypersetup{%
          pdfdisplaydoctitle,%
@@ -553,11 +556,11 @@
          allcolors=black,%
          pdfstartview=Fit,%
       }%
-%%%      \pdfstringdefDisableCommands{%
-%%%         \def\unskip{}%
-%%%         \renewcommand{\footnote}[1]{}%
-%%%      }%
+      \pdfstringdefDisableCommands{%
+         \def\footnote#1{}%
+      }
    }%
+   \DeclareHookRule{env/document/begin}{cid/loadhyp}{before}{biblatex}
 \else
    \providecommand{\texorpdfstring}[2]{#2}%
 \fi%
