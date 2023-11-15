@@ -1,28 +1,31 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
 ### Added
 
-- Added option `anonymous` for anonymizing an article. [#100](https://github.com/gi-ev/LNI/pull/100)
+- Added option `anonymous` for anonymizing an article ([#100](https://github.com/gi-ev/LNI/pull/100))
+- Added `\pdfoutput=1` to fix compatibility with [arXiv](https://arxiv.org/) ([#81](https://github.com/gi-ev/LNI/issues/81))
 
 ### Changed
 
-- Improve spacing in and around lists to better match the Word template. [#102](https://github.com/gi-ev/LNI/pull/102)
-- Synced title spacing with Word template. [#104](https://github.com/gi-ev/LNI/pull/104)
+- Improve spacing in and around lists to better match the Word template ([#102](https://github.com/gi-ev/LNI/pull/102))
+- Synced title spacing with Word template ([#104](https://github.com/gi-ev/LNI/pull/104))
 - (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
 - Add more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
 - Add `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
-- Improvement for documentation (merge requests [#89](https://github.com/gi-ev/LNI/issues/89),[#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96)
+- Improvement for documentation ([#89](https://github.com/gi-ev/LNI/issues/89), [#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96))
 
 ### Fixed
 
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
-- Use hook to make biblatex aware of biblatex and to get correct links for references in the text ([#107](https://github.com/gi-ev/LNI/issues/107))
+- Hyperlinked bibliographic entries work again ([#107](https://github.com/gi-ev/LNI/issues/107))
+- `\footnote` is not used for pdf bookmarks ([#87](https://github.com/gi-ev/LNI/issues/87))
+- Footnotes are always set at the bottom of the page ([#122](https://github.com/gi-ev/LNI/issues/122))
 
 ## [1.7] - 2021-03-02
 
@@ -98,7 +101,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
-- New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/52))
+- New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/53))
 
 ### Changed
 

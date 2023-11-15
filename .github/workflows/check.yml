@@ -89,3 +89,15 @@ jobs:
         with:
           name: CTAN-${{ matrix.engine }}
           path: '*.tar.gz'
+  changelog:
+    name: CHANGELOG.md
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          show-progress: ''
+      - uses: jbangdev/jbang-action@v0.110.1
+        with:
+          script: com.github.nbbrd.heylogs:heylogs-cli:0.7.2:bin
+          scriptargs: "check CHANGELOG.md"
