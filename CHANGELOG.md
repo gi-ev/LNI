@@ -1,13 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [1.8] - 2023-07-10
 
 ### Added
 
 - Added option `anonymous` for anonymizing an article. [#100](https://github.com/gi-ev/LNI/pull/100)
+- Added `\pdfoutput=1` to fix compatibility with [arXiv](https://arxiv.org/). [#81](https://github.com/gi-ev/LNI/issues/81)
 
 ### Changed
 
@@ -97,7 +98,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
-- New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/52))
+- New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/53))
 
 ### Changed
 

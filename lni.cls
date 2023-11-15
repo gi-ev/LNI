@@ -561,7 +561,7 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \ifusehyperref
-   \AtEndPreamble{%
+   \AddToHook{env/document/begin}[cid/loadhyp]{
       \RequirePackage[bookmarks=false]{hyperref}
       \hypersetup{%
          pdfdisplaydoctitle,%
@@ -569,11 +569,8 @@
          allcolors=black,%
          pdfstartview=Fit,%
       }%
-%%%      \pdfstringdefDisableCommands{%
-%%%         \def\unskip{}%
-%%%         \renewcommand{\footnote}[1]{}%
-%%%      }%
    }%
+   \DeclareHookRule{env/document/begin}{cid/loadhyp}{before}{biblatex}
 \else
    \providecommand{\texorpdfstring}[2]{#2}%
 \fi%
