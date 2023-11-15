@@ -1062,6 +1062,7 @@ This work consists of the file  lni.dtx
 \fi%
 %    \end{macrocode}
 %    \begin{macrocode}
+\RequirePackage{etoolbox}
 \RequirePackage{graphicx}
 \RequirePackage{eso-pic}
 \RequirePackage{grffile}
@@ -1115,7 +1116,8 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\title}
 %    \begin{macrocode}
 \renewcommand{\title}{\@dblarg\@@title}
-\def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
+\def\@@title[#1]#2{%
+   \gdef\@shorttitle{#1}\gdef\@title{#2}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\subtitle}
@@ -1349,6 +1351,9 @@ This work consists of the file  lni.dtx
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
 %    \end{macrocode}
+%    \begin{macrocode}
+\robustify{\footnote}
+%    \end{macrocode}
 % Set rule width und correct size
 %    \begin{macrocode}
 \renewcommand\footnoterule{%
@@ -1484,6 +1489,9 @@ This work consists of the file  lni.dtx
          allcolors=black,%
          pdfstartview=Fit,%
       }%
+      \pdfstringdefDisableCommands{%
+         \def\footnote#1{}%
+      }
    }%
    \DeclareHookRule{env/document/begin}{cid/loadhyp}{before}{biblatex}
 \else
