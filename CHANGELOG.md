@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
@@ -97,7 +97,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 
 ### Added
 
-- New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/52))
+- New option `nofonts` to use the class file on older systems ([#53](https://github.com/gi-ev/LNI/issues/53))
 
 ### Changed
 
