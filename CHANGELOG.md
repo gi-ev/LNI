@@ -24,6 +24,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 - Hyperlinked bibliographic entries work again ([#107](https://github.com/gi-ev/LNI/issues/107))
+- `\footnote` is not used for pdf bookmarks ([#87](https://github.com/gi-ev/LNI/issues/87))
+- Footnotes are always set at the bottom of the page ([#122](https://github.com/gi-ev/LNI/issues/122))
 
 ## [1.7] - 2021-03-02
 
