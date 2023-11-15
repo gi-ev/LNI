@@ -481,7 +481,7 @@
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
 \renewcommand\footnoterule{%
-  \kern-3\p@
+  \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
 \newdimen\fnindent
