@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           show-progress: ''
-      - uses: jbangdev/jbang-action@v0.110.1
+      - uses: jbangdev/jbang-action@v0.112.4
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.7.2:bin
           scriptargs: "check CHANGELOG.md"
