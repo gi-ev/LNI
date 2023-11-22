@@ -56,7 +56,9 @@
 \newif\ifautofonts
 \autofontstrue
 \newif\ifnorunningheads
+\norunningheadstrue
 \DeclareOption{norunningheads}{\norunningheadstrue}
+\DeclareOption{runningheads}{\norunningheadsfalse}
 \newif\ifanonymous
 \anonymousfalse
 \DeclareOption{anonymous}{\anonymoustrue}

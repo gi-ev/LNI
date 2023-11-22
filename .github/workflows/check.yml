@@ -31,6 +31,7 @@ jobs:
            package_file: Texlivefile
       - name: Generate lni.cls, *.tex, ...
         run: |
+          pdflatex lni.ins
           pdflatex lni.dtx
           pdflatex lni.dtx
           pdflatex lni.dtx

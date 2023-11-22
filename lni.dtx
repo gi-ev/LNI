@@ -328,11 +328,9 @@ This work consists of the file  lni.dtx
 % \maketitle
 %
 % \begin{abstract}
-% \noindent After several years the \lni{} bundle has been updated. The
-% resulting new version fixes some long-standing bugs, solves problems and
-% supports modern packages like \pkg{biblatex} and \pkg{microtype}. It has been
-% put into one DTX file to make maintaining and distributing via CTAN a bit
-% easier.
+% \noindent This class is supporting typesetting papers for the Lecture
+% Notes in Compuer Science. It is maintained on GitHub. Feel free to
+% suggest improvements there.
 % \end{abstract}
 %
 % \section{Introduction}
@@ -447,8 +445,13 @@ This work consists of the file  lni.dtx
 % to load the package \pkg{mathptmx} instead of the New TX fonts. The output
 % will be in accordance to (or at least near) the publisher's requirements.
 %
+%
+% \DescribeOption{runningheads\space(new in v1.8)}Adds all running headers to
+% your document. This comes handy if you want to share a preprint of the paper.
+%
 % \DescribeOption{norunningheads\space(new in v1.5)}To easily remove all running
 % headers from your document, you can use the option \opt{norunningheads}.
+% As default, this option is active to easy typesetting proceedings.
 %
 % \DescribeOption{anonymous\space(new in v1.X)}To easily anonymize a paper for
 % blind review, use this option. Then all author information will be replaced
@@ -726,7 +729,7 @@ This work consists of the file  lni.dtx
 % \section{Trouble shooting}
 % This section lists the most common issues when using this template. For more
 % help, please head to
-% \href{https://github.com/egeerardyn/awesome-LaTeX/blob/master/README.md}%
+% \href{https://github.com/egeerardyn/awesome-LaTeX/tree/master#awesome-latex--}%
 % {the awesome \LaTeX{} list}.
 %
 % \begin{itemize}
@@ -813,7 +816,9 @@ This work consists of the file  lni.dtx
 \newif\ifautofonts
 \autofontstrue
 \newif\ifnorunningheads
+\norunningheadstrue
 \DeclareOption{norunningheads}{\norunningheadstrue}
+\DeclareOption{runningheads}{\norunningheadsfalse}
 \newif\ifanonymous
 \anonymousfalse
 \DeclareOption{anonymous}{\anonymoustrue}
