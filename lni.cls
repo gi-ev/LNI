@@ -29,15 +29,22 @@
   \expandafter\ifx\@tempb\@gobble
     \let\@classoptionslist\@empty
   \fi}
-\DeclareOption{latin1}{\PassOptionsToPackage{latin1}{inputenc}}
-\DeclareOption{utf8}{\PassOptionsToPackage{utf8}{inputenc}}
-\DeclareOption{ansinew}{\PassOptionsToPackage{ansinew}{inputenc}}
+\DeclareOption{latin1}{%
+   \PassOptionsToPackage{latin1}{inputenc}
+   \ClassNoteNoLine{lni}{The option `latin1` will be removed from the class with the next major release}}
+\DeclareOption{utf8}{%
+   \PassOptionsToPackage{utf8}{inputenc}
+   \ClassNoteNoLine{lni}{The option `utf8` will be removed from the class with the next major release as it is the only valid value}}
+\DeclareOption{ansinew}{%
+   \PassOptionsToPackage{ansinew}{inputenc}
+   \ClassNoteNoLine{lni}{The option `ansinew` will be removed from the class with the next major release}}
 \newif\iflnienglish
 \lnienglishfalse
 \DeclareOption{english}{\lnienglishtrue\@clearglobaloption{english}}
 \newif\ifusehyperref
 \usehyperreftrue
-\DeclareOption{nohyperref}{\usehyperreffalse}
+\DeclareOption{nohyperref}{%
+   \ClassWarningNoLine{lni}{The option `nohyperref` has been deactivated and will be removed from the class with the next major release}}
 \newif\ifusecleveref
 \useclevereftrue
 \DeclareOption{nocleveref}{\useclevereffalse}
@@ -49,14 +56,20 @@
 \DeclareOption{crop}{\croptrue}
 \newif\ifnofonts
 \nofontsfalse
-\DeclareOption{nofonts}{\nofontstrue\autofontsfalse}
+\DeclareOption{nofonts}{%
+   \nofontstrue\autofontsfalse
+   \ClassNoteNoLine{lni}{The option `nofonts` will be removed from the class with the next major release}}
 \newif\ifoldfonts
 \oldfontsfalse
-\DeclareOption{oldfonts}{\oldfontstrue\autofontsfalse}
+\DeclareOption{oldfonts}{%
+   \oldfontstrue\autofontsfalse
+   \ClassNoteNoLine{lni}{The option `oldfonts` will be removed from the class with the next major release}}
 \newif\ifautofonts
 \autofontstrue
 \newif\ifnorunningheads
-\DeclareOption{norunningheads}{\norunningheadstrue}
+\DeclareOption{norunningheads}{%
+   \norunningheadstrue
+   \ClassNoteNoLine{lni}{The option `norunningheads` will be removed from the class with the next major release}}
 \newif\ifanonymous
 \anonymousfalse
 \DeclareOption{anonymous}{\anonymoustrue}
@@ -402,8 +415,7 @@
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else#1\fi}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \newcommand*{\orcid}[1]{%
-   \ifusehyperref\unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{https://orcid.org/#1}%
-   \else\orcidlink{}\,https://orcid.org/#1\fi}
+   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{https://orcid.org/#1}}%
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}{%
       \begingroup\catcode`\_12 \lnidoi@i}
@@ -412,22 +424,6 @@
 \renewcommand\maketitle{\par%
    \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
-    % keine Einrückung der Fußnoten eingestellt
-    %\def\@makefnmark{\normalfont\@thefnmark}%
-    %\long\def\@makefntext##1{%
-    %  \@setpar{\@@par
-    %     \@tempdima = \hsize
-    %     \advance\@tempdima -1em
-    %     \parshape \@ne 2mm \@tempdima}%
-    %  \par\parindent 0mm \noindent
-    %  \hb@xt@\z@{\hss{\normalfont\@thefnmark}}\hspace{2mm}##1}
-    %\newdimen\fnindent
-    %\fnindent0.18cm
-    %\long\def\@makefntext##1{%
-    %   \parindent \fnindent%
-    %   \leftskip \fnindent% Einrückung vor der footnotemark
-    %   \noindent
-    %   \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces##1}
     \if@twocolumn
       \ifnum \col@number=\@ne
         \@maketitle
@@ -446,14 +442,12 @@
     \fi%
     \@thanks
   \endgroup
-  \ifusehyperref
-      \HyXeTeX@CheckUnicode
-      \HyPsd@PrerenderUnicode{\@authlisthead}%
-      \ifanonymous\else\pdfstringdef\@pdfauthor{\@authlisthead}\fi%
-      \HyXeTeX@CheckUnicode
-      \HyPsd@PrerenderUnicode{\@title}%
-      \pdfstringdef\@pdftitle{\@title}%
-  \fi%
+  \HyXeTeX@CheckUnicode
+  \HyPsd@PrerenderUnicode{\@authlisthead}%
+  \ifanonymous\else\pdfstringdef\@pdfauthor{\@authlisthead}\fi%
+  \HyXeTeX@CheckUnicode
+  \HyPsd@PrerenderUnicode{\@title}%
+  \pdfstringdef\@pdftitle{\@title}%
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@maketitle\relax
@@ -486,9 +480,9 @@
       \lineskip .5em%
       \ifanonymous
         \iflnienglish
-          anonymized for review\footnote{placeholder for contact information}
+          Anonymized for review\footnote{placeholder for contact information}
         \else
-          anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
+          Anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
         \fi%
       \else
         \@author
@@ -498,16 +492,14 @@
   \end{center}%
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
-      \ifanonymous\else\ifdefempty{\@lnidoi}{}{
-        \footnotesize
-        \ifusehyperref
-          \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
-        \else
-          doi:\@lnidoi
-        \fi%
-      }\fi
-    }
-  }}
+      \ifanonymous
+      \else
+         \ifdefempty{\@lnidoi}%
+            {}%
+            {\footnotesize\href{https://doi.org/\@lnidoi}{doi:\@lnidoi}}
+      \fi%
+    }%
+  }}%
   \par
 }%
 \renewenvironment*{abstract}{%
@@ -639,25 +631,21 @@
 \RequirePackage{url}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
-\ifusehyperref
-   \AddToHook{env/document/begin}[cid/loadhyp]{
-      \RequirePackage[bookmarks=false]{hyperref}
-      \hypersetup{%
+\AddToHook{env/document/begin}[lni/loadhyperref]{%
+   \RequirePackage[bookmarks=false]{hyperref}
+   \hypersetup{%
          pdfdisplaydoctitle,%
          colorlinks=true,%
          allcolors=black,%
          pdfstartview=Fit,%
-      }%
-      \pdfstringdefDisableCommands{%
-         \def\footnote#1{}%
-      }
-      \RequirePackage{orcidlink}%
-      \RequirePackage[all]{hypcap}%
    }%
-   \DeclareHookRule{env/document/begin}{cid/loadhyp}{before}{biblatex}
-\else
-   \providecommand{\texorpdfstring}[2]{#2}%
-\fi%
+   \pdfstringdefDisableCommands{%
+      \def\footnote#1{}%
+   }
+   \RequirePackage{orcidlink}%
+   \RequirePackage[all]{hypcap}%
+}%
+\DeclareHookRule{env/document/begin}{lni/loadhyperref}{before}{biblatex}
 \ifusecleveref%
    \AtEndPreamble{%
       \iflnienglish
