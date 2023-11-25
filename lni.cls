@@ -16,6 +16,7 @@
 \ProvidesClass{lni}
     [2023/11/06 v1.8BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
+\RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
   \def\@tempb{\@gobble}%
@@ -84,7 +85,6 @@
 \ExecuteOptions{utf8,norunningheads}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-\RequirePackage{iftex}
 \PassOptionsToPackage{fleqn}{amsmath}
 \LoadClass[10pt,twoside,a4paper]{article}
 \ifPDFTeX

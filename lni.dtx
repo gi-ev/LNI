@@ -724,6 +724,10 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 %<*class>
 %    \end{macrocode}
+% We have to make sure, that pdf is always written (arXiv's requirements)
+%    \begin{macrocode}
+\RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
+%    \end{macrocode}
 %    \begin{macrocode}
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -794,8 +798,6 @@ This work consists of the file  lni.dtx
 \ExecuteOptions{utf8,norunningheads}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-%
-\RequirePackage{iftex}
 %    \end{macrocode}
 % \changes{v1.8}{2023/11/06}{Fix option handling for \opt{fleqn}}
 %    \begin{macrocode}
