@@ -273,6 +273,10 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
+\RequirePackage[hang]{footmisc}
+\setlength{\footnotemargin}{1em}
+\def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
+
 \lstset{%
    basicstyle=\ttfamily,%
    columns=fixed,%
@@ -306,20 +310,100 @@
 \def\@@title[#1]#2{%
    \gdef\@shorttitle{#1}\gdef\@title{#2}}
 \newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
-\renewcommand{\author}{\@dblarg\@@author}
-\newcommand{\@@author}[2][]{%
-   \DeclareRobustCommand{\@shortauthor}{%
-         {%
-            %\let\footnote\@gobble%
-            \def\and{\texorpdfstring{\unskip,\ }{}}%
-            #1%
-         }%
-      }%
-      \DeclareRobustCommand{\@author}{#2}%
+\RequirePackage{authblk}
+\newcommand{\@authlisthead}{}
+\newtoks\@temptokenb
+\newtoks\@temptokenc
+\renewcommand\Authsep{, }
+\renewcommand\Authands{\iflanguage{ngerman}{ und }{, and }}
+\renewcommand\Authand{\iflanguage{ngerman}{ und }{ and }}
+\renewcommand{\AB@authnote}[1]{$^{\mbox{\footnotesize #1}}$}
+\renewcommand\author[4][]{%
+   \ifnewaffil\addtocounter{affil}{1}%
+      \edef\AB@thenote{\arabic{affil}}%
+   \fi%
+   \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
+   \setcounter{Maxaffil}{0}\fi
+   \ifnum\value{authors}=0\def\@firstauthor{#2}\fi
+   \ifnum\value{authors}>1\relax
+      \@namedef{@sep\number\c@authors}{\Authsep}\fi
+   \addtocounter{authors}{1}%
+   \begingroup
+      \let\protect\@unexpandable@protect \let\and\AB@pand
+      \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
+      \@temptokena=\expandafter{\AB@authors}%
+      \@temptokenb=\expandafter{\AB@authors}%
+      {\def\\{\protect\\[\@affilsep]\protect\Affilfont
+            \protect\AB@resetsep}%
+         \xdef\AB@author{\AB@blk@and#2}%
+         \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
+         \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
+         \else
+         \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
+         \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
+         \gdef\AB@as{\Authsep}%
+         \fi
+         \gdef\AB@au@str{#2}}%
+      \@temptokena=\expandafter{\AB@authlist}%
+      \@temptokenb=\expandafter{\@authlisthead}%
+      \let\\=\authorcr
+      \xdef\AB@authlist{\the\@temptokena
+         \protect\@nameuse{@sep\number\c@authors}%
+         \protect\Authfont#2\AB@authnote{\AB@note}}%
+      \xdef\@authlisthead{\the\@temptokenb
+         \protect\@nameuse{@sep\number\c@authors}%
+         \protect\Authfont#2}%
+   \endgroup
+   \ifnum\value{authors}>2\relax
+   \@namedef{@sep\number\c@authors}{\Authands}\fi
+   \ifcsempty{@emailsandorcids\AB@note}%
+   {\csgappto{@emailsandorcids\AB@note}{%
+         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
+   }%
+   {\csgappto{@emailsandorcids\AB@note}{%
+         \if\relax#3\relax\else\ |\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
+
+   \newaffilfalse
+}
+
+\renewcommand\@author{%
+   \ifx\AB@affillist\AB@empty\AB@author\else
+      \ifnum\value{affil}>\value{Maxaffil}\def\rlap##1{##1}%
+         \AB@authlist\AB@affillist
+      \else\AB@authors%
+      \fi%
+   \fi%
+}
+
+\renewcommand\affil[2][]{%
+   \newaffiltrue\let\AB@blk@and\AB@pand
+   \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
+   \setcounter{Maxaffil}{0}\fi%
+   \begingroup
+   \let\protect\@unexpandable@protect
+   \def\thanks{\protect\thanks}\def\footnotetext{\protect\footnotetext}%
+   \@temptokena=\expandafter{\AB@authors}%
+   {\def\\{\protect\\\protect\Affilfont}\xdef\AB@temp{#2}}%
+   \xdef\AB@authors{\the\@temptokena\AB@las\AB@au@str
+      \protect\\[\affilsep]\protect\Affilfont\AB@temp}%
+   \gdef\AB@las{}\gdef\AB@au@str{}%
+   {\def\\{, \ignorespaces}\xdef\AB@temp{#2}}%
+   \@temptokena=\expandafter{\AB@affillist}%
+   \xdef\AB@affillist{\the\@temptokena \AB@affilsep
+      \footnotetext[\AB@note]{%
+         \raggedright\AB@temp\ifcsempty{@emailsandorcids\AB@note}{}{, \csuse{@emailsandorcids\AB@note}}}%
    }
+   \endgroup
+   \let\AB@affilsep\AB@affilsepx
+   \setcounter{footnote}{#1}
+}
 \newcommand{\authorrunning}[1]{%
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else#1\fi}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
+\newcommand*{\orcid}[1]{%
+   \ifusehyperref\unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{https://orcid.org/#1}%
+   \else\orcidlink{}\,https://orcid.org/#1\fi}
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}{%
       \begingroup\catcode`\_12 \lnidoi@i}
@@ -328,15 +412,22 @@
 \renewcommand\maketitle{\par%
    \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
-    \def\@makefnmark% keine Einrückung der Fußnoten eingestellt
- {\@textsuperscript{\normalfont\@thefnmark}}%
- \long\def\@makefntext##1{%
- \@setpar{\@@par
- \@tempdima = \hsize
- \advance\@tempdima -1em
- \parshape \@ne 0.15cm \@tempdima}%
- \par\parindent 0.3cm \noindent
- \hb@xt@\z@{\hss\@textsuperscript{\normalfont\@thefnmark}\,}##1}
+    % keine Einrückung der Fußnoten eingestellt
+    %\def\@makefnmark{\normalfont\@thefnmark}%
+    %\long\def\@makefntext##1{%
+    %  \@setpar{\@@par
+    %     \@tempdima = \hsize
+    %     \advance\@tempdima -1em
+    %     \parshape \@ne 2mm \@tempdima}%
+    %  \par\parindent 0mm \noindent
+    %  \hb@xt@\z@{\hss{\normalfont\@thefnmark}}\hspace{2mm}##1}
+    %\newdimen\fnindent
+    %\fnindent0.18cm
+    %\long\def\@makefntext##1{%
+    %   \parindent \fnindent%
+    %   \leftskip \fnindent% Einrückung vor der footnotemark
+    %   \noindent
+    %   \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces##1}
     \if@twocolumn
       \ifnum \col@number=\@ne
         \@maketitle
@@ -357,8 +448,8 @@
   \endgroup
   \ifusehyperref
       \HyXeTeX@CheckUnicode
-      \HyPsd@PrerenderUnicode{\@shortauthor}%
-      \ifanonymous\else\pdfstringdef\@pdfauthor{\@shortauthor}\fi%
+      \HyPsd@PrerenderUnicode{\@authlisthead}%
+      \ifanonymous\else\pdfstringdef\@pdfauthor{\@authlisthead}\fi%
       \HyXeTeX@CheckUnicode
       \HyPsd@PrerenderUnicode{\@title}%
       \pdfstringdef\@pdftitle{\@title}%
@@ -370,6 +461,7 @@
   \global\let\@author\@empty
   \global\let\@date\@empty
   \global\let\@title\@empty
+  \global\let\@subtitle\@empty
   \global\let\title\relax
   \global\let\author\relax
   \global\let\date\relax
@@ -471,13 +563,13 @@
   \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
-\newdimen\fnindent
-\fnindent0.18cm
-\long\def\@makefntext#1{%
-    \parindent \fnindent%
-    \leftskip \fnindent% Einrückung vor der footnotemark
-    \noindent
-    \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
+   %\newdimen\fnindent
+   %\fnindent0.18cm
+   %\long\def\@makefntext#1{%
+    %\parindent \fnindent%
+    %\leftskip \fnindent% Einrückung vor der footnotemark
+    %\noindent
+    %\llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
 \setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
@@ -540,7 +632,7 @@
    \pagestyle{fancy}
    \fancyhead{}% Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else\@shortauthor\fi}
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else\@authlisthead\fi}
    \fancyfoot{}% Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
@@ -559,6 +651,8 @@
       \pdfstringdefDisableCommands{%
          \def\footnote#1{}%
       }
+      \RequirePackage{orcidlink}%
+      \RequirePackage[all]{hypcap}%
    }%
    \DeclareHookRule{env/document/begin}{cid/loadhyp}{before}{biblatex}
 \else
@@ -581,11 +675,6 @@
       \Crefname{table}{\tablename}{\tablename}
    }%
 \fi%
-\AtEndPreamble{%
-   \@ifpackageloaded{hyperref}
-      {\RequirePackage[all]{hypcap}}%
-      {}%
-}%
 \def\and{\texorpdfstring{\unskip\hspace{-0.42em},\hspace{.6em}}{, }}%
 \ifusebiblatex
 \else

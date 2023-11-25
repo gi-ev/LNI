@@ -1,46 +1,14 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = de_DE
 
-\RequirePackage{iftex}\ifluatex\else
-\pdfoutput=1
-\fi
-
-%% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
-\RequirePackage[l2tabu, orthodox]{nag}
-
-%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden, siehe auch \anon-Makro.
-\documentclass[utf8,biblatex]{lni}
-\bibliography{lni-paper-example-de}
+\documentclass[biblatex]{lni}
+\addbibresource{lni-paper-example-de.bib}
 
 %% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
 \usepackage{booktabs}
 
 %% Zu Demonstrationszwecken
-\usepackage[math]{blindtext}
-\usepackage{mwe}
-
-%% BibLaTeX-Sonderkonfiguration,
-%% falls man schnell eine existierende Bibliographie wiederverwenden will, aber nicht die .bib-Datei händisch anpassen möchte.
-%% Bitte \iffalse und \fi entfernen, dann ist diese Konfiguration aktiviert.
-
-\iffalse
-\AtEveryBibitem{%
-  \ifentrytype{article}{%
-  }{%
-    \clearfield{doi}%
-    \clearfield{issn}%
-    \clearfield{url}%
-    \clearfield{urldate}%
-  }%
-  \ifentrytype{inproceedings}{%
-  }{%
-    \clearfield{doi}%
-    \clearfield{issn}%
-    \clearfield{url}%
-    \clearfield{urldate}%
-  }%
-}
-\fi
+\usepackage[]{blindtext}
 
 \begin{document}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
@@ -48,9 +16,12 @@
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
 \title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen Worten und noch mehr Buchstaben}
 %%%\subtitle{Untertitel / Subtitle} % falls benötigt
-\author[Vorname1 Nachname1 \and Vorname2 Nachname2]
-{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort, Land \email{emailaddress@author1}} \and
- Vorname2 Nachname2\footnote{University, Department, Address, Country \email{emailaddress@author2}}}
+\author[1]{Vorname1 Nachname1}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+\author[2]{Firstname2 Lastname2}{vorname.name@affiliation2.de}{0000-0000-0000-0000}
+\author[1]{Firstname3 Lastname3}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+\author[1]{Firstname4 Lastname4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}%
+\affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
+\affil[2]{University\\Department\\Address\\Country}
 \startpage{11} % Beginn der Seitenzählung für diesen Beitrag
 \editor{Herausgeber et al.}    % Namen der Herausgeber
 \booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
@@ -66,7 +37,7 @@ Die Formatierung erfolgt automatisch innerhalb des abstract-Bereichs.
 \end{abstract}
 
 \begin{keywords}
-LNI Guidelines \and \LaTeX Vorlage
+LNI Guidelines \and \LaTeX\ Vorlage
 \end{keywords}
 
 \section{Verwendung}
@@ -149,14 +120,20 @@ public class Hello {
 
 Alternativ kann auch die \texttt{lstlisting}-Umgebung verwendet werden.
 
-\Cref{L1} zeigt uns ein Beispiel, das mit Hilfe der \texttt{lstlisting}-Umgebung realisiert ist.
+\Cref{java-hello-world} zeigt uns ein Beispiel, das mit Hilfe der \texttt{lstlisting}-Umgebung realisiert ist. Ein anderes Beispiel ist \cref{python-hello-world}.
 
-\begin{lstlisting}[caption={Beschreibung}, label=L1, language=Java]
+\begin{lstlisting}[caption={Ein Java-Programm}, label=java-hello-world, language=Java]
 public class Hello {
-    public static void main (String[] args) {
-        System.out.println("Hello World!");
-    }
+   public static void main (String[] args) {
+   System.out.println("Hello World!");
+   }
 }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Ein Python-Programm}, label=python-hello-world, language=Python]
+# This program prints Hello, world!
+
+print('Hello, world!')
 \end{lstlisting}
 
 \subsection{Formeln und Gleichungen}
