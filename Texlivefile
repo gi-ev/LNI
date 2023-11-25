@@ -29,6 +29,7 @@ etoolbox
 fancyhdr
 fancyvrb
 fontspec
+footmisc
 geometry
 gettitlestring
 graphics
