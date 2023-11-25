@@ -59,13 +59,16 @@ newfloat
 newtx
 newtxtt
 oberdiek
+orcidlink
 pdfescape
+pgf
 pict2e
 refcount
 rerunfilecheck
 selnolig
 siunitx
 tex-gyre
+tikz
 tools
 uniquecounter
 upquote
