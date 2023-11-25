@@ -70,6 +70,8 @@
 \DeclareOption{norunningheads}{%
    \norunningheadstrue
    \ClassNoteNoLine{lni}{The option `norunningheads` will be removed from the class with the next major release}}
+\newif\ifrunningheads
+\DeclareOption{runningheads}{\norunningheadsfalse}
 \newif\ifanonymous
 \anonymousfalse
 \DeclareOption{anonymous}{\anonymoustrue}

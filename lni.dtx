@@ -421,8 +421,11 @@ This work consists of the file  lni.dtx
 % to load the package \pkg{mathptmx} instead of the New TX fonts. The output
 % will be in accordance to (or at least near) the publisher's requirements.
 %
-% \DescribeOption{norunningheads}To easily remove all running
-% headers from your document, you can use the option \opt{norunningheads}.
+% \DescribeOption{norunningheads (deprecated in v1.8)}By default there are no more
+% running headers from your document.
+%
+% \DescribeOption{runningheads (new in v1.8)}Editors can turn on the running headers
+% using option \opt{runningheads}.
 %
 % \DescribeOption{anonymous (new in v1.8)}To easily anonymize a paper for
 % blind review, use this option. Then all author information will be replaced
@@ -777,6 +780,8 @@ This work consists of the file  lni.dtx
 \DeclareOption{norunningheads}{%
    \norunningheadstrue
    \ClassNoteNoLine{lni}{The option `norunningheads` will be removed from the class with the next major release}}
+\newif\ifrunningheads
+\DeclareOption{runningheads}{\norunningheadsfalse}
 \newif\ifanonymous
 \anonymousfalse
 \DeclareOption{anonymous}{\anonymoustrue}
