@@ -1,5 +1,6 @@
 latex-bin
 amsmath
+authblk
 auxhook
 babel-english
 babel-german
