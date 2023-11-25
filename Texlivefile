@@ -1,7 +1,5 @@
 latex-bin
 amsmath
-atbegshi-ltx
-atveryend-ltx
 auxhook
 babel-english
 babel-german
@@ -45,17 +43,15 @@ intcalc
 kvsetkeys
 kvdefinekeys
 letltxmacro
-libertine
+libertinus
 listings
 ltxcmds
 luatex
 luatexbase
-makeidx
 microtype
 mnsymbol
 mwe
 nag
-nameref
 newfloat
 newtx
 newtxtt
@@ -68,7 +64,6 @@ selnolig
 siunitx
 tex-gyre
 tools
-trig
 uniquecounter
 upquote
 url
