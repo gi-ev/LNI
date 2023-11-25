@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Add more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
 - Add `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
 - Improvement for documentation ([#89](https://github.com/gi-ev/LNI/issues/89), [#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96))
+- Remove option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
 
 ### Fixed
 
