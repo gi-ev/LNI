@@ -9,16 +9,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - Added option `anonymous` for anonymizing an article ([#100](https://github.com/gi-ev/LNI/pull/100))
 - Added `\pdfoutput=1` to fix compatibility with [arXiv](https://arxiv.org/) ([#81](https://github.com/gi-ev/LNI/issues/81))
+- Added more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
+- Added `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
 
 ### Changed
 
-- Improve spacing in and around lists to better match the Word template ([#102](https://github.com/gi-ev/LNI/pull/102))
+- Improved spacing in and around lists to better match the Word template ([#102](https://github.com/gi-ev/LNI/pull/102))
 - Synced title spacing with Word template ([#104](https://github.com/gi-ev/LNI/pull/104))
 - (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
-- Add more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
-- Add `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
 - Improvement for documentation ([#89](https://github.com/gi-ev/LNI/issues/89), [#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96))
-- Remove option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
+- Removed option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
+- Changed delimiter between keywords to comma (,)
+- Remove support for `ccicons`
+- Load `amsmath` explictly
 
 ### Fixed
 
@@ -27,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Hyperlinked bibliographic entries work again ([#107](https://github.com/gi-ev/LNI/issues/107))
 - `\footnote` is not used for pdf bookmarks ([#87](https://github.com/gi-ev/LNI/issues/87))
 - Footnotes are always set at the bottom of the page ([#122](https://github.com/gi-ev/LNI/issues/122))
+- Handling of `fleqn` option for `amsmath`
 
 ## [1.7] - 2021-03-02
 
@@ -58,6 +62,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Global options are passed to `article` class ([#78](https://github.com/gi-ev/LNI/issues/78))
 - Finally fix BiBTeX issue thanks to @ytzemih ([#6](https://github.com/gi-ev/LNI/issues/6))
 - `hyperref` is loaded without options to make it more compatible with other packages like `authorarchive`
+- `hypcap` is only loaded if `hyperref` has been loaded before.
+
 
 ## [1.5] - 2019-04-04
 
@@ -86,7 +92,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - New option `oldfonts` to use the class file on older systems by loading the `mathptmx` font package ([#56](https://github.com/gi-ev/LNI/issues/56))
 - New macros added (taken from `emisa.dtx`) ([#57](https://github.com/gi-ev/LNI/issues/57))
 - Hint to word limit for abstract ([#60](https://github.com/gi-ev/LNI/issues/60))
-- Added full example for an article in German ([#63](https://github.com/gi-ev/LNI/issues/63))
+- Full example for an article in German ([#63](https://github.com/gi-ev/LNI/issues/63))
 
 ### Changed
 
@@ -97,6 +103,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Basewidth for `lstlistings` ([#62](https://github.com/gi-ev/LNI/issues/62))
 - Adapting captions of `lstlistings`
 - License statement of paper: CC-BY-SA instead of CC-BY-NC ([#67](https://github.com/gi-ev/LNI/issues/67))
+- Font size for `\large`
+- Font size bug regarding the running header and the captions
 
 ## [1.3] - 2017-05-15
 
@@ -137,7 +145,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Fixed
 
-- Definition of `\Crefname` to always get "Abb." instead of "ABB." etc. ([#45](https://github.com/gi-ev/LNI/pull/45))
+- Definition of `\Crefname` to always gets "Abb." instead of "ABB." etc. ([#45](https://github.com/gi-ev/LNI/pull/45))
 
 ## [1.0] - 2017-04-07
 
