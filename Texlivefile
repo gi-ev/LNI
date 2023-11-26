@@ -1,6 +1,5 @@
 latex-bin
 amsmath
-authblk
 auxhook
 babel-english
 babel-german
@@ -63,6 +62,7 @@ orcidlink
 pdfescape
 pgf
 pict2e
+preprint
 refcount
 rerunfilecheck
 selnolig
