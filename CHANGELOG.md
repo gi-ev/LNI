@@ -18,12 +18,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Add more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
 - Add `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
 - Improvement for documentation ([#89](https://github.com/gi-ev/LNI/issues/89), [#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96))
+- Remove option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
 
 ### Fixed
 
 - hyperref option `linktoc` fixed to `all` instead of `both`
 - Fixed output in bst files ([#97](https://github.com/gi-ev/LNI/issues/97))
 - Hyperlinked bibliographic entries work again ([#107](https://github.com/gi-ev/LNI/issues/107))
+- `\footnote` is not used for pdf bookmarks ([#87](https://github.com/gi-ev/LNI/issues/87))
+- Footnotes are always set at the bottom of the page ([#122](https://github.com/gi-ev/LNI/issues/122))
 
 ## [1.7] - 2021-03-02
 

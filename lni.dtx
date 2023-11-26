@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2023/11/24 v1.8 Official class for submissions to the ``Lecture Notes
+    [2023/11/26 v1.8 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -156,11 +156,11 @@ This work consists of the file  lni.dtx
 \usepackage{csquotes}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{hologo}
-\newcommand*{\MiKTeX}{\hologo{MiKTeX}}
+\usepackage{dtxdescribe}
 \usepackage[%
 	pdftitle={lni: Official LaTeX class for submissions to the ``Lecture Notes in
    	Informatics'', published by the ``Gesellschaft für Informatik e.\,V.'' (GI)},
-   pdfauthor={Martin Sievers},
+   pdfauthor={Martin Sievers and Oliver Kopp},
    urlcolor=blue,%
 	linktoc=all,%
 	colorlinks=true]{hyperref}
@@ -181,36 +181,6 @@ This work consists of the file  lni.dtx
 
 \newcommand{\lni}{\texttt{lni}}
 \newcommand{\LNI}{\emph{Lecture Notes in Informatics}}
-\makeatletter
-\newcommand*\DescribeOption{%
-\leavevmode%
-\@bsphack%
-\begingroup%
- \MakePrivateLetters%
- \Describe@Option%
-}%
-\newcommand*\Describe@Option[1]{%
- \endgroup%
-\marginpar{%
- \raggedleft%
- \PrintDescribeEnv{#1}%
-}%
-\SpecialOptionIndex{#1}%
-\@esphack%
-\ignorespaces%
-}%
-\newcommand*\SpecialOptionIndex[1]{%
-\@bsphack%
-\index{%
- #1\actualchar{\protect\ttfamily#1} (option)\encapchar usage%
-}%
-\index{%
- options:\levelchar#1\actualchar{\protect\ttfamily#1}%
- \encapchar usage%
-}%
-\@esphack%
-}%
-\makeatother
 \lstset{
  basicstyle   = \small\ttfamily,
  gobble       = 2,
@@ -218,7 +188,7 @@ This work consists of the file  lni.dtx
  language     = [LaTeX]{TeX},
  moretexcs    = {,
    addbibresource,authorrunning,%
-   email,lnidoi,
+   email,lnidoi,affil,
    ExecuteBibliographyOptions,includegraphics,printbibliography,
  }
  frame        = single,
@@ -314,7 +284,8 @@ This work consists of the file  lni.dtx
 % avoid problems (#85)}
 % \changes{v1.8}{2022/06/10}{Improvements for documentation}
 % \changes{v1.8}{2022/06/10}{Fix output error in bst files (#97)}
-% \changes{v1.8}{2023/07/10}{Alignment with Word template}
+% \changes{v1.8}{2022/11/25}{Make class compatable with latest publisher requirements (#121)}
+% \changes{v1.8}{2022/11/25}{Make usage of `hyperref` mandatory (#131)}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -368,7 +339,7 @@ This work consists of the file  lni.dtx
 % twice and
 % copy all resulting files (cls, tex, pdf and bst) to your local TEXMF tree.
 % Don't forget to update your file name database.
-% \newpage
+%
 % \section{Usage}
 % To use the predefined layout for a (German) submission to the \LNI{} just
 % load the class file as usual with \cs{documentclass\{lni\}}.
@@ -396,7 +367,8 @@ This work consists of the file  lni.dtx
 % the text, but also the choice of a corresponding \BibTeX{} file
 % (cf.~\cref{sec:bibliography}).
 %
-% \DescribeOption{utf8}\DescribeOption{latin1}\DescribeOption{applemac}Although
+% \DescribeOption{utf8 (deprecated in v1.8)}\DescribeOption{latin1 (deprecated in v1.8)}%
+% \DescribeOption{applemac (deprecated in v1.8)}Although
 % nowadays all major plattforms support and widely use UTF-8 encoding for
 % text files, there might be some need to change the input  encoding the
 % \LaTeX{} document uses.
@@ -406,7 +378,8 @@ This work consists of the file  lni.dtx
 % is strongly recommended. Please note, that currently the bib file is supposed
 % to use the same encoding.
 %
-% \DescribeOption{biblatex}Nowadays bibliographies cannot only be produced with
+% \DescribeOption{biblatex (deprecated in v1.8; will become default option in next major release)}%
+% Nowadays bibliographies cannot only be produced with
 % \BibTeX{}, but with a much more powerful approach consisting of the package
 % \pkg{biblatex} and the tool \texttt{biber}.
 %
@@ -415,7 +388,7 @@ This work consists of the file  lni.dtx
 % automatically used when setting the class option \opt{biblatex}. For more
 % information see as well \cref{sec:bibliography}.
 %
-% \DescribeOption{crop\space(new in v1.1)}%
+% \DescribeOption{crop (new in v1.1)}%
 % Option \opt{crop} gives you some crop marks (using the package \pkg{crop}) to
 % better illustrate the final
 % result of your article.
@@ -426,11 +399,11 @@ This work consists of the file  lni.dtx
 % used with all floating objects. The package is loaded as default. In case it
 % causes issues, one can disable it using with the \opt{nocleveref} option.
 %
-% \DescribeOption{nohyperref}\pkg{hyperref} is used for colored hyperlinks
+% \DescribeOption{nohyperref (deprecated in v1.8)}\pkg{hyperref} is used for colored hyperlinks
 % within the articles. If you consider problems or just do not want that
 % feature, you can disable it by using the option \opt{nohyperref}.
 %
-% \DescribeOption{nofonts\space(new in v1.3, deprecated in v1.4)}On old systems
+% \DescribeOption{nofonts (deprecated in v1.4)}On old systems
 % you might not have installed the New TX fonts. If for whatever reason the
 % \opt{oldfonts} option
 % does not work for you, you can activate option \opt{nofonts}. This allows to
@@ -438,15 +411,18 @@ This work consists of the file  lni.dtx
 % Usually there should be no need to do so. Please note, that your output will
 % differ from the publishers'.
 %
-% \DescribeOption{oldfonts\space(new in v1.4)}On older systems you might not
+% \DescribeOption{oldfonts (deprecated in v1.8)}On older systems you might not
 % have installed the New TX fonts. Therefore option \opt{oldfonts} allows to
 % to load the package \pkg{mathptmx} instead of the New TX fonts. The output
 % will be in accordance to (or at least near) the publisher's requirements.
 %
-% \DescribeOption{norunningheads\space(new in v1.5)}To easily remove all running
-% headers from your document, you can use the option \opt{norunningheads}.
+% \DescribeOption{norunningheads (deprecated in v1.8)}By default there are no more
+% running headers from your document.
 %
-% \DescribeOption{anonymous\space(new in v1.X)}To easily anonymize a paper for
+% \DescribeOption{runningheads (new in v1.8)}Editors can turn on the running headers
+% using option \opt{runningheads}.
+%
+% \DescribeOption{anonymous (new in v1.8)}To easily anonymize a paper for
 % blind review, use this option. Then all author information will be replaced
 % with a placeholder. Additionally, there is a new macro \cs{anon\marg{hide in review}}
 % which will be replaced with ``ANONIMIZED'' if the option is set.
@@ -457,7 +433,7 @@ This work consists of the file  lni.dtx
 % \section{Setting up a document}
 % You can use the file \file{lni-author-template.tex} as a starting point
 % for setting up a document for submission. The \lni{} class uses the standard
-% ways to build an article.
+% ways to build an article. A larger German example can be found in \file{lni-paper-example-de.tex}
 %
 % \subsection{Special meta comments}\label{sec:metadata}
 % There is not just one \enquote{\TeX} and one \enquote{bibliography tool}, but
@@ -469,7 +445,7 @@ This work consists of the file  lni.dtx
 % A typical example looks like:
 % \begin{examplecode}
 % % !TeX program = pdflatex
-% % !BIB program = bibtex8
+% % !BIB program = biber
 % % !TeX encoding = UTF-8
 % % !TeX spellcheck = en_US
 % \documentclass[english]{lni}
@@ -504,35 +480,31 @@ This work consists of the file  lni.dtx
 %
 % You can also add a subtitle by \cs{subtitle\marg{subtitle}}.
 %
-% \DescribeMacro{\author}\DescribeMacro{\email}\DescribeMacro{\footnote}%
-% \DescribeMacro{\and}%
+% \DescribeMacro{\author}\DescribeMacro{\email}\DescribeMacro{\footnote\space(deprecated in v1.8)}%
+% \DescribeMacro{\and\space(deprecated in v1.8)}\DescribeMacro{\affil}%
 % The authors of an article are
-% given using the standard \cs{author} macro. Multiple authors are separated
-% by \cs{and}; affiliations have to be added with
-% \cs{footnote\marg{affiliations}} where you can use
-% \cs{email\marg{email address}} for the email address of an author:
+% given using an extended \cs{author} macro, which holds not only the name, but also
+% email adress and ORCID iD. Moreover the affiliation marker (number) is given as an optional
+% argument. Affiliations are added with
+% \cs{affil\oarg{number}\marg{information}} where you can use
+% \texttt{\textbackslash\textbackslash} to split the address.
 % \begin{examplecode}[label={lst:author}]
-% \author[Author 1 \and Author 2]{%
-%    Author 1\footnote{Affiliations including \email{email@author1}} \and%
-%    Author 2\footnote{Affiliations including \email{email@author2}}}
+% \author[1]{Vorname1 Nachname1}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+% \author[2]{Firstname2 Lastname2}{vorname.name@affiliation2.de}{0000-0000-0000-0000}
+% \author[1]{Firstname3 Lastname 3}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+% \author[1]{Firstname4 Lastname 4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}% 
+% \affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
+% \affil[2]{University\\Department\\Address\\Country}
 % \end{examplecode}
-% In case the authors are too long for the page header, see
-% \cref{sec:pageheader} of how to shorten the authors for the page header.
+%
+% Leave the third and/or fourth argument empty if there is no email address and/or ORCID iD. 
+% Finally \cs{maketitle} will output the formatted title page.
 %
 % \DescribeMacro{\lnidoi\space(new in v1.2)}%
 % LNI provides a DOI for each paper. In case, the DOI is known, it can be
 % specified using the \cs{lnidoi} macro.
 % \begin{examplecode}[label={lst:lnidoi}]
 % \lnidoi{18.18420/se2016_01}
-% \end{examplecode}
-%
-% \DescribeMacro{\setcctype\space(new in v1.X)}%
-% In order to include a information about the CC licentse on the title page,
-% the license and the version can be specified using the \cs{setcctype} macro.
-% The version is optional and defaults to 4.0. Possible values are:
-% zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd.
-% \begin{examplecode}[label={lst:setcctype}]
-% \setcctype[version]{by-sa}
 % \end{examplecode}
 %
 % Finally \cs{maketitle} will output the formatted title page.
@@ -549,28 +521,8 @@ This work consists of the file  lni.dtx
 % \end{abstract}
 % \begin{keywords}
 % Give some keywords to categorize your article. You can use \and between two
-% keywords to get the correct delimiter (semicolon plus space) automatically.
+% keywords to get the correct delimiter (comma plus space) automatically.
 % \end{keywords}
-% \end{examplecode}
-%
-% \subsection{Page header}\label{sec:pageheader}
-% The template automatically sets the page headers according to the
-% requirements of \LNI. From page~2 onwards, the title and the authors are
-% printed. These information has to stay in one line. In case the title is too
-% long, use the optional argument for \cs{title}:
-% \begin{examplecode}
-% \title[Short title]{Title}
-% \end{examplecode}
-%
-% \DescribeMacro{\authorrunning}%
-% In case there are many authors on a paper, they might not fit into the paper.
-% For that purpose, additionally use \cs{authorrunning}:
-% \begin{examplecode}
-% \author[Firstname1 Lastname1 \and Firstname2 Lastname2%
-%    \and Firstname3 Lastname3]{Firstname1 Lastname1\footnote{...}%
-%    \and Firstname2 Lastname2\footnote{...}%
-%    \and Firstname3 Lastname3\footnote{...}}%
-% \authorrunning{Lastname1 et al.}
 % \end{examplecode}
 %
 % \subsection{Main text}
@@ -639,8 +591,8 @@ This work consists of the file  lni.dtx
 % specific programming language.
 %
 % \subsubsection{Math}
-% If you need mathematics, you can load packages \pkg{amsmath} and
-% \pkg{mathtools} for
+% For writing mathematics the package \pkg{amsmath} is already loaded by default.
+% In addtion you can load e.g. \pkg{mathtools} for
 % additional features. The \lni{} class offers by default the command
 % \cs{powerset} to render the powerset symbol correctly as $\powerset$ and not
 % as Weierstrass p ($\wp$).
@@ -767,6 +719,10 @@ This work consists of the file  lni.dtx
 %    \begin{macrocode}
 %<*class>
 %    \end{macrocode}
+% We have to make sure, that pdf is always written (arXiv's requirements)
+%    \begin{macrocode}
+\RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
+%    \end{macrocode}
 %    \begin{macrocode}
 \def\@clearglobaloption#1{%
   \def\@tempa{#1}%
@@ -782,15 +738,22 @@ This work consists of the file  lni.dtx
     \let\@classoptionslist\@empty
   \fi}
 %
-\DeclareOption{latin1}{\PassOptionsToPackage{latin1}{inputenc}}
-\DeclareOption{utf8}{\PassOptionsToPackage{utf8}{inputenc}}
-\DeclareOption{ansinew}{\PassOptionsToPackage{ansinew}{inputenc}}
+\DeclareOption{latin1}{%
+   \PassOptionsToPackage{latin1}{inputenc}
+   \ClassNoteNoLine{lni}{The option `latin1` will be removed from the class with the next major release}}
+\DeclareOption{utf8}{%
+   \PassOptionsToPackage{utf8}{inputenc}
+   \ClassNoteNoLine{lni}{The option `utf8` will be removed from the class with the next major release as it is the only valid value}}
+\DeclareOption{ansinew}{%
+   \PassOptionsToPackage{ansinew}{inputenc}
+   \ClassNoteNoLine{lni}{The option `ansinew` will be removed from the class with the next major release}}
 \newif\iflnienglish
 \lnienglishfalse
 \DeclareOption{english}{\lnienglishtrue\@clearglobaloption{english}}
 \newif\ifusehyperref
 \usehyperreftrue
-\DeclareOption{nohyperref}{\usehyperreffalse}
+\DeclareOption{nohyperref}{%
+   \ClassWarningNoLine{lni}{The option `nohyperref` has been deactivated and will be removed from the class with the next major release}}
 \newif\ifusecleveref
 \useclevereftrue
 \DeclareOption{nocleveref}{\useclevereffalse}
@@ -802,14 +765,22 @@ This work consists of the file  lni.dtx
 \DeclareOption{crop}{\croptrue}
 \newif\ifnofonts
 \nofontsfalse
-\DeclareOption{nofonts}{\nofontstrue\autofontsfalse}
+\DeclareOption{nofonts}{%
+   \nofontstrue\autofontsfalse
+   \ClassNoteNoLine{lni}{The option `nofonts` will be removed from the class with the next major release}}
 \newif\ifoldfonts
 \oldfontsfalse
-\DeclareOption{oldfonts}{\oldfontstrue\autofontsfalse}
+\DeclareOption{oldfonts}{%
+   \oldfontstrue\autofontsfalse
+   \ClassNoteNoLine{lni}{The option `oldfonts` will be removed from the class with the next major release}}
 \newif\ifautofonts
 \autofontstrue
 \newif\ifnorunningheads
-\DeclareOption{norunningheads}{\norunningheadstrue}
+\DeclareOption{norunningheads}{%
+   \norunningheadstrue
+   \ClassNoteNoLine{lni}{The option `norunningheads` will be removed from the class with the next major release}}
+\newif\ifrunningheads
+\DeclareOption{runningheads}{\norunningheadsfalse}
 \newif\ifanonymous
 \anonymousfalse
 \DeclareOption{anonymous}{\anonymoustrue}
@@ -819,12 +790,14 @@ This work consists of the file  lni.dtx
   \else%
     #2%
   \fi}
-\ExecuteOptions{utf8}
+\ExecuteOptions{utf8,norunningheads}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-%
-\RequirePackage{iftex}
-\LoadClass[10pt,twoside,a4paper,fleqn]{article}
+%    \end{macrocode}
+% \changes{v1.8}{2023/11/06}{Fix option handling for \opt{fleqn}}
+%    \begin{macrocode}
+\PassOptionsToPackage{fleqn}{amsmath}
+\LoadClass[10pt,twoside,a4paper]{article}
 \ifPDFTeX
    \RequirePackage{cmap}
    \RequirePackage{inputenc}
@@ -949,9 +922,8 @@ This work consists of the file  lni.dtx
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 %    \end{macrocode}
+% \changes{v1.8}{2023/11/06}{Remove support for ccicons}
 %    \begin{macrocode}
-% Support for CC icons
-\RequirePackage{ccicons}
 % Support for \cs{ifdefempty}
 \RequirePackage{etoolbox}
 %    \end{macrocode}
@@ -1035,6 +1007,7 @@ This work consists of the file  lni.dtx
 \ifusebiblatex
   \RequirePackage[%
     backend=biber,% UTF-8 support
+    date=year,
     style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
     natbib=true   % Required for \Citet
   ]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
@@ -1053,17 +1026,28 @@ This work consists of the file  lni.dtx
      \printtext[bibhyperref]{\printnames{labelname}}}%
     {\multicitedelim}%
     {\usebibmacro{postnote}}%
+%    \end{macrocode}    
 % \end{macro}
 %    \begin{macrocode}
 \fi%
 %    \end{macrocode}
+% \changes{v1.8}{2023/11/06}{Load \pkg{amsmath} explicitly by default (was implicitly done before)}
 %    \begin{macrocode}
+\RequirePackage{amsmath}
+\RequirePackage{etoolbox}
 \RequirePackage{graphicx}
 \RequirePackage{eso-pic}
 \RequirePackage{grffile}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
 \RequirePackage{enumitem}
+\RequirePackage[hang]{footmisc}
+\setlength{\footnotemargin}{1em}
+\def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
+
+%    \end{macrocode}
+%    \begin{macrocode}
+%\def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
 %    \end{macrocode}
 % We fix the basewidth for lstlistings:
 % The default setting of listings with ``fixed columns'' has a space 0.6em
@@ -1111,7 +1095,8 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\title}
 %    \begin{macrocode}
 \renewcommand{\title}{\@dblarg\@@title}
-\def\@@title[#1]#2{\gdef\@shorttitle{#1}\gdef\@title{#2}}
+\def\@@title[#1]#2{%
+   \gdef\@shorttitle{#1}\gdef\@title{#2}}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\subtitle}
@@ -1121,17 +1106,94 @@ This work consists of the file  lni.dtx
 % \end{macro}
 % \begin{macro}{\author}
 %    \begin{macrocode}
-\renewcommand{\author}{\@dblarg\@@author}
-\newcommand{\@@author}[2][]{%
-   \DeclareRobustCommand{\@shortauthor}{%
-         {%
-            %\let\footnote\@gobble%
-            \def\and{\texorpdfstring{\unskip,\ }{}}%
-            #1%
-         }%
-      }%
-      \DeclareRobustCommand{\@author}{#2}%
+\RequirePackage{authblk}
+\newcommand{\@authlisthead}{}
+\newtoks\@temptokenb
+\newtoks\@temptokenc
+\renewcommand\Authsep{, }
+\renewcommand\Authands{\iflanguage{ngerman}{ und }{, and }}
+\renewcommand\Authand{\iflanguage{ngerman}{ und }{ and }}
+\renewcommand{\AB@authnote}[1]{$^{\mbox{\footnotesize #1}}$}
+\renewcommand\author[4][]{%
+   \ifnewaffil\addtocounter{affil}{1}%
+      \edef\AB@thenote{\arabic{affil}}%
+   \fi%
+   \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
+   \setcounter{Maxaffil}{0}\fi
+   \ifnum\value{authors}=0\def\@firstauthor{#2}\fi
+   \ifnum\value{authors}>1\relax
+      \@namedef{@sep\number\c@authors}{\Authsep}\fi
+   \addtocounter{authors}{1}%
+   \begingroup
+      \let\protect\@unexpandable@protect \let\and\AB@pand
+      \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
+      \@temptokena=\expandafter{\AB@authors}%
+      \@temptokenb=\expandafter{\AB@authors}%
+      {\def\\{\protect\\[\@affilsep]\protect\Affilfont
+            \protect\AB@resetsep}%
+         \xdef\AB@author{\AB@blk@and#2}%
+         \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
+         \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
+         \else
+         \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
+         \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
+         \gdef\AB@as{\Authsep}%
+         \fi
+         \gdef\AB@au@str{#2}}%
+      \@temptokena=\expandafter{\AB@authlist}%
+      \@temptokenb=\expandafter{\@authlisthead}%
+      \let\\=\authorcr
+      \xdef\AB@authlist{\the\@temptokena
+         \protect\@nameuse{@sep\number\c@authors}%
+         \protect\Authfont#2\AB@authnote{\AB@note}}%
+      \xdef\@authlisthead{\the\@temptokenb
+         \protect\@nameuse{@sep\number\c@authors}%
+         \protect\Authfont#2}% 
+   \endgroup
+   \ifnum\value{authors}>2\relax
+   \@namedef{@sep\number\c@authors}{\Authands}\fi
+   \ifcsempty{@emailsandorcids\AB@note}%
+   {\csgappto{@emailsandorcids\AB@note}{%
+         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
+   }%
+   {\csgappto{@emailsandorcids\AB@note}{%
+         \if\relax#3\relax\else\ |\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
+   
+   \newaffilfalse
+}
+
+\renewcommand\@author{%
+   \ifx\AB@affillist\AB@empty\AB@author\else
+      \ifnum\value{affil}>\value{Maxaffil}\def\rlap##1{##1}%
+         \AB@authlist\AB@affillist
+      \else\AB@authors%
+      \fi%
+   \fi%
+}
+
+\renewcommand\affil[2][]{%
+   \newaffiltrue\let\AB@blk@and\AB@pand
+   \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
+   \setcounter{Maxaffil}{0}\fi%
+   \begingroup
+   \let\protect\@unexpandable@protect
+   \def\thanks{\protect\thanks}\def\footnotetext{\protect\footnotetext}%
+   \@temptokena=\expandafter{\AB@authors}%
+   {\def\\{\protect\\\protect\Affilfont}\xdef\AB@temp{#2}}%
+   \xdef\AB@authors{\the\@temptokena\AB@las\AB@au@str
+      \protect\\[\affilsep]\protect\Affilfont\AB@temp}%
+   \gdef\AB@las{}\gdef\AB@au@str{}%
+   {\def\\{, \ignorespaces}\xdef\AB@temp{#2}}%
+   \@temptokena=\expandafter{\AB@affillist}%
+   \xdef\AB@affillist{\the\@temptokena \AB@affilsep
+      \footnotetext[\AB@note]{%
+         \raggedright\AB@temp\ifcsempty{@emailsandorcids\AB@note}{}{, \csuse{@emailsandorcids\AB@note}}}%
    }
+   \endgroup
+   \let\AB@affilsep\AB@affilsepx
+   \setcounter{footnote}{#1}
+}
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\authorrunning}
@@ -1145,6 +1207,12 @@ This work consists of the file  lni.dtx
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 %    \end{macrocode}
 % \end{macro}
+% \begin{macro}{\orcid}
+%    \begin{macrocode}
+\newcommand*{\orcid}[1]{%
+   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{https://orcid.org/#1}}%
+%    \end{macrocode}
+% \end{macro}
 % \begin{macro}{\lnidoi}
 %    \begin{macrocode}
 \newcommand{\@lnidoi}{}
@@ -1154,20 +1222,10 @@ This work consists of the file  lni.dtx
       \gdef\@lnidoi{#1}\endgroup}
 %    \end{macrocode}
 % \end{macro}
-% Title: Kopie aus article.cls mit anderem \thispagestyle
 %    \begin{macrocode}
 \renewcommand\maketitle{\par%
    \begingroup
     \renewcommand\thefootnote{\@arabic\c@footnote}%
-    \def\@makefnmark% keine Einrückung der Fußnoten eingestellt
-		 {\@textsuperscript{\normalfont\@thefnmark}}%
-		 \long\def\@makefntext##1{%
-		 \@setpar{\@@par
-		 \@tempdima = \hsize
-		 \advance\@tempdima -1em
-		 \parshape \@ne 0.15cm \@tempdima}%
-		 \par\parindent 0.3cm \noindent
-		 \hb@xt@\z@{\hss\@textsuperscript{\normalfont\@thefnmark}\,}##1}
     \if@twocolumn
       \ifnum \col@number=\@ne
         \@maketitle
@@ -1186,14 +1244,12 @@ This work consists of the file  lni.dtx
     \fi%
     \@thanks
   \endgroup
-  \ifusehyperref
-      \HyXeTeX@CheckUnicode
-      \HyPsd@PrerenderUnicode{\@shortauthor}%
-      \ifanonymous\else\pdfstringdef\@pdfauthor{\@shortauthor}\fi%
-      \HyXeTeX@CheckUnicode
-      \HyPsd@PrerenderUnicode{\@title}%
-      \pdfstringdef\@pdftitle{\@title}%
-  \fi%
+  \HyXeTeX@CheckUnicode
+  \HyPsd@PrerenderUnicode{\@authlisthead}%
+  \ifanonymous\else\pdfstringdef\@pdfauthor{\@authlisthead}\fi%
+  \HyXeTeX@CheckUnicode
+  \HyPsd@PrerenderUnicode{\@title}%
+  \pdfstringdef\@pdftitle{\@title}%
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@maketitle\relax
@@ -1201,6 +1257,7 @@ This work consists of the file  lni.dtx
   \global\let\@author\@empty
   \global\let\@date\@empty
   \global\let\@title\@empty
+  \global\let\@subtitle\@empty
   \global\let\title\relax
   \global\let\author\relax
   \global\let\date\relax
@@ -1227,9 +1284,9 @@ This work consists of the file  lni.dtx
       \lineskip .5em%
       \ifanonymous
         \iflnienglish
-          anonymized for review\footnote{placeholder for contact information}
+          Anonymized for review\footnote{placeholder for contact information}
         \else
-          anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
+          Anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
         \fi%
       \else
         \@author
@@ -1237,37 +1294,17 @@ This work consists of the file  lni.dtx
       \par}%
     \vskip 21pt% Abstand vor dem Abstract
   \end{center}%
-% output CC license and DOI (if it exists)
+% output DOI (if it exists)
   \AddToShipoutPictureBG*{\AtPageLowerLeft{%
     \put(\LenToUnit{\the\doihoffset},\LenToUnit{\the\doivoffset}){%
-      \ifdefempty{\@lni@cc@type}{}{
-        \IfEq{\@lni@cc@type}{zero}{%
-         \def\@lni@CC@Url{https://creativecommons.org/publicdomain/zero/1.0/}\def\@lni@CC@Icon{\cczero}}{%
-        \edef\@lni@CC@Url{https://creativecommons.org/licenses/\@lni@cc@type/\@lni@cc@version/}%
-        \IfEq{\@lni@cc@type}{by}{\def\@lni@CC@Icon{\ccby}}{%
-        \IfEq{\@lni@cc@type}{by-sa}{\def\@lni@CC@Icon{\ccbysa}}{%
-        \IfEq{\@lni@cc@type}{by-nc-sa}{\def\@lni@CC@Icon{\ccbyncsa}}{%
-        \IfEq{\@lni@cc@type}{by-nc}{\def\@lni@CC@Icon{\ccbync}}{%
-        \IfEq{\@lni@cc@type}{by-nd}{\def\@lni@CC@Icon{\ccbynd}}{%
-        \IfEq{\@lni@cc@type}{by-nc-nd}{\def\@lni@CC@Icon{\ccbyncnd}}{%
-        \message{Invalid value for setcctype}%
-        }}}}}}}%
-        \ifusehyperref
-          \href{\@lni@CC@Url}{\@lni@CC@Icon}
-        \else
-          \@lni@CC@Icon
-        \fi
-      }
-      \ifanonymous\else\ifdefempty{\@lnidoi}{}{
-        \footnotesize
-        \ifusehyperref
-          \href{https://doi.org/\@lnidoi}{doi:\@lnidoi}
-        \else
-          doi:\@lnidoi
-        \fi%
-      }\fi
-    }
-  }}
+      \ifanonymous
+      \else
+         \ifdefempty{\@lnidoi}%
+            {}%
+            {\footnotesize\href{https://doi.org/\@lnidoi}{doi:\@lnidoi}}
+      \fi%
+    }%
+  }}%
   \par
 }%
 %    \end{macrocode}
@@ -1279,12 +1316,13 @@ This work consists of the file  lni.dtx
 }{\endquotation}
 %    \end{macrocode}
 % \end{environment}
+% \changes{v1.8}{2023/11/06}{Change delimiter to comma}
 % \begin{environment}{keywords}
 %    \begin{macrocode}
 \newif\ifkeywords
 \newenvironment{keywords}%
    {\global\keywordstrue\small%
-    \def\and{\unskip;\space}%
+    \def\and{\unskip,\space}%
     \vskip -2pt\noindent\ignorespaces{\bfseries Keywords:\ }}%
    {\global\keywordsfalse}
 \let\@RIGsection\section
@@ -1345,19 +1383,22 @@ This work consists of the file  lni.dtx
 \RequirePackage{verbatim}
 \def\verbatim@processline{\hskip0.5cm\the\verbatim@line\par}
 %    \end{macrocode}
+%    \begin{macrocode}
+\robustify{\footnote}
+%    \end{macrocode}
 % Set rule width und correct size
 %    \begin{macrocode}
 \renewcommand\footnoterule{%
-  \kern-3\p@
+  \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
-\newdimen\fnindent
-\fnindent0.18cm
-\long\def\@makefntext#1{%
-    \parindent \fnindent%
-    \leftskip \fnindent% Einrückung vor der footnotemark
-    \noindent
-    \llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
+   %\newdimen\fnindent
+   %\fnindent0.18cm
+   %\long\def\@makefntext#1{%
+    %\parindent \fnindent%
+    %\leftskip \fnindent% Einrückung vor der footnotemark
+    %\noindent
+    %\llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 %    \end{macrocode}
 %    \begin{macrocode}
 \setlength{\parindent}{0pt}
@@ -1455,7 +1496,7 @@ This work consists of the file  lni.dtx
    \pagestyle{fancy}
    \fancyhead{}% Löscht alle Kopfzeileneinstellungen
    \fancyhead[RO]{\small\@shorttitle\hspace{5pt}\thepage\hspace{0.05cm}}
-   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else\@shortauthor\fi}
+   \fancyhead[LE]{\hspace{0.05cm}\small\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else\@authlisthead\fi}
    \fancyfoot{}% Löscht alle Fußzeileneinstellungen
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
@@ -1471,20 +1512,24 @@ This work consists of the file  lni.dtx
 \RequirePackage{xspace}
 %    \end{macrocode}
 %    \begin{macrocode}
-\ifusehyperref
-   \AddToHook{env/document/begin}[cid/loadhyp]{
-      \RequirePackage[bookmarks=false]{hyperref}
-      \hypersetup{%
+\AddToHook{env/document/begin}[lni/loadhyperref]{%
+   \RequirePackage[bookmarks=false]{hyperref}
+   \hypersetup{%
          pdfdisplaydoctitle,%
          colorlinks=true,%
          allcolors=black,%
          pdfstartview=Fit,%
-      }%
    }%
-   \DeclareHookRule{env/document/begin}{cid/loadhyp}{before}{biblatex}
-\else
-   \providecommand{\texorpdfstring}[2]{#2}%
-\fi%
+   \pdfstringdefDisableCommands{%
+      \def\footnote#1{}%
+   }
+   \RequirePackage{orcidlink}%
+%    \end{macrocode}
+% enables correct jumping to figures when referencing
+%    \begin{macrocode}
+   \RequirePackage[all]{hypcap}%
+}%
+\DeclareHookRule{env/document/begin}{lni/loadhyperref}{before}{biblatex}
 %    \end{macrocode}
 %    \begin{macrocode}
 \ifusecleveref%
@@ -1504,14 +1549,6 @@ This work consists of the file  lni.dtx
       \Crefname{table}{\tablename}{\tablename}
    }%
 \fi%
-%    \end{macrocode}
-% enables correct jumping to figures when referencing
-%    \begin{macrocode}
-\AtEndPreamble{%
-   \@ifpackageloaded{hyperref}
-      {\RequirePackage[all]{hypcap}}%
-      {}%
-}%
 %    \end{macrocode}
 %    \begin{macrocode}
 \def\and{\texorpdfstring{\unskip\hspace{-0.42em},\hspace{.6em}}{, }}%
@@ -1538,13 +1575,6 @@ This work consists of the file  lni.dtx
 \newcommand*{\BPMN}{\lni@initialism{bpmn}}
 \newcommand*{\BPEL}{\lni@initialism{bpel}}
 \newcommand*{\UML}{\lni@initialism{uml}}
-%    \end{macrocode}
-% Creative Commons license choice
-%    \begin{macrocode}
-\newcommand\setcctype[2][4.0]{%
-  \def\@lni@cc@version{#1}%
-  \def\@lni@cc@type{#2}}
-\setcctype{}
 %    \end{macrocode}
 % bibliography
 %    \begin{macrocode}
@@ -3019,19 +3049,12 @@ EXECUTE {end.bib}
 \title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
 Worten und noch mehr Buchstaben}
 %% \subtitle{Untertitel / Subtitle} % if needed
-\author[Vorname1 Nachname1 \and Firstname2 Lastname2]
-{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort,
-Land \email{emailaddress@author1}} \and
-Firstname2 Lastname2\footnote{University, Department, Address, Country
-\email{emailaddress@author2}}}
-%% (en) numbering starts at this number
-%% (de) Beginn der Seitenzählung für diesen Beitrag
-\startpage{11}
-\editor{Herausgeber et al.} % Names of Editors
-\booktitle{Name-der-Konferenz} % Name of book title
-\yearofpublication{2017}
-%% \lnidoi{18.18420/provided-by-editor-02} % activate and adapt if the DOI is known
-%% \setcctype{by-sa} % can be: zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd
+\author[1]{Vorname1 Nachname1}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+\author[2]{Firstname2 Lastname2}{vorname.name@affiliation2.de}{0000-0000-0000-0000}
+\author[1]{Firstname3 Lastname3}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+\author[1]{Firstname4 Lastname4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}% 
+\affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
+\affil[2]{University\\Department\\Address\\Country}
 \maketitle
 
 \begin{abstract}
@@ -3054,7 +3077,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 % Encoding: UTF-8
 
 @InProceedings{ABC01,
-  author   = {N. Abraham and U. Bibel and P. Corleone},
+  author   = {Abraham, N. and Bibel, U. and Corleone, P.},
   title    = {Formatting Contributions for Proceedings},
   pages    = {46-53},
   crossref = {Gl01},
@@ -3071,7 +3094,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
   title     = {Formatierungsrichtlinien für Tagungsbände},
   publisher = {Format-Verlag},
   year      = {2000},
-  author    = {K. Abel and U. Bibel},
+  author    = {Abel, K. and Bibel, U.},
   address   = {Bonn},
 }
 
@@ -3079,11 +3102,11 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
   title     = {The Magic Format -- Your Way to Pretty Books},
   publisher = {Noah \& Sons},
   year      = {2010},
-  author    = {O. Ezgarani},
+  author    = {Ezgarani, O.},
 }
 
 @Article{Gl06,
-  author  = {H. I. Glück},
+  author  = {Glück, H. I.},
   title   = {Formatierung leicht gemacht},
   journal = {Formatierungsjournal},
   volume  = {11},
@@ -3096,14 +3119,14 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
   title     = {Essenzen der Informatik},
   publisher = {Verlag Formvoll},
   year      = {2014},
-  author    = {K. Wasser and H. Feuer and R. Erde and H. Licht},
+  author    = {Wasser, K. and Feuer, H. and Erde, R. and Licht, H.},
 }
 
 @Book{Wa14b,
   title     = {Ganz neue Essenzen der Informatik im selben Jahr},
   publisher = {Format-Verlag},
   year      = {2014},
-  author    = {K. Wasser and H. Feuer and R. Erde and H. Licht},
+  author    = {Wasser, K. and Feuer, H. and Erde, R. and Licht, H.},
 }
 
 @Proceedings{Gl01,
@@ -3119,7 +3142,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
   title     = {Formatierung 2009},
   publisher = {Format-Verlag},
   year      = {2009},
-  editor    = {H. I. Glück},
+  editor    = {Glück, H. I.},
   number    = {999},
   series    = {LNI},
   address   = {Bonn},
@@ -3147,48 +3170,14 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 % % !TeX program = pdflatex
 % % !BIB program = biber
 % % !TeX spellcheck = de-DE
-% Needs to be written in the first 5 lines, because of arXiv's requirements
-\RequirePackage{iftex}\ifluatex\else
-\pdfoutput=1
-\fi
-
-%% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
-\RequirePackage[l2tabu, orthodox]{nag}
-
-%% Zur Anonymisierung kann die ``anonymous'' Option genutzt werden, siehe auch \anon-Makro.
-\documentclass[utf8,biblatex]{lni}
-\bibliography{lni-paper-example-de}
+\documentclass[biblatex]{lni}
+\addbibresource{lni-paper-example-de.bib}
 
 %% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
 \usepackage{booktabs}
 
 %% Zu Demonstrationszwecken
-\usepackage{amsmath}
-\usepackage[math]{blindtext}
-\usepackage{mwe}
-
-%% BibLaTeX-Sonderkonfiguration,
-%% falls man schnell eine existierende Bibliographie wiederverwenden will, aber nicht die .bib-Datei händisch anpassen möchte.
-%% Bitte \iffalse und \fi entfernen, dann ist diese Konfiguration aktiviert.
-
-\iffalse
-\AtEveryBibitem{%
-  \ifentrytype{article}{%
-  }{%
-    \clearfield{doi}%
-    \clearfield{issn}%
-    \clearfield{url}%
-    \clearfield{urldate}%
-  }%
-  \ifentrytype{inproceedings}{%
-  }{%
-    \clearfield{doi}%
-    \clearfield{issn}%
-    \clearfield{url}%
-    \clearfield{urldate}%
-  }%
-}
-\fi
+\usepackage[]{blindtext}
 
 \begin{document}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
@@ -3196,15 +3185,17 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 %%% Das optionale Argument (sofern angegeben) wird für die Kopfzeile verwendet.
 \title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen Worten und noch mehr Buchstaben}
 %%%\subtitle{Untertitel / Subtitle} % falls benötigt
-\author[Vorname1 Nachname1 \and Vorname2 Nachname2]
-{Vorname1 Nachname1\footnote{Universität, Abteilung, Straße, Postleitzahl Ort, Land \email{emailaddress@author1}} \and
- Vorname2 Nachname2\footnote{University, Department, Address, Country \email{emailaddress@author2}}}
+\author[1]{Vorname1 Nachname1}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+\author[2]{Firstname2 Lastname2}{vorname.name@affiliation2.de}{0000-0000-0000-0000}
+\author[1]{Firstname3 Lastname3}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
+\author[1]{Firstname4 Lastname4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}% 
+\affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
+\affil[2]{University\\Department\\Address\\Country}
 \startpage{11} % Beginn der Seitenzählung für diesen Beitrag
 \editor{Herausgeber et al.}    % Namen der Herausgeber
 \booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
 \yearofpublication{2017}
 %%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
-%%%\setcctype{by-sa} % Möglichkeiten: zero, by, by-sa, by-nc, by-nd, by-nc-sa, by-nc-nd
 \maketitle
 
 \begin{abstract}
@@ -3215,7 +3206,7 @@ Die Formatierung erfolgt automatisch innerhalb des abstract-Bereichs.
 \end{abstract}
 
 \begin{keywords}
-LNI Guidelines \and \LaTeX Vorlage
+LNI Guidelines \and \LaTeX\ Vorlage
 \end{keywords}
 
 \section{Verwendung}
@@ -3223,7 +3214,7 @@ Die GI gibt unter \url{http://www.gi-ev.de/LNI} Vorgaben für die Formatierung v
 Für \LaTeX-Dokumente werden diese durch die Dokumentenklasse \texttt{lni} realisiert.
 
 Dieses Dokument basiert auf der offiziellen Dokumentation, simplifiziert und setzt grundlegendes LaTeX-Wissen voraus.
-Es werden generische Platzhalter an die entsprechenden Stellen (wie beispielsweise die Authoren-Angaben) gesetzt und nicht weiter an anderer Stelle dokumentiert.
+Es werden generische Platzhalter an die entsprechenden Stellen (wie beispielsweise die Autoren-Angaben) gesetzt und nicht weiter an anderer Stelle dokumentiert.
 
 Dieses Template ist wie folgt gegliedert:
 \Cref{sec:demos} zeigt Demonstrationen der LNI-Verlage.
@@ -3298,14 +3289,20 @@ public class Hello {
 
 Alternativ kann auch die \texttt{lstlisting}-Umgebung verwendet werden.
 
-\Cref{L1} zeigt uns ein Beispiel, das mit Hilfe der \texttt{lstlisting}-Umgebung realisiert ist.
+\Cref{java-hello-world} zeigt uns ein Beispiel, das mit Hilfe der \texttt{lstlisting}-Umgebung realisiert ist. Ein anderes Beispiel ist \cref{python-hello-world}.
 
-\begin{lstlisting}[caption={Beschreibung}, label=L1, language=Java]
+\begin{lstlisting}[caption={Ein Java-Programm}, label=java-hello-world, language=Java]
 public class Hello {
-    public static void main (String[] args) {
-        System.out.println("Hello World!");
-    }
+   public static void main (String[] args) {
+   System.out.println("Hello World!");
+   }
 }
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Ein Python-Programm}, label=python-hello-world, language=Python]
+# This program prints Hello, world!
+
+print('Hello, world!')   
 \end{lstlisting}
 
 \subsection{Formeln und Gleichungen}
