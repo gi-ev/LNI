@@ -365,7 +365,7 @@
       \let\\=\authorcr
       \xdef\AB@authlist{\the\@temptokena
          \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2\AB@authnote{\AB@note}}%
+         \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
       \xdef\@authlisthead{\the\@temptokenb
          \protect\@nameuse{@sep\number\c@authors}%
          \protect\Authfont#2}%
@@ -377,7 +377,7 @@
          \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
    }%
    {\csgappto{@emailsandorcids\AB@note}{%
-         \if\relax#3\relax\else\ |\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
+         \if\relax#3\relax\else;\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
 
    \newaffilfalse
 }

@@ -1151,7 +1151,7 @@ This work consists of the file  lni.dtx
       \let\\=\authorcr
       \xdef\AB@authlist{\the\@temptokena
          \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2\AB@authnote{\AB@note}}%
+         \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
       \xdef\@authlisthead{\the\@temptokenb
          \protect\@nameuse{@sep\number\c@authors}%
          \protect\Authfont#2}%
@@ -1163,7 +1163,7 @@ This work consists of the file  lni.dtx
          \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
    }%
    {\csgappto{@emailsandorcids\AB@note}{%
-         \if\relax#3\relax\else\ |\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
+         \if\relax#3\relax\else;\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
 
    \newaffilfalse
 }
@@ -3192,11 +3192,6 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \author[1]{Vorname4 Nachname4}{vorname4.name4@affiliation1.de}{0000-0000-0000-0000}%
 \affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
 \affil[2]{University\\Department\\Address\\Country}
-\startpage{11} % Beginn der Seitenzählung für diesen Beitrag
-\editor{Herausgeber et al.}    % Namen der Herausgeber
-\booktitle{Name-der-Konferenz} % Name des Tagungsband; optional Kurztitel
-\yearofpublication{2017}
-%%%\lnidoi{18.18420/provided-by-editor-02} % Falls bekannt
 \maketitle
 
 \begin{abstract}
