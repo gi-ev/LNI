@@ -2,8 +2,8 @@
 
 ```plain
 ----------------------------------------------------------------------------
-lni      -- A class for submissions to the ``Lecture Notes in Informatics''
-(c) 2016-2021 Gesellschaft für Informatik (GI)
+lni -- A class for submissions to the ``Lecture Notes in Informatics''
+(c) 2016-2023 Gesellschaft für Informatik (GI)
 Version:    1.8BETA
 Maintainer: Martin Sievers
 Email:      martin.sievers@schoenerpublizieren.de
