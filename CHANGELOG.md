@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [Unreleased]
+## [1.8] - 2023-11-26
 
 ### Added
 
@@ -154,7 +154,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.7...HEAD
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8...HEAD
+[1.8]: https://github.com/gi-ev/LNI/releases/tag/v1.8
 [1.7]: https://github.com/gi-ev/LNI/releases/tag/v1.7
 [1.6]: https://github.com/gi-ev/LNI/releases/tag/v1.6
 [1.5]: https://github.com/gi-ev/LNI/releases/tag/v1.5
