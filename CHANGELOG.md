@@ -18,9 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Synced title spacing with Word template ([#104](https://github.com/gi-ev/LNI/pull/104))
 - (chore) `build.sh` assumes `*.md` are formatted using LF line endings, removed `dos2unix` dependency.
 - Improvement for documentation ([#89](https://github.com/gi-ev/LNI/issues/89), [#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96))
-- Removed option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
 - Changed delimiter between keywords to comma (,)
-- Remove support for `ccicons`
 - Load `amsmath` explictly
 
 ### Fixed
@@ -31,6 +29,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `\footnote` is not used for pdf bookmarks ([#87](https://github.com/gi-ev/LNI/issues/87))
 - Footnotes are always set at the bottom of the page ([#122](https://github.com/gi-ev/LNI/issues/122))
 - Handling of `fleqn` option for `amsmath`
+
+### Removed
+
+- Removed support for `ccicons`
+- Removed option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
 
 ## [1.7] - 2021-03-02
 
