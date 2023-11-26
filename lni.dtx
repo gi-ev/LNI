@@ -497,12 +497,12 @@ This work consists of the file  lni.dtx
 % \author[1]{Vorname1 Nachname1}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
 % \author[2]{Firstname2 Lastname2}{vorname.name@affiliation2.de}{0000-0000-0000-0000}
 % \author[1]{Firstname3 Lastname 3}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
-% \author[1]{Firstname4 Lastname 4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}% 
+% \author[1]{Firstname4 Lastname 4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}%
 % \affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
 % \affil[2]{University\\Department\\Address\\Country}
 % \end{examplecode}
 %
-% Leave the third and/or fourth argument empty if there is no email address and/or ORCID iD. 
+% Leave the third and/or fourth argument empty if there is no email address and/or ORCID iD.
 % Finally \cs{maketitle} will output the formatted title page.
 %
 % \DescribeMacro{\lnidoi\space(new in v1.2)}%
@@ -1031,7 +1031,7 @@ This work consists of the file  lni.dtx
      \printtext[bibhyperref]{\printnames{labelname}}}%
     {\multicitedelim}%
     {\usebibmacro{postnote}}%
-%    \end{macrocode}    
+%    \end{macrocode}
 % \end{macro}
 %    \begin{macrocode}
 \fi%
@@ -1154,7 +1154,7 @@ This work consists of the file  lni.dtx
          \protect\Authfont#2\AB@authnote{\AB@note}}%
       \xdef\@authlisthead{\the\@temptokenb
          \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2}% 
+         \protect\Authfont#2}%
    \endgroup
    \ifnum\value{authors}>2\relax
    \@namedef{@sep\number\c@authors}{\Authands}\fi
@@ -1164,7 +1164,7 @@ This work consists of the file  lni.dtx
    }%
    {\csgappto{@emailsandorcids\AB@note}{%
          \if\relax#3\relax\else\ |\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
-   
+
    \newaffilfalse
 }
 
@@ -3033,10 +3033,6 @@ EXECUTE {end.bib}
 % % !TeX program = pdflatex
 % % !BIB program = biber
 % % !TeX spellcheck = de-DE
-% Needs to be written in the first 5 lines, because of arXiv's requirements
-\RequirePackage{iftex}\ifluatex\else
-\pdfoutput=1
-\fi
 %%% To write an article in English, please use the option ``english'' in order
 %%% to get the correct hyphenation patterns and terms.
 %%% \documentclass[english]{class}
@@ -3057,7 +3053,7 @@ Worten und noch mehr Buchstaben}
 \author[1]{Vorname1 Nachname1}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
 \author[2]{Firstname2 Lastname2}{vorname.name@affiliation2.de}{0000-0000-0000-0000}
 \author[1]{Firstname3 Lastname3}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
-\author[1]{Firstname4 Lastname4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}% 
+\author[1]{Firstname4 Lastname4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}%
 \affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
 \affil[2]{University\\Department\\Address\\Country}
 \maketitle
@@ -3193,7 +3189,7 @@ Schlagwort1 \and Schlagwort2 %Keyword1 \and Keyword2
 \author[1]{Vorname1 Nachname1}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
 \author[2]{Firstname2 Lastname2}{vorname.name@affiliation2.de}{0000-0000-0000-0000}
 \author[1]{Firstname3 Lastname3}{vorname.name@affiliation1.de}{0000-0000-0000-0000}
-\author[1]{Firstname4 Lastname4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}% 
+\author[1]{Firstname4 Lastname4}{vorname.name@affiliation1.de}{0000-0000-0000-0000}%
 \affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
 \affil[2]{University\\Department\\Address\\Country}
 \startpage{11} % Beginn der Seitenzählung für diesen Beitrag
@@ -3307,7 +3303,7 @@ public class Hello {
 \begin{lstlisting}[caption={Ein Python-Programm}, label=python-hello-world, language=Python]
 # This program prints Hello, world!
 
-print('Hello, world!')   
+print('Hello, world!')
 \end{lstlisting}
 
 \subsection{Formeln und Gleichungen}
