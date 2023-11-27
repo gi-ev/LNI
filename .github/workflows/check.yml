@@ -25,16 +25,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           show-progress: ''
+
       - name: Install TeX Live
         uses: zauguin/install-texlive@v3
         with:
            package_file: Texlivefile
+
       - name: Generate lni.cls, *.tex, ...
         run: |
           pdflatex lni.ins
           pdflatex lni.dtx
           pdflatex lni.dtx
           pdflatex lni.dtx
+
       - name: Check for modifications
         run: |
           git update-index --refresh
@@ -43,6 +46,7 @@ jobs:
             git diff-index --name-status HEAD
             exit 1
           fi
+
       - name: Generate mybibfile.bib
         run: touch mybibfile.bib
 
@@ -65,16 +69,17 @@ jobs:
             lni-paper-example*.pdf
 
       - name: Prepare GH pages content
-        if: github.ref == 'refs/heads/main' && matrix.engine == 'lualatex'
+        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/refine-docs') && matrix.engine == 'lualatex'
         run: |
           set -e
           mkdir /tmp/gh-pages
-          cp README.md /tmp/gh-pages/index.md
+          cp docs/* /tmp/gh-pages/
+          rm /tmp/gh-pages/README.md
           cp *.pdf /tmp/gh-pages
 
       - name: Deploy to GH pages
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main' && matrix.engine == 'lualatex'
+        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/refine-docs') && matrix.engine == 'lualatex'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: /tmp/gh-pages
