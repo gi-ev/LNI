@@ -63,6 +63,7 @@ jobs:
           path: |
             lni-author-template.pdf
             lni-paper-example*.pdf
+            *.log
 
       - name: Prepare GH pages content
         if: github.ref == 'refs/heads/main' && matrix.engine == 'lualatex'
