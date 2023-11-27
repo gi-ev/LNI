@@ -1,9 +1,7 @@
 ---
 ---
 
-# lni
-
-> A LaTeX class for submissions to the ``Lecture Notes in Informatics''
+# A LaTeX class for submissions to the ``Lecture Notes in Informatics''
 
 ## Quick start
 
