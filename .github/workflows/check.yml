@@ -51,11 +51,13 @@ jobs:
         run: touch mybibfile.bib
 
       - run: ${{ matrix.engine }} lni-author-template
+      - run: texlogsieve lni-author-template.log
 
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: biber lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
+      - run: texlogsieve lni-paper-example-de.log      
 
       - name: Upload build result
         uses: actions/upload-artifact@v3
@@ -64,6 +66,7 @@ jobs:
           path: |
             lni-author-template.pdf
             lni-paper-example*.pdf
+            *.log
 
       - name: Prepare GH pages content
         if: matrix.engine == 'lualatex'
@@ -84,7 +87,10 @@ jobs:
 
       - name: Install dependencies for ctanify
         if: matrix.engine != 'lualatex'
-        run: sudo apt-get install -y libfile-copy-recursive-perl zip
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: libfile-copy-recursive-perl
+          version: 1.0
 
       - name: Prepare for CTAN
         if: matrix.engine != 'lualatex'
@@ -104,7 +110,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           show-progress: ''
-      - uses: jbangdev/jbang-action@v0.112.4
+      - uses: jbangdev/jbang-action@v0.113.0
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.7.2:bin
           scriptargs: "check CHANGELOG.md"
