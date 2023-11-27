@@ -1,9 +1,12 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
+
+## [1.8] - 2023-11-26
 
 ### Added
 
@@ -11,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Added `\pdfoutput=1` to fix compatibility with [arXiv](https://arxiv.org/) ([#81](https://github.com/gi-ev/LNI/issues/81))
 - Added more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
 - Added `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
+- New macro `\affil` for an easier way to enter afiliations (see the documentation and lni-paper-example-de.tex for more details)
 
 ### Changed
 
@@ -20,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Improvement for documentation ([#89](https://github.com/gi-ev/LNI/issues/89), [#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96))
 - Changed delimiter between keywords to comma (,)
 - Load `amsmath` explictly
+- `author` now holds four arguments to integrate email and ORCID id.
 
 ### Fixed
 
@@ -66,7 +71,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Finally fix BiBTeX issue thanks to @ytzemih ([#6](https://github.com/gi-ev/LNI/issues/6))
 - `hyperref` is loaded without options to make it more compatible with other packages like `authorarchive`
 - `hypcap` is only loaded if `hyperref` has been loaded before.
-
 
 ## [1.5] - 2019-04-04
 
@@ -154,12 +158,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.7...HEAD
-[1.7]: https://github.com/gi-ev/LNI/releases/tag/v1.7
-[1.6]: https://github.com/gi-ev/LNI/releases/tag/v1.6
-[1.5]: https://github.com/gi-ev/LNI/releases/tag/v1.5
-[1.4]: https://github.com/gi-ev/LNI/releases/tag/v1.4
-[1.3]: https://github.com/gi-ev/LNI/releases/tag/v1.3
-[1.2]: https://github.com/gi-ev/LNI/releases/tag/v1.2
-[1.1]: https://github.com/gi-ev/LNI/releases/tag/v1.1
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8...HEAD
+[1.8]: https://github.com/gi-ev/LNI/compare/v1.7...v1.8
+[1.7]: https://github.com/gi-ev/LNI/compare/v1.6...v1.7
+[1.6]: https://github.com/gi-ev/LNI/compare/v1.5...v1.6
+[1.5]: https://github.com/gi-ev/LNI/compare/v1.4...v1.5
+[1.4]: https://github.com/gi-ev/LNI/compare/v1.3...v1.4
+[1.3]: https://github.com/gi-ev/LNI/compare/v1.2...v1.3
+[1.2]: https://github.com/gi-ev/LNI/compare/v1.1...v1.2
+[1.1]: https://github.com/gi-ev/LNI/compare/v1.0...v1.1
 [1.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0

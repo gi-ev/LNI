@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2023/11/06 v1.8BETA Official class for submissions to the ``Lecture Notes
+    [2023/11/26 v1.8 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
