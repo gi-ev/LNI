@@ -66,7 +66,7 @@ jobs:
             lni-paper-example*.pdf
 
       - name: Prepare GH pages content
-        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/refine-docs') && matrix.engine == 'lualatex'
+        if: (github.ref == 'refs/heads/main' || github.head_ref == 'refs/heads/refine-docs') && matrix.engine == 'lualatex'
         run: |
           set -e
           mkdir /tmp/gh-pages
@@ -76,7 +76,7 @@ jobs:
 
       - name: Deploy to GH pages
         uses: peaceiris/actions-gh-pages@v3
-        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/refine-docs') && matrix.engine == 'lualatex'
+        if: (github.ref == 'refs/heads/main' || github.head_ref == 'refs/heads/refine-docs') && matrix.engine == 'lualatex'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: /tmp/gh-pages
