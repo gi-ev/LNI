@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Added `\pdfoutput=1` to fix compatibility with [arXiv](https://arxiv.org/) ([#81](https://github.com/gi-ev/LNI/issues/81))
 - Added more links to `biblatex-lni` to documentation ([#90](https://github.com/gi-ev/LNI/issues/90))
 - Added `\yearofpublication` to documentation ([#89](https://github.com/gi-ev/LNI/pull/89))
+- New macro `\affil` for an easier way to enter afiliations (see the documentation and lni-paper-example-de.tex for more details)
 
 ### Changed
 
@@ -20,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Improvement for documentation ([#89](https://github.com/gi-ev/LNI/issues/89), [#90](https://github.com/gi-ev/LNI/issues/90), [#93](https://github.com/gi-ev/LNI/issues/93), [#95](https://github.com/gi-ev/LNI/issues/95), [#96](https://github.com/gi-ev/LNI/issues/96))
 - Changed delimiter between keywords to comma (,)
 - Load `amsmath` explictly
+- `author` now holds four arguments to integrate email and ORCID id.
 
 ### Fixed
 
