@@ -37,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Removed support for `ccicons`
 - Removed option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
 
-## [1.7.0] - 2021-03-02
+## [1.7] - 2021-03-02
 
 ### Changed
 
@@ -48,7 +48,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - Fix setting of pdf metadata ([#87](https://github.com/gi-ev/LNI/issues/87))
 
-## [1.6.0] - 2019-10-14
+## [1.6] - 2019-10-14
 
 ### Added
 
@@ -158,8 +158,8 @@ First release of the revised files
 
 [Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8...HEAD
 [1.8]: https://github.com/gi-ev/LNI/releases/tag/v1.8
-[1.7.0]: https://github.com/gi-ev/LNI/releases/tag/v1.7
-[1.6.0]: https://github.com/gi-ev/LNI/releases/tag/v1.6
+[1.7]: https://github.com/gi-ev/LNI/releases/tag/v1.7.0
+[1.6]: https://github.com/gi-ev/LNI/releases/tag/v1.6.0
 [1.5]: https://github.com/gi-ev/LNI/releases/tag/v1.5
 [1.4]: https://github.com/gi-ev/LNI/releases/tag/v1.4
 [1.3]: https://github.com/gi-ev/LNI/releases/tag/v1.3
