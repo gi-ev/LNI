@@ -37,7 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - Removed support for `ccicons`
 - Removed option `nohyperref` ([#131](https://github.com/gi-ev/LNI/issues/131))
 
-## [1.7] - 2021-03-02
+## [1.7.0] - 2021-03-02
 
 ### Changed
 
@@ -48,7 +48,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - Fix setting of pdf metadata ([#87](https://github.com/gi-ev/LNI/issues/87))
 
-## [1.6] - 2019-10-14
+## [1.6.0] - 2019-10-14
 
 ### Added
 
