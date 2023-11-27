@@ -79,7 +79,10 @@ jobs:
 
       - name: Install dependencies for ctanify
         if: matrix.engine != 'lualatex'
-        run: sudo apt-get install -y libfile-copy-recursive-perl zip
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: libfile-copy-recursive-perl
+          version: 1.0
 
       - name: Prepare for CTAN
         if: matrix.engine != 'lualatex'
