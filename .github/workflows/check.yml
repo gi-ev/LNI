@@ -48,11 +48,13 @@ jobs:
         run: touch mybibfile.bib
 
       - run: ${{ matrix.engine }} lni-author-template
+      - run: texlogsieve lni-author-template.log
 
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: biber lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
+      - run: texlogsieve lni-paper-example-de.log      
 
       - name: Upload build result
         uses: actions/upload-artifact@v3
@@ -61,6 +63,7 @@ jobs:
           path: |
             lni-author-template.pdf
             lni-paper-example*.pdf
+            *.log
 
       - name: Prepare GH pages content
         if: github.ref == 'refs/heads/main' && matrix.engine == 'lualatex'
