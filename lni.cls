@@ -370,8 +370,8 @@
          \protect\@nameuse{@sep\number\c@authors}%
          \protect\Authfont#2}%
    \endgroup
-   \ifnum\value{authors}>2\relax
-   \@namedef{@sep\number\c@authors}{\Authands}\fi
+   %\ifnum\value{authors}>2\relax
+   %\@namedef{@sep\number\c@authors}{\Authands}\fi
    \ifcsempty{@emailsandorcids\AB@note}%
    {\csgappto{@emailsandorcids\AB@note}{%
          \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
@@ -381,7 +381,6 @@
 
    \newaffilfalse
 }
-
 \renewcommand\@author{%
    \ifx\AB@affillist\AB@empty\AB@author\else
       \ifnum\value{affil}>\value{Maxaffil}\def\rlap##1{##1}%
@@ -390,7 +389,6 @@
       \fi%
    \fi%
 }
-
 \renewcommand\affil[2][]{%
    \newaffiltrue\let\AB@blk@and\AB@pand
    \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
@@ -405,12 +403,11 @@
    \gdef\AB@las{}\gdef\AB@au@str{}%
    {\def\\{, \ignorespaces}\xdef\AB@temp{#2}}%
    \@temptokena=\expandafter{\AB@affillist}%
-   \xdef\AB@affillist{\the\@temptokena \AB@affilsep
+   \xdef\AB@affillist{\the\@temptokena
       \footnotetext[\AB@note]{%
          \raggedright\AB@temp\ifcsempty{@emailsandorcids\AB@note}{}{, \csuse{@emailsandorcids\AB@note}}}%
    }
    \endgroup
-   \let\AB@affilsep\AB@affilsepx
    \setcounter{footnote}{#1}
 }
 \newcommand{\authorrunning}[1]{%

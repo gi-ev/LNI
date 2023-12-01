@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- Fixed `There's no line here to end.` error for more than two `\affil` calls
+
+
 ## [1.8] - 2023-11-26
 
 ### Added
