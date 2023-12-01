@@ -370,8 +370,8 @@
          \protect\@nameuse{@sep\number\c@authors}%
          \protect\Authfont#2}%
    \endgroup
-   %\ifnum\value{authors}>2\relax
-   %\@namedef{@sep\number\c@authors}{\Authands}\fi
+   \ifnum\value{authors}>2\relax
+   \@namedef{@sep\number\c@authors}{\Authands}\fi
    \ifcsempty{@emailsandorcids\AB@note}%
    {\csgappto{@emailsandorcids\AB@note}{%
          \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
