@@ -102,6 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        fail-fast: false
         engine: [pdflatex, lualatex]
         lang: [en, de]
     defaults:
