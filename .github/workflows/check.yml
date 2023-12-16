@@ -54,7 +54,7 @@ jobs:
       - run: biber lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
-      - run: texlogsieve lni-paper-example-de.log      
+      - run: texlogsieve lni-paper-example-de.log
 
       - name: Upload build result
         uses: actions/upload-artifact@v3
@@ -97,6 +97,28 @@ jobs:
         with:
           name: CTAN-${{ matrix.engine }}
           path: '*.tar.gz'
+  tests:
+    name: Test MWEs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        engine: [pdflatex, lualatex]
+        lang: [en, de]
+    defaults:
+      run:
+        working-directory: ./tests
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          show-progress: ''
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+           package_file: Texlivefile
+      - run: ${{ matrix.engine }} mwe-biblatex--${{ matrix.lang }}
+      - run: biber mwe-biblatex--${{ matrix.lang }}
+      - run: ${{ matrix.engine }} mwe-biblatex--${{ matrix.lang }}
   changelog:
     name: CHANGELOG.md
     runs-on: ubuntu-latest
