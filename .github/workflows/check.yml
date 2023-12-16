@@ -117,9 +117,9 @@ jobs:
         uses: zauguin/install-texlive@v3
         with:
            package_file: Texlivefile
-      - run: ${{ matrix.engine }} mwe-biblatex--${{ matrix.lang }}
+      - run: ${{ matrix.engine }} mwe-biblatex-${{ matrix.lang }}
       - run: biber mwe-biblatex--${{ matrix.lang }}
-      - run: ${{ matrix.engine }} mwe-biblatex--${{ matrix.lang }}
+      - run: ${{ matrix.engine }} mwe-biblatex-${{ matrix.lang }}
   changelog:
     name: CHANGELOG.md
     runs-on: ubuntu-latest
