@@ -117,6 +117,8 @@ jobs:
         uses: zauguin/install-texlive@v3
         with:
            package_file: Texlivefile
+      - name: Make lni.cls available
+        run: cp ../lni.cls .
       - run: ${{ matrix.engine }} mwe-biblatex-${{ matrix.lang }}
       - run: biber mwe-biblatex--${{ matrix.lang }}
       - run: ${{ matrix.engine }} mwe-biblatex-${{ matrix.lang }}
