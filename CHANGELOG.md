@@ -6,9 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [1.8.1] - 2024-01-08
+
+### Changed
+- Option `defaultsups` now active for package `newtxtext`
+
 ### Fixed
 - Fixed `There's no line here to end.` error for more than two `\affil` calls
-
+- Fixed `\footnote`
 
 ## [1.8] - 2023-11-26
 
@@ -162,7 +167,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8...HEAD
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8.1...HEAD
+[1.8]: https://github.com/gi-ev/LNI/compare/v1.8...v1.8.1
 [1.8]: https://github.com/gi-ev/LNI/compare/v1.7...v1.8
 [1.7]: https://github.com/gi-ev/LNI/compare/v1.6...v1.7
 [1.6]: https://github.com/gi-ev/LNI/compare/v1.5...v1.6
