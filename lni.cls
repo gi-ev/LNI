@@ -125,7 +125,7 @@
          }%
    \else%
       \IfFileExists{newtxmath.sty}
-         {\RequirePackage{newtxmath}}%
+         {\RequirePackage[defaultsups]{newtxmath}}%
          {}%
       \RequirePackage[no-math]{fontspec}
       \IfFontExistsTF{texgyretermes-regular.otf}
