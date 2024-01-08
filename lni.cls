@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2023/11/26 v1.8 Official class for submissions to the ``Lecture Notes
+    [2024/01/08 v1.8.1 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -110,7 +110,7 @@
    \ifPDFTeX
       \IfFileExists{newtxtext.sty}
          {%
-            \RequirePackage{newtxtext}
+            \RequirePackage[defaultsups]{newtxtext}
             \RequirePackage{newtxmath}
             \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
             \@ifpackagelater{newtxtt}{2014/11/18}%
@@ -290,8 +290,47 @@
 \RequirePackage{enumitem}
 \RequirePackage[hang]{footmisc}
 \setlength{\footnotemargin}{1em}
-\def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
-
+\long\def\@makefntext#1{%
+   \def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
+   \ifFN@hangfoot
+      \bgroup
+      \setbox\@tempboxa\hbox{%
+         \ifdim\footnotemargin>0pt
+            \hb@xt@\footnotemargin{\@makefnmark\hss}%
+         \else
+            \@makefnmark
+         \fi
+      }%
+      \leftmargin\wd\@tempboxa
+      \rightmargin\z@
+      \linewidth \columnwidth
+      \advance \linewidth -\leftmargin
+      \parshape \@ne \leftmargin \linewidth
+      \@totalleftmargin \leftmargin
+      \footnotesize
+      \@setpar{{\@@par}}%
+      \leavevmode
+      \llap{\box\@tempboxa}%
+      \parskip\hangfootparskip\relax
+      \parindent\hangfootparindent\relax
+   \else
+      \parindent1em
+      \noindent
+      \ifdim\footnotemargin>\z@
+         \hb@xt@ \footnotemargin{\hss\@makefnmark}%
+      \else
+         \ifdim\footnotemargin=\z@
+            \llap{\@makefnmark}%
+         \else
+            \llap{\hb@xt@ -\footnotemargin{\@makefnmark\hss}}%
+         \fi
+      \fi
+   \fi
+   \footnotelayout#1%
+   \ifFN@hangfoot
+      \par\egroup
+   \fi
+}
 \lstset{%
    basicstyle=\ttfamily,%
    columns=fixed,%
@@ -332,7 +371,7 @@
 \renewcommand\Authsep{, }
 \renewcommand\Authands{\iflanguage{ngerman}{ und }{, and }}
 \renewcommand\Authand{\iflanguage{ngerman}{ und }{ and }}
-\renewcommand{\AB@authnote}[1]{$^{\mbox{\footnotesize #1}}$}
+\renewcommand{\AB@authnote}[1]{$^{\text{\mbox{\normalfont\footnotesize #1}}}$}
 \renewcommand\author[4][]{%
    \ifnewaffil\addtocounter{affil}{1}%
       \edef\AB@thenote{\arabic{affil}}%
@@ -554,13 +593,6 @@
   \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
-   %\newdimen\fnindent
-   %\fnindent0.18cm
-   %\long\def\@makefntext#1{%
-    %\parindent \fnindent%
-    %\leftskip \fnindent% Einrückung vor der footnotemark
-    %\noindent
-    %\llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
 \setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
@@ -717,7 +749,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2024 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
