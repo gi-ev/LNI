@@ -168,7 +168,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 First release of the revised files
 
 [Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8.1...HEAD
-[1.8]: https://github.com/gi-ev/LNI/compare/v1.8...v1.8.1
+[1.8.1]: https://github.com/gi-ev/LNI/compare/v1.8...v1.8.1
 [1.8]: https://github.com/gi-ev/LNI/compare/v1.7...v1.8
 [1.7]: https://github.com/gi-ev/LNI/compare/v1.6...v1.7
 [1.6]: https://github.com/gi-ev/LNI/compare/v1.5...v1.6
