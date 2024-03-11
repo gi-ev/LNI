@@ -5,7 +5,7 @@
 
 ## Quick start
 
-Download [`lni-author-template.tex`]([lni-author-template.tex](https://github.com/gi-ev/LNI/blob/main/lni-author-template.tex)) and edit it in your favorite LaTeX editor.
+Download [`lni-author-template.tex`](https://github.com/gi-ev/LNI/blob/main/lni-author-template.tex) and edit it in your favorite LaTeX editor.
 
 ## Improved usage
 
