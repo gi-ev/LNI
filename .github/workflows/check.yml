@@ -54,7 +54,7 @@ jobs:
       - run: biber lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
-      - run: texlogsieve lni-paper-example-de.log      
+      - run: texlogsieve lni-paper-example-de.log
 
       - name: Upload build result
         uses: actions/upload-artifact@v4
@@ -109,3 +109,11 @@ jobs:
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.7.2:bin
           scriptargs: "check CHANGELOG.md"
+  keepalive-job:
+    name: Keepalive
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gautamkrishnar/keepalive-workflow@v2
