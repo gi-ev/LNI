@@ -109,7 +109,7 @@ jobs:
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.7.2:bin
           scriptargs: "check CHANGELOG.md"
-  keepalive-job:
+  keepalive:
     name: Keepalive
     runs-on: ubuntu-latest
     permissions:
