@@ -18,7 +18,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          show-progress: ''
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
+        with:
+           package_file: Texlivefile
+           cache_version: ${{ github.event.inputs.cache_version }}
   build:
+    needs: [cache]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -34,6 +47,7 @@ jobs:
         with:
            package_file: Texlivefile
            cache_version: ${{ github.event.inputs.cache_version }}
+
       - name: Generate lni.cls, *.tex, ...
         run: |
           pdflatex lni.ins
@@ -52,9 +66,11 @@ jobs:
       - name: Generate mybibfile.bib
         run: touch mybibfile.bib
 
+      # lni-author-template
       - run: ${{ matrix.engine }} lni-author-template
       - run: texlogsieve lni-author-template.log
 
+      # lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
       - run: biber lni-paper-example-de
       - run: ${{ matrix.engine }} lni-paper-example-de
