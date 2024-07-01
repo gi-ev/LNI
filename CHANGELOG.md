@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## [1.9] - 2024-07-1
+### Added
+- Support for multiple affiliations
+
 ## [1.8.1] - 2024-01-08
 
 ### Changed
@@ -167,7 +171,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.8.1...HEAD
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.9...HEAD
+[1.9]: https://github.com/gi-ev/LNI/compare/v1.8.1...v1.9
 [1.8.1]: https://github.com/gi-ev/LNI/compare/v1.8...v1.8.1
 [1.8]: https://github.com/gi-ev/LNI/compare/v1.7...v1.8
 [1.7]: https://github.com/gi-ev/LNI/compare/v1.6...v1.7

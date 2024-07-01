@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2024/01/08 v1.8.1 Official class for submissions to the ``Lecture Notes
+    [2024/07/01 v1.9 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -371,53 +371,71 @@
 \renewcommand\Authsep{, }
 \renewcommand\Authands{\iflanguage{ngerman}{ und }{, and }}
 \renewcommand\Authand{\iflanguage{ngerman}{ und }{ and }}
-\renewcommand{\AB@authnote}[1]{$^{\text{\mbox{\normalfont\footnotesize #1}}}$}
+\NewDocumentCommand{\multiaffil}{ >{\SplitList{,}} m m m}{%
+   \gdef\@currEmail{#2}
+   \gdef\@currOrcid{#3}
+   \ProcessList{#1}{\@multiaffil}
+}
+
+\newcommand{\@multiaffil}[1]{%
+   \ifcsundef{@emailsandorcids#1}{\csgdef{@emailsandorcids#1}{}}{}%
+   \ifcsempty{@emailsandorcids#1}%
+   {\csgappto{@emailsandorcids#1}{%
+         \if\relax\@currEmail\relax\else\email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
+   {\csgappto{@emailsandorcids#1}{%
+         \if\relax\@currEmail\relax\else;\ \email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
+}
+
 \renewcommand\author[4][]{%
    \ifnewaffil\addtocounter{affil}{1}%
       \edef\AB@thenote{\arabic{affil}}%
    \fi%
    \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
-   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \setcounter{Maxaffil}{0}\fi
    \ifnum\value{authors}=0\def\@firstauthor{#2}\fi
    \ifnum\value{authors}>1\relax
-      \@namedef{@sep\number\c@authors}{\Authsep}\fi
+   \@namedef{@sep\number\c@authors}{\Authsep}\fi
    \addtocounter{authors}{1}%
    \begingroup
-      \let\protect\@unexpandable@protect \let\and\AB@pand
-      \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
-      \@temptokena=\expandafter{\AB@authors}%
-      \@temptokenb=\expandafter{\AB@authors}%
-      {\def\\{\protect\\[\@affilsep]\protect\Affilfont
-            \protect\AB@resetsep}%
-         \xdef\AB@author{\AB@blk@and#2}%
-         \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
-         \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
-         \else
-         \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
-         \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
-         \gdef\AB@as{\Authsep}%
-         \fi
-         \gdef\AB@au@str{#2}}%
-      \@temptokena=\expandafter{\AB@authlist}%
-      \@temptokenb=\expandafter{\@authlisthead}%
-      \let\\=\authorcr
-      \xdef\AB@authlist{\the\@temptokena
-         \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
-      \xdef\@authlisthead{\the\@temptokenb
-         \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2}%
+   \let\protect\@unexpandable@protect \let\and\AB@pand
+   \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
+   \@temptokena=\expandafter{\AB@authors}%
+   \@temptokenb=\expandafter{\AB@authors}%
+   {\def\\{\protect\\[\@affilsep]\protect\Affilfont
+         \protect\AB@resetsep}%
+      \xdef\AB@author{\AB@blk@and#2}%
+      \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
+      \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
+      \else
+      \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
+      \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
+      \gdef\AB@as{\Authsep}%
+      \fi
+      \gdef\AB@au@str{#2}}%
+   \@temptokena=\expandafter{\AB@authlist}%
+   \@temptokenb=\expandafter{\@authlisthead}%
+   \let\\=\authorcr
+   \xdef\AB@authlist{\the\@temptokena
+      \protect\@nameuse{@sep\number\c@authors}%
+      \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
+   \xdef\@authlisthead{\the\@temptokenb
+      \protect\@nameuse{@sep\number\c@authors}%
+      \protect\Authfont#2}%
    \endgroup
    \ifnum\value{authors}>2\relax
    \@namedef{@sep\number\c@authors}{\Authands}\fi
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
+   \sbox\z@{\@tempcnta=0#1\relax}%
+   \expandafter\ifdim\wd\z@>\z@\relax
+   \multiaffil{#1}{#3}{#4}
+   \else
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \ifcsempty{@emailsandorcids\AB@note}%
    {\csgappto{@emailsandorcids\AB@note}{%
-         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
-   }%
+         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
    {\csgappto{@emailsandorcids\AB@note}{%
          \if\relax#3\relax\else;\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
-
+   \fi%
    \newaffilfalse
 }
 \renewcommand\@author{%
