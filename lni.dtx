@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2024/07/01 v1.10BETA Official class for submissions to the ``Lecture Notes
+    [2024/07/11 v1.10BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -1046,7 +1046,7 @@ This work consists of the file  lni.dtx
 \RequirePackage[hang]{footmisc}
 \setlength{\footnotemargin}{1em}
 \long\def\@makefntext#1{%
-   \def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
+   \def\@makefnmark{\rlap{\normalfont\textsuperscript{\@thefnmark}}}%
    \ifFN@hangfoot
       \bgroup
       \setbox\@tempboxa\hbox{%
@@ -1263,7 +1263,7 @@ This work consists of the file  lni.dtx
 % \begin{macro}{\orcid}
 %    \begin{macrocode}
 \newcommand*{\orcid}[1]{%
-   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{\ttfamily https://orcid.org/#1}}%
+   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{https://orcid.org/#1}}%
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\lnidoi}
@@ -1549,6 +1549,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 %    \begin{macrocode}
 \RequirePackage{url}
+\urlstyle{same}
 %    \end{macrocode}
 % improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 %    \begin{macrocode}

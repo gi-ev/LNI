@@ -291,7 +291,7 @@
 \RequirePackage[hang]{footmisc}
 \setlength{\footnotemargin}{1em}
 \long\def\@makefntext#1{%
-   \def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
+   \def\@makefnmark{\rlap{\normalfont\textsuperscript{\@thefnmark}}}%
    \ifFN@hangfoot
       \bgroup
       \setbox\@tempboxa\hbox{%
@@ -471,7 +471,7 @@
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else#1\fi}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \newcommand*{\orcid}[1]{%
-   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{\ttfamily https://orcid.org/#1}}%
+   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{https://orcid.org/#1}}%
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}{%
       \begingroup\catcode`\_12 \lnidoi@i}
@@ -678,6 +678,7 @@
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
 \RequirePackage{url}
+\urlstyle{same}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \AddToHook{env/document/begin}[lni/loadhyperref]{%

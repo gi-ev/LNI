@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Changed
+- Footnotes are set as superscripts in the footer
+- URLs are set using the text font instead of a typewriter font
+
 ## [1.9] - 2024-07-1
 ### Added
 - Support for multiple affiliations
