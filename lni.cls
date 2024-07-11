@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2024/07/01 v1.9 Official class for submissions to the ``Lecture Notes
+    [2024/07/01 v1.10BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -471,7 +471,7 @@
    \fancyhead[LE]{\hspace{0.05cm}\oldsmall\thepage\hspace{5pt}\ifanonymous\iflnienglish Anonymized for review\else Anonymisiert für Review\fi\else#1\fi}}
 \newcommand*{\email}[1]{\href{mailto:#1}{\urlstyle{same}\protect\nolinkurl{#1}}}
 \newcommand*{\orcid}[1]{%
-   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{https://orcid.org/#1}}%
+   \unskip~\orcidlink{#1}\,\href{https://orcid.org/#1}{\ttfamily https://orcid.org/#1}}%
 \newcommand{\@lnidoi}{}
 \newcommand{\lnidoi}{%
       \begingroup\catcode`\_12 \lnidoi@i}
