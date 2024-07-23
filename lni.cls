@@ -380,9 +380,9 @@
 \newcommand{\@multiaffil}[1]{%
    \ifcsundef{@emailsandorcids#1}{\csgdef{@emailsandorcids#1}{}}{}%
    \ifcsempty{@emailsandorcids#1}%
-   {\csgappto{@emailsandorcids#1}{%
+   {\protected@csxappto{@emailsandorcids#1}{%
          \if\relax\@currEmail\relax\else\email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
-   {\csgappto{@emailsandorcids#1}{%
+   {\protected@csxappto{@emailsandorcids#1}{%
          \if\relax\@currEmail\relax\else;\ \email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
 }
 
