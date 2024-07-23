@@ -4,7 +4,7 @@
 ----------------------------------------------------------------------------
 lni -- A class for submissions to the ``Lecture Notes in Informatics''
 (c) 2016-2024 Gesellschaft für Informatik (GI)
-Version:    1.9
+Version:    1.10
 Maintainer: Martin Sievers
 Email:      martin.sievers@schoenerpublizieren.de
 License:    Released under the LaTeX Project Public License v1.3c or later
