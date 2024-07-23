@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2024/07/01 v1.9 Official class for submissions to the ``Lecture Notes
+    [2024/07/01 v1.10BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -291,7 +291,7 @@
 \RequirePackage[hang]{footmisc}
 \setlength{\footnotemargin}{1em}
 \long\def\@makefntext#1{%
-   \def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
+   \def\@makefnmark{\rlap{\normalfont\textsuperscript{\@thefnmark}}}%
    \ifFN@hangfoot
       \bgroup
       \setbox\@tempboxa\hbox{%
@@ -380,9 +380,9 @@
 \newcommand{\@multiaffil}[1]{%
    \ifcsundef{@emailsandorcids#1}{\csgdef{@emailsandorcids#1}{}}{}%
    \ifcsempty{@emailsandorcids#1}%
-   {\csgappto{@emailsandorcids#1}{%
+   {\protected@csxappto{@emailsandorcids#1}{%
          \if\relax\@currEmail\relax\else\email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
-   {\csgappto{@emailsandorcids#1}{%
+   {\protected@csxappto{@emailsandorcids#1}{%
          \if\relax\@currEmail\relax\else;\ \email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
 }
 
@@ -678,6 +678,7 @@
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
 \RequirePackage{url}
+\urlstyle{same}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \AddToHook{env/document/begin}[lni/loadhyperref]{%
