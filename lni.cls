@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2024/07/01 v1.10BETA Official class for submissions to the ``Lecture Notes
+    [2024/07/11 v1.10BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -49,9 +49,6 @@
 \newif\ifusecleveref
 \useclevereftrue
 \DeclareOption{nocleveref}{\useclevereffalse}
-\newif\ifusebiblatex
-\usebiblatexfalse
-\DeclareOption{biblatex}{\usebiblatextrue}
 \newif\ifcrop
 \cropfalse
 \DeclareOption{crop}{\croptrue}
@@ -260,13 +257,12 @@
 }
 \renewcommand\Large{\@setfontsize\Large{14}{17}}
 \RequirePackage[autostyle]{csquotes}
-\ifusebiblatex
-  \RequirePackage[%
-    backend=biber,% UTF-8 support
-    date=year,
-    style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
-    natbib=true   % Required for \Citet
-  ]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
+\RequirePackage[%
+   backend=biber,% UTF-8 support
+   date=year,
+   style=LNI,    % The GI style - see https://www.ctan.org/pkg/biblatex-lni
+   natbib=true   % Required for \Citet
+]{biblatex}[2016-09-15]% at least version 3.6 of biblatex is required.
   % Enable hyperlinked authors when using \citeauthor
   % Source: http://tex.stackexchange.com/a/75916/9075
   \DeclareCiteCommand{\citeauthor}%
@@ -279,7 +275,6 @@
      \printtext[bibhyperref]{\printnames{labelname}}}%
     {\multicitedelim}%
     {\usebibmacro{postnote}}%
-\fi%
 \RequirePackage{amsmath}
 \RequirePackage{etoolbox}
 \RequirePackage{graphicx}
@@ -714,14 +709,6 @@
    }%
 \fi%
 \def\and{\texorpdfstring{\unskip\hspace{-0.42em},\hspace{.6em}}{, }}%
-\ifusebiblatex
-\else
-   \iflnienglish
-      \bibliographystyle{lni}%
-   \else
-      \bibliographystyle{lnig}%
-   \fi%
-\fi%
 \newcommand*{\lni@abbrv}[1]{#1\@\xspace}
 \newcommand*{\lniabbrv}[2]{\gdef#1{\lni@abbrv{#2}}}
 \newcommand*{\lni@initialism}[1]{\textsc{#1}\xspace}
@@ -789,7 +776,5 @@
 %%                                 lni-author-template.tex
 %%                                 lni-paper-example-de.bib
 %%                                 lni-paper-example-de.tex
-%%                                 lni.bst
-%%                                 lnig.bst
 %%
 %% End of file `lni.cls'.
