@@ -8,7 +8,7 @@ Version:    1.10
 Maintainer: Martin Sievers
 Email:      martin.sievers@schoenerpublizieren.de
 License:    Released under the LaTeX Project Public License v1.3c or later
-See:        http://www.latex-project.org/lppl.txt
+See:        https://www.latex-project.org/lppl/
 ----------------------------------------------------------------------------
 ```
 
