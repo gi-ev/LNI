@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
+### Fixed
+- Left margin for nested lists (#175)
 
 ## [1.10] - 2024-07-23
 ### Changed

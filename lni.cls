@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2024/07/23 v1.10 Official class for submissions to the ``Lecture Notes
+    [2024/09/04 v1.11BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -613,7 +613,7 @@
   \kern2.6\p@}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt,leftmargin=*}
 \setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
 \setlist[itemize,1]{label=$\bullet$}
 \setlist[itemize,2]{topsep=9pt}
