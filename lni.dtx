@@ -60,7 +60,7 @@ License:| Released under the LaTeX Project Public License v1.3c or later
 
 \postamble
 
-Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
+Copyright (C) 2016-2024 by Gesellschaft für Informatik e.V. (GI)
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License (LPPL), either
@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2023/11/26 v1.8 Official class for submissions to the ``Lecture Notes
+    [2024/09/04 v1.11BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -286,6 +286,10 @@ This work consists of the file  lni.dtx
 % \changes{v1.8}{2022/06/10}{Fix output error in bst files (#97)}
 % \changes{v1.8}{2022/11/25}{Make class compatable with latest publisher requirements (#121)}
 % \changes{v1.8}{2022/11/25}{Make usage of `hyperref` mandatory (#131)}
+% \changes{v1.9}{2024/07/01}{Support multiple affiliations (#158)}
+% \changes{v1.10}{2024/07/01}{Change font for URLs to text font and change footnote numbers to superscript}
+% \changes{v1.10}{2024/07/23}{Fix support multiple affiliations (#173)}
+% \changes{v1.11BETA}{2024/09/06}{Fix left margin for lists in theorems (#175)}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -425,8 +429,8 @@ This work consists of the file  lni.dtx
 % \DescribeOption{anonymous (new in v1.8)}To easily anonymize a paper for
 % blind review, use this option. Then all author information will be replaced
 % with a placeholder. Additionally, there is a new macro \cs{anon\marg{hide in review}}
-% which will be replaced with ``ANONIMIZED'' if the option is set.
-% Also, \cs{anon\marg[for review]{for final version}} can be used that outputs ``for review''
+% which will be replaced with ``ANONYMIZED'' if the option is set.
+% Also, \cs{anon\oarg{for review}\marg{for final version}} can be used that outputs ``for review''
 % if the option is set, and ``for final version'' otherwise.
 %
 % \newpage
@@ -489,12 +493,13 @@ This work consists of the file  lni.dtx
 % \cs{affil\oarg{number}\marg{information}} where you can use
 % \texttt{\textbackslash\textbackslash} to split the address.
 % \begin{examplecode}[label={lst:author}]
-% \author[1]{Firstname1 Lastname1}{firstname1.lastname1@affiliation1.org}{0000-0000-0000-0000}
+% \author[1,2]{Firstname1 Lastname1}{firstname1.lastname1@affiliation1.org}{0000-0000-0000-0000}
 % \author[2]{Firstname2 Lastname2}{firstname2.lastname2@affiliation2.org}{0000-0000-0000-0000}
-% \author[1]{Firstname3 Lastname3}{firstname3.lastname3@affiliation1.org}{0000-0000-0000-0000}
+% \author[3]{Firstname3 Lastname3}{firstname3.lastname3@affiliation1.org}{0000-0000-0000-0000}
 % \author[1]{Firstname4 Lastname4}{firstname4.lastname4@affiliation1.org}{0000-0000-0000-0000}%
-% \affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
-% \affil[2]{University\\Department\\Address\\Country}
+% \affil[1]{Universität 1\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
+% \affil[2]{University 2 \\Department\\Address\\Country}
+% \affil[3]{University 3\\Department\\Address\\Country}
 % \end{examplecode}
 %
 % Leave the third and/or fourth argument empty if there is no email address and/or ORCID iD.
@@ -826,7 +831,7 @@ This work consists of the file  lni.dtx
    \ifPDFTeX
       \IfFileExists{newtxtext.sty}
          {%
-            \RequirePackage{newtxtext}
+            \RequirePackage[defaultsups]{newtxtext}
             \RequirePackage{newtxmath}
             \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
 %    \end{macrocode}
@@ -1043,11 +1048,47 @@ This work consists of the file  lni.dtx
 \RequirePackage{enumitem}
 \RequirePackage[hang]{footmisc}
 \setlength{\footnotemargin}{1em}
-\def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
-
-%    \end{macrocode}
-%    \begin{macrocode}
-%\def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
+\long\def\@makefntext#1{%
+   \def\@makefnmark{\rlap{\normalfont\textsuperscript{\@thefnmark}}}%
+   \ifFN@hangfoot
+      \bgroup
+      \setbox\@tempboxa\hbox{%
+         \ifdim\footnotemargin>0pt
+            \hb@xt@\footnotemargin{\@makefnmark\hss}%
+         \else
+            \@makefnmark
+         \fi
+      }%
+      \leftmargin\wd\@tempboxa
+      \rightmargin\z@
+      \linewidth \columnwidth
+      \advance \linewidth -\leftmargin
+      \parshape \@ne \leftmargin \linewidth
+      \@totalleftmargin \leftmargin
+      \footnotesize
+      \@setpar{{\@@par}}%
+      \leavevmode
+      \llap{\box\@tempboxa}%
+      \parskip\hangfootparskip\relax
+      \parindent\hangfootparindent\relax
+   \else
+      \parindent1em
+      \noindent
+      \ifdim\footnotemargin>\z@
+         \hb@xt@ \footnotemargin{\hss\@makefnmark}%
+      \else
+         \ifdim\footnotemargin=\z@
+            \llap{\@makefnmark}%
+         \else
+            \llap{\hb@xt@ -\footnotemargin{\@makefnmark\hss}}%
+         \fi
+      \fi
+   \fi
+   \footnotelayout#1%
+   \ifFN@hangfoot
+      \par\egroup
+   \fi
+}
 %    \end{macrocode}
 % We fix the basewidth for lstlistings:
 % The default setting of listings with ``fixed columns'' has a space 0.6em
@@ -1113,56 +1154,73 @@ This work consists of the file  lni.dtx
 \renewcommand\Authsep{, }
 \renewcommand\Authands{\iflanguage{ngerman}{ und }{, and }}
 \renewcommand\Authand{\iflanguage{ngerman}{ und }{ and }}
-\renewcommand{\AB@authnote}[1]{$^{\mbox{\footnotesize #1}}$}
+\NewDocumentCommand{\multiaffil}{ >{\SplitList{,}} m m m}{%   
+   \gdef\@currEmail{#2}
+   \gdef\@currOrcid{#3}
+   \ProcessList{#1}{\@multiaffil}
+}
+
+\newcommand{\@multiaffil}[1]{%
+   \ifcsundef{@emailsandorcids#1}{\csgdef{@emailsandorcids#1}{}}{}%
+   \ifcsempty{@emailsandorcids#1}%
+   {\protected@csxappto{@emailsandorcids#1}{%
+         \if\relax\@currEmail\relax\else\email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
+   {\protected@csxappto{@emailsandorcids#1}{%
+         \if\relax\@currEmail\relax\else;\ \email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
+}
+
 \renewcommand\author[4][]{%
    \ifnewaffil\addtocounter{affil}{1}%
       \edef\AB@thenote{\arabic{affil}}%
    \fi%
    \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
-   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \setcounter{Maxaffil}{0}\fi
    \ifnum\value{authors}=0\def\@firstauthor{#2}\fi
    \ifnum\value{authors}>1\relax
-      \@namedef{@sep\number\c@authors}{\Authsep}\fi
+   \@namedef{@sep\number\c@authors}{\Authsep}\fi
    \addtocounter{authors}{1}%
    \begingroup
-      \let\protect\@unexpandable@protect \let\and\AB@pand
-      \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
-      \@temptokena=\expandafter{\AB@authors}%
-      \@temptokenb=\expandafter{\AB@authors}%
-      {\def\\{\protect\\[\@affilsep]\protect\Affilfont
-            \protect\AB@resetsep}%
-         \xdef\AB@author{\AB@blk@and#2}%
-         \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
-         \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
-         \else
-         \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
-         \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
-         \gdef\AB@as{\Authsep}%
-         \fi
-         \gdef\AB@au@str{#2}}%
-      \@temptokena=\expandafter{\AB@authlist}%
-      \@temptokenb=\expandafter{\@authlisthead}%
-      \let\\=\authorcr
-      \xdef\AB@authlist{\the\@temptokena
-         \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
-      \xdef\@authlisthead{\the\@temptokenb
-         \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2}%
+   \let\protect\@unexpandable@protect \let\and\AB@pand
+   \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
+   \@temptokena=\expandafter{\AB@authors}%
+   \@temptokenb=\expandafter{\AB@authors}%
+   {\def\\{\protect\\[\@affilsep]\protect\Affilfont
+         \protect\AB@resetsep}%
+      \xdef\AB@author{\AB@blk@and#2}%
+      \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
+      \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
+      \else
+      \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
+      \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
+      \gdef\AB@as{\Authsep}%
+      \fi
+      \gdef\AB@au@str{#2}}%
+   \@temptokena=\expandafter{\AB@authlist}%
+   \@temptokenb=\expandafter{\@authlisthead}%
+   \let\\=\authorcr
+   \xdef\AB@authlist{\the\@temptokena
+      \protect\@nameuse{@sep\number\c@authors}%
+      \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
+   \xdef\@authlisthead{\the\@temptokenb
+      \protect\@nameuse{@sep\number\c@authors}%
+      \protect\Authfont#2}%
    \endgroup
    \ifnum\value{authors}>2\relax
    \@namedef{@sep\number\c@authors}{\Authands}\fi
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
+   \sbox\z@{\@tempcnta=0#1\relax}%
+   \expandafter\ifdim\wd\z@>\z@\relax
+   \multiaffil{#1}{#3}{#4}
+   \else
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \ifcsempty{@emailsandorcids\AB@note}%
    {\csgappto{@emailsandorcids\AB@note}{%
-         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
-   }%
+         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
    {\csgappto{@emailsandorcids\AB@note}{%
          \if\relax#3\relax\else;\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
-
+   \fi%
    \newaffilfalse
 }
-
 \renewcommand\@author{%
    \ifx\AB@affillist\AB@empty\AB@author\else
       \ifnum\value{affil}>\value{Maxaffil}\def\rlap##1{##1}%
@@ -1171,7 +1229,6 @@ This work consists of the file  lni.dtx
       \fi%
    \fi%
 }
-
 \renewcommand\affil[2][]{%
    \newaffiltrue\let\AB@blk@and\AB@pand
    \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
@@ -1186,12 +1243,11 @@ This work consists of the file  lni.dtx
    \gdef\AB@las{}\gdef\AB@au@str{}%
    {\def\\{, \ignorespaces}\xdef\AB@temp{#2}}%
    \@temptokena=\expandafter{\AB@affillist}%
-   \xdef\AB@affillist{\the\@temptokena \AB@affilsep
+   \xdef\AB@affillist{\the\@temptokena 
       \footnotetext[\AB@note]{%
          \raggedright\AB@temp\ifcsempty{@emailsandorcids\AB@note}{}{, \csuse{@emailsandorcids\AB@note}}}%
    }
    \endgroup
-   \let\AB@affilsep\AB@affilsepx
    \setcounter{footnote}{#1}
 }
 %    \end{macrocode}
@@ -1392,13 +1448,6 @@ This work consists of the file  lni.dtx
   \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
-   %\newdimen\fnindent
-   %\fnindent0.18cm
-   %\long\def\@makefntext#1{%
-    %\parindent \fnindent%
-    %\leftskip \fnindent% Einrückung vor der footnotemark
-    %\noindent
-    %\llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 %    \end{macrocode}
 %    \begin{macrocode}
 \setlength{\parindent}{0pt}
@@ -1406,7 +1455,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Set symbols and spacings for itemize
 %    \begin{macrocode}
-\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt,leftmargin=*}
 \setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
 \setlist[itemize,1]{label=$\bullet$}
 \setlist[itemize,2]{topsep=9pt}
@@ -1503,6 +1552,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 %    \begin{macrocode}
 \RequirePackage{url}
+\urlstyle{same}
 %    \end{macrocode}
 % improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 %    \begin{macrocode}
@@ -3045,12 +3095,13 @@ EXECUTE {end.bib}
 \title[Ein Kurztitel]{Ein sehr langer Titel über mehrere Zeilen mit sehr vielen
 Worten und noch mehr Buchstaben}
 %% \subtitle{Untertitel / Subtitle} % if needed
-\author[1]{Firstname1 Lastname1}{firstname1.lastname1@affiliation1.org}{0000-0000-0000-0000}
-\author[2]{Firstname2 Lastname2}{firstname2.lastname2@affiliation2.org}{0000-0000-0000-0000}
-\author[1]{Firstname3 Lastname3}{firstname3.lastname3@affiliation1.org}{0000-0000-0000-0000}
-\author[1]{Firstname4 Lastname4}{firstname4.lastname4@affiliation1.org}{0000-0000-0000-0000}%
-\affil[1]{Universität\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
-\affil[2]{University\\Department\\Address\\Country}
+ \author[1,2]{Firstname1 Lastname1}{firstname1.lastname1@affiliation1.org}{0000-0000-0000-0000}
+ \author[2]{Firstname2 Lastname2}{firstname2.lastname2@affiliation2.org}{0000-0000-0000-0000}
+ \author[3]{Firstname3 Lastname3}{firstname3.lastname3@affiliation1.org}{0000-0000-0000-0000}
+ \author[1]{Firstname4 Lastname4}{firstname4.lastname4@affiliation1.org}{0000-0000-0000-0000}%
+ \affil[1]{Universität 1\\Abteilung\\Straße\\Postleitzahl Ort\\Land}
+ \affil[2]{University 2 \\Department\\Address\\Country}
+ \affil[3]{University 3\\Department\\Address\\Country}
 \maketitle
 
 \begin{abstract}

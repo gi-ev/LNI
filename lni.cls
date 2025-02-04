@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2023/11/26 v1.8 Official class for submissions to the ``Lecture Notes
+    [2024/09/04 v1.11BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -110,7 +110,7 @@
    \ifPDFTeX
       \IfFileExists{newtxtext.sty}
          {%
-            \RequirePackage{newtxtext}
+            \RequirePackage[defaultsups]{newtxtext}
             \RequirePackage{newtxmath}
             \RequirePackage[zerostyle=b,scaled=.9]{newtxtt}
             \@ifpackagelater{newtxtt}{2014/11/18}%
@@ -290,8 +290,47 @@
 \RequirePackage{enumitem}
 \RequirePackage[hang]{footmisc}
 \setlength{\footnotemargin}{1em}
-\def\@makefnmark{\rlap{\normalfont\@thefnmark}}%
-
+\long\def\@makefntext#1{%
+   \def\@makefnmark{\rlap{\normalfont\textsuperscript{\@thefnmark}}}%
+   \ifFN@hangfoot
+      \bgroup
+      \setbox\@tempboxa\hbox{%
+         \ifdim\footnotemargin>0pt
+            \hb@xt@\footnotemargin{\@makefnmark\hss}%
+         \else
+            \@makefnmark
+         \fi
+      }%
+      \leftmargin\wd\@tempboxa
+      \rightmargin\z@
+      \linewidth \columnwidth
+      \advance \linewidth -\leftmargin
+      \parshape \@ne \leftmargin \linewidth
+      \@totalleftmargin \leftmargin
+      \footnotesize
+      \@setpar{{\@@par}}%
+      \leavevmode
+      \llap{\box\@tempboxa}%
+      \parskip\hangfootparskip\relax
+      \parindent\hangfootparindent\relax
+   \else
+      \parindent1em
+      \noindent
+      \ifdim\footnotemargin>\z@
+         \hb@xt@ \footnotemargin{\hss\@makefnmark}%
+      \else
+         \ifdim\footnotemargin=\z@
+            \llap{\@makefnmark}%
+         \else
+            \llap{\hb@xt@ -\footnotemargin{\@makefnmark\hss}}%
+         \fi
+      \fi
+   \fi
+   \footnotelayout#1%
+   \ifFN@hangfoot
+      \par\egroup
+   \fi
+}
 \lstset{%
    basicstyle=\ttfamily,%
    columns=fixed,%
@@ -332,56 +371,73 @@
 \renewcommand\Authsep{, }
 \renewcommand\Authands{\iflanguage{ngerman}{ und }{, and }}
 \renewcommand\Authand{\iflanguage{ngerman}{ und }{ and }}
-\renewcommand{\AB@authnote}[1]{$^{\mbox{\footnotesize #1}}$}
+\NewDocumentCommand{\multiaffil}{ >{\SplitList{,}} m m m}{%
+   \gdef\@currEmail{#2}
+   \gdef\@currOrcid{#3}
+   \ProcessList{#1}{\@multiaffil}
+}
+
+\newcommand{\@multiaffil}[1]{%
+   \ifcsundef{@emailsandorcids#1}{\csgdef{@emailsandorcids#1}{}}{}%
+   \ifcsempty{@emailsandorcids#1}%
+   {\protected@csxappto{@emailsandorcids#1}{%
+         \if\relax\@currEmail\relax\else\email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
+   {\protected@csxappto{@emailsandorcids#1}{%
+         \if\relax\@currEmail\relax\else;\ \email{\@currEmail}\fi\if\relax\@currOrcid\relax\else,\ \orcid{\@currOrcid}\fi}}%
+}
+
 \renewcommand\author[4][]{%
    \ifnewaffil\addtocounter{affil}{1}%
       \edef\AB@thenote{\arabic{affil}}%
    \fi%
    \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
-   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \setcounter{Maxaffil}{0}\fi
    \ifnum\value{authors}=0\def\@firstauthor{#2}\fi
    \ifnum\value{authors}>1\relax
-      \@namedef{@sep\number\c@authors}{\Authsep}\fi
+   \@namedef{@sep\number\c@authors}{\Authsep}\fi
    \addtocounter{authors}{1}%
    \begingroup
-      \let\protect\@unexpandable@protect \let\and\AB@pand
-      \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
-      \@temptokena=\expandafter{\AB@authors}%
-      \@temptokenb=\expandafter{\AB@authors}%
-      {\def\\{\protect\\[\@affilsep]\protect\Affilfont
-            \protect\AB@resetsep}%
-         \xdef\AB@author{\AB@blk@and#2}%
-         \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
-         \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
-         \else
-         \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
-         \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
-         \gdef\AB@as{\Authsep}%
-         \fi
-         \gdef\AB@au@str{#2}}%
-      \@temptokena=\expandafter{\AB@authlist}%
-      \@temptokenb=\expandafter{\@authlisthead}%
-      \let\\=\authorcr
-      \xdef\AB@authlist{\the\@temptokena
-         \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
-      \xdef\@authlisthead{\the\@temptokenb
-         \protect\@nameuse{@sep\number\c@authors}%
-         \protect\Authfont#2}%
+   \let\protect\@unexpandable@protect \let\and\AB@pand
+   \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
+   \@temptokena=\expandafter{\AB@authors}%
+   \@temptokenb=\expandafter{\AB@authors}%
+   {\def\\{\protect\\[\@affilsep]\protect\Affilfont
+         \protect\AB@resetsep}%
+      \xdef\AB@author{\AB@blk@and#2}%
+      \ifnewaffil\gdef\AB@las{}\gdef\AB@lasx{\protect\Authand}\gdef\AB@as{}%
+      \xdef\AB@authors{\the\@temptokena\AB@blk@and}%
+      \else
+      \xdef\AB@authors{\the\@temptokena\AB@as\AB@au@str}%
+      \global\let\AB@las\AB@lasx\gdef\AB@lasx{\protect\Authands}%
+      \gdef\AB@as{\Authsep}%
+      \fi
+      \gdef\AB@au@str{#2}}%
+   \@temptokena=\expandafter{\AB@authlist}%
+   \@temptokenb=\expandafter{\@authlisthead}%
+   \let\\=\authorcr
+   \xdef\AB@authlist{\the\@temptokena
+      \protect\@nameuse{@sep\number\c@authors}%
+      \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
+   \xdef\@authlisthead{\the\@temptokenb
+      \protect\@nameuse{@sep\number\c@authors}%
+      \protect\Authfont#2}%
    \endgroup
    \ifnum\value{authors}>2\relax
    \@namedef{@sep\number\c@authors}{\Authands}\fi
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
+   \sbox\z@{\@tempcnta=0#1\relax}%
+   \expandafter\ifdim\wd\z@>\z@\relax
+   \multiaffil{#1}{#3}{#4}
+   \else
+   \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \ifcsempty{@emailsandorcids\AB@note}%
    {\csgappto{@emailsandorcids\AB@note}{%
-         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}%
-   }%
+         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
    {\csgappto{@emailsandorcids\AB@note}{%
          \if\relax#3\relax\else;\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
-
+   \fi%
    \newaffilfalse
 }
-
 \renewcommand\@author{%
    \ifx\AB@affillist\AB@empty\AB@author\else
       \ifnum\value{affil}>\value{Maxaffil}\def\rlap##1{##1}%
@@ -390,7 +446,6 @@
       \fi%
    \fi%
 }
-
 \renewcommand\affil[2][]{%
    \newaffiltrue\let\AB@blk@and\AB@pand
    \if\relax#1\relax\def\AB@note{\AB@thenote}\else\def\AB@note{#1}%
@@ -405,12 +460,11 @@
    \gdef\AB@las{}\gdef\AB@au@str{}%
    {\def\\{, \ignorespaces}\xdef\AB@temp{#2}}%
    \@temptokena=\expandafter{\AB@affillist}%
-   \xdef\AB@affillist{\the\@temptokena \AB@affilsep
+   \xdef\AB@affillist{\the\@temptokena
       \footnotetext[\AB@note]{%
          \raggedright\AB@temp\ifcsempty{@emailsandorcids\AB@note}{}{, \csuse{@emailsandorcids\AB@note}}}%
    }
    \endgroup
-   \let\AB@affilsep\AB@affilsepx
    \setcounter{footnote}{#1}
 }
 \newcommand{\authorrunning}[1]{%
@@ -557,16 +611,9 @@
   \vfill\kern-3\p@
   \hrule\@width 5cm
   \kern2.6\p@}
-   %\newdimen\fnindent
-   %\fnindent0.18cm
-   %\long\def\@makefntext#1{%
-    %\parindent \fnindent%
-    %\leftskip \fnindent% Einrückung vor der footnotemark
-    %\noindent
-    %\llap{\hb@xt@0.10cm{\hss\@makefnmark\ }}\ignorespaces#1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt,leftmargin=*}
 \setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
 \setlist[itemize,1]{label=$\bullet$}
 \setlist[itemize,2]{topsep=9pt}
@@ -631,6 +678,7 @@
    \renewcommand{\headrulewidth}{0.4pt} %Linie unter Kopfzeile
 \fi%
 \RequirePackage{url}
+\urlstyle{same}
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \AddToHook{env/document/begin}[lni/loadhyperref]{%
@@ -720,7 +768,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %% 
-%% Copyright (C) 2016-2023 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2024 by Gesellschaft für Informatik e.V. (GI)
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
