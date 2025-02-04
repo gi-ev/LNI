@@ -29,17 +29,17 @@ The easiest way is to add `biblatex` as class option - or to directly start at `
 
 ## Links
 
-The following links are based on the current development state.
+- Documentation: [`lni.pdf`](https://gi-ev.github.io/LNI/lni.pdf). It includes a short description how to use the template and also provides troubleshooting hints.
+- Changes: [`CHANGELOG.md`](https://github.com/gi-ev/LNI/blob/main/CHANGELOG.md#changelog) for a version history.
+- Stable versions: Always uploaded to CTAN and available at <https://www.ctan.org/pkg/lni>.
+- Developer repository: <https://github.com/gi-ev/LNI>
+
+The following links are based on the current development state:
 
 - Longer German paper example: [`lni-paper-example-de.tex`](https://github.com/gi-ev/LNI/blob/main/lni-paper-example-de.tex).
   You will also need [`lni-paper-example-de.bib`](https://github.com/gi-ev/LNI/blob/main/lni-paper-example-de.bib).
   The PDF is available at [`lni-paper-example-de.pdf`](https://gi-ev.github.io/LNI/lni-paper-example-de.pdf).
 - Rendered `lni-author-template.tex`: [`lni-author-template.pdf`](https://gi-ev.github.io/LNI/lni-author-template.pdf).
-- Documentation: [`lni.pdf`](https://gi-ev.github.io/LNI/lni.pdf). It includes a short description how to use the template and also provides troubleshooting hints.
-- Changes: [`CHANGELOG.md`](https://github.com/gi-ev/LNI/blob/main/CHANGELOG.md#changelog) for a version history.
-- Stable versions: Always uploaded to CTAN and available at <https://www.ctan.org/pkg/lni>.
-- Developer repository: <https://github.com/gi-ev/LNI>
-- Version history: [`CHANGELOG.md`](https://github.com/gi-ev/LNI/blob/main/CHANGELOG.md)
 
 ## Note
 
