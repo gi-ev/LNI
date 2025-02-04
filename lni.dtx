@@ -134,7 +134,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2024/07/23 v1.10 Official class for submissions to the ``Lecture Notes
+    [2024/09/04 v1.11BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -289,6 +289,7 @@ This work consists of the file  lni.dtx
 % \changes{v1.9}{2024/07/01}{Support multiple affiliations (#158)}
 % \changes{v1.10}{2024/07/01}{Change font for URLs to text font and change footnote numbers to superscript}
 % \changes{v1.10}{2024/07/23}{Fix support multiple affiliations (#173)}
+% \changes{v1.11BETA}{2024/09/06}{Fix left margin for lists in theorems (#175)}
 %
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
@@ -1454,7 +1455,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Set symbols and spacings for itemize
 %    \begin{macrocode}
-\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt,leftmargin=*}
 \setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
 \setlist[itemize,1]{label=$\bullet$}
 \setlist[itemize,2]{topsep=9pt}
