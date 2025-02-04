@@ -79,7 +79,7 @@ jobs:
             *.log
 
       - name: Prepare GH pages content
-        if: matrix.engine == 'lualatex'
+        if: github.ref == 'refs/heads/main' && matrix.engine == 'lualatex'
         run: |
           set -e
           mkdir /tmp/gh-pages
