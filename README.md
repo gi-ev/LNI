@@ -45,7 +45,5 @@ The following links are based on the current development state:
 
 You should use `pdflatex` as `xelatex` and `lualatex` lack some features of the class file.
 
-## Links
-
 [GI]: https://gi.de/
 [Lecture Notes in Informatics]: https://gi.de/service/publikationen/lni
