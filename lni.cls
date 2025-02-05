@@ -754,19 +754,19 @@
 \brokenpenalty=2000
 \vfuzz \hfuzz
 \raggedbottom
-%%
+%% 
 %% Copyright (C) 2016-2025 by Gesellschaft für Informatik e.V. (GI)
-%%
+%% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
 %% version 1.3c of this license or (at your option) any later
 %% version.  The latest version of this license is in the file:
-%%
+%% 
 %% http://www.latex-project.org/lppl.txt
-%%
+%% 
 %% This work is "maintained" (as per LPPL maintenance status) by
 %% Martin Sievers.
-%%
+%% 
 %% This work consists of the file  lni.dtx
 %%                                 lni.ins
 %%                                 README.md
