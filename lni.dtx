@@ -101,7 +101,7 @@ This work consists of the file  lni.dtx
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<class>\ProvidesClass{lni}
 %<*class>
-    [2024/07/11 v1.10BETA Official class for submissions to the ``Lecture Notes
+    [2024/09/04 v1.11BETA Official class for submissions to the ``Lecture Notes
     in Informatics'']
 %</class>
 %<*driver>
@@ -254,7 +254,11 @@ This work consists of the file  lni.dtx
 % \changes{v1.8}{2022/11/25}{Make class compatable with latest publisher requirements (#121)}
 % \changes{v1.8}{2022/11/25}{Make usage of `hyperref` mandatory (#131)}
 % \changes{v1.9}{2024/07/01}{Support multiple affiliations (#158)}
-% \changes{v2.0}{2024/07/23}{Remove BiBTeX support (#144)}
+% \changes{v1.10}{2024/07/01}{Change font for URLs to text font and change footnote numbers to superscript}
+% \changes{v1.10}{2024/07/23}{Fix support multiple affiliations (#173)}
+% \changes{v1.11BETA}{2024/09/06}{Fix left margin for lists in theorems (#175)}
+% \changes{v2.0}{2025/02/05}{Remove BiBTeX support (#144)}
+%
 % \GetFileInfo{\jobname.dtx}
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -590,7 +594,7 @@ This work consists of the file  lni.dtx
 % preamble.
 %
 % \subsection{Bibliography}\label{sec:bibliography}
-% The \lni{} class uses BibLaTeX for and the 
+% The \lni{} class uses BibLaTeX for and the
 % \href{https://github.com/gi-ev/biblatex-lni}{\pkg{biblatex-lni}}.
 % However, you have to add information on the bib
 % file(s) in your preamble using \cs{addbibresource\marg{Bib file(s)}} and call
@@ -1084,7 +1088,7 @@ This work consists of the file  lni.dtx
 \renewcommand\Authsep{, }
 \renewcommand\Authands{\iflanguage{ngerman}{ und }{, and }}
 \renewcommand\Authand{\iflanguage{ngerman}{ und }{ and }}
-\NewDocumentCommand{\multiaffil}{ >{\SplitList{,}} m m m}{%   
+\NewDocumentCommand{\multiaffil}{ >{\SplitList{,}} m m m}{%
    \gdef\@currEmail{#2}
    \gdef\@currOrcid{#3}
    \ProcessList{#1}{\@multiaffil}
@@ -1173,7 +1177,7 @@ This work consists of the file  lni.dtx
    \gdef\AB@las{}\gdef\AB@au@str{}%
    {\def\\{, \ignorespaces}\xdef\AB@temp{#2}}%
    \@temptokena=\expandafter{\AB@affillist}%
-   \xdef\AB@affillist{\the\@temptokena 
+   \xdef\AB@affillist{\the\@temptokena
       \footnotetext[\AB@note]{%
          \raggedright\AB@temp\ifcsempty{@emailsandorcids\AB@note}{}{, \csuse{@emailsandorcids\AB@note}}}%
    }
@@ -1385,7 +1389,7 @@ This work consists of the file  lni.dtx
 %    \end{macrocode}
 % Set symbols and spacings for itemize
 %    \begin{macrocode}
-\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt,leftmargin=*}
 \setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
 \setlist[itemize,1]{label=$\bullet$}
 \setlist[itemize,2]{topsep=9pt}

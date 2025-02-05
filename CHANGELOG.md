@@ -6,20 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Left margin for nested lists [#175](https://github.com/gi-ev/LNI/issues/175)
+
+## [1.10] - 2024-07-23
+
 ### Changed
+
 - Footnotes are set as superscripts in the footer
 - URLs are set using the text font instead of a typewriter font
 
-## [1.9] - 2024-07-1
+### Fixed
+
+- Support for multiple affiliations [#173](https://github.com/gi-ev/LNI/issues/173)
+
+## [1.9] - 2024-07-01
+
 ### Added
-- Support for multiple affiliations
+
+- Support for multiple affiliations [#158](https://github.com/gi-ev/LNI/issues/158)
 
 ## [1.8.1] - 2024-01-08
 
 ### Changed
+
 - Option `defaultsups` now active for package `newtxtext`
 
 ### Fixed
+
 - Fixed `There's no line here to end.` error for more than two `\affil` calls
 - Fixed `\footnote`
 
@@ -175,7 +190,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.9...HEAD
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.10...HEAD
+[1.10]: https://github.com/gi-ev/LNI/compare/v1.9...v1.10
 [1.9]: https://github.com/gi-ev/LNI/compare/v1.8.1...v1.9
 [1.8.1]: https://github.com/gi-ev/LNI/compare/v1.8...v1.8.1
 [1.8]: https://github.com/gi-ev/LNI/compare/v1.7...v1.8
@@ -187,3 +203,5 @@ First release of the revised files
 [1.2]: https://github.com/gi-ev/LNI/compare/v1.1...v1.2
 [1.1]: https://github.com/gi-ev/LNI/compare/v1.0...v1.1
 [1.0]: https://github.com/gi-ev/LNI/releases/tag/v1.0
+
+<!-- markdownlint-disable-file MD012 MD024 MD033 MD053 -->

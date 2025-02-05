@@ -14,7 +14,7 @@
 %% --------| -----------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{lni}
-    [2024/07/11 v1.10BETA Official class for submissions to the ``Lecture Notes
+    [2025/02/05 v2.0 Official class for submissions to the ``Lecture Notes
     in Informatics'']
 \RequirePackage{iftex}\ifluatex\else\pdfoutput=1\fi%
 \def\@clearglobaloption#1{%
@@ -608,7 +608,7 @@
   \kern2.6\p@}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
-\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt}
+\setlist{topsep=0pt,itemsep=7pt,parsep=-2pt,leftmargin=*}
 \setlist[itemize]{labelsep=0.70cm}%Abstand zur Aufzählungsnummer
 \setlist[itemize,1]{label=$\bullet$}
 \setlist[itemize,2]{topsep=9pt}
@@ -754,19 +754,19 @@
 \brokenpenalty=2000
 \vfuzz \hfuzz
 \raggedbottom
-%% 
+%%
 %% Copyright (C) 2016-2024 by Gesellschaft für Informatik e.V. (GI)
-%% 
+%%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
 %% version 1.3c of this license or (at your option) any later
 %% version.  The latest version of this license is in the file:
-%% 
+%%
 %% http://www.latex-project.org/lppl.txt
-%% 
+%%
 %% This work is "maintained" (as per LPPL maintenance status) by
 %% Martin Sievers.
-%% 
+%%
 %% This work consists of the file  lni.dtx
 %%                                 lni.ins
 %%                                 README.md
