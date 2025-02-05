@@ -116,7 +116,7 @@ jobs:
       - name: pkgcheck
         if: matrix.engine != 'lualatex'
         run: |
-          wget https://codeberg.org/ManfredLotz/pkgcheck/raw/branch/master/bin/pkgcheck
+          wget -q https://codeberg.org/ManfredLotz/pkgcheck/raw/branch/master/bin/pkgcheck
           chmod u+x pkgcheck
 
           cd /tmp
