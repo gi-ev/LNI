@@ -121,7 +121,7 @@ jobs:
 
           cd /tmp
           tar xzf ${{ github.workspace }}/lni.tar.gz
-          ${{ github.workspace }}/pkgcheck -d lni
+          RUST_BACKTRACE=1 ${{ github.workspace }}/pkgcheck -d lni
 
   changelog:
     name: CHANGELOG.md
