@@ -13,4 +13,4 @@ if [ -f lni.tar.gz ]; then
 fi
 rm -f lni-instructions.pdf
 ln -s -f lni.pdf lni-instructions.pdf
-ctanify --no-tds lni.ins lni.pdf README.md CHANGELOG.md CONTRIBUTING.md "lni-instructions.pdf=doc/latex/lni" "lni-author-template.tex=doc/latex/lni" "lni-paper-example-de.tex=doc/latex/lni" "lni-paper-example-de.bib=doc/latex/lni" "lni.bst=bibtex/bst/lni" "lnig.bst=bibtex/bst/lni"
+ctanify --no-tds lni.ins lni.pdf README.md CHANGELOG.md CONTRIBUTING.md "lni-instructions.pdf=doc/latex/lni" "lni-author-template.tex=doc/latex/lni" "lni-paper-example-de.tex=doc/latex/lni" "lni-paper-example-de.bib=doc/latex/lni"
