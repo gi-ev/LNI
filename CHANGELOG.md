@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Removed
 
-- We removed BibTeX support - biblatex is the only supported tooling for the bibliography. [#144](https://github.com/gi-ev/LNI/issues/144)
+- We removed BibTeX support (`lni.bst` and `lnig.bst`) - biblatex is the only supported tooling for the bibliography. [#144](https://github.com/gi-ev/LNI/issues/144)
 
 ### Fixed
 
