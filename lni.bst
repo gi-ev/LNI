@@ -8,9 +8,9 @@
 %% lnig.bst
 %% Lecture Notes in Informatics Style File (english)
 %% Version 1.1 (2022/06/10)
-%% 
+%%
 %% The Style File is based on alpha.bst
-%% 
+%%
 %% This work may be freely used,
 %% distributed and modified.
 %% Modified files should be clearly indicated as such and renamed.
@@ -1284,19 +1284,19 @@ FUNCTION {end.bib}
 }
 
 EXECUTE {end.bib}
-%% 
-%% Copyright (C) 2016-2024 by Gesellschaft für Informatik e.V. (GI)
-%% 
+%%
+%% Copyright (C) 2016-2025 by Gesellschaft für Informatik e.V. (GI)
+%%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
 %% version 1.3c of this license or (at your option) any later
 %% version.  The latest version of this license is in the file:
-%% 
+%%
 %% http://www.latex-project.org/lppl.txt
-%% 
+%%
 %% This work is "maintained" (as per LPPL maintenance status) by
 %% Martin Sievers.
-%% 
+%%
 %% This work consists of the file  lni.dtx
 %%                                 lni.ins
 %%                                 README.md

@@ -755,7 +755,7 @@
 \vfuzz \hfuzz
 \raggedbottom
 %%
-%% Copyright (C) 2016-2024 by Gesellschaft für Informatik e.V. (GI)
+%% Copyright (C) 2016-2025 by Gesellschaft für Informatik e.V. (GI)
 %%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either

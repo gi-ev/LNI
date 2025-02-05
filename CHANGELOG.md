@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [Unreleased]
+## [2.0] - 2025-02-05
+
+### Removed
+
+- We removed BibTeX support - biblatex is the only supported tooling for the bibliography. [#144](https://github.com/gi-ev/LNI/issues/144)
 
 ### Fixed
 

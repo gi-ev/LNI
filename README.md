@@ -3,7 +3,7 @@
 ```yaml
 ----------------------------------------------------------------------------
 lni -- A class for submissions to the ``Lecture Notes in Informatics''
-(c) 2016-2024 Gesellschaft für Informatik (GI)
+(c) 2016-2025 Gesellschaft für Informatik (GI)
 Version:    2.0
 Maintainer: Martin Sievers
 Email:      martin.sievers@schoenerpublizieren.de
