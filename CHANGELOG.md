@@ -194,7 +194,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 First release of the revised files
 
-[Unreleased]: https://github.com/gi-ev/LNI/compare/v1.10...HEAD
+[2.0]: https://github.com/gi-ev/LNI/compare/v1.10...v2.0
 [1.10]: https://github.com/gi-ev/LNI/compare/v1.9...v1.10
 [1.9]: https://github.com/gi-ev/LNI/compare/v1.8.1...v1.9
 [1.8.1]: https://github.com/gi-ev/LNI/compare/v1.8...v1.8.1
