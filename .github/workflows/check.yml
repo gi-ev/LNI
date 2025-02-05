@@ -113,6 +113,13 @@ jobs:
           name: CTAN-${{ matrix.engine }}
           path: '*.tar.gz'
 
+      # pkgcheck required pdfinfo, which is contained in poppler-utils
+      - name: Prepare pkgcheck
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: poppler-utils
+          version: 1.0
+
       - name: pkgcheck
         if: matrix.engine != 'lualatex'
         run: |
