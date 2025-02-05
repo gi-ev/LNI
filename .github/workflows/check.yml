@@ -112,6 +112,13 @@ jobs:
         with:
           name: CTAN-${{ matrix.engine }}
           path: '*.tar.gz'
+
+      - name: pkgcheck
+        run: |
+          wget https://codeberg.org/ManfredLotz/pkgcheck/raw/branch/master/bin/pkgcheck
+          chmod u+x pkgcheck
+          ./pkgcheck --warnings-no-errors lni.tar.gz
+
   changelog:
     name: CHANGELOG.md
     runs-on: ubuntu-latest
