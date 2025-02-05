@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          show-progress: ''
       - name: Install TeX Live
         uses: zauguin/install-texlive@v3
         with:
@@ -35,18 +33,19 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          show-progress: ''
+
       - name: Install TeX Live
         uses: zauguin/install-texlive@v3
         with:
            package_file: Texlivefile
+
       - name: Generate lni.cls, *.tex, ...
         run: |
           pdflatex lni.ins
           pdflatex lni.dtx
           pdflatex lni.dtx
           pdflatex lni.dtx
+
       - name: Check for modifications
         run: |
           git update-index --refresh
@@ -84,7 +83,6 @@ jobs:
         run: |
           set -e
           mkdir /tmp/gh-pages
-          cp README.md /tmp/gh-pages/index.md
           cp *.pdf /tmp/gh-pages
 
       - name: Deploy to GH pages
@@ -93,6 +91,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: /tmp/gh-pages
+          force_orphan: true
 
       - name: Install dependencies for ctanify
         if: matrix.engine != 'lualatex'
@@ -117,8 +116,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          show-progress: ''
       - uses: jbangdev/jbang-action@v0.119.0
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.7.2:bin
