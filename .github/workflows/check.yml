@@ -118,7 +118,8 @@ jobs:
         run: |
           wget https://codeberg.org/ManfredLotz/pkgcheck/raw/branch/master/bin/pkgcheck
           chmod u+x pkgcheck
-          ./pkgcheck lni.tar.gz
+          # blocked by https://codeberg.org/ManfredLotz/pkgcheck/issues/9
+          # ./pkgcheck lni.tar.gz
 
   changelog:
     name: CHANGELOG.md
