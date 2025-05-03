@@ -11,6 +11,4 @@ if [ -f lni.tar.gz ]; then
    echo "Remove old archive"
    rm lni.tar.gz
 fi
-rm -f lni-instructions.pdf
-ln -s -f lni.pdf lni-instructions.pdf
-ctanify --no-tds lni.ins lni.pdf README.md CHANGELOG.md CONTRIBUTING.md "lni-instructions.pdf=doc/latex/lni" "lni-author-template.tex=doc/latex/lni" "lni-paper-example-de.tex=doc/latex/lni" "lni-paper-example-de.bib=doc/latex/lni"
+ctanify --no-tds lni.ins lni.pdf README.md CHANGELOG.md CONTRIBUTING.md
