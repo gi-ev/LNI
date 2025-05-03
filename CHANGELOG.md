@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [2.0] - 2025-02-05
 
+### Changed
+
+- When anonymizing a paper, keep the number of authors [#186](https://github.com/gi-ev/LNI/pull/186)
+
 ### Removed
 
 - We removed BibTeX support (`lni.bst` and `lnig.bst`) - biblatex is the only supported tooling for the bibliography. [#144](https://github.com/gi-ev/LNI/issues/144)
