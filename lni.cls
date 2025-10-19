@@ -412,7 +412,7 @@
    \let\\=\authorcr
    \xdef\AB@authlist{\the\@temptokena
       \protect\@nameuse{@sep\number\c@authors}%
-      \protect\Authfont#2\if\relax#4\relax\else\,\orcidlink{#4}\fi\AB@authnote{\AB@note}}%
+      \protect\Authfont \ifanonymous Anonymized Author\number\c@authors\else#2\fi\if\relax#4\relax\else\,\orcidlink{\ifanonymous 0000-0000-0000-0000\else#4\fi}\fi\AB@authnote{\AB@note}}%
    \xdef\@authlisthead{\the\@temptokenb
       \protect\@nameuse{@sep\number\c@authors}%
       \protect\Authfont#2}%
@@ -422,14 +422,14 @@
    \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \sbox\z@{\@tempcnta=0#1\relax}%
    \expandafter\ifdim\wd\z@>\z@\relax
-   \multiaffil{#1}{#3}{#4}
+   \multiaffil{#1}{\ifanonymous anonymized@example.com\else#3\fi}{\ifanonymous 0000-0000-0000-0000\else#4\fi}
    \else
    \ifcsundef{@emailsandorcids\AB@note}{\csgdef{@emailsandorcids\AB@note}{}}{}%
    \ifcsempty{@emailsandorcids\AB@note}%
    {\csgappto{@emailsandorcids\AB@note}{%
-         \if\relax#3\relax\else\email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
+         \if\relax#3\relax\else\email{\ifanonymous anonymized@example.com\else#3\fi}\fi\if\relax#4\relax\else,\ \orcid{\ifanonymous 0000-0000-0000-0000\else#4\fi}\fi}}%
    {\csgappto{@emailsandorcids\AB@note}{%
-         \if\relax#3\relax\else;\ \email{#3}\fi\if\relax#4\relax\else,\ \orcid{#4}\fi}}%
+         \if\relax#3\relax\else;\ \email{\ifanonymous anonymized@example.com\else#3\fi}\fi\if\relax#4\relax\else,\ \orcid{\ifanonymous 0000-0000-0000-0000\else#4\fi}\fi}}%
    \fi%
    \newaffilfalse
 }
@@ -449,11 +449,11 @@
    \let\protect\@unexpandable@protect
    \def\thanks{\protect\thanks}\def\footnotetext{\protect\footnotetext}%
    \@temptokena=\expandafter{\AB@authors}%
-   {\def\\{\protect\\\protect\Affilfont}\xdef\AB@temp{#2}}%
+   {\def\\{\protect\\\protect\Affilfont}\xdef\AB@temp{\ifanonymous Anonymized University #1\\Department\\Address\\Country\else#2\fi}}%
    \xdef\AB@authors{\the\@temptokena\AB@las\AB@au@str
       \protect\\[\affilsep]\protect\Affilfont\AB@temp}%
    \gdef\AB@las{}\gdef\AB@au@str{}%
-   {\def\\{, \ignorespaces}\xdef\AB@temp{#2}}%
+   {\def\\{, \ignorespaces}\xdef\AB@temp{\ifanonymous Anonymized University #1\\Department\\Address\\Country\else#2\fi}}%
    \@temptokena=\expandafter{\AB@affillist}%
    \xdef\AB@affillist{\the\@temptokena
       \footnotetext[\AB@note]{%
@@ -529,15 +529,7 @@
     \fi%
     {\normalsize%
       \lineskip .5em%
-      \ifanonymous
-        \iflnienglish
-          Anonymized for review\footnote{placeholder for contact information}
-        \else
-          Anonymisiert für Review\footnote{Platzhalter für Kontaktinformationen}
-        \fi%
-      \else
         \@author
-      \fi%
       \par}%
     \vskip 21pt% Abstand vor dem Abstract
   \end{center}%

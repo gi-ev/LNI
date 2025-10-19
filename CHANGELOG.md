@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased]
+
+### Changed
+
+- When anonymizing a paper, keep the number of authors [#186](https://github.com/gi-ev/LNI/pull/186)
+
 ## [2.0] - 2025-02-05
 
 ### Removed
@@ -194,6 +200,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 First release of the revised files
 
+[Unreleased]: https://github.com/gi-ev/LNI/compare/v2.0...main
 [2.0]: https://github.com/gi-ev/LNI/compare/v1.10...v2.0
 [1.10]: https://github.com/gi-ev/LNI/compare/v1.9...v1.10
 [1.9]: https://github.com/gi-ev/LNI/compare/v1.8.1...v1.9
