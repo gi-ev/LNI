@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install TeX Live
         uses: zauguin/install-texlive@v4
         with:
@@ -34,7 +34,7 @@ jobs:
         engine: [pdflatex, lualatex]
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install TeX Live
         uses: zauguin/install-texlive@v4
@@ -126,7 +126,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - uses: jbangdev/jbang-action@v0.126.1
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.9.2:bin
