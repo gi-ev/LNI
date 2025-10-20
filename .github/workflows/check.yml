@@ -127,7 +127,7 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - uses: jbangdev/jbang-action@v0.126.1
+      - uses: jbangdev/jbang-action@v0.132.1
         with:
           script: com.github.nbbrd.heylogs:heylogs-cli:0.9.2:bin
           scriptargs: "check CHANGELOG.md"
