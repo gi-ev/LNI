@@ -677,7 +677,7 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \RequirePackage{xspace}
 \AddToHook{env/document/begin}[lni/loadhyperref]{%
-   \RequirePackage[bookmarks=false]{hyperref}
+   \RequirePackage[bookmarks=true]{hyperref}
    \hypersetup{%
          pdfdisplaydoctitle,%
          colorlinks=true,%
