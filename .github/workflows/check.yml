@@ -113,13 +113,13 @@ jobs:
           name: CTAN-${{ matrix.engine }}
           path: '*.tar.gz'
 
-      - name: pkgcheck
-        if: matrix.engine != 'lualatex'
-        run: |
-          wget https://codeberg.org/ManfredLotz/pkgcheck/raw/branch/master/bin/pkgcheck
-          chmod u+x pkgcheck
-          # blocked by https://codeberg.org/ManfredLotz/pkgcheck/issues/9
-          # ./pkgcheck lni.tar.gz
+#      - name: pkgcheck
+#        if: matrix.engine != 'lualatex'
+#        run: |
+#          wget https://codeberg.org/ManfredLotz/pkgcheck/raw/branch/master/bin/pkgcheck
+#          chmod u+x pkgcheck
+#          # blocked by https://codeberg.org/ManfredLotz/pkgcheck/issues/9
+#          # ./pkgcheck lni.tar.gz
 
   changelog:
     name: CHANGELOG.md
