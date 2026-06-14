@@ -1,4 +1,4 @@
-# lni - LaTeX class for submissions to the ``Lecture Notes in Informatics''
+# lni – LaTeX class for submissions to the “Lecture Notes in Informatics”
 
 ```yaml
 ----------------------------------------------------------------------------
