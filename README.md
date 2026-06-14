@@ -21,12 +21,6 @@ It is based on previous templates created on behalf of the GI.
 
 Download [`lni-author-template.tex`](https://github.com/gi-ev/LNI/blob/main/lni-author-template.tex) and edit it in your favorite LaTeX editor.
 
-## Improved usage
-
-By default [BibTeX](https://www.ctan.org/pkg/bibtex) is used as bibliography tool.
-In case you want to use [biblatex](https://www.ctan.org/pkg/biblatex) together with [Biber](https://www.ctan.org/pkg/biber) (strongly recommended), use the specialized package [biblatex-lni](https://ctan.org/pkg/biblatex-lni).
-The easiest way is to add `biblatex` as class option - or to directly start at `lni-paper-example-de.tex`.
-
 ## Links
 
 - Documentation: [`lni.pdf`](https://gi-ev.github.io/LNI/lni.pdf). It includes a short description how to use the template and also provides troubleshooting hints.
